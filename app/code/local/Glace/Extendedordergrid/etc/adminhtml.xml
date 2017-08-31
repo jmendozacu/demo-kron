@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config>
+    <translate>
+        <modules>
+            <Glace_Extendedordergrid>
+                <files>
+                    <default>Glace_Extendedordergrid.csv</default>
+                </files>
+            </Glace_Extendedordergrid>
+        </modules>
+    </translate>
+    <menu>
+        <sales>
+            <children>
+                <ciordermanager translate="title">
+                    <title>Add columns in Orders Grid</title>
+                    <action>ciextendedordergrid/adminhtml_settings</action>
+                    <sort_order>19</sort_order>
+                </ciordermanager>
+            </children>
+        </sales>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <ciextendedordergrid translate="title" module="ciextendedordergrid">
+                                        <title>Add columns in Orders Grid</title>
+                                    </ciextendedordergrid>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <sales>
+                        <children>
+		                    <ciordermanager translate="title">
+		                        <title>Add columns in Orders Grid</title>
+		                        <action>ciextendedordergrid/adminhtml_settings</action>
+		                        <sort_order>19</sort_order>
+		                    </ciordermanager>
+		                </children>
+                    </sales>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

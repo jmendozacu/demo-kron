@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @package    Magedevgroup_TradeIn
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_TradeIn>
+            <version>0.0.5</version>
+        </Magedevgroup_TradeIn>
+    </modules>
+
+    <global>
+        <blocks>
+            <tradein_adminhtml>
+                <class>Magedevgroup_TradeIn_Block_Adminhtml</class>
+            </tradein_adminhtml>
+
+            <tradein_product>
+                <class>Magedevgroup_TradeIn_Block_Product</class>
+            </tradein_product>
+        </blocks>
+
+        <models>
+            <magedevgroup_tradein>
+                <class>Magedevgroup_TradeIn_Model</class>
+                <resourceModel>magedevgroup_tradein_resource</resourceModel>
+            </magedevgroup_tradein>
+
+            <magedevgroup_tradein_resource>
+                <class>Magedevgroup_TradeIn_Model_Resource</class>
+                <entities>
+                    <tradeinproposal_entity>
+                        <table>magedevgroup_tradein_tradeinproposal_entity</table>
+                    </tradeinproposal_entity>
+
+                    <tradeinproposal_entity_datetime>
+                        <table>magedevgroup_tradein_tradeinproposal_entity_datetime</table>
+                    </tradeinproposal_entity_datetime>
+
+                    <tradeinproposal_entity_decimal>
+                        <table>magedevgroup_tradein_tradeinproposal_entity_decimal</table>
+                    </tradeinproposal_entity_decimal>
+
+                    <tradeinproposal_entity_int>
+                        <table>magedevgroup_tradein_tradeinproposal_entity_int</table>
+                    </tradeinproposal_entity_int>
+
+                    <tradeinproposal_entity_text>
+                        <table>magedevgroup_tradein_tradeinproposal_entity_text</table>
+                    </tradeinproposal_entity_text>
+
+                    <tradeinproposal_entity_varchar>
+                        <table>magedevgroup_tradein_tradeinproposal_entity_varchar</table>
+                    </tradeinproposal_entity_varchar>
+
+                    <tradeinproposal_entity_char>
+                        <table>magedevgroup_tradein_tradeinproposal_entity_char</table>
+                    </tradeinproposal_entity_char>
+                </entities>
+            </magedevgroup_tradein_resource>
+        </models>
+
+        <resources>
+            <magedevgroup_tradein_setup>
+                <setup>
+                    <module>Magedevgroup_TradeIn</module>
+                    <class>Magedevgroup_TradeIn_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </magedevgroup_tradein_setup>
+
+            <magedevgroup_tradein_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </magedevgroup_tradein_write>
+
+            <magedevgroup_tradein_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </magedevgroup_tradein_read>
+        </resources>
+
+        <helpers>
+            <tradein>
+                <class>Magedevgroup_TradeIn_Helper</class>
+            </tradein>
+        </helpers>
+
+        <template>
+            <email>
+                <magedevgroup_tradein_general_coupon_template_a translate="label" module="tradein">
+                    <label>TradeIn Proposal Coupon email template</label>
+                    <file>tradein_proposal_email_template_a.html</file>
+                    <type>html</type>
+                </magedevgroup_tradein_general_coupon_template_a>
+
+                <magedevgroup_tradein_general_coupon_template_p translate="label" module="tradein">
+                    <label>TradeIn Proposal Coupon email template</label>
+                    <file>tradein_proposal_email_template_p.html</file>
+                    <type>html</type>
+                </magedevgroup_tradein_general_coupon_template_p>
+
+                <magedevgroup_tradein_general_shipping_template translate="label" module="tradein">
+                    <label>TradeIn Proposal Shipping email template</label>
+                    <file>tradein_shipping_email_template.html</file>
+                    <type>html</type>
+                </magedevgroup_tradein_general_shipping_template>
+            </email>
+        </template>
+
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <magedevgroup_tradein_model_observer>
+                        <type>singleton</type>
+                        <class>Magedevgroup_TradeIn_Model_Observer</class>
+                        <method>sendShippingEmail</method>
+                    </magedevgroup_tradein_model_observer>
+                </observers>
+            </sales_order_place_after>
+        </events>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <magedevgroup_tradein after="Mage_Adminhtml">Magedevgroup_TradeIn_Adminhtml</magedevgroup_tradein>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <frontend>
+        <layout>
+            <updates>
+                <magedevgroup_tradein>
+                    <file>magedevgroup/tradein.xml</file>
+                </magedevgroup_tradein>
+            </updates>
+        </layout>
+
+        <routers>
+            <tradein>
+                <use>standard</use>
+                <args>
+                    <module>Magedevgroup_TradeIn</module>
+                    <frontName>tradein</frontName>
+                </args>
+            </tradein>
+        </routers>
+    </frontend>
+
+    <crontab>
+        <jobs>
+            <tradein_cron>
+                <schedule>
+                    <cron_expr>*/5 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>magedevgroup_tradein/cron::procAcceptProposal</model>
+                </run>
+            </tradein_cron>
+        </jobs>
+    </crontab>
+</config>

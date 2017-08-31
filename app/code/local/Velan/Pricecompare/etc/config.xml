@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+	
+    <modules>
+        <Velan_Pricecompare>
+            <version>1.0.4</version>
+        </Velan_Pricecompare>
+    </modules>
+    
+    <global>
+    	
+        <models>
+            <pricecompare>
+                <class>Velan_Pricecompare_Model</class>
+                <resourceModel>pricecompare_mysql4</resourceModel>
+            </pricecompare>
+            
+            <pricecompare_mysql4>
+                <class>Velan_Pricecompare_Model_Mysql4</class>
+                <entities>
+                    <productupdate>
+                        <table>pricecompare_product_update</table>
+                    </productupdate>
+                    <competitorlogo>
+                        <table>pricecompare_competitor_logo</table>
+                    </competitorlogo>
+                </entities>
+            </pricecompare_mysql4>
+        </models>
+        
+        <resources>
+		    <pricecompare_setup>
+		        <setup>
+		            <module>Velan_Pricecompare</module>
+		        </setup>
+		        <connection>
+		            <use>core_setup</use>
+		        </connection>
+		    </pricecompare_setup>
+		</resources>
+        
+    </global>
+   	
+   	<frontend>
+        <routers>
+            <pricecompare>
+                <use>standard</use>
+                <args>
+                    <module>Velan_Pricecompare</module>
+                    <frontName>pricecompare</frontName>
+                </args>
+            </pricecompare>
+        </routers>
+    </frontend>
+	
+</config>

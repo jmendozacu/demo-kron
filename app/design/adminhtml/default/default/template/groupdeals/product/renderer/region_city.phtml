@@ -1,0 +1,183 @@
+<?php 
+	$data = Mage::registry('groupdeals_data')->getData(); 
+	$crcCollection = Mage::getModel('groupdeals/crc')->getCrcCollection($data['groupdeals_id']);
+	$regions = array();
+	$cities = array();
+	$countryId = '';
+	$i = 0;
+	if (count($crcCollection)) {
+		foreach ($crcCollection as $crc) {
+			$i++;
+			$countryId = $crc->getCountryId();
+			$regions[$i] = $crc->getRegion();
+			$cities[$i] = $crc->getCity();
+		}
+	} else {
+		$i = 1;
+	}
+	
+	for ($j = 1; $j<=$i; $j++):
+?>
+<tr id="region_row<?php echo $j; ?>">
+	<td class="label">
+		<label for="region<?php echo $j; ?>"><?php echo $this->__('State/Province'); ?> (<?php echo $j; ?>) <span class="required">*</span></label>
+	</td>
+	<td class="value">
+	    <div id="region_container<?php echo $j; ?>">
+	        <?php $regionCollection = array(); ?>
+	  	    <?php if ($countryId!=''): ?>
+	  	        <?php $regionCollection = Mage::getModel('directory/region_api')->items($countryId); ?>
+	  	    <?php endif; ?>
+	  	    <?php if (count($regionCollection)>0): ?>
+	  	        <select class="required-entry" name="region<?php echo $j; ?>" id="region<?php echo $j; ?>">
+	  	    	    <option value=""></option>
+	  	    	    <?php foreach ($regionCollection as $region): ?>
+	  	    	        <?php $regionModel = Mage::getModel('directory/region')->load($region['region_id']); ?>
+	  	    		    <option <?php if ($regions[$j]==$regionModel->getName()): ?> selected="selected"<?php endif; ?>value="<?php echo $regionModel->getName(); ?>"><?php echo $regionModel->getName(); ?></option>
+	  	    	    <?php endforeach; ?>
+	  	        </select>
+	  	    <?php else: ?>
+	  	        <input type="text" class="input-text required-entry" value="<?php echo $regions[$j]; ?>" name="region<?php echo $j; ?>" id="region<?php echo $j; ?>" />
+	  	    <?php endif; ?>
+	    </div>
+	</td>
+	<td class="scope-label">
+    	<span class="nobr"><?php echo $this->__('[GLOBAL]'); ?></span>
+	</td>
+</tr>
+<tr id="city_row<?php echo $j; ?>">
+    <td class="label">
+    	<label for="city<?php echo $j; ?>"><?php echo $this->__('City'); ?> (<?php echo $j; ?>) <span class="required">*</span></label>
+    </td>
+    <td class="value">
+   		<input type="text" class="required-entry input-text" value="<?php echo $cities[$j]; ?>" name="city<?php echo $j; ?>" id="city<?php echo $j; ?>" />
+    </td>
+    <td class="scope-label">
+        <span class="nobr"><?php echo $this->__('[GLOBAL]'); ?></span>
+    </td>
+</tr>
+<?php endfor; ?>
+
+<tr>
+	<td></td>
+	<td class="value">
+   		<input type="hidden" value="<?php echo $i; ?>" name="region_city_nr" id="region_city_nr" />
+		<button id="region_city_add" title="Add State/City" type="button" class="scalable" onclick="addRegionCity()"><span><span><span><?php echo $this->__('Add State/City'); ?></span></span></span></button>
+		<button id="region_city_remove" title="Remove State/City" type="button" class="scalable delete" <?php if ($i<=1): ?>style="display:none;" <?php endif; ?>onclick="removeRegionCity()"><span><span><span><?php echo $this->__('Remove State/City'); ?></span></span></span></button>
+	</td>
+</tr>
+
+<script type="text/javascript">
+	
+	//set default values for universal
+	<?php if ($countryId==''): ?>
+	    $('city1').value = 'Select a country to enter city'; 
+	    $('city1').disabled = 'disabled'; 
+	    $('region1').value = 'Select a country to enter state/province'; 
+	    $('region1').disabled = 'disabled'; 
+		Element.hide('region_city_add');
+	<?php endif; ?>	
+	
+	var regionCityNr = <?php echo $i; ?>;
+	
+	function addRegionCity() {	
+		var prevRegionCityNr = regionCityNr;
+		regionCityNr++;
+		$('region_city_nr').value = regionCityNr;
+					
+		//create region tag		
+		var regionRow = Element.clone($('region_row'+prevRegionCityNr), true);
+		regionRow.writeAttribute('id', 'region_row'+regionCityNr);
+		var regionContent = regionRow.innerHTML;
+		regionRow.innerHTML = regionContent.replaceAll('region'+prevRegionCityNr, 'region'+regionCityNr).replaceAll('('+prevRegionCityNr+')', '('+regionCityNr+')').replaceAll('region_container'+prevRegionCityNr, 'region_container'+regionCityNr);
+		
+		//create city tag
+		var cityRow = Element.clone($('city_row'+prevRegionCityNr), true);
+		cityRow.writeAttribute('id', 'city_row'+regionCityNr);
+		var cityContent = cityRow.innerHTML;
+		cityRow.innerHTML = cityContent.replaceAll('city'+prevRegionCityNr, 'city'+regionCityNr).replaceAll('('+prevRegionCityNr+')', '('+regionCityNr+')').replaceAll('city_container'+prevRegionCityNr, 'city_container'+regionCityNr);
+		
+		//add tags to table
+		var lastRegionCityElement = $('city_row'+prevRegionCityNr);
+		var tableElement = lastRegionCityElement.parentNode;	
+		tableElement.insertBefore(cityRow, lastRegionCityElement.nextSibling);	
+		tableElement.insertBefore(regionRow, lastRegionCityElement.nextSibling);	
+		$('region'+regionCityNr).value = '';	
+		$('city'+regionCityNr).value = '';
+		
+		Element.show('region_city_remove');
+	}
+	
+	function removeRegionCity() {
+		var regionElement = $('region_row'+regionCityNr);
+		var cityElement = $('city_row'+regionCityNr);
+		
+		//remove last region city
+		Element.remove(regionElement);
+		Element.remove(cityElement);		
+		
+		regionCityNr--;
+		$('region_city_nr').value = regionCityNr;
+		
+		if (regionCityNr<=1) {
+			Element.hide('region_city_remove');
+		}	
+	}
+	
+	String.prototype.replaceAll = function( 
+		strTarget, // The substring you want to replace
+		strSubString // The string you want to replace in.
+	){
+		var strText = this;
+		var intIndexOfMatch = strText.indexOf( strTarget );
+		 
+		// Keep looping while an instance of the target string
+		// still exists in the string.
+		while (intIndexOfMatch != -1){
+			// Relace out the current instance.
+			strText = strText.replace( strTarget, strSubString )
+		 
+			// Get the index of any next matching substring.
+			intIndexOfMatch = strText.indexOf( strTarget );
+		}
+		 
+		// Return the updated string with ALL the target strings
+		// replaced out with the new substring.
+		return( strText );
+	}
+    
+    //used to reload regions field when country changes
+    function regionReload(value)
+	{    	    		    
+	    new Ajax.Updater('region_container1', '<?php echo $this->getUrl('groupdealsadmin/adminhtml_groupdeals/region'); ?>country_id/'+value, {
+	        evalScripts:true,
+	        onComplete:function(request, json) { 
+		        if ($('country_id').value!='') { 
+			        Element.show('region_city_add');
+			        if (regionCityNr>1) {
+			        	tempRegionCityNr = regionCityNr;
+					    for (var i=tempRegionCityNr; i!=1; i--) {
+					        removeRegionCity(); 
+					    }
+					    
+					    for (var i=2; i<=tempRegionCityNr; i++) {
+					        addRegionCity(); 
+				        	$('city'+i).disabled = '';
+				        	$('city'+i).value = ''; 
+					    }
+				    }			        
+			    } else {
+			        Element.hide('region_city_add');	
+			        if (regionCityNr>1) {
+			        	tempRegionCityNr = regionCityNr;
+					    for (var i=tempRegionCityNr; i!=1; i--) {
+					        removeRegionCity(); 
+					    }
+				    }			    				    
+			    }
+	        	
+	        }
+	    }); 
+	} 
+	
+</script>

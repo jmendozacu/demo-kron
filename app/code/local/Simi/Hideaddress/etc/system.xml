@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_Hideaddress
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <tabs>
+        <magestore translate="label">
+            <label>Magestore Extension</label>
+            <sort_order>400</sort_order>
+        </magestore>
+    </tabs>
+    <sections>
+        <hideaddress translate="label" module="hideaddress">
+            <class>separator-top</class>
+            <label>Checkout Information Management</label>
+            <tab>simi</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>299</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>        
+                        <enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </enable>
+                    </fields>
+                </general>
+                <field_hide_management translate="label">
+                    <label>Customer Information Management</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <company translate="label">
+                            <label>Company</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </company>
+                        <street translate="label">
+                            <label>Address</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </street>
+                        <country translate="label">
+                            <label>Country</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </country>
+                        <state translate="label">
+                            <label>State/Province</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </state>
+                        <city translate="label">
+                            <label>City</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </city>
+                        <zipcode translate="label">
+                            <label>Zip/Postal Code</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zipcode>
+                        <telephone translate="label">
+                            <label>Telephone</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </telephone>
+                        <fax translate="label">
+                            <label>Fax</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fax>
+                        <prefix translate="label">
+                            <label>Prefix Name</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </prefix>
+<!--                        <middlename translate="label">
+                            <label>Middle Name</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </middlename>-->
+                        <suffix translate="label">
+                            <label>Suffix Name</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </suffix>
+                        <birthday translate="label">
+                            <label>Date of Birth</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </birthday>
+                        <gender translate="label">
+                            <label>Gender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gender>
+                        <taxvat translate="label">
+                            <label>Tax/VAT number</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hideaddress/options_options</source_model>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </taxvat>
+                    </fields>
+                </field_hide_management>
+                <terms_conditions translate="label">	
+                    <label>Terms and Conditions</label>					
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable_terms translate="label">
+                            <label>Show Terms and Conditions</label>					
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_terms>
+                        <term_title translate="label">
+                            <label>Terms and Conditions Title</label>					
+                            <frontend_type>text</frontend_type>							
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </term_title>
+                        <term_html translate="label">
+                            <label>Terms and Conditions Content (HTML)</label>					
+                            <frontend_type>textarea</frontend_type>							
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </term_html>
+<!--                        <enable_custom_size translate="label">
+                            <label>Enable custom size</label>					
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>						
+                            <comment><![CDATA[If enabled, allow adjusting the Terms and Conditions popup size.]]>
+                            </comment>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_custom_size>
+                        <term_width translate="label comment">
+                            <label>Width</label>
+                            <comment><![CDATA[Width(px) of Terms and and Conditions popup]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>							
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable_custom_size>1</enable_custom_size>
+                            </depends>
+                        </term_width>
+                        <term_height translate="label comment">
+                            <label>Height</label>
+                            <comment><![CDATA[Height(px) of Terms and and Conditions popup]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>							
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable_custom_size>1</enable_custom_size>
+                            </depends>
+                        </term_height>-->
+                    </fields>
+                </terms_conditions>
+            </groups>
+        </hideaddress>
+    </sections>
+</config>

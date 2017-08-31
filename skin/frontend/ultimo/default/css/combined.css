@@ -1,0 +1,40 @@
+.box-brand a{margin:0 auto;display:block;}
+.box-brand img{margin:0 auto;display:block;}
+.box-brand .brand-name{}
+.box-brand .brand-name .label{}
+.brand-slider{}
+.box-brand a img,
+.brand-slider .slides a img{transition:opacity 300ms ease-in-out;-moz-transition:opacity 300ms ease-in-out;-webkit-transition:opacity 300ms ease-in-out;-o-transition:opacity 300ms ease-in-out;}
+.box-brand a:hover img,
+.brand-slider .slides a:hover img{opacity:0.85;filter:alpha(opacity=85);}
+.product-secondary-column .box-brand .attribute{font-size:1.25em;font-weight:bold;line-height:1.2em;margin:10px 0;text-align:center;}
+.itemgrid .item{float:left;padding-left:1%;padding-right:1%;}
+.itemgrid-adaptive .item{}
+.itemgrid-1col .item{width:98%;}
+.itemgrid-2col .item{width:48%;}
+.itemgrid-2col .item:nth-child(2n+1){clear:left;}
+.itemgrid-3col .item{width:31.333%;}
+.itemgrid-3col .item:nth-child(3n+1){clear:left;}
+.itemgrid-4col .item{width:23%;}
+.itemgrid-4col .item:nth-child(4n+1){clear:left;}
+.itemgrid-4col .item.dop{width:48%;}
+.itemgrid-5col .item{width:18%;}
+.itemgrid-5col .item:nth-child(5n+1){clear:left;}
+.itemgrid-5col .item.dop{width:38%;}
+.itemgrid-6col .item{width:14.66%;}
+.itemgrid-6col .item:nth-child(6n+1){clear:left;}
+.itemgrid-6col .item.dop{width:29.32%;}
+.itemgrid-7col .item{width:12.286%;}
+.itemgrid-7col .item:nth-child(7n+1){clear:left;}
+#j2t-track1{background-image:url(../images/j2t-bg-fader.gif);background-repeat:no-repeat;width:209px;height:28px;}
+#j2t-handle1{background-image:url(../images/j2t-thumb-n.gif);background-repeat:no-repeat;width:17px;height:21px;cursor:move;}
+#j2t-track2{background-image:url(../images/j2t-bg-fader.gif);background-repeat:no-repeat;width:209px;height:28px;}
+#j2t-handle2{background-image:url(../images/j2t-thumb-orange.gif);background-repeat:no-repeat;width:17px;height:21px;cursor:pointer;}
+.j2t-loyalty-points{display:block;clear:both;}
+.rewards_point_cart em{color:#EB340A;}
+.form-list .field.j2t-rewardpoints-email{width:280px;}
+.form-list .field.j2t-rewardpoints-email img{vertical-align:middle;}
+.fme_bgi_specs{left:0;position:fixed;top:0;z-index:-1;width:100%;height: 100%;}
+.header-container{background:none !important;}
+.main-container{background:none !important;}
+.footer-container{border:none !important;background:none !important;}

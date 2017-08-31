@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+			<action method="addItem">
+				<type>skin_css</type><name>css/socialtabs/socialtabs.css</name><params/>
+			</action>
+			<action method="addItem">
+				<type>skin_css</type><name>css/socialtabs/icomoon.css</name><params/>
+			</action>
+			<action method="addJs"><script>socialtabs/socialtabs.js</script></action>
+		</reference>
+		<reference name="content">
+			<block type="core/template" name="social_contacts" as="social_contacts" template="socialtabs/social_contacts.phtml" />
+		</reference>
+    </default>
+</layout>

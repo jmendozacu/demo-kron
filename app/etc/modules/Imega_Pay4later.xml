@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Imega_Pay4later>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Imega_Pay4later>
+    </modules>
+</config> 

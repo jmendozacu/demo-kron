@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category 	Magestore
+ * @package 	Magestore_Madapter
+ * @copyright 	Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license 	http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <modules>
+        <Magestore_Madapter>
+            <version>0.3.1</version>
+        </Magestore_Madapter>
+    </modules>
+    <frontend>
+        <routers>
+            <madapter>
+                <use>standard</use>
+                <args>
+                    <module>Magestore_Madapter</module>
+                    <frontName>madapter</frontName>
+                </args>
+            </madapter>
+        </routers>
+        <layout>
+            <updates>
+                <madapter>
+                    <file>madapter.xml</file>
+                </madapter>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Magestore_Madapter>
+                    <files>
+                        <default>Magestore_Madapter.csv</default>
+                    </files>
+                </Magestore_Madapter>
+            </modules>
+        </translate>
+        <events>
+            <payment_method_is_active>
+                <observers>
+                    <vietnamshipping_observers>
+                        <type>singleton</type>
+                        <class>madapter/observer</class>
+                        <method>paymentMethodIsActive</method>
+                    </vietnamshipping_observers>
+                </observers>
+            </payment_method_is_active>
+        </events>
+    </frontend>
+    <admin>
+        <routers>
+            <madapteradmin>
+                <use>admin</use>
+                <args>
+                    <module>Magestore_Madapter</module>
+                    <frontName>madapteradmin</frontName>
+                </args>
+            </madapteradmin>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <madapter>
+                    <file>madapter.xml</file>
+                </madapter>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Magestore_Madapter>
+                    <files>
+                        <default>Magestore_Madapter.csv</default>
+                    </files>
+                </Magestore_Madapter>
+            </modules>
+        </translate>
+    </adminhtml>   
+    <global>
+        <models>
+            <madapter>
+                <class>Magestore_Madapter_Model</class>
+                <resourceModel>madapter_mysql4</resourceModel>
+            </madapter>
+            <madapter_mysql4>
+                <class>Magestore_Madapter_Model_Mysql4</class>
+                <entities>
+                    <madapter>
+                        <table>madapter</table>
+                    </madapter>
+                    <banner>
+                        <table>madapter_banner</table>
+                    </banner>
+                    <device>
+                        <table>madapter_device</table>
+                    </device>
+                </entities>
+            </madapter_mysql4>
+        </models>
+        <resources>
+            <madapter_setup>
+                <setup>
+                    <module>Magestore_Madapter</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </madapter_setup>
+            <madapter_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </madapter_write>
+            <madapter_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </madapter_read>
+        </resources>
+        <blocks>
+            <madapter>
+                <class>Magestore_Madapter_Block</class>
+            </madapter>
+        </blocks>
+        <helpers>
+            <madapter>
+                <class>Magestore_Madapter_Helper</class>
+            </madapter>
+        </helpers>
+        <!-- <events>
+                                                     			<controller_action_predispatch>
+                                                                                                    				<observers>
+                                                                                                                                                   					<madapter_observers>
+                                                                                                                                                                                                  						<class>madapter/observer</class>
+                                                                                                                                                                                                  						<method>controllerActionPredispatch</method>
+                                                                                                                                                   					</madapter_observers>
+                                                                                                    				</observers>
+                                                     			</controller_action_predispatch>
+      		</events> -->
+    </global>
+    <default>
+        <madapter>
+            <general>
+                <enable>1</enable>
+                <spot_product>Spot products</spot_product>
+                <spot_product_value>2</spot_product_value>
+                <about_us>about-magento-demo-store</about_us>
+                <privacy>privacy-policy-cookie-restriction-mode</privacy>
+                <contact_us>contacts</contact_us>                
+                <link_alert></link_alert>    
+                <is_sanbox>0</is_sanbox>  
+                <content_alert></content_alert>                         
+            </general>
+            <notice>
+                <message></message>
+                <title></title>
+                <url></url>                
+                <name>push.pem</name>
+            </notice>
+        </madapter>
+        <payment>
+            <zooz>
+                <active>1</active>                    
+                <account></account>
+                <zooz_id backend_model="adminhtml/system_config_backend_encrypted"/>                    
+                <order_status>pending</order_status>       
+                <model>madapter/zooz</model>     
+                <title>Zooz</title>           
+                <allowspecific>0</allowspecific>
+                <is_sandbox>0</is_sandbox>   
+            </zooz>           
+            <paypal_mobile>
+                <active>1</active>    
+                <business_account></business_account>                
+                <api_name></api_name>
+                <api_pass></api_pass>
+                <signature></signature>
+                <order_status>pending</order_status>       
+                <model>madapter/paypal</model>     
+                <title>Paypal Mobile</title>
+                <allowspecific>0</allowspecific>
+                <client_id backend_model="adminhtml/system_config_backend_encrypted"/>                    
+                <secret backend_model="adminhtml/system_config_backend_encrypted"/>
+                <is_sandbox>0</is_sandbox>           
+            </paypal_mobile>
+            <transfer_mobile>
+                <active>1</active>    
+                <title>Bank Transfer Mobile</title>
+                <model>madapter/transfer</model>     
+                <order_status>pending</order_status>     
+            </transfer_mobile>
+        </payment>
+    </default>
+</config>

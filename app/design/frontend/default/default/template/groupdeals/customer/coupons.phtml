@@ -1,0 +1,55 @@
+<?php 
+	$couponCollection = $this->getCoupons(); 
+    $_gdHelper = $this->helper('groupdeals');
+    
+    //paginate
+    $from = ($couponCollection->getCurPage() - 1) * $couponCollection->getPageSize();
+    $to = $from + $couponCollection->getPageSize();
+    $isPaginated = $couponCollection->getPageSize() > 0;
+?>
+<div class="page-title">
+    <h1><?php echo $this->__('My Coupons') ?></h1>
+</div>
+<?php if(count($couponCollection)>0): ?>
+	<?php echo $this->getPagerHtml(); ?>
+	<table class="data-table" id="my-coupons-table" >
+	    <thead>
+	        <tr>
+	            <th><?php echo $this->__('Order #') ?></th>
+	            <th><?php echo $this->__('Deal Name') ?></th>
+	            <th><?php echo $this->__('Value') ?></th>
+	            <th><?php echo $this->__('Order Status') ?></th>
+	            <th><?php echo $this->__('Coupon Code') ?></th>
+	            <th><?php echo $this->__('Redeem Status') ?></th>
+	            <th><?php echo $this->__('Coupon Action') ?></th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    <?php $cnt = 0; foreach ($couponCollection as $coupon): $cnt++; ?>
+	    	<?php if ($isPaginated && ($cnt <= $from || $cnt > $to)) continue; ?>
+	    	<tr>
+	    	    <td><?php echo $coupon->getIncrementId(); ?></td>
+	    	    <td><?php echo $coupon->getName(); ?></td>
+	    	    <td><?php $product = $coupon->getProduct(); echo $_gdHelper->getFormatedPrice($product, $coupon->getBasePriceInclTax(), $coupon->getStoreId(), true, false, false); ?></td>
+	    	    <td><?php echo $coupon->getStatus(); ?></td>
+	    	    <td><?php echo $coupon->getCouponCode(); ?></td>
+	    	    <td><?php echo $coupon->getRedeem(); ?></td>
+	    		<?php if ($coupon->getCouponId()): ?>		
+	    	    <td><a href="<?php echo $this->getUrl('groupdeals/coupons/view', array('coupon_id'=>$coupon->getCouponId())); ?>"><?php echo $this->__('View') ?></a><span class="separator">|</span><a href="<?php echo $this->getUrl('groupdeals/coupons/print', array('coupon_id'=>$coupon->getCouponId())) ?>" class="link-print" target="_blank"><?php echo $this->__('Print') ?></a></td>  
+	    		<?php else: ?>   
+	    		<td><a href="<?php echo $this->getUrl('sales/order/view', array('order_id'=>$coupon->getOrderId())) ?>"><?php echo $this->__('View Order') ?></a></td>  
+				<?php endif ?>       
+	    	</tr>
+	    <?php endforeach; ?>	    	
+	    </tbody>
+	</table>
+	<script type="text/javascript">decorateTable('my-coupons-table')</script>
+	<?php echo $this->getPagerHtml(); ?>	
+<?php else: ?>
+    <p><?php echo $this->__('You didn\'t purchase any coupons.') ?></p>
+<?php endif ?>
+
+	
+<div class="buttons-set button-set">
+    <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+</div>

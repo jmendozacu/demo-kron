@@ -1,0 +1,77 @@
+/**
+ * ModuleMart_Brands extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Module-Mart License
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.modulemart.com/license.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to modules@modulemart.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * versions in the future. If you wish to customize this extension for your
+ * needs please refer to http://www.modulemart.com for more information.
+ *
+ * @category   ModuleMart
+ * @package    ModuleMart_Brands
+ * @author-email  modules@modulemart.com
+ * @copyright  Copyright 2014 © modulemart.com. All Rights Reserved
+ */
+/* ================================================================================= */
+.block-brands-sidebar .brand-data-img {
+	padding:10px;
+	line-height:50px;
+}
+.block-brands-sidebar .brand-data-img .name {
+	margin-left: 10px;
+}
+.block-brands-sidebar .brand-data {
+	padding: 3px; line-height: 30px;
+}
+.block-brands-sidebar .all-brands {
+	padding:5px; margin-left:5px;
+}
+.block-brands-sidebar .all-brands a {
+	text-decoration:none;
+}
+.block-brands-sidebar .brand-data a {
+	text-decoration:none;
+}
+.block-brands-sidebar .brand-data span {
+	margin-left: 3px;
+}
+/* ================================================================================= */
+.box-brands .brand-name{
+	margin-top: 15px !important; position: absolute; margin-left: 10px;
+}
+/* ================================================================================= */
+.brand-view {
+	margin-bottom:20px;
+}
+.brand-view .brand-brand_logo {
+	border: 1px rgb(233, 233, 233) solid; padding: 8px;
+}
+.brand-brand_logo .brand-img{
+	border: 1px rgb(233, 233, 233) solid;
+}
+.brand-brand_logo .brand-name{
+	margin-left: 16px !important; position: absolute; width: 503px;
+}
+/* ================================================================================= */
+.brand-list-item .brands{
+	width: auto; float: left; display: inline; border:1px rgb(233, 233, 233) solid; padding:5px; margin:5px; background-color:#fff;
+}
+.brand-list-item .brand-name{
+	font-weight: bold; font-size: 14px; margin-left: 50px;
+}
+.brand-list-item a {
+	text-decoration:none;
+}
+.brand-list-item .brand-img {
+	border:1px rgba(245, 237, 237, 0.37) outset;
+}

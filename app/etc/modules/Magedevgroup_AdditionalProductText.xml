@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_AdditionalProductText
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_AdditionalProductText>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Magedevgroup_Core />
+            </depends>
+        </Magedevgroup_AdditionalProductText>
+    </modules>
+</config>

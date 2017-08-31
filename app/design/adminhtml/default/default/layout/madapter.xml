@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category 	Magestore
+ * @package 	Magestore_Madapter
+ * @copyright 	Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license 	http://www.magestore.com/license-agreement.html
+ */
+-->
+<layout version="0.1.0">
+    <madapteradmin_adminhtml_madapter_index>
+        <reference name="content">
+            <block type="madapter/adminhtml_madapter" name="madapter" />
+        </reference>
+    </madapteradmin_adminhtml_madapter_index>
+    <madapteradmin_adminhtml_banner_index>
+        <reference name="content">
+            <block type="madapter/adminhtml_banner" name="madapter_banner"/>
+        </reference>
+    </madapteradmin_adminhtml_banner_index>
+    <madapteradmin_adminhtml_notice_index>
+        <reference name="content">
+            <block type="madapter/adminhtml_notice" name="madapter_notice" template="madapter/notice.phtml"/>
+        </reference>
+    </madapteradmin_adminhtml_notice_index>
+    <madapteradmin_adminhtml_pem_index>
+        <reference name="content">
+            <block type="madapter/adminhtml_pem" name="madapter_pem" />
+        </reference>
+    </madapteradmin_adminhtml_pem_index>
+</layout>

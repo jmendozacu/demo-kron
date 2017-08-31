@@ -1,0 +1,210 @@
+<style>
+    .price-text {
+        font-size: 40px;
+        color: #0280ca;
+        padding: 0 20px;
+        float: left;
+        width: 167px;
+    }
+
+    .pay4later_detail_view {
+        position: absolute;
+        top: 70px;
+        left: 110px;
+    }
+
+    .price-text {
+        font-size: 27px;
+    }
+
+    .price-text span {
+        float: left;
+    }
+
+    .detail-box .btn {
+        margin-top: 0;
+        padding: 5px;
+    }
+
+    .product-info {
+        min-height: 150px;
+    }
+
+    .product-view .product-shop .availability {
+        position: absolute;
+        margin-top: 43px;
+    }
+
+
+    .header-text span {
+        font-size: 18px;
+    }
+
+    .finance_info_text {
+        padding: 0 20px;
+        font-size: 11px;
+        text-align: center;
+    }
+
+    .header-text {
+        margin: 0 0 7px;
+    }
+
+    .product-view .product-shop .price-box {
+        margin: 0 0 12px 0;
+    }
+
+    @media only screen and (max-width: 760px), (max-device-width: 1024px) and (min-device-width: 768px) {
+        table.pay4later_details th, table.pay4later_details td {
+            width: 18%;
+            display: table-cell;
+        }
+
+        #slider {
+            margin: 10px auto;
+        }
+
+        .left-box .amount {
+            padding: 0px;
+        }
+
+        .main-fluid {
+            width: 77%;
+        }
+
+        .main-fluid .child-box .inner-box {
+            margin: 9px 4px;
+            width: 31%;
+        }
+
+        .wrp_img_div {
+            width: 23%;
+        }
+
+        .heading {
+            min-height: 15px;
+            top: -4px;
+        }
+
+        .detail-box {
+            clear: both;
+            margin: 0;
+            width: 100%;
+            float: none;
+            margin-top: 32px;
+        }
+    }
+
+    @media only screen and (max-width: 360px), (max-device-width: 700px) and (min-device-width: 360px) {
+        .main-fluid .child-box .inner-box {
+            width: 100%;
+            display: block;
+            clear: both;
+        }
+
+        .wrp_img_div {
+            width: 99%;
+        }
+
+        .main-fluid {
+            width: 100%;
+            display: block;
+            min-height: none;
+        }
+
+        .main-fluid .deposite-meter .left-box {
+            float: none;
+            margin: 0 auto;
+            width: 78%;
+        }
+
+        .main-fluid .deposite-meter .right-box {
+            float: none;
+            width: 89%;
+            margin: 42px auto 3px;
+        }
+
+        .heading {
+            min-height: 43px;
+            top: -4px;
+
+            font-size: 17px;
+        }
+    }
+</style>
+<?php
+$_payHelper = Mage::helper('pay4leter');
+$_payHelper->getPay4leterTypeName();
+
+if ($_payHelper->isActive) {
+    $_taxHelper = $this->helper('tax');
+
+
+    $_product = ($this->getProduct()) ? $this->getProduct() : Mage::registry('current_product');
+    $for_details = 1;
+    $_id = $_product->getId();
+    $_store = $_product->getStore();
+    $isActive = Mage::getModel('catalog/product')->load($_product->getId())->getAttributeText('pay4leter_enable');
+
+    $pid = $_product->getId();
+    if ($isActive) {
+        $productPlans = Mage::getModel('catalog/product')->load($pid)->getAttributeText('pay4leter_plans');
+        if (!is_array($productPlans)) {
+            $productPlans1 = array();
+            $productPlans1[] = $productPlans;
+            $productPlans = $productPlans1;
+        }
+        $planFirstDeposites = $_payHelper->getFirstPercentage($productPlans[count($productPlans) - 1]);
+        $planCode = explode("-", $productPlans[count($productPlans) - 1]);
+        $minimumLoanValue = $_payHelper->loanvalue;
+        $_convertedFinalPrice = $_store->roundPrice($_store->convertPrice($_product->getFinalPrice()));
+        $_pfinalPrice = $_taxHelper->getPrice($_product, $_convertedFinalPrice);
+
+
+        ?>
+        <div class="plan-details">
+            <div class="detail-box">
+                <div class="text-box">
+                    <p class="header-text">Or... <span>with <span class="discount_detail_month_5003">0%</span> Interest Credit</span>
+                    </p>
+                </div>
+                <div class="price-box">
+                    <div class="price-text __web-inspector-hide-shortcut__">
+                        <div id="cost_per_detail_month">
+                            £74.91
+                            <span> per month</span>
+                        </div>
+                        <div class="product-view pay4later_tooltip pay4later_detail_view">
+                            <div class="rrp"><span class="tooltip_paylater"
+                                                   title="Pay4later Finance Option is only available for minimum loan value of £250">?</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="btn paylater_view_click_5003" onclick='jQuery("a[href=\"#tab_finance\"]").trigger("click");'>View Details</a>
+                </div>
+                <div class="finance_info_text">Get an instant decision!</div>
+                <div class="finance_info_text" style="    font-style: italic;">Apply online today at checkout.</div>
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                var product_id = jQuery(this).find(".product_identity_<?php echo $_id;?>");
+
+                if (typeof product_id != 'undefined' && product_id != '') {
+                    var my_fd_obj = new FinanceDetails("<?php echo $planCode[1];?>", <?php echo $_pfinalPrice;?>, <?php echo $planFirstDeposites;?>, 0);
+
+                    jQuery("#cost_per_detail_month").html("&#163;" + my_fd_obj.m_inst + "<span>per month</span>");
+                }
+            });
+        </script>
+        <?php
+    }
+}
+?>
+
+
+
+

@@ -1,0 +1,81 @@
+<?php
+/**
+ * Intenso Premium Theme
+ *
+ * @category    design
+ * @package     intenso_default
+ * @copyright   Copyright (c) 2014 Itactica (http://www.itactica.com)
+ * @license     http://getintenso.com/license
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="row flush">
+    <div class="small-12 checkout-onestep columns">
+        <div class="page-title">
+            <h2 class="center"><?php echo $this->__('Your order has been received.') ?></h2>
+        </div>
+        <div class="form-box wide">
+            <h3 class="sub-title"><?php echo $this->__('Thank you for your purchase!') ?></h3>
+            <?php if ($this->getOrderId()): ?>
+                <?php if ($this->getCanViewOrder()) : ?>
+                    <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
+                <?php else : ?>
+                    <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
+                <?php endif; ?>
+                <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
+                <?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) : ?>
+                    <p>
+                        <?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
+                        <?php echo $this->getChildHtml() ?>
+                    </p>
+                <?php endif; ?>
+            <?php endif; ?>
+
+            <?php if ($this->getAgreementRefId()): ?>
+                <p><?php echo $this->__('Your billing agreement # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getAgreementUrl()), $this->escapeHtml($this->getAgreementRefId()))) ?></p>
+            <?php endif; ?>
+
+            <?php if ($profiles = $this->getRecurringProfiles()): ?>
+                <p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+                <ul class="disc">
+                    <?php foreach ($profiles as $profile): ?>
+                        <?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id'))); ?>
+                        <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description'))) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
+            <div class="buttons-set">
+                <button type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>"
+                        onclick="window.location='<?php echo $this->getUrl() ?>'">
+                    <span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+$orderId = (int)Mage::getSingleton('checkout/session')->getLastOrderId();
+$order = (isset($orderId)) ? Mage::getModel('sales/order')->load($orderId) : null;
+$total = (float)number_format($order->getSubtotal(), 2);
+?>
+
+<!-- Google Code for Sale Conversion Page -->
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 1028763066;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "WnjsCMG95l4QutvG6gM";
+    var google_conversion_currency = "GBP";
+    var google_remarketing_only = false;
+    var google_conversion_value = <?php echo (isset($total) ? $total : null)?>;
+    /* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1028763066/?value=<?php echo $total ?>&amp;currency_code=GBP&amp;label=WnjsCMG95l4QutvG6gM&amp;guid=ON&amp;script=0"/>
+    </div>
+</noscript>

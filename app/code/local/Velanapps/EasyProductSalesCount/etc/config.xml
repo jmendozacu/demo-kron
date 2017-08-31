@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Velanapps_EasyProductSalesCount>
+             <version>1.0.0</version>
+        </Velanapps_EasyProductSalesCount>
+    </modules>
+	
+	<frontend>
+		<routers>
+			<easyproductsalescount>
+				<use>standard</use>
+				<args>
+					<module>Velanapps_EasyProductSalesCount</module>
+					<frontName>easyproductsalescount</frontName>
+				</args>				
+			</easyproductsalescount>			
+		</routers>
+		<layout>
+			<updates>
+				<easyproductsalescount>
+					<file>easy_product_sales_count.xml</file>
+				</easyproductsalescount>
+			</updates>			
+		</layout>
+	</frontend>
+	
+	<global>
+	
+		<blocks>
+			<easyproductsalescount>
+				<class>Velanapps_EasyProductSalesCount_Block</class>
+			</easyproductsalescount>
+		</blocks>
+		
+		<helpers>
+			<easyproductsalescount>
+				<class>Velanapps_EasyProductSalesCount_Helper</class>
+			</easyproductsalescount>
+		</helpers>
+		
+		<models>
+			<easyproductsalescount>
+				<class>Velanapps_EasyProductSalesCount_Model</class>
+			</easyproductsalescount>
+		</models>
+		
+	</global>
+</config>

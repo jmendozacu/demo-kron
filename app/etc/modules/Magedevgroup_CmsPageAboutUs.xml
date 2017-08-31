@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Magedevgroup
+ * @package    Magedevgroup_CmsPageAboutUs
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_CmsPageAboutUs>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magedevgroup_CmsPageAboutUs>
+    </modules>
+</config>

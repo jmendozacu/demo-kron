@@ -1,0 +1,4 @@
+<?php
+class MW_FreeGift_Model_Mysql4_Coupon_Collection extends MW_FreeGift_Model_Resource_Coupon_Collection
+{
+}

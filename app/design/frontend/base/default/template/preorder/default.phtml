@@ -1,0 +1,46 @@
+<?php
+	$_product = $this->getProduct();
+	$helper = Mage::helper("preorder");
+	$typeArray = array('bundle','grouped');
+	$result="";
+?>
+<?php if($helper->isPreorder($_product->getId())): ?>
+	<?php
+		$result="<div class='wk-preorder-message-block'>";
+		$availability = $_product->getWkAvailability();
+		if($availability!="") {
+			$date = date_create($availability);
+			$flag = 1;
+		} else {
+			$flag = 0;
+		}
+	?>
+	
+	<?php $result.= Mage::helper('preorder')->getPayPreorderHtml($_product) ?>
+	<?php $result.= Mage::helper('preorder')->getPreorderCustomMessageHtml(); ?>
+	<?php if($flag==1): ?>
+		<?php
+			$result.="<div class='wk-info'>";
+			$result.= $this->__('Available on').": ".date_format($date, "l jS F Y");
+			$result.="</div>";
+		?>
+	<?php endif; ?>
+	<?php $result.= Mage::helper('preorder')->getAdditionalMessage($_product->getId()); ?>
+	<?php $result.= "</div>"; ?>
+<?php endif;?>
+<script type="text/javascript">
+	if (typeof jQuery == 'undefined'){
+		document.write(unescape("%3Cscript src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+	}
+</script>
+<script>
+	jQuery.noConflict();
+	(function(jQuery){
+		var temp=<?php echo json_encode($result)?>;
+		if(typeof(temp)!="undefined" && temp!="" && temp!=null){
+			jQuery('.short-description').before(temp);
+			jQuery(".availability.in-stock span").text("Out of stock");
+			jQuery('.btn-cart span span').text('Preorder');
+		}
+	})(jQuery);
+</script>

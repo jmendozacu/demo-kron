@@ -1,0 +1,35 @@
+<?php
+// get layout object
+$layout = Mage::getSingleton('core/layout');
+//get block object
+$block = $layout->createBlock('freegift/freeproduct');
+$lisProductId = $block->getAllRule();
+$isShowLabel = Mage::getStoreConfig('freegift/config/showfreegiftlabel');    
+$productIds = $block->getFreeCatalogGiftsByProduct($product);       
+$showLabelFreeGift = false;
+$rule = $block->getRuleProductId($product->getId());
+$discount = 1;
+$timesUsed = 0;
+if($rule){
+	$discount = $rule->getDiscountQty();	
+	$timesUsed = $rule->getTimesUsed();	
+	if($discount == 0){
+		$timesUsed = -1;
+	}
+}
+
+if(in_array($product->getId(),$lisProductId) && $isShowLabel && ($discount > $timesUsed)) $showLabelFreeGift = true;
+if($showLabelFreeGift){
+	$image = Mage::getStoreConfig('freegift/config/freegiftlabel');
+	if($image != ""){													
+		?>
+		<img src="<?php echo Mage::getBaseUrl('media') .'theme/'. Mage::getStoreConfig('freegift/config/freegiftlabel'); ?>" alt="" class="label-freegift">
+		<?php
+	}
+	else{
+		?>
+		<img src="<?php echo $this->getSkinUrl('mw_freegift/images/freegift_50.png'); ?>" alt="" class="label-freegift">
+		<?php
+	}
+}
+?>

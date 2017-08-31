@@ -1,0 +1,48 @@
+<?php 
+/* @var Magedevgroup_Customblocks_Block_Orders $this*/
+$orders = $this->getOrderCollection() ;
+$orderTime = rand(60, 120);
+?>
+<div class="container margin-vertical-40">
+    <div class="row">
+        <div class="col-xs-12 col-sm-3">
+            <h3 class="latest-orders-from text-center-xs no-margin-top">Latest orders from:</h3>
+            <div class="visible-xs margin-bottom-20"></div>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+            <div id="latest-orders" class="row">
+                <div class="latest-orders">
+                    <?php /** @var Mage_Sales_Model_Order $order */?>
+                    <?php foreach ($orders as $order):?>
+                        <?php $time = date('H:i:s', time() - $orderTime) ?>
+                        <?php $date = date('Y-m-d', time()).'T'.$time.'Z';?>
+                    <div class="col-xs-4">
+                        <div>
+                            <span class="img"></span>
+                            <div class="text-center-xs">
+                                <?php
+                                if(is_object($order->getShippingAddress())) {
+                                    $siti = $order->getShippingAddress()->getCity();
+                                    $country = $order->getShippingAddress()->getCountry();
+                                }else{
+                                    $siti = 'London';
+                                    $country = 'GB';
+                                }
+                                ?>
+                                <span class="location"><?php echo $siti.', '.$country; ?></span>
+                                <br><span class="timeago" title="<?php echo $date;?>"></span>
+                            </div>
+                        </div>
+                    </div>
+                        <?php $orderTime = $orderTime + rand(10, 100)?>
+                    <?php endforeach;?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function() {
+        jQuery("span.timeago").timeago();
+    });
+</script>

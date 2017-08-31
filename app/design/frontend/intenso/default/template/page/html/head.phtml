@@ -1,0 +1,70 @@
+<?php
+/**
+ * Intenso Premium Theme
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Itactica (http://www.itactica.com)
+ * @license     http://getintenso.com/license/regular
+ */
+/**
+ * head.phtml
+ */
+?>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title><?php echo $this->getTitle() ?></title>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+
+<?php echo Mage::helper('itactica_intenso')->getGoogleFontsScript() ?>
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+<?php
+/*Pay4later*/
+$_payHelper = Mage::helper('pay4leter');
+$_payHelper->getPay4leterTypeName();
+
+?>
+<script type="text/javascript" src="https://secure.pay4later.com/js_api/FinanceDetails.js.php?api_key=<?php echo $_payHelper->apiKey?>"></script>
+
+<?php /*Pay4later*/?>
+<?php
+if( $this->helper('customer')->isLoggedIn() ) { ?>
+    <?php $customer = Mage::helper('customer')->getCustomer()->getData(); ?>
+    <script id="IntercomSettingsScriptTag">
+
+        window.intercomSettings = {
+            app_id: "kzy91jcj",
+            email: 	"<?php echo $customer['email']; ?>",
+            name: 	"<?php echo $customer['firstname'] . ' ' . $customer['lastname']; ?>",
+            user_id: 	"<?php echo $customer['entity_id']; ?>",
+            user_hash: "<?php echo hash_hmac("sha256", $customer['entity_id'], "60k2whZjIMUWWPIEOOofF3AHYBQ6lsLi0leVCiKZ"); ?>",
+            created_at: <?php echo time( $customer['created_at'] ); ?>
+        };
+    </script>
+    <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/kzy91jcj';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+<?php } else { ?>
+
+    <script>
+        window.intercomSettings = {
+            app_id: "kzy91jcj"
+        };
+    </script>
+    <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/kzy91jcj';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+<?php } ?>
+<style type="text/css">
+    #intercom-container .intercom-launcher
+    {
+        bottom: 10px !important;
+        right: 142px !important;
+
+    }
+</style>

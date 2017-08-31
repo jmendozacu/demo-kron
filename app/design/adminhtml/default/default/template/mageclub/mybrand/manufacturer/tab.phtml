@@ -1,0 +1,59 @@
+<?php
+/*
+ * tab.phtml
+ * 
+ * Copyright (C) 2013 - 2014 QubeSys Technologies Pvt.Ltd. All rights reserved.
+ * 
+
+ * http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL.
+ */
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Manufacturer'); ?></h4>
+    </div>
+    <div id="group_fields4" class="fieldset fieldset-wide">
+        <div class="hor-scroll">
+            <table cellspacing="0" class="form-list">
+                <tbody>
+                    <tr>
+                        <td>
+                            <table cellspacing="0" class="form-list">
+                                <tbody>
+                                    <tr>
+                                        <td class="label">
+                                            <label for="enablenew">
+                                               <?php echo $this->__('Select Manufacturer'); ?>
+                                            </label>
+                                        </td>
+                                        <td class="value">
+
+
+                                            <select class=" select" name="manufacturers_id" id="manufacturer_id">
+                                                <option value="0"><?php echo $this->__('No Manufacturer'); ?></option>
+                                                <?php foreach ($this->getManufacturerCollection() as $_manufacturer) : ?>
+                                                    <?php if ($this->getProduct()->getManufacturerId() == $_manufacturer->getId()): ?>
+                                                        <option selected="selected" value="<?php echo $_manufacturer->getId(); ?>">
+                                                            <?php echo $_manufacturer->getTitle(); ?>
+                                                        </option>
+                                                    <?php else: ?>
+                                                        <option value="<?php echo $_manufacturer->getId(); ?>">
+                                                            <?php echo $_manufacturer->getTitle(); ?>
+                                                        </option>
+                                                    <?php endif; ?>     
+
+                                                <?php endforeach; ?> 
+                                            </select>
+                                        </td>
+                                        <td class="scope-label"><span class="nobr"></span></td>
+                                        <td><small>&nbsp;</small></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<?php $regionCollection = array(); ?>
+<?php $countryId = $this->getRequest()->getParam('country_id', false); ?>
+<?php $regionCityNr = $this->getRequest()->getParam('region_city_nr', 1); ?>
+<?php if ($countryId): ?>
+	<?php $regionCollection = Mage::getModel('directory/region_api')->items($countryId); ?>
+<?php endif; ?>
+<?php if (count($regionCollection)>0): ?>
+	<select class="required-entry" name="region<?php echo $regionCityNr; ?>" id="region<?php echo $regionCityNr; ?>">
+		<option value=""></option>
+		<?php foreach ($regionCollection as $region): ?>
+		    <?php $regionModel = Mage::getModel('directory/region')->load($region['region_id']); ?>
+			<option value="<?php echo $regionModel->getName(); ?>" ><?php echo $regionModel->getName(); ?></option>
+		<?php endforeach; ?>
+	</select>
+<?php else: ?>
+	<input type="text" class="input-text required-entry" name="region<?php echo $regionCityNr; ?>" id="region<?php echo $regionCityNr; ?>">
+<?php endif; ?>
+
+<script type="text/javascript">
+<?php if ($countryId!=''): ?>
+    $('city'+<?php echo $regionCityNr; ?>).disabled = '';
+    $('city'+<?php echo $regionCityNr; ?>).value = ''; 
+<?php else: ?>
+    $('city'+<?php echo $regionCityNr; ?>).value = 'Select a country to enter city'; 
+    $('city'+<?php echo $regionCityNr; ?>).disabled = 'disabled'; 
+    $('region'+<?php echo $regionCityNr; ?>).value = 'Select a country to enter state/province'; 
+    $('region'+<?php echo $regionCityNr; ?>).disabled = 'disabled'; 
+<?php endif; ?>				
+</script>

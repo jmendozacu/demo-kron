@@ -1,0 +1,8 @@
+<config>
+	<modules>
+		<Kronosav_Appointment>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Kronosav_Appointment>
+	</modules>
+</config>

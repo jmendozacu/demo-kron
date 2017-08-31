@@ -1,0 +1,38 @@
+<config>
+	<modules>
+		<Kronosav_Polls>
+			<version>1.0.0</version>
+		</Kronosav_Polls>
+	</modules>
+	<frontend>
+		<routers>
+			<polls>
+					<use>standard</use>
+					<args>
+						<module>Kronosav_Polls</module>
+						<frontName>polls</frontName>
+					</args>
+			</polls>
+		</routers>
+		<layout>
+		  <updates>
+			<loan>
+               <file>polls.xml</file>
+			</loan>
+		  </updates>
+		</layout>
+	</frontend>
+	<global>
+		<helpers>
+			<polls>
+				<class>Kronosav_Polls_Helper</class>
+			</polls>
+		</helpers>
+		<blocks>
+			<polls>
+				<class>Kronosav_Polls_Block</class>
+			</polls>
+		</blocks>
+		
+	</global>
+</config>

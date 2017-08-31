@@ -1,0 +1,53 @@
+<?php if (Mage::helper('groupdeals')->isEnabled()): ?>
+<?php $cityCollection = $this->getCityCollection(null, $this->getProductIds()); ?>
+<?php if (count($cityCollection)>0 && $this->allowSubscribePopup()): ?>
+	<div id="gd-popup-subscribe-bg" class="gd-popup-subscribe-bg" style="display:none;" onClick="subscribePopup.hidePopup()"></div>
+	<div id="gd-popup-subscribe" class="gd-popup-subscribe" style="display:none;"> 
+		<div class="close-corner">
+		    <a href="javascript:void(0)" onClick="subscribePopup.hidePopup();"><?php echo $this->__('(x) close'); ?></a>
+		</div>
+		<div class="title">
+		    <h1><?php echo $this->__('Subscribe to our deals!') ?></h1>
+		    <p><?php echo $this->__('Subscribe to receive updates whenever a new deal is posted, when it reaches it\'s target or when it\'s over.') ?></p>
+		</div>
+		<form action="<?php echo $this->getUrl('groupdeals/subscriber/subscribe/') ?>" method="post" id="gd-subscriptions-popup">
+		    <ul class="form-list">
+		    	<li>
+		    		<label class="required" for="telephone"><em>*</em><?php echo $this->__('City') ?></label>
+		    		<div class="input-box">
+		    			<select class="input-text required-entry" name="city" id="city" >
+		    				<?php foreach ($cityCollection as $city): ?>
+		    					<option value="<?php echo $city ?>"><?php echo $this->__($city) ?></option>
+		    				<?php endforeach; ?>
+		    			</select> 
+		    		</div>
+		    	</li>
+		    	<li>
+	                <label class="required" for="email_address"><em>*</em><?php echo $this->__('Email Address') ?></label>
+	                <div class="input-box">
+	                    <input type="text" class="input-text validate-email required-entry" title="Email Address" value="" id="email_address" name="email">
+	                </div>
+	            </li>
+		    </ul>
+		    <div class="actions">
+		    	<span class="close" onclick="subscribePopup.hidePopup();" ><?php echo $this->__('Already Subscribed?') ?></span>
+		    	<button type="submit" title="<?php echo $this->__('Subscribe') ?>" class="button"></button>
+		    </div>
+		</form>
+		<script type="text/javascript">
+		//<![CDATA[
+		    var groupdealSubscriberPopupForm = new VarienForm('gd-subscriptions-popup');
+		//]]>
+		</script>
+	</div>
+	<script language='javascript'>
+	//<![CDATA[
+	var subscribePopup = new Popup('gd-popup-subscribe', 'gd-popup-subscribe-bg', false);
+	<?php if (!Mage::getModel('core/cookie')->get('popup-subscribe')): ?>
+		<?php Mage::getModel('core/cookie')->set('popup-subscribe', true, 86400); ?>
+		subscribePopup.showPopup();
+	<?php endif; ?>
+	//]]>
+	</script>
+<?php endif; ?>
+<?php endif; ?>

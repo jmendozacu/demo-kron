@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<menu>
+		<promo translate="label">
+			<children>
+				<freegift module="freegift" translate="label">
+					<title>Free Gift Pro</title>
+					<sort_order>71</sort_order>
+					<children>
+						<catalog  module="freegift">
+							<title>Catalog Rules</title>
+							<sort_order>10</sort_order>
+							<action>adminhtml/freegift_catalog</action>
+						</catalog>
+						<quote module="freegift">
+							<title>Shopping Cart Rules</title>
+							<sort_order>20</sort_order>
+							<action>adminhtml/freegift_quote</action>
+						</quote>
+                        <report module="freegift">
+                            <title>Report</title>
+                            <sort_order>30</sort_order>
+                            <action>adminhtml/freegift_report/dashboard</action>
+                        </report>
+						<configuration>
+							<title>Configuration</title>
+							<sort_order>40</sort_order>
+							<action>adminhtml/system_config/edit/section/freegift</action>
+						</configuration>
+					</children>
+				</freegift>
+			</children>
+		</promo>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<promo translate="label">
+						<children>
+							<freegift module="freegift" translate="label">
+								<title>Free Gift Pro</title>
+								<sort_order>71</sort_order>
+								<children>
+									<catalog module="freegift">
+										<title>Catalog Rules</title>
+										<sort_order>10</sort_order>
+									</catalog>
+									<quote module="freegift">
+										<title>Shopping Cart Rules</title>
+										<sort_order>20</sort_order>
+									</quote>
+									<report module="freegift">
+										<title>Report</title>
+										<sort_order>30</sort_order>
+									</report>
+									<configuration module="freegift">
+										<title>Configuration</title>
+										<sort_order>40</sort_order>
+									</configuration>
+								</children>
+							</freegift>
+						</children>
+					</promo>
+					<system>
+						<children>
+							<config>
+								<children>
+									<freegift translate="title" module="freegift">
+										<title>Free Gift Pro</title>
+									</freegift>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

@@ -1,0 +1,161 @@
+<div class="content-header">
+    <h3 class="icon-head head-products"><?php echo $this->getHeader() ?></h3>
+    <p class="content-buttons form-buttons">
+    	<?php echo $this->getBackButtonHtml() ?>
+    	<?php echo $this->getCancelButtonHtml() ?>
+    	<?php if($this->getProductId()): ?>
+    		<?php if($this->getMerchantPermission('delete')): ?>
+    	    	<?php echo $this->getDeleteButtonHtml() ?>
+    		<?php endif; ?>
+    		<?php if($this->getIsVirtual() && $this->getMerchantPermission('add_edit')): ?>
+    		    <?php echo $this->getEmailCouponsButtonHtml() ?>
+    		    <?php echo $this->getEmailMerchantButtonHtml() ?>
+    		    <?php echo $this->getPreviewCouponButtonHtml() ?>
+    		<?php endif; ?>
+    	<?php endif; ?>
+    	<?php if($this->getProductSetId() && $this->getIsConfigured() && $this->getMerchantPermission('add_edit')): ?>
+    		<?php echo $this->getPreviewDealButtonHtml() ?>
+    	    <?php echo $this->getSaveButtonHtml() ?>
+    	    <?php echo $this->getSaveAndContinueButtonHtml() ?>
+    	    <?php echo $this->getSaveProductAndContinueButtonHtml() ?>
+    	<?php endif; ?>
+    </p>
+</div>
+<form action="<?php echo $this->getSaveUrl() ?>" method="post" id="deal_edit_form" enctype="multipart/form-data">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <?php if ($this->getRequest()->getParam('type', null)=='catalog'): ?><input type="hidden" name="catalog_product_id" id="catalog_product_id" /><?php endif; ?>
+</form>
+<?php echo $this->getFormScripts() ?>
+<script type="text/javascript">
+//<![CDATA[	
+    var productTemplateSyntax = /(^|.|\r|\n)({{(\w+)}})/;
+    var dealForm = new varienForm('deal_edit_form', '<?php echo $this->getValidationUrl() ?>');
+    dealForm._processValidationResult = function(transport) {
+        var response = transport.responseText.evalJSON();
+        if (response.error){
+            if (response.attribute && $(response.attribute)) {
+                $(response.attribute).setHasError(true, dealForm);
+                Validation.ajaxError($(response.attribute), response.message);
+                if (!Prototype.Browser.IE){
+                    $(response.attribute).focus();
+                }
+            }
+            else if ($('messages')) {
+                $('messages').innerHTML = '<ul class="messages"><li class="error-msg"><ul><li>' + response.message + '</li></ul></li></ul>';
+            }
+        }
+        else{
+            dealForm._submit();
+        }
+    }; 
+    
+    function setDealSettings(urlTemplate, typeElement) {
+        var template = new Template(urlTemplate, productTemplateSyntax);
+        setLocation(template.evaluate({type:$F(typeElement)}));
+    }
+
+    function setSuperSettings(urlTemplate, attributesClass, validateField) {
+        var attributesFields = $$('.' + attributesClass);
+        var attributes = Form.serializeElements(attributesFields, true).attribute;
+        if(typeof attributes == 'string') {
+            attributes = [attributes];
+        }
+
+        if(!attributes) {
+            $(validateField).value = 'no-attributes';
+        } else {
+            $(validateField).value = 'has-attributes';
+        }
+
+        if (dealForm.validator.validate()) {
+            var template = new Template(urlTemplate, productTemplateSyntax);
+            var url = template.evaluate({
+                attributes: encode_base64(attributes.join(',')).replace(new RegExp('/','g'),'%2F').replace(new RegExp('=','g'),'%3D')
+            });
+            setLocation(url);
+        }
+    }
+    
+	function saveAndContinueEdit(urlTemplate) {
+        var template = new Template(urlTemplate, productTemplateSyntax);
+        var url = template.evaluate({tab_id:deal_tabsJsTabs.activeTab.id});
+        dealForm.submit(url);
+    }   
+
+    function checkMaxLength(Object, MaxLen)
+    {
+        if (Object.value.length > MaxLen-1) {
+            Object.value = Object.value.substr(0, MaxLen);
+        }
+        return 1;
+    }
+
+	//used to view orders/email coupon(s) on orders grid
+	function orderAction(select) {
+		if (select.selectedIndex==1) {
+        	window.open(select.value, '', 'width=1000,height=700,resizable=1,scrollbars=1');
+        } else {
+        	document.location.href = select.value;
+        }
+    }
+
+	Event.observe(window, 'load', function() {
+	    var objName = '<?php echo $this->getSelectedTabId() ?>';
+	    if (objName) {
+	        obj = $(objName);
+	        //IE fix (bubbling event model)
+	        deal_tabsJsTabs.setSkipDisplayFirstTab();
+	        deal_tabsJsTabs.showTabContent(obj);
+	    }
+	    Product.AttributesBridge.setTabsObject(deal_tabsJsTabs);
+	});
+    
+	Validation.addAllThese([
+    ['validate-super-product-attributes', '<?php echo Mage::helper('catalog')->__('Please select one or more attributes.') ?>', function(v) {
+        return (v != "no-attributes");
+    }]]);
+    
+    //create deal from catalog product function
+	function saveProductAndContinue(urlTemplate) {
+        var template = new Template(urlTemplate, productTemplateSyntax);
+        var productId = $('catalog_product_id').value;
+        var url = template.evaluate({product_id:productId});
+        dealForm.submit(url);
+    }   
+        
+	function setProduct(product_id) {
+        $('catalog_product_id').value = product_id;
+    }   
+    //select product when clicking on row in products grid
+    function productRowClick(grid, event){
+        var trElement = Event.findElement(event, 'tr');
+        var isInput   = Event.element(event).tagName == 'INPUT';
+        if(trElement){
+            var checkbox = Element.getElementsBySelector(trElement, 'input');
+            if(checkbox[0] && !checkbox[0].checked){
+                var checked = isInput ? checkbox[0].checked : !checkbox[0].checked;
+                productGridJsObject.setCheckboxChecked(checkbox[0], checked);
+				setProduct(checkbox[0].value);				
+            }
+        }
+    }	
+	
+	//select product in products grid on ajax reloads
+	function initGridAjaxCustom() {
+        productGridJsObject.initGrid();
+        productGridJsObject.initGridRows();
+		
+		productId = $('catalog_product_id').value;
+		if ($('products_grid_radio'+productId)) {
+			$('products_grid_radio'+productId).checked = true;
+			$('products_grid_radio'+productId).parentNode.parentNode.addClassName('on-mouse-over');
+		}
+    }
+	
+	<?php if ($this->getRequest()->getParam('type', null)=='catalog'): ?>
+    	productGridJsObject.initGridAjax = initGridAjaxCustom;
+	    productGridJsObject.rowClickCallback = productRowClick;
+    <?php endif; ?>
+    
+//]]>
+</script>

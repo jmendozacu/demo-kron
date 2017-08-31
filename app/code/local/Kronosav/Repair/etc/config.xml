@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Kronosav_Repair>
+			<version>1.0.0</version>
+		</Kronosav_Repair>
+	</modules>
+	<frontend>
+		<routers>
+			<repair>
+				<use>standard</use>
+				<args>
+					<module>Kronosav_Repair</module>
+					<frontName>repair</frontName>
+				</args>
+			</repair>
+		</routers>
+		<layout>
+			<updates>
+				<repair>
+					<file>repair.xml</file>
+				</repair>
+			</updates>
+		</layout>
+	</frontend>
+	<admin>
+		<routers>
+			<repair>
+				<use>admin</use>
+                <args>
+                    <module>Kronosav_Repair</module>
+                    <frontName>repair</frontName>
+                </args>
+			</repair>
+		</routers>
+	</admin>
+	<global>
+		<template>
+			<email>
+				<new_repair_email_template translate="label" module="loan">
+						<label>New Repair Email Template</label>
+						<file>kronosav_newrepair_email.html</file>
+						<type>html</type>
+				</new_repair_email_template>
+				<delivery_email_template translate="label" module="loan">
+						<label>Repair Delivery Email Template</label>
+						<file>kronosav_delivery_email.html</file>
+						<type>html</type>
+				</delivery_email_template>
+				<repair_confirm_email_template translate="label" module="loan">
+						<label>Confirm Email Template</label>
+						<file>kronosav_confirm_email.html</file>
+						<type>html</type>
+				</repair_confirm_email_template>
+				<accept_customer_email_template translate="label" module="loan">
+						<label>Confirm yes Email Template</label>
+						<file>kronosav_confirm_yes_customer.html</file>
+						<type>html</type>
+				</accept_customer_email_template>
+				<reject_customer_email_template translate="label" module="loan">
+						<label>Confirm no Email Template</label>
+						<file>kronosav_confirm_no_customer.html</file>
+						<type>html</type>
+				</reject_customer_email_template>
+				<reject_admin_email_template translate="label" module="loan">
+						<label>Confirm no Email Template</label>
+						<file>kronosav_confirm_no_admin.html</file>
+						<type>html</type>
+				</reject_admin_email_template>
+				<accept_admin_email_template translate="label" module="loan">
+						<label>Confirm yes Email Template</label>
+						<file>kronosav_confirm_yes_admin.html</file>
+						<type>html</type>
+				</accept_admin_email_template>
+				
+			</email>
+		</template>
+		<helpers>
+			<repair>
+				<class>Kronosav_Repair_Helper</class>
+			</repair>
+		</helpers>
+		<blocks>
+			<repair>
+				<class>Kronosav_Repair_Block</class>
+			</repair>
+		</blocks>
+		<models>
+			<repair>
+				<class>Kronosav_Repair_Model</class>
+				<resourceModel>repair_mysql4</resourceModel>
+			</repair>
+			<repair_mysql4>
+				<class>Kronosav_Repair_Model_Mysql4</class>
+				<entities>
+					<repair>
+						<table>repair</table>
+					</repair>
+				</entities>
+			</repair_mysql4>
+		</models>
+		<resources>
+			<repair_setup>
+				<setup>
+					<module>Kronosav_Repair</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</repair_setup>
+			<repair_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</repair_write>
+			<repair_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</repair_read>
+		</resources>
+	</global>
+</config>

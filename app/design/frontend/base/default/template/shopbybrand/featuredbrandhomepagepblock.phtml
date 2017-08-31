@@ -1,0 +1,25 @@
+<?php 
+    $store = Mage::app()->getStore()->getId();
+    $featuredBrands = $this->getFeaturedBrands();
+    $logo_width = Mage::getStoreConfig('shopbybrand/brand_list/brand_logo_width',$store);
+    $logo_height = Mage::getStoreConfig('shopbybrand/brand_list/brand_logo_height',$store);
+?>
+
+<?php if (count($featuredBrands)): ?>
+ <section class="row brand-slider<?php if (Mage::getStoreConfig('intenso/catalog/lazy_loading')): ?> lazy-loading<?php endif; ?>">
+     <h3><?php echo $this->__('SHOP BY BRAND');?></h3>
+     <ol class="logos-container">
+         <?php
+         foreach ($featuredBrands as $featuredBrand) :
+             $path = 'brands/thumbnail' . DS . $featuredBrand->getId();
+             $img = Mage::helper('shopbybrand/image')->init($featuredBrand, $path)->resizeThumbnail($logo_width, $logo_height);
+             ?>
+             <li class="brand">
+                 <a href="<?php echo $this->getBrandUrl($featuredBrand); ?>">
+                         <img src="<?php echo $img; ?>">
+                 </a>
+             </li>
+         <?php endforeach; ?>
+     </ol>
+ </section>
+<?php endif; ?>

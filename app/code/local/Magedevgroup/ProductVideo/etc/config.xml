@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_ProductVideo
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_ProductVideo>
+            <version>0.0.1</version>
+        </Magedevgroup_ProductVideo>
+    </modules>
+    <global>
+        <helpers>
+            <magedevgroup_productvideo>
+                <class>Magedevgroup_ProductVideo_Helper</class>
+            </magedevgroup_productvideo>
+        </helpers>
+        <blocks>
+            <magedevgroup_productvideo>
+                <class>Magedevgroup_ProductVideo_Block</class>
+            </magedevgroup_productvideo>
+            <magedevgroup_productvideo_adminhtml>
+                <class>Magedevgroup_ProductVideo_Block_Adminhtml</class>
+            </magedevgroup_productvideo_adminhtml>
+        </blocks>
+        <resources>
+            <magedevgroup_productvideo_setup>
+                <setup>
+                    <module>Magedevgroup_ProductVideo</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </magedevgroup_productvideo_setup>
+        </resources>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <magedevgroup_productvideo>
+                    <file>magedevgroup/product_video.xml</file>
+                </magedevgroup_productvideo>
+            </updates>
+        </layout>
+    </frontend>
+</config>

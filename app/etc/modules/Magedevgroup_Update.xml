@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Magedevgroup
+ * @package    Magedevgroup_Update
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_Update>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Magedevgroup_Core />
+            </depends>
+        </Magedevgroup_Update>
+    </modules>
+</config>

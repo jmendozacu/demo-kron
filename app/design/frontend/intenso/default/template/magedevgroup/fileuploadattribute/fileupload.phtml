@@ -1,0 +1,57 @@
+<?php
+
+/** @var Magedevgroup_FileUploadAttribute_Block_Product_View_FileUpload $block */
+$block = $this;
+
+$product = $block->getProduct();
+
+/** @var Magedevgroup_FileUploadAttribute_Helper_Data $helper */
+$helper = Mage::helper('magedevgroup_fileuploadattribute');
+
+//File Upload
+$file1_upload = $product->getData('file1_upload'); //path to first file
+$file2_upload = $product->getData('file2_upload'); //path to second file
+
+
+$file1UploadLabel = (isset($file1_upload)) ? $product->getData('file1_upload_label'):
+    basename($product->getData('file1_upload'));
+
+$file2UploadLabel = (isset($file2_upload)) ?  $product->getData('file2_upload_label'):
+    basename($product->getData('file2_upload'));
+
+
+if ($file1_upload || $file2_upload) {
+    ?>
+    <div>
+        <p><b>Download Files</b></p>
+
+        <?php
+        if ($file1_upload) { ?>
+            <p>
+                <?php
+                echo sprintf('<a href="%s" download>%s</a>',
+                    $helper->escapeUrl(Mage::getBaseUrl('media') . 'catalog/product' . $file1_upload),
+                    $file1UploadLabel
+                );
+                ?>
+            </p>
+            <?php
+        }
+
+        if ($file2_upload) { ?>
+            <p>
+                <?php
+                echo sprintf('<a href="%s" download>%s</a>',
+                    $helper->escapeUrl(Mage::getBaseUrl('media') . 'catalog/product' . $file2_upload),
+                    $file2UploadLabel
+                );
+                ?>
+            </p>
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+}
+?>
+

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Glace_Extendedordergrid>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Glace_Extendedordergrid>
+    </modules>
+</config>

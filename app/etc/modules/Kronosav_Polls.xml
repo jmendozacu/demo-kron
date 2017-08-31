@@ -1,0 +1,8 @@
+<config>
+	<modules>
+		<Kronosav_Polls>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Kronosav_Polls>
+	</modules>
+</config>

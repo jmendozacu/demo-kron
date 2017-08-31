@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_AdminPayments
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_AdminPayments>
+            <version>1.0.0</version>
+        </Magedevgroup_AdminPayments>
+    </modules>
+    <global>
+        <helpers>
+            <adminpayments>
+                <class>Magedevgroup_AdminPayments_Helper</class>
+            </adminpayments>
+        </helpers>
+        <models>
+            <adminpayments>
+                <class>Magedevgroup_AdminPayments_Model</class>
+            </adminpayments>
+        </models>
+    </global>
+    <adminhtml>
+        <events>
+            <payment_method_is_active>
+                <observers>
+                    <magedevgroup_admin_payments>
+                        <type>model</type>
+                        <class>Magedevgroup_AdminPayments_Model_Observer</class>
+                        <method>enablePaymentMethods</method>
+                    </magedevgroup_admin_payments>
+                </observers>
+            </payment_method_is_active>
+        </events>
+    </adminhtml>
+</config>

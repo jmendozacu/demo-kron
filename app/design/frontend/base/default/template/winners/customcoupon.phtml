@@ -1,0 +1,15 @@
+<form id="discount-custom-forms" action="<?php echo $this->getUrl('winners/index/discount')?>" method="post">
+	<div id="discount-custom-form">
+		<img src="<?php echo $this->getSkinUrl('images/code_enter.jpg')?>" alt="enter_code" id="enterCustom" />
+		<div class="discount-form" id="enterCustomForm">
+			<!--<label for="coupon_code"><?php //echo $this->__('Discount Codes') ?></label><em class="red">*</em>-->
+			<input class="input-text required-entry" type="text" id="coupon_code" name="coupon_code" value="" />
+		</div>
+		 <button id="enterCustomButton" type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><?php echo $this->__('Submit') ?></span></button>
+	 </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var perfect = new VarienForm('discount-custom-forms', true);
+//]]>
+</script>

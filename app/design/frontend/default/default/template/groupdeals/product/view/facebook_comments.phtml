@@ -1,0 +1,5 @@
+<?php if ($this->allowFacebookComments()): ?>
+    <div class="facebook-section">
+    	<div class="fb-comments" data-href="<?php echo $this->helper('core/url')->getCurrentUrl(); ?>" data-num-posts="10" data-width="601" data-height="auto"></div>
+    </div>
+<?php endif; ?>	

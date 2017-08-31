@@ -1,0 +1,9 @@
+<config>
+   <Magestore_Manufacturer>
+      <name>Shop by Brand</name>
+      <type>commercial</type>
+      <activation_date>Jun 26, 2012</activation_date>
+      <expiration_date/>
+      <order_number>100010673</order_number>
+   </Magestore_Manufacturer>
+</config>

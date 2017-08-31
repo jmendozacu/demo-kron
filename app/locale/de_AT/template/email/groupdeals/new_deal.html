@@ -1,0 +1,219 @@
+<!--@subject Neuer Deal in {{var data.city}}! @-->
+<!--@vars
+{"var data.name":"name",
+"var data.city":"city",
+"var data.click":"click",
+"var data.unsubscribe_url":"unsubscribe_url",
+"var data.image_url":"image_url",
+"var data.url":"url"
+"var data.logo":"logo"
+"var data.website_url":"website_url",
+"var data.website":"website",
+"var data.email":"email",
+"var data.date":"date",
+"var data.special_price":"special_price",
+"var data.price":"price",
+"var data.discount":"discount",
+"var data.you_save":"you_save",
+"var data.has_merchant":"has_merchant",
+"var data.merchant_name":"merchant_name",
+"var data.merchant_phone":"merchant_phone",
+"var data.merchant_mobile":"merchant_mobile",
+"var data.merchant_email":"merchant_email",
+"var data.has_merchant_website":"has_merchant_website",
+"var data.merchant_website":"merchant_website",
+"var data.merchant_address1":"merchant_address1",
+"var data.merchant_address2":"merchant_address2",
+"var data.merchant_address3":"merchant_address3",
+"var data.merchant_address4":"merchant_address4",
+"var data.merchant_address5":"merchant_address5",
+"var data.merchant_description_width":"merchant_description_width",
+"var data.merchant_description":"merchant_description",
+"var data.has_side_deals":"has_side_deals",
+"var data.side_deals":"side_deals",
+"var data.all_deals_url":"all_deals_url",
+"var data.recent_deals_url":"recent_deals_url",
+"var data.contact_us_url":"contact_us_url",}
+@-->
+
+<html>
+<body style="font-size:12px; font-family:Arial; color:#454545;">
+<table width="700" cellspacing="0" cellpadding="0">
+	<tbody>
+		<tr>
+			<td style="text-align:center; font-size:11px; padding:0 0 10px 0;color:#454545;">
+				Gehen sie zu <a style="color:#0981BE;text-decoration:none;" href="{{var data.website_url}}">{{var store.getFrontendName()}}</a> &nbsp;|&nbsp; <a style="color:#0981BE;text-decoration:none;"  href="{{var data.unsubscribe_url}}">Abmelden</a> <br/>
+				Achten sie darauf, f&uuml;gen sie <font style="color:#454545;">{{var data.email}}</font> zu ihrem adressbuch oder liste sicherer absender so unsere e-mails bekommen in ihren posteingang.	
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="700" style="border:10px solid #F0F1F3" bgcolor="#F0F1F3" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td bgcolor="#313131">
+								<table width="100%" cellspacing="0" cellpadding="0">
+									<thead>
+										<tr style="text-align:left;border-bottom:2px solid #F1461E;color:#FFFFFF">
+											<th style="padding:20px 15px 20px;width:130px;">
+												<a href="{{var data.url}}"><img alt="{{var store.getFrontendName()}}" src="{{var data.logo}}"></a>
+											</th>											
+											<th style="padding:20px 15px 20px 0;line-height:170%; ">
+												<span style="display:block; border-left:2px solid #444444;padding:0px 0px 0px 15px;">
+													<h1 style="font-size:12px;margin:0px;font-weight:normal;">Neuer Deal für</h1>
+													<strong style="font-size:24px;">{{var data.city}}</strong>
+												</span>
+											</th>											
+											<th style="padding:20px 15px; text-align:right; vertical-align:top; font-size:10px;">
+												{{var data.date}}
+											</th>
+										</tr>
+									</thead>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#FFFFFF" style="padding:10px;">
+								<table width="100%" cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr style="text-align:left;">
+											<td colspan="2" style="padding:10px 0px 20px;">
+												<a href="{{var data.url}}" style="text-decoration:none;"><h2 style="margin:0; font-size:22px; font-weight:bold; color:#333333;">{{var data.name}}</h2></a>
+											</td>											
+										</tr>
+										<tr style="text-align:left;">
+											<td width="40%" style="vertical-align:top;">
+												<table width="245" cellspacing="0" cellpadding="0"  background="{{skin url="groupdeals/images/email_price_tag.png" _area='frontend'}}" height="58" >
+													<tbody>
+														<tr>
+														  <td width="50%" align="center" style="font-size:30px;color:#FFFFFF;font-family:Helvetica, Arial, sans-serif;margin:0;padding:0 0 0 30px;">
+															{{var data.special_price}}
+														  </td>														 
+														  <td width="50%" align="right" style="padding:0 10px 0 0;vertical-align:middle;" >
+															<a href="{{var data.url}}"><img style="vertical-align:middle;" width="85" height="46" alt="" src="{{skin url="groupdeals/images/view-deal.png" _area='frontend'}}"></a>
+														  </td>
+														</tr>
+												    </tbody>
+												</table>
+												<table width="226" cellspacing="0" cellpadding="0" style="margin:0 0 0 19px">
+													<tbody>
+														<tr>
+														  <td width="33%" align="center" style="border-left:1px solid #45CFF5;font-size:12px;color:#333333;font-family:Helvetica, Arial, sans-serif;margin:0;padding:10px 0 5px 0; background-color:#CBECF5;">
+															Normal
+														  </td>
+														  <td width="33%" align="center" style="background-color:#CBECF5;font-size:12px;color:#333333;font-family:Helvetica, Arial, sans-serif;margin:0;padding:10px 0 5px 0;">
+															Rabatt
+														  </td>
+														  <td width="33%" align="center" style="border-right:1px solid #45CFF5;font-size:12px;color:#333333;font-family:Helvetica, Arial, sans-serif;margin:0;padding:10px 0 5px 0; background-color:#CBECF5;">
+															Sie sparen
+														  </td>
+														</tr>
+														<tr>
+														  <td width="33%" align="center" style="background-color:#CBECF5;border-left:1px solid #45CFF5;border-bottom:1px solid #45CFF5;font-size:15px;font-weight:700;color:#333333;font-family:Helvetica, Arial, sans-serif;margin:0;padding:0 0 5px 0;">
+															{{var data.price}}
+														  </td>
+														  <td width="33%" align="center" style="background-color:#CBECF5;border-bottom:1px solid #45CFF5;font-size:15px;font-weight:700;color:#333333;font-family:Helvetica, Arial, sans-serif;margin:0;padding:0 0 5px 0;">
+															{{var data.discount}}
+														  </td>
+														  <td width="33%" align="center" style="background-color:#CBECF5;border-right:1px solid #45CFF5;border-bottom:1px solid #45CFF5;font-size:15px;font-weight:700;color:#333333;font-family:Helvetica, Arial, sans-serif;margin:0;padding:0 0 5px 0;">
+															{{var data.you_save}}
+														  </td>
+														</tr>
+												    </tbody>
+												</table>
+												{{if data.has_merchant}}
+												<table bgcolor="#F6F6F6" width="226" cellspacing="0" cellpadding="0" style="margin:10px 0 0 19px">
+													<tbody>
+														<tr>
+														  <td colspan="3" align="left" style="border:1px solid #F0F1F3;  font-size:12px;color:#333333;font-family:Helvetica, Arial, sans-serif;padding:10px ;">
+															<strong>{{var data.merchant_name}}</strong><br/>
+															{{depend data.has_merchant_website}}<a style="text-decoration:none;color:#0981BE;" href="{{var data.merchant_website}}">website</a><br/>{{/depend}}
+															Locations:<br/>
+															{{var data.merchant_address1}}
+															{{var data.merchant_address2}}
+															{{var data.merchant_address3}}
+															{{var data.merchant_address4}}
+															{{var data.merchant_address5}}
+														  </td>
+												    </tbody>
+												</table>
+												{{else}}
+													{{depend data.has_side_deals}}					
+														<table width="226" cellspacing="0" cellpadding="0" style="border:1px solid #F0F1F3; margin:10px 0 0 19px">
+															<tbody>
+																<tr>
+																	<td bgcolor="#F6F6F6" colspan="2" align="center" style="font-weight:bold; color:#454545; padding:5px 0" >
+																		Side Deals
+																	</td>
+																</tr>
+																{{var data.side_deals}}
+																<tr >
+																	<td colspan="2"  align="center" style="color:#454545;font-size:11px; padding:6px 5px;border-top:1px solid #F0F1F3;" >
+																		View: <a style="color:#454545;text-decoration:none;" href="{{var data.all_deals_url}}">All Deals</a> | <a style="color:#454545;text-decoration:none;" href="{{var data.recent_deals_url}}">Recent Deals</a> 
+																	</td>
+																</tr>
+														    </tbody>
+														</table>
+													{{/depend}}
+												{{/if}}
+											</td>												
+											<td width="60%" style="vertical-align:top;padding:0 11px 0 0;">
+												<a href="{{var data.url}}"><img src="{{var data.image_url}}" alt="deal_image" width="100%"/></a>
+											</td>											
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						{{if data.has_merchant}}
+						<tr>
+							<td bgcolor="#FFFFFF" style="padding:10px;">
+								<table width="100%" cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr style="text-align:left;">
+											<td width="{{var data.merchant_description_width}}"  style="vertical-align:top; padding:0 20px 0 20px; font-size:12px;">
+												{{var data.merchant_description}}
+											</td>
+											{{depend data.has_side_deals}}											
+											<td width="35%" style="vertical-align:top;">
+												<table width="96%" cellspacing="0" cellpadding="0" style="border:1px solid #F0F1F3;">
+													<tbody>
+														<tr>
+															<td bgcolor="#F6F6F6" colspan="2" align="center" style="font-weight:bold; color:#454545; padding:5px 0" >
+																Side Deals
+															</td>
+														</tr>
+														{{var data.side_deals}}
+														<tr >
+															<td colspan="2"  align="center" style="color:#454545;font-size:11px; padding:6px 5px;border-top:1px solid #F0F1F3;" >
+																View: <a style="color:#454545;text-decoration:none;" href="{{var data.all_deals_url}}">All Deals</a> | <a style="color:#454545;text-decoration:none;" href="{{var data.recent_deals_url}}">Recent Deals</a> 
+															</td>
+														</tr>
+												    </tbody>
+												</table>
+											</td>
+											{{/depend}}
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						{{/if}}	
+						<tr>
+							<td bgcolor="#E2E2E4" style="padding:10px; border-top:3px solid #F0F1F3; text-align:center; font-size:14px; color:#454545;">
+								Haben Sie Fragen? <a style="color:#454545;text-decoration:none;font-weight:bold;" href="{{var data.contact_us_url}}">Schreiben Sie uns</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:center; font-size:11px; padding:10px 0 0px 0;">
+				Sie erhalten diese E-Mail, da Sie sich für die {{var data.city}} Deals angemeldet haben. Möchten Sie diese E-Mail nicht mehr erhalten, können Sie diese mit einem Klick <a style="color:#0981BE;text-decoration:none;"  href="{{var data.unsubscribe_url}}">abmelden</a> 
+			</td>
+		</tr>
+	</tbody>
+</table>	
+</body>
+</html>

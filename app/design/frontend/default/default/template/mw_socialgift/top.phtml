@@ -1,0 +1,26 @@
+<?php if (Mage::getStoreConfig('socialgift/config/enabled')){?>
+    <!--<link rel="stylesheet" type="text/css" href="<?php //echo Mage::helper('mw_socialgift')->configcss(); ?>" media="all">-->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl(); ?>mw_socialgift/css/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl(); ?>mw_socialgift/css/social/social-likes_birman.css" media="all">
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl(); ?>mw_socialgift/css/fancybox/jquery.fancybox.css?v=2.1.5" media="all">
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl(); ?>mw_socialgift/css/jquery.jcarousel.css" media="all">
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl(); ?>mw_socialgift/css/mw_social_gift.css" media="all">
+
+    <script type="text/javascript" src="<?php echo Mage::helper('mw_socialgift')->configjs(); ?> "></script>
+    <script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS)?>mw_socialgift/lib/jquery.plugin.js"></script>
+    <script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS)?>mw_socialgift/head.main.js"></script>
+    <script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS)?>mw_socialgift/view.js"></script>
+    
+    <script>
+        var BASE_URL = '<?php echo  Mage::getBaseUrl(); ?>';
+        var FACEBOOK_ID = '<?php echo Mage::helper('mw_socialgift')->getFBID() ?>';
+        <?php if( Mage::getSingleton('checkout/session')->getNumberSocialGiftRule() ) : ?>
+        var SOCIALGIFT_MESSAGE = '<p><span class="sg_add_gift_success"> </span> <?php echo Mage::helper('mw_socialgift')->__('Thank you! You have shared product to social network, You still have %s gift(s) to choose, <a href="javascript:void(0);" class="fancybox" title="Add gift to cart"> <i> click here </i></a>', Mage::getSingleton('checkout/session')->getNumberSocialGiftRule() - Mage::getSingleton('checkout/session')->getNumberSocialGift()) ?> </p>';
+        <?php endif; ?>
+        var COUNTRY_AVAILABLES = '<?php echo Mage::getSingleton('checkout/session')->getSGCountries() ?>';
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer>
+        {"parsetags": "explicit"}
+    </script>
+<?php } ?>
+

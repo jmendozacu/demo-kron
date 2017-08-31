@@ -1,0 +1,58 @@
+<?php
+$_helper = $this->helper('catalog/output');
+$layout = Mage::getSingleton('core/layout');
+$block = $layout->createBlock('freegift/freeproduct');
+
+$productIds = $block->getFreeGiftCatalog($product);
+if($productIds){ ?>
+    <div class="mw-fg-catalog-list">
+        <div class="freegift_header">
+            <h5><?php echo $this->__("Free Gift")?></h5>
+        </div>
+        <div class="freegift_catalog_container clearer">
+            <ul id="freegift" >
+                <?php
+                $i=1;
+                foreach($productIds as $productId):?>
+                    <?php
+                    $freegift = Mage::getModel('catalog/product')->load($productId);
+                    $tipid=$freegift->getId().'_'.$product->getId();
+                    ?>
+                    <li class="mw-fg-items">
+                        <?php
+                        $ruleProduct = $block->getRuleFreeProductId($productId);
+                        $rule = Mage::getModel('freegift/rule')->load($ruleProduct->getRuleId());
+                        $urlFriendly = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$freegift->getUrlPath();
+                        ?>
+                        <a id="stay-target-<?php echo $tipid;?>" href="<?php echo $urlFriendly; ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($freegift, 'small_image')) ?>" class="product-image">
+                            <img src="<?php echo $this->helper('catalog/image')->init($freegift, 'small_image')->resize(40, 38); ?>" width="40" height="38" alt="<?php echo $this->htmlEscape($this->getImageLabel($freegift, 'small_image')) ?>" />
+                        </a>
+                        <div id="stay-content-<?php echo $tipid;?>" class="mw-fg-item">
+                            <div class="mw-fg-item-options">
+                                <div class="mw-fg-item-option-title">
+                                    <?php echo $rule->getDescription();?>
+                                </div>
+                                <div class="mw-fg-item-option-ct">
+                                    <p class="mw-fg-image-item">
+                                        <a href="<?php echo $urlFriendly; ?>" title="<?php echo $_helper->productAttribute($freegift, $freegift->getName(), 'name') ?>">
+                                            <img src="<?php echo $this->helper('catalog/image')->init($freegift, 'small_image')->resize(135, 135); ?>" width="135" height="135" alt="<?php echo $this->htmlEscape($this->getImageLabel($freegift, 'small_image')) ?>" />
+                                        </a>
+                                    </p>
+                                    <p class="mw-fg-item-name">
+                                        <a href="<?php echo $urlFriendly; ?>" title="<?php echo $_helper->productAttribute($freegift, $freegift->getName(), 'name') ?>">
+                                            <?php echo $_helper->productAttribute($freegift, $freegift->getName(), 'name') ?>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <?php
+                    $i++;
+                endforeach;
+                ?>
+            </ul>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+<?php }?>

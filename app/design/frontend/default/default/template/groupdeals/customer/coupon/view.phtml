@@ -1,0 +1,16 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php 
+	$coupon = Mage::getModel('groupdeals/coupons')->load($this->getRequest()->getParam('coupon_id')); 
+	$item = Mage::getModel('sales/order_item')->load($coupon->getOrderItemId());
+	$order = Mage::getModel('sales/order')->load($item->getOrderId());
+?>
+<div class="page-title title-buttons">
+    <h1><?php echo $this->__('Coupon - %s', $coupon->getCouponCode()) ?></h1>
+    <a href="<?php echo $this->getUrl('sales/order/view', array('order_id'=>$order->getId())) ?>"><?php echo $this->__('View Order') ?></a><span class="separator">|</span><a href="<?php echo $this->getUrl('groupdeals/coupons/print', array('coupon_id'=>$this->getRequest()->getParam('coupon_id'))) ?>" class="link-print" target="_blank"><?php echo $this->__('Print Coupon') ?></a>
+</div>
+
+<?php echo $this->getCoupon($coupon, $order, $item); ?>
+
+<div class="buttons-set">
+    <p class="back-link"><a href="<?php echo $this->getUrl('*/*/index') ?>"><small>&laquo; </small><?php echo $this->__('Back to My Coupons') ?></a></p>
+</div>

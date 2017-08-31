@@ -1,0 +1,707 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @deprecated  after 1.4.0.0-alpha3
+ */
+$product_id = $this->getProduct()->getId();
+$product= Mage::getModel('catalog/product')->load($product_id);
+$productMainPrice = $product->getFinalPrice();
+$formattedPrice = Mage::helper('core')->currency($productMainPrice,false,false);
+$showedPrice = Mage::helper('core')->currency($productMainPrice,true,false);
+
+$productPrice = number_format($formattedPrice,2);
+$productPrice  = str_replace(",","",$productPrice);
+?>
+<?php
+//Start New logic (Dropdown for different product)
+$onif6_status = $product->getResource()->getAttribute('onif6')->getFrontend()->getValue($product);
+$onif6_label = $product->getResource()->getAttribute('labelonif6')->getFrontend()->getValue($product);
+$onif6_code = $product->getResource()->getAttribute('codeonif6')->getFrontend()->getValue($product);
+$onif6_priority = $product->getResource()->getAttribute('onif6_pay4later_priority')->getFrontend()->getValue($product);
+
+
+$onif9_status = $product->getResource()->getAttribute('onif9')->getFrontend()->getValue($product);
+$onif9_label = $product->getResource()->getAttribute('labelonif9')->getFrontend()->getValue($product);
+$onif9_code = $product->getResource()->getAttribute('codeonif9')->getFrontend()->getValue($product);
+$onif9_priority = $product->getResource()->getAttribute('onif9_pay4later_priority')->getFrontend()->getValue($product);
+
+$onif10_status = $product->getResource()->getAttribute('onif10')->getFrontend()->getValue($product);
+$onif10_label = $product->getResource()->getAttribute('labelonif10')->getFrontend()->getValue($product);
+$onif10_code = $product->getResource()->getAttribute('codeonif10')->getFrontend()->getValue($product);
+$onif10_priority = $product->getResource()->getAttribute('onif10_pay4later_priority')->getFrontend()->getValue($product);
+
+
+$onif12_status = $product->getResource()->getAttribute('onif12')->getFrontend()->getValue($product);
+$onif12_label = $product->getResource()->getAttribute('labelonif12')->getFrontend()->getValue($product);
+$onif12_code = $product->getResource()->getAttribute('codeonif12')->getFrontend()->getValue($product);
+$onif12_priority = $product->getResource()->getAttribute('onif12_pay4later_priority')->getFrontend()->getValue($product);
+
+
+$onif18_status = $product->getResource()->getAttribute('onif18')->getFrontend()->getValue($product);
+$onif18_label = $product->getResource()->getAttribute('labelonif18')->getFrontend()->getValue($product);
+$onif18_code = $product->getResource()->getAttribute('codeonif18')->getFrontend()->getValue($product);
+$onif18_priority = $product->getResource()->getAttribute('onif18_pay4later_priority')->getFrontend()->getValue($product);
+
+
+$onib24_status = $product->getResource()->getAttribute('onib24')->getFrontend()->getValue($product);
+$onib24_label = $product->getResource()->getAttribute('labelonib24')->getFrontend()->getValue($product);
+$onib24_code = $product->getResource()->getAttribute('codeonib24')->getFrontend()->getValue($product);
+$onib24_priority = $product->getResource()->getAttribute('onib24_pay4later_priority')->getFrontend()->getValue($product);
+
+
+
+$onif24_status = $product->getResource()->getAttribute('onif24')->getFrontend()->getValue($product);
+$onif24_label = $product->getResource()->getAttribute('labelonif24')->getFrontend()->getValue($product);
+$onif24_code = $product->getResource()->getAttribute('codeonif24')->getFrontend()->getValue($product);
+$onif24_priority = $product->getResource()->getAttribute('onif24_pay4later_priority')->getFrontend()->getValue($product);
+
+
+$onif36_status = $product->getResource()->getAttribute('onif36')->getFrontend()->getValue($product);
+$onif36_label = $product->getResource()->getAttribute('labelonif36')->getFrontend()->getValue($product);
+$onif36_code = $product->getResource()->getAttribute('codeonif36')->getFrontend()->getValue($product);
+$onif36_priority = $product->getResource()->getAttribute('onif36_pay4later_priority')->getFrontend()->getValue($product);
+
+
+
+
+
+
+
+$typeArray = array();
+$codeArray = array();
+$discountArray = array();
+$labelArray = array();
+if($onif6_status == 'Yes'){
+    if($onif6_code != ''){
+        $codeArray = explode(", ",$onif6_code);
+    }
+    $typeArray['ONIF6']['name'] = $onif6_label;
+    $typeArray['ONIF6']['pertange'] = $codeArray;
+    $typeArray['ONIF6']['priority'] = $onif6_priority;
+    $discountArray['ONIF6'] = $codeArray;
+	$labelArray['ONIF6'] = $onif6_label;
+	
+}
+$codeArray = array();
+if($onif9_status == 'Yes'){
+    if($onif9_code != ''){
+        $codeArray = explode(", ",$onif9_code);
+    }
+    $typeArray['ONIF9']['name'] = $onif9_label;
+    $typeArray['ONIF9']['pertange'] = $codeArray;
+    $typeArray['ONIF9']['priority'] = $onif9_priority;
+    $discountArray['ONIF9'] = $codeArray;
+	$labelArray['ONIF9'] = $onif9_label;
+}
+
+$codeArray = array();
+if($onif10_status == 'Yes'){
+    if($onif10_code != ''){
+        $codeArray = explode(", ",$onif10_code);
+    }
+    $typeArray['ONIF10']['name'] = $onif10_label;
+    $typeArray['ONIF10']['pertange'] = $codeArray;
+    $typeArray['ONIF10']['priority'] = $onif10_priority;
+    $discountArray['ONIF10'] = $codeArray;
+	$labelArray['ONIF10'] = $onif10_label;
+
+}
+
+$codeArray = array();
+if($onif12_status == 'Yes'){
+    if($onif12_code != ''){
+        $codeArray = explode(", ",$onif12_code);
+    }
+    $typeArray['ONIF12']['name'] = $onif12_label;
+    $typeArray['ONIF12']['pertange'] = $codeArray;
+    $typeArray['ONIF12']['priority'] = $onif12_priority;
+    $discountArray['ONIF12'] = $codeArray;
+	$labelArray['ONIF12'] = $onif12_label;
+}
+
+$codeArray = array();
+if($onif18_status == 'Yes'){
+    if($onif18_code != ''){
+        $codeArray = explode(", ",$onif18_code);
+    }
+    $typeArray['ONIF18']['name'] = $onif18_label;
+    $typeArray['ONIF18']['pertange'] = $codeArray;
+    $typeArray['ONIF18']['priority'] = $onif18_priority;
+    $discountArray['ONIF18'] = $codeArray;
+	$labelArray['ONIF18'] = $onif18_label;
+
+}
+
+
+$codeArray = array();
+if($onib24_status == 'Yes'){
+    if($onib24_code != ''){
+        $codeArray = explode(", ",$onib24_code);
+    }
+    $typeArray['ONIB24']['name'] = $onib24_label;
+    $typeArray['ONIB24']['pertange'] = $codeArray;
+    $typeArray['ONIB24']['priority'] = $onib24_priority;
+    $discountArray['ONIB24'] = $codeArray;
+	$labelArray['ONIB24'] = $onib24_label;
+}
+
+
+
+$codeArray = array();
+if($onif24_status == 'Yes'){
+    if($onif24_code != ''){
+        $codeArray = explode(", ",$onif24_code);
+    }
+    $typeArray['ONIF24']['name'] = $onif24_label;
+    $typeArray['ONIF24']['pertange'] = $codeArray;
+    $typeArray['ONIF24']['priority'] = $onif24_priority;
+    $discountArray['ONIF24'] = $codeArray;
+	$labelArray['ONIF24'] = $onif24_label;
+	
+}
+
+
+
+$codeArray = array();
+if($onif36_status == 'Yes'){
+    if($onif36_code != ''){
+        $codeArray = explode(", ",$onif36_code);
+    }
+    $typeArray['ONIF36']['name'] = $onif36_label;
+    $typeArray['ONIF36']['pertange'] = $codeArray;
+    $typeArray['ONIF36']['priority'] = $onif36_priority;
+    $discountArray['ONIF36'] = $codeArray;
+	$labelArray['ONIF36'] = $onif36_label;
+}
+
+
+
+$discountJsonArray = array();
+$i = 1;
+$first_key = 'ONIF6';
+$firstPertange = '10';
+$firstPertangeArray = array();
+foreach ($typeArray as $ty_key => $ty_value) {
+    if ($i == 1) {
+        reset($typeArray);
+        $first_key = key($typeArray);
+        $firstType = $first_key;
+        reset($typeArray[$first_key]['pertange']);
+        $firstPertangekey = key($typeArray[$first_key]['pertange']);
+        $firstPertangeArray = $typeArray[$first_key]['pertange'];
+        $firstPertange = $typeArray[$first_key]['pertange'][$firstPertangekey];
+    }
+    $i++;
+}
+$wholeDiscountJson = json_encode($discountArray);
+$discountJson = json_encode(array_values($discountArray[$first_key]));
+$discountCount = count($discountArray[$first_key]);
+$labelJson = json_encode(array_values($labelArray));
+$labelCount = count($labelArray);
+$labelKeyJson = json_encode(array_keys($labelArray));
+
+?>
+<?php $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+$currency_symbol = Mage::app()->getLocale()->currency( $currency_code )->getSymbol();?>
+
+<?php $attributePayTabValue = Mage::getModel('catalog/product')->load($product_id)->getAttributeText('product_for_pay4later');?>
+<link rel="stylesheet" href="https://www.kronosav.com/skin/frontend/smartwave/porto/css/pay4later.css" type="text/css" />
+
+<style>
+.bg-box {
+    color: #000;
+    line-height: 20px;
+    width: auto !important;
+    margin-top: 40px;
+}
+
+.main-table{width:70%; float:left; margin:10px; height:500px;}
+.table-td{    width: 100%;
+    float: left;
+    padding: 0 0 0 5px;
+    border: 1px solid #ebebeb;
+	border-bottom:0;
+	    }
+.table-td:last-child{border-bottom:1px solid #ebebeb;}
+.table-row{padding:5px; font-size:13px; border-left:1px solid #ebebeb; width:45%; float:left;}
+.table-header{font-weight:600; color:#08c; border-left:0;}
+
+.slider,.slider1 {margin:50px}
+@media only screen and (max-width:1280px){
+.detail-box{width:55%;}
+}
+@media only screen and (max-width:1024px){
+.product-view .product-name h1 {
+    margin: 15px 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #555;
+}
+.product-view .product-shop .price-box .special-price .price {
+    font-size: 27px;
+}
+.price-text {
+   
+    width: 140px;
+}
+.header-text span {
+    font-size: 16px;
+}
+.detail-box {
+    width: 63% !important;
+}
+.product-view .product-shop .price-box .special-price .price {
+    font-size: 21px;
+}	
+
+}
+@media only screen and (max-width:769px){
+
+.product-info {
+    min-height: 245px;
+}
+.header-text {
+  
+    line-height: 20px;
+}
+.detail-box {
+    width: 100% !important;
+	clear:both;
+	    margin-top: 90px;
+}
+.header-text span {
+    font-size: 14px;
+}
+.detail-box .btn {
+    margin-top: 8px;
+    padding: 5px;
+    margin-left: 20px;
+}
+.pay4later_detail_view {
+   
+    top: 66px;}
+
+
+}
+@media only screen and (max-width:642px){
+	.detail-box {
+  
+	    margin-top: 0px;
+}
+	
+	}
+@media only screen and (max-width:481px){
+.detail-box {
+    width: 65% !important;
+}
+.header-text {
+    
+    font-size: 12px;
+ }
+ .step-box-header {
+    font-size: 22px;
+	
+   }
+	.table-header{border-right: 1px solid #ebebeb;}
+	
+}
+@media only screen and (max-width:320px){
+.product-view .product-shop .price-box .special-price .price {
+    font-size: 17px !important;
+}
+.product-view .product-shop .price-box .old-price .price {
+    font-size: 14px !important;
+   
+}
+.product-view .product-shop .availability {
+   
+    font-size: 12px !important;
+  
+}
+.detail-box {
+    width: 55% !important;
+}
+.p_img1, .p_img2{width:95%;}
+.p_img1 img, .p_img2 img{width:100%;}
+.tooltip_paylater:hover:after{left: -165px;}
+}
+</style>
+
+<?php
+$pay4laterArray = Mage::getStoreConfig('payment/pay4later');
+$minimumLoanValue = $pay4laterArray['loanvalue'];
+$infopaylater = $pay4laterArray['infopaylater'];
+?>
+<?php if($pay4laterArray['active'] == 0 || $pay4laterArray['product_detail_active'] == 0 || $attributePayTabValue == 'No'){?>
+<style>
+#tab_pay4later_tabbed{
+	display:none !important;
+}
+
+
+</style>
+<?php }?>
+
+
+
+<?php if(count($typeArray) > 0):?>
+<?php if($attributePayTabValue == 'Yes' && $pay4laterArray['active'] == 1){?>
+<?php if($pay4laterArray['product_detail_active'] == 1):?>
+<div class="wrp_img_div">
+	<div class="prd_later_image">
+	<img src="<?php echo $product->getImageUrl();?>" />
+	</div>
+	
+	<div class="p_img1">
+		<img src="<?php echo $this->getSkinUrl('images/instant-decision.png');?>" class="icon-pos" />
+		<b>Instant Decision</b>
+		<br/>
+		You get an instant decision. No hassle and no waiting!
+		
+	</div>
+
+	<div class="p_img2">
+		<img src="<?php echo $this->getSkinUrl('images/e-signature.png');?>" class="icon-pos" />
+		<b>eSignature</b>
+		<br/>
+		No paper Forms. No sending forms in the post. No PCF's.
+	</div>
+
+	
+</div>
+
+
+<div class="step-box-main">
+	<ul class="header-text">
+    	<li>Apply Online Today....<span>takes less than 10 mins to complete</span></li>	
+        <li>Same day dispatch if ordered before 3pm</span></li>
+        <li>Repayments don't start untill 1 month after you receive your goods!</span></li>
+    </ul>
+    <div class="step-box step_1">
+    	<p class="step-box-header"><span>Step 1)</span> Enter your deposit amount</p>
+        <p>Select a deposit amount from 0% to 50% by using the slider below</p>
+    </div>
+	
+			<?php if($discountCount == 1):?>
+			<div class="singleentry discount_value"><?php echo $discountArray[$first_key][0]."%";?></div>
+	<?php endif;?>
+	
+	<div class="price-box1">
+			<div class="new_price_box"></div>
+			<span class="prc_bx"><?php echo $showedPrice;?></span>
+		</div>
+		
+    <div class="slider-main discount_slider">
+	<?php if($discountCount != 1):?>
+		<div class="slider"></div>
+	<?php endif;?>
+</div>
+
+
+
+<div class="step-box">
+    	<p class="step-box-header"><span>Step 2)</span> Select Finance Option</p>
+        <p>Choose the finance option that is suitable for you.</p>
+    </div>
+	<?php 	if($labelCount == 1):?>
+		<div class="singleentry"><?php echo $labelArray[$first_key];?></div>
+		<?php endif;?>
+	 <div class="slider-main">
+	<?php 	if($labelCount != 1):?>
+		<div class="slider1"></div>
+	<?php endif;?>
+	</div>
+	
+<div style="clear:both"></div>
+
+
+
+<div class="bg-box">
+	<div class="table-td">
+    	<div class="table-row table-header"> Deposit you Pay</div>
+        <div  id="deposit_amount" class="table-row"> 	</div>
+    </div>
+    <div class="table-td">
+    	<div class="table-row table-header"> Monthly Instalment</div>
+        <div class="table-row" id="cost_per_month"> </div>
+    </div>
+    <div class="table-td">
+    	<div class="table-row table-header">Rate of Interest (fixed)</div>
+        <div  id="rate_of_interest_frm" class="table-row"> 	</div>
+    </div>
+    <div class="table-td">
+    	<div class="table-row table-header">Cash Price</div>
+        <div class="table-row" id="cost_of_goods"> 	</div>
+    </div>
+    <div class="table-td">
+    	<div class="table-row table-header"> Amount of Loan</div>
+        <div  id="credit_amount"  class="table-row"> 	</div>
+    </div>
+    <div class="table-td">
+    	<div class="table-row table-header">Cost of Loan</div>
+        <div class="table-row" id="loan_cost"> 	</div>
+    </div>
+    <div class="table-td">
+    	<div class="table-row table-header"> Total Amount Payable</div>
+        <div  id="total"  class="table-row"> 	</div>
+    </div>
+    <div class="table-td">
+    	<div class="table-row table-header"> Duration of Agreement</div>
+        <div class="table-row" id="finance_term"> 	</div>
+    </div>
+	<?php if($minimumLoanValue != ''):?>
+     <div class="table-td">
+    	<div class="table-row table-header">Minimum loan value</div>
+        <div class="table-row" id="min_loan_value"> <?php echo $currency_symbol. $minimumLoanValue;?></div>
+    </div>
+	<?php endif;?>
+   <?php if($infopaylater != ''):?>
+   <div class="table-td">
+   		<p class="table-header pay4later_info" ><b><?php echo $infopaylater;?></b></p>
+   </div>
+   <?php endif;?>
+		
+   
+</div>
+
+
+
+<?php /*?>
+
+<table class="bg-box pay4later_details" style="margin-bottom:10px;">
+<tbody>
+       
+        <tr>
+            <td><b>Deposit you Pay</b></td>
+            <td id="deposit_amount" class="weight-700" ></td>
+        </tr>
+		 <tr>
+            <td><b>Monthly Instalment</b></td>
+            <td id="cost_per_month" class="weight-700"></td>
+        </tr>
+		
+		
+		<tr>
+            <td><b>Rate of Interest (fixed)</b></td>
+            <td id="rate_of_interest_frm" class="weight-700"></td>
+        </tr>
+		
+		
+         <tr>
+            <td><b>Cash Price</b></td>
+            <td id="cost_of_goods" class="weight-700"></td>
+        </tr>
+         <tr>
+            <td><b>Amount of Loan</b></td>
+            <td id="credit_amount" class="weight-700"></td>
+        </tr>
+         <tr>
+            <td><b>Cost of Loan</b></td>
+            <td id="loan_cost" class="weight-700"></td>
+        </tr>
+          <tr>
+            <td><b>Total Amount Payable</b></td>
+            <td id="total" class="weight-700"></td>
+        </tr>
+        <tr>
+            <td><b>Duration of Agreement</b></td>
+            <td id="finance_term" class="weight-700"></td>
+        </tr>
+        
+		<?php if($minimumLoanValue != ''):?>
+		<tr>
+            <td><b>Minimum loan value</b></td>
+            <td id="min_loan_value" class="weight-700"><?php echo $currency_symbol. $minimumLoanValue;?></td>
+        </tr>
+		<?php endif;?>
+        
+		
+		<?php if($infopaylater != ''):?>
+        <tr>
+		<td colspan="2" class="pay4later_info">
+			<b><?php echo $infopaylater;?></b>
+		</td>
+		</tr>
+		<?php endif;?>
+		</tbody>
+</table>
+
+<?php */?>
+</div>
+<?php endif;?>
+<?php }?>
+<?php endif;?>
+
+
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/jquery-ui-slider-pips.css');?>" type="text/css" />
+<script src="<?php echo $this->getSkinUrl('js/kjquery.min.js');?>"></script>
+<script src="<?php echo $this->getSkinUrl('js/kjquery-ui.js');?>"></script>
+<script src="<?php echo $this->getSkinUrl('js/kjquery-ui-slider-pips.js');?>"></script>
+<script>
+var discountJson  = <?php echo $discountJson ;?>;
+var labelJson = <?php echo $labelJson;?>;
+var discountCount = <?php echo $discountCount; ?>;
+var labelCount = <?php echo $labelCount; ?>;
+var labelKeyJson = <?php echo $labelKeyJson;?>;
+var wholeDiscountJson = jQuery.parseJSON('<?php echo $wholeDiscountJson;?>');
+
+console.log(labelJson);
+loadFinanceDetails('<?php echo $first_key;?>', <?php echo $productPrice;?>, <?php echo $firstPertange;?>, 0);
+
+var dom = {};
+dom.query = jQuery.noConflict( true );
+
+if(discountCount > 1){
+	dom.query(".slider")
+		.slider({ 
+			min: 0, 
+			max: discountJson.length-1, 
+		})
+		.slider("pips", {
+			rest: "label",
+			labels: discountJson
+		})
+		.on("slidechange", function(e,ui) {
+			//console.log( "You selected " + discountJson[ui.value] + " (" + ui.value + ")");
+			//var firstPertange = discountJson[ui.value];
+			if(labelCount > 1){
+				var labelKey = dom.query(".slider1").slider("value");
+				var labelvalue = labelKeyJson[labelKey];
+			}else{
+				var labelKey = labelKeyJson[0];
+				var labelvalue = labelKey;
+			}
+			
+			
+			var newDiscount = wholeDiscountJson[labelvalue];
+			
+		/*	console.log(labelKey);
+			console.log(labelvalue);
+			
+			console.log(wholeDiscountJson);
+			console.log(wholeDiscountJson[labelvalue]);
+			*/
+			
+			var firstPertange = newDiscount[ui.value];
+			
+			
+			//console.log("======>>>"+firstPertange);
+			
+			//console.log(labelvalue+"===="+<?php echo $productPrice;?>+"==="+parseInt(firstPertange));
+			loadFinanceDetails(labelvalue, <?php echo $productPrice;?>, parseInt(firstPertange), 0);
+			
+		});
+}
+
+if(labelCount > 1){
+	dom.query(".slider1")
+		.slider({ 
+			min: 0, 
+			max: labelJson.length-1, 
+		})
+		.slider("pips", {
+			rest: "label",
+			labels: labelJson
+		})
+		.on("slidechange", function(e,ui) {
+			var firstkey = labelKeyJson[ui.value];
+			var newDiscount = wholeDiscountJson[firstkey];
+			var firstPertange = newDiscount[0];
+			
+			
+			dom.query(".slider").slider("pips", "destroy");
+			dom.query(".slider").addClass('newslider');
+			dom.query(".newslider").removeClass('slider');
+			
+			if(newDiscount.length > 1){
+				jQuery('.discount_slider').show();
+				jQuery('.discount_value').remove();
+				dom.query(".newslider")
+				.slider({ 
+					min: 0, 
+					max: newDiscount.length-1,
+					value: 0 					
+				})
+				.slider("pips", {
+					rest: "label",
+					labels: newDiscount,
+					value: 0 
+				});
+				
+			}else{
+				
+				jQuery('.discount_slider').hide();
+				jQuery('.discount_value').remove();
+				jQuery(".step_1").append('<div class="singleentry discount_value">'+newDiscount[0]+'%</div>');
+			}
+			loadFinanceDetails(firstkey, <?php echo $productPrice;?>, parseInt(firstPertange), 0);
+			
+		});
+		
+}
+
+
+function loadFinanceDetails(product_type, cost_of_goods, deposit_percentage, deposit_amount) {
+			var my_fd_obj = new FinanceDetails(product_type, cost_of_goods, deposit_percentage, deposit_amount);
+			console.log(my_fd_obj);
+			jQuery("#rate_of_interest_frm").html(my_fd_obj.rate_of_interest+"<br/><span class='subline'>"+my_fd_obj.rate_of_interest+" APR representative</span>");
+			jQuery("#product_name").html(my_fd_obj.p_name);
+            jQuery("#finance_term").html(my_fd_obj.term+" monthly instalments");
+			
+			jQuery("#cost_per_month").html('<?php echo $currency_symbol;?>' +my_fd_obj.m_inst.toFixed(2));
+            jQuery("#cost_of_goods").html('<?php echo $currency_symbol;?>' +my_fd_obj.goods_val);
+            jQuery("#deposit_percentage").html('<?php echo $currency_symbol;?>' +my_fd_obj.d_pc);
+            jQuery("#deposit_amount").html('<?php echo $currency_symbol;?>' +my_fd_obj.d_amount);
+            jQuery(".prc_bx").html('<?php echo $currency_symbol;?>' +my_fd_obj.d_amount);
+			jQuery("#apr").html('<?php echo $currency_symbol;?>' +my_fd_obj.apr);
+            jQuery("#monthly_repayment").html('<?php echo $currency_symbol;?>' +my_fd_obj.l_repay);
+            jQuery("#total").html('<?php echo $currency_symbol;?>' +my_fd_obj.total);
+            jQuery("#credit_amount").html('<?php echo $currency_symbol;?>' +my_fd_obj.l_amount);
+            jQuery("#loan_cost").html('<?php echo $currency_symbol;?>' +my_fd_obj.l_cost);
+            jQuery("#loan_true_cost").html('<?php echo $currency_symbol;?>' +my_fd_obj.l_truecost);
+			
+			
+			//New Logic
+				var postdata = {};
+                var priority = jQuery("#var_product_type").find('option:selected').attr("priority");
+                
+                postdata['var_product_type'] = product_type; //jQuery("#var_product_type").val();
+                postdata['product_id'] = '<?php echo $product_id;?>';
+                //postdata['priority'] = priority;
+                jQuery.post('<?php echo $this->getUrl('pay4later/ajax/detail') ?>', postdata, function(result) {
+             
+                });			
+			//End
+        }
+
+
+
+
+
+//jQuery(span).attr(qa)(".ui-slider-pip-selected").parents(" ").hide();
+
+</script>

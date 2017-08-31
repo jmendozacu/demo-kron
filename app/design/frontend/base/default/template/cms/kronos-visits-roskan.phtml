@@ -1,0 +1,25 @@
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) ?>jquery/jquery.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) ?>collage/jquery.collagePlus.js"></script>
+<script
+    src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) ?>collage/jquery.removeWhitespace.js"></script>
+<div class="Collage">
+    <?php
+    $files = array_slice(scandir(Mage::getBaseDir(Mage_Core_Model_Store::URL_TYPE_MEDIA) . DS . 'cms' . DS . 'kronos-visits-roskan' . DS), 2);
+    foreach ($files as $file) {
+        ?>
+        <img style="width: 300px"
+            src='<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>/cms/kronos-visits-roskan/<?php echo $file; ?>'>
+        <?php
+    }
+    ?>
+</div>
+<script>
+    $(window).load(function () {
+        $('.Collage').removeWhitespace().collagePlus(
+            {
+                'fadeSpeed': "fast",
+                'padding': 10,
+            }
+        );
+    });
+</script>

@@ -1,0 +1,232 @@
+<?php
+/**
+ * Renegade Group
+ * 
+ * Copyright (C) 2013 - 2014 QubeSys Technologies Pvt.Ltd. All rights reserved.
+ * 
+
+ * http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL.
+ */
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Products') ?></h4>
+        <div class="right"><?php echo $this->getAddButtonHtml(); ?></div>
+    </div>
+    <div id="product_box" class="box">
+        <div id="productGrid">
+             <div class="entry-edit">
+                <div class="entry-edit-head">
+                    <div style="float: right;"><?php echo $this->getAddSelectedProductButtonHtml() ?></div>
+                    <h4 class="fieldset-legend <?php echo ($this->getHeaderCssClass()) ? $this->getHeaderCssClass().' icon-head' : '' ?>"><?php echo $this->getHeaderText() ?></h4>
+                </div>
+                <?php echo $this->getChildHtml('product_grid'); ?>
+            </div>
+        </div>
+
+        <div class="grid tier form-list" id="box">
+            <table class="border" cellpadding="0" cellspacing="0" id="input-container">
+                <thead>
+                    <tr class="headings">
+                        <th><?php echo $this->__('ID') ?></th>
+                        <th><?php echo $this->__('Name') ?></th>
+                        <th><?php echo $this->__('SKU') ?></th>
+                        <th><?php echo $this->__('Type') ?></th>
+                        <th class="last"><?php echo $this->__('Delete') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php $count = 0; foreach($this->getManufacturerProductCollection() as $_product): ?>
+                    <tr id="product_entity_id_<?php echo $_product->getId(); ?>" class="selection">
+                        <td>
+                            <input type="hidden" value="<?php echo $_product->getId(); ?>" name="product[<?php echo $count; ?>][product_id]"  id="product[<?php echo $count; ?>][product_id]">
+                            <input type="hidden" value="<?php echo $_product->getSku(); ?>"name="product[<?php echo $count; ?>][product_sku]" id="product[<?php echo $count; ?>][product_sku]">
+                            <?php echo $_product->getId(); ?>
+                        </td>
+                        <td>
+                            <div class="nobr"><?php echo $_product->getName(); ?></div>
+                        </td>
+                        <td>
+                            <div class="nobr"><?php echo $_product->getSku(); ?></div>
+                        </td>
+                        <td>
+                            <?php echo $_product->getTypeId(); ?>
+                        </td>
+
+                        <td class="last">
+                            <span title="Delete Row">
+                                <button style="" class="scalable delete icon-btn" onclick="brandProduct.remove(this)" type="button">
+                                    <span>Delete</span>
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                <?php $count++; endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+   
+
+
+</div>
+<script type="text/javascript">
+//<![CDATA[
+<?php echo $this->getChild('product_grid')->getJsObjectName(); ?>.checkboxCheckCallback = <?php echo $this->getChild('product_grid')->getCheckboxCheckCallback(); ?>
+
+var productsGridElement = $('productGrid');
+productsGridElement.hide();
+$('product_add_button').observe('click', function (event) {
+    var element = event.element();
+    productsGridElement.visible() ? productsGridElement.hide() : productsGridElement.show();
+});
+//]]>
+</script>
+
+<script type="text/javascript">
+                // re-bind form elements onchange
+                //<![CDATA[
+                varienWindowOnload(true);
+                var productTemplateBox = '<table class="border" cellpadding="0" cellspacing="0">' +
+                    '    <thead>' +
+                    '        <tr class="headings">' +
+                    '           <th><?php echo $this->__('ID') ?></th>' +
+                    '           <th><?php echo $this->__('Name') ?></th>' +
+                    '           <th><?php echo $this->__('SKU') ?></th>' +
+                    '           <th><?php echo $this->__('Type') ?></th>' +
+                    '        <th class="last"><?php echo $this->__('Delete') ?></th>' +
+                    '        </tr>' +
+                    '    </thead> ' +
+                    '    <tbody>' +
+                    '    </tbody>' +
+                    '</table>';
+                    var productTemplateRow = '<td>' +
+                        '    <input type="hidden" value="{{product_id}}" name="product[{{index}}][product_id]" id="product[{{index}}][product_id]">' +
+                        '    <input type="hidden" value="{{product_sku}}" name="product[{{index}}][product_sku]" id="product[{{index}}][product_sku]">' +
+                        '<div class="nobr">{{product_id}}</div>' +
+                        '</td>' +
+                        '<td>' +
+                        '    <div class="nobr">{{product_name}}</div>' +
+                        '</td>' +
+                        '<td>' +
+                        '    <div class="nobr">{{product_sku}}</div>' +
+                        '</td>' +
+                        '<td>' +
+                        '    {{product_type}}' +
+                        '</td>' +
+                        
+                        '<td class="last">' +
+                        '    <span title="Delete Row">' +
+                        '       <?php echo $this->getDeleteButtonHtml() ?>' +
+                        '    </span>' +
+                        '</td>' ;
+
+                Product = Class.create();
+                Product.prototype = {
+
+                    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+                    templateBox : '',
+                    templateRow : '',
+                    itemsCount : <?php echo $count; ?>,
+                    row : null,
+
+                    gridSelection : new Hash(),
+
+                    initialize : function() {
+                        this.templateBox = '<div class="grid tier form-list" id="box">' + productTemplateBox + '</div>';
+                        this.templateRow = '<tr id="product_entity_id_{{product_id}}" class="selection">' + productTemplateRow + '</tr>';
+                    },
+
+                    showGridBox : function(event) {
+                        this.gridSelection.unset(0);
+                        new Ajax.Updater(
+                                'productGrid',
+                                '<?php echo $this->getProductGridContainerUrl() ?>',
+                                {
+                                    method: 'post',
+                                    evalScripts : true,
+                                    onSuccess: function() {
+                                        $('loading-mask').hide();
+
+                                        if (Event.element(event).tagName.toLowerCase() != 'button') {var button = Event.element(event).up('button');} else {var button = Event.element(event);}
+                                        button.hide();
+                                    }
+                                }
+                        );
+                    },
+
+                    addRow : function (data) {
+                        var box = null; 
+                        if (!(box = $('box'))) {
+                            this.addBox('product_box');
+                            box = $('box');
+                        } else {  
+                            box.show();
+                        }
+                        if(!data){
+                            var data = {};
+                        }
+                        data.index = this.itemsCount++;
+                        this.template = new Template(this.templateRow, this.templateSyntax);
+                        var tbody = $$('#box tbody');
+                        Element.insert(tbody[0], {'bottom':this.template.evaluate(data)});
+                    },
+                    productGridCheckboxCheck : function(element) {
+                        var tr = element.up('tr');
+                        
+                        if (element.value > 0) {
+                            if (element.checked) {
+                                if (!this.gridSelection.get(0)) {
+                                    this.gridSelection.set(0, new Hash());
+                                }
+                                this.gridSelection.get(0).set(element.value, $H({}));
+                                this.gridSelection.get(0).get(element.value).set('product_name', tr.select('td.product_name')[0].innerHTML);
+                                this.gridSelection.get(0).get(element.value).set('product_id', element.value);
+                                this.gridSelection.get(0).get(element.value).set('product_sku', tr.select('td.product_sku')[0].innerHTML);
+                                this.gridSelection.get(0).get(element.value).set('product_type', tr.select('td.product_type')[0].innerHTML);
+                            }else{
+                                if(this.gridSelection.get(0).get(element.value)){
+                                    this.gridSelection.get(0).unset(element.value);
+                                }
+                            }
+
+                        }
+                    },
+                    productGridAddSelected : function(event) {
+                        $('productGrid').hide();
+                        $('product_add_button').show();
+                        if(this.gridSelection.get(0))
+                        {
+                            this.gridSelection.get(0).each(
+                                function(pair) { 
+                                    var data = {
+                                        'product_name' : pair.value.get('product_name').trim(),
+                                        'product_id' : pair.value.get('product_id').trim(),
+                                        'product_sku' : pair.value.get('product_sku').trim(),
+                                        'product_type' : pair.value.get('product_type').trim()
+                                    };
+                                    if($('product_entity_id_'+data.product_id) == undefined)
+                                    { 
+                                        brandProduct.addRow(data);
+                                    }
+                                }
+                            );
+                        }
+                    },
+
+                    remove : function(element) {
+                        tr = element.up('tr');
+                        tr.remove();
+                    },
+
+                    addBox : function (parentIndex) {
+                    var div = $(parentIndex)
+                    this.template = new Template(this.templateBox, this.templateSyntax);
+                    var data = {};
+                    Element.insert(div, {'bottom':this.template.evaluate(data)});
+                    }
+                }
+        var brandProduct = new Product();
+    //]]>
+</script>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <!--
+    Layout
+    -->
+    <cms_index_index>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>magedevgroup/customblocks/order.css</stylesheet>
+            </action>
+            <action method="addJs">
+                <script>magedevgroup/customblocks/jquery.timeago.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="magedevgroup_customblocks/orders" name="customblocks_orders">
+                <action method="setTemplate">
+                    <template>magedevgroup/customblocks/orders.phtml</template>
+                </action>
+            </block>
+        </reference>
+
+    </cms_index_index>
+    <catalog_product_view>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>magedevgroup/customblocks/order.css</stylesheet>
+            </action>
+            <action method="addJs">
+                <script>magedevgroup/customblocks/jquery.timeago.js</script>
+            </action>
+        </reference>
+        <reference name="product.info">
+            <block type="magedevgroup_customblocks/orders" name="product.info.customblocks_orders">
+                <action method="setTemplate">
+                    <template>magedevgroup/customblocks/orders.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_product_view>
+</layout>

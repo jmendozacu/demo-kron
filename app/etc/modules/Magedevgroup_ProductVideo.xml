@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_ProductVideo
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_ProductVideo>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Magedevgroup_Core />
+            </depends>
+        </Magedevgroup_ProductVideo>
+    </modules>
+</config>

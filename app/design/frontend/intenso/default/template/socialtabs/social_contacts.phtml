@@ -1,0 +1,125 @@
+<!-- Social widgets -->
+<?php
+$getGPlusPageType =  Mage::getStoreConfig('socialtabs/google_plus/page_type');
+?>
+<section class="social-widgets hidden-xs">
+    <ul class="items">
+
+        <!--FACEBOOK WIDJET-->
+        <?php if (Mage::getStoreConfig('socialtabs/social_accounts/facebook_profile_name')): ?>
+            <li class="item facebook"><a href="#" class="tab-icon"><span class="icon-facebook-3"
+                                                                         style="font-family: icomoon;"></span></a>
+                <div class="tab-content">
+                    <div class="title"><?php echo $this->__('FACEBOOK') ?></div>
+                    <div class="loading">
+                        <div id="fb-root"></div>
+                        <script type="text/javascript">(function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) return;
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "//connect.facebook.net/<?php echo Mage::app()->getLocale()->getLocaleCode()?>/all.js#xfbml=1&appId=121855444668430";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));</script>
+                        <div class="fb-like-box"
+                             data-href="http://www.facebook.com/<?php echo Mage::getStoreConfig('socialtabs/social_accounts/facebook_profile_name') ?>"
+                             data-width="282" data-height="320" data-colorscheme="light" data-show-faces="true"
+                             data-header="false" data-stream="false" data-show-border="false"></div>
+                    </div>
+                </div>
+            </li>
+        <?php endif; ?>
+
+        <!--TWITTER WIDJET-->
+        <?php if (Mage::getStoreConfig('socialtabs/social_accounts/twitter_account')): ?>
+            <li class="item twitter"><a href="#" class="tab-icon"><span class="icon-twitter-3"
+                                                                        style="font-family: icomoon;"></span></a>
+                <div class="tab-content">
+                    <div class="title"><?php echo $this->__('TWITTER FEEDS') ?></div>
+                    <div class="loading">
+                        <a data-chrome="nofooter noheader noborders"
+                           data-tweet-limit="<?php echo Mage::getStoreConfig('socialtabs/social_accounts/twitter_feeds_count') ?>"
+                           data-link-color="#cc0000" class="twitter-timeline"
+                           href="https://twitter.com/<?php echo Mage::getStoreConfig('socialtabs/social_accounts/twitter_account') ?>"
+                           data-screen-name="<?php echo Mage::getStoreConfig('socialtabs/social_accounts/twitter_account') ?>"
+                           data-widget-id="395451121138802688"><?php echo $this->__('loading tweets...') ?></a>
+                        <script type="text/javascript">!function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                                if (!d.getElementById(id)) {
+                                    js = d.createElement(s);
+                                    js.id = id;
+                                    js.src = p + "://platform.twitter.com/widgets.js";
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }
+                            }(document, "script", "twitter-wjs");</script>
+                    </div>
+                </div>
+            </li>
+        <?php endif; ?>
+
+        <!--YOUTUBE WIDJET-->
+        <?php if (Mage::getStoreConfig('socialtabs/social_accounts/youtube')): ?>
+            <li class="item youtube"><a href="#" class="tab-icon"><span class="icon icon-youtube-3"
+                                                                        style="font-family: icomoon;"></span></a>
+                <div class="tab-content">
+                    <div class="title"><?php echo $this->__('Video') ?></div>
+                    <div class="loading">
+                        <?php echo Mage::getStoreConfig('socialtabs/social_accounts/youtube') ?>
+                    </div>
+                </div>
+            </li>
+        <?php endif; ?>
+
+
+        <!--GOOGLE MAP WIDJET-->
+        <?php if (Mage::getStoreConfig('socialtabs/social_accounts/googlemap_popup')): ?>
+            <li class="item contacts"><a href="#" class="tab-icon"><span class="icon-globe"
+                                                                         style="font-family: icomoon;"></span></a>
+                <div class="tab-content">
+                    <div class="title"><?php echo $this->__('Find Us') ?></div>
+                    <div class="loading">
+                        <?php echo Mage::getStoreConfig('socialtabs/social_accounts/googlemap_popup') ?>
+                    </div>
+                </div>
+            </li>
+        <?php endif; ?>
+
+        <!--GOOGLE + WIDJET-->
+        <?php if ($getGPlusPageType): ?>
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+            <li class="item youtube"><a href="#" class="tab-icon"><span class="icon icon-google-plus"
+                                                                         style="font-family: icomoon;"></span></a>
+                <div class="tab-content">
+                    <div class="title"><?php echo $this->__('Google +') ?></div>
+                    <div class="loading">
+                         <div <?php if ($getGPlusPageType == 'profile') { ?>class="g-person"
+                             <?php } elseif ($getGPlusPageType == 'page') { ?>class="g-page"
+                             <?php } elseif ($getGPlusPageType == 'community') { ?>class="g-community"<?php } ?>
+
+                             data-width="<?php echo Mage::getStoreConfig('socialtabs/google_plus/wigth'); ?>"
+                             data-href="<?php echo Mage::getStoreConfig('socialtabs/google_plus/page_url'); ?>"
+                             data-layout="<?php echo Mage::getStoreConfig('socialtabs/google_plus/gp_layout'); ?>"
+                             data-theme="<?php echo Mage::getStoreConfig('socialtabs/google_plus/color_scheme'); ?>"
+                             data-rel="publisher" data-showtagline="<?php echo Mage::getStoreConfig('socialtabs/google_plus/tagline'); ?>"
+                             data-showcoverphoto="<?php echo Mage::getStoreConfig('socialtabs/google_plus/cover_photo'); ?>"></div>
+                    </div>
+                </div>
+            </li>
+        <?php endif; ?>
+
+    </ul>
+</section>
+<!-- //end Social widgets -->
+<script type="text/javascript">
+    jQuery(function ($) {
+        "use strict";
+        var socialItems = $('.social-widgets .items .item');
+        var counter = 0;
+        socialItems.each(function () {
+            counter++;
+            var itemclass = "item-0" + counter;
+            $(this).addClass(itemclass)
+        });
+    });
+
+</script>

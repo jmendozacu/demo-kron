@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <groupdealsadmin_adminhtml_groupdeals_index>
+        <reference name="content">			
+			<block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+				<action method="setUseConfirm"><params>0</params></action>
+			</block>
+            <block type="groupdeals/adminhtml_groupdeals" name="groupdeals" />
+        </reference>
+    </groupdealsadmin_adminhtml_groupdeals_index>
+
+    <groupdealsadmin_adminhtml_groupdeals_grid>        
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="groupdeals/adminhtml_groupdeals_grid" name="groupdeals.grid"/>
+        </block>
+    </groupdealsadmin_adminhtml_groupdeals_grid>
+	
+    <groupdealsadmin_adminhtml_groupdeals_new>
+   		<update handle="editor"/>
+   		<reference name="head">
+            <action method="addCss"><stylesheet>groupdeals.css</stylesheet></action>
+    	</reference>
+        <reference name="content">
+            <block type="groupdeals/adminhtml_groupdeals_edit" name="deal_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="groupdeals/adminhtml_groupdeals_edit_tabs" name="deal_tabs"></block>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/catalog_product_edit_js" template="catalog/product/js.phtml" name="catalog_product_js"></block>
+            <block type="core/template" template="catalog/wysiwyg/js.phtml"/>
+        </reference>
+    </groupdealsadmin_adminhtml_groupdeals_new>
+	
+    <groupdealsadmin_adminhtml_groupdeals_edit>
+   		<update handle="editor"/>
+   		<reference name="head">
+            <action method="addCss"><stylesheet>groupdeals.css</stylesheet></action>
+    	</reference>
+        <reference name="content">
+            <block type="groupdeals/adminhtml_groupdeals_edit" name="deal_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="adminhtml/store_switcher" name="store_switcher" before="-"></block>
+            <block type="groupdeals/adminhtml_groupdeals_edit_tabs" name="deal_tabs"></block>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/catalog_product_edit_js" template="catalog/product/js.phtml" name="catalog_product_js"></block>
+            <block type="core/template" name="catalog.wysiwyg.js" template="catalog/wysiwyg/js.phtml"/>
+        </reference>
+    </groupdealsadmin_adminhtml_groupdeals_edit>
+
+    <groupdealsadmin_adminhtml_groupdeals_configurable>
+        <reference name="deal_tabs">
+            <action method="addTab"><name>configurable</name><block>adminhtml/catalog_product_edit_tab_super_config</block><after>customer_options</after></action>
+            <action method="bindShadowTabs"><first>configurable</first><second>customer_options</second></action>
+        </reference>
+    </groupdealsadmin_adminhtml_groupdeals_configurable>
+    
+    <groupdealsadmin_adminhtml_groupdeals_superconfig>
+        <block type="adminhtml/catalog_product_edit_tab_super_config_grid" name="admin.product.edit.tab.super.config.grid" output="toHtml" />
+    </groupdealsadmin_adminhtml_groupdeals_superconfig>   
+
+    <groupdealsadmin_adminhtml_groupdeals_bundle>
+        <reference name="deal_tabs">
+            <action method="addTab"><name>bundle_items</name><block>groupdeals/adminhtml_groupdeals_edit_tab_bundle</block></action>
+            <action method="bindShadowTabs"><first>bundle_items</first><second>customer_options</second></action>
+        </reference>
+    </groupdealsadmin_adminhtml_groupdeals_bundle>
+
+    <groupdealsadmin_catalog_product_attribute_edit>
+        <reference name="left">
+            <block type="adminhtml/catalog_product_attribute_edit_tabs" name="attribute_edit_tabs"></block>
+        </reference>
+        <reference name="content">
+            <block type="adminhtml/catalog_product_attribute_edit" name="attribute_edit_content"></block>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/template" name="attribute_edit_js" template="catalog/product/attribute/js.phtml"></block>
+        </reference>
+    </groupdealsadmin_catalog_product_attribute_edit>
+    
+    <groupdealsadmin_cms_wysiwyg_images_index>
+        <remove name="footer" />
+        <remove name="head" />
+        <reference name="left">
+            <block name="wysiwyg_images.js" type="adminhtml/cms_wysiwyg_images_content" template="cms/browser/js.phtml" />
+            <block name="wysiwyg_images.tree" type="adminhtml/cms_wysiwyg_images_tree" template="cms/browser/tree.phtml" />
+        </reference>
+        <reference name="content">
+            <block name="wysiwyg_images.content"  type="adminhtml/cms_wysiwyg_images_content" template="cms/browser/content.phtml">
+                <block name="wysiwyg_images.uploader" type="adminhtml/cms_wysiwyg_images_content_uploader" template="cms/browser/content/uploader.phtml" />
+                <block name="wysiwyg_images.newfolder" type="adminhtml/cms_wysiwyg_images_content_newfolder" template="cms/browser/content/newfolder.phtml" />
+            </block>
+        </reference>
+    </groupdealsadmin_cms_wysiwyg_images_index>
+
+    <groupdealsadmin_cms_wysiwyg_images_contents>
+        <block name="wysiwyg_images.files" type="adminhtml/cms_wysiwyg_images_content_files" template="cms/browser/content/files.phtml" output="toHtml" />
+    </groupdealsadmin_cms_wysiwyg_images_contents>
+		
+    <groupdealsadmin_adminhtml_merchants_index>
+        <reference name="content">
+            <block type="groupdeals/adminhtml_merchants" name="groupdeals_merchants" />
+        </reference>
+    </groupdealsadmin_adminhtml_merchants_index>
+	
+    <groupdealsadmin_adminhtml_merchants_new>
+   		<reference name="head">
+            <action method="addCss"><stylesheet>groupdeals.css</stylesheet></action>
+    	</reference>
+        <reference name="js">
+            <block type="adminhtml/template" template="groupdeals/merchant/js.phtml" name="merchant.edit.js" as="merchant_edit_js"></block>
+        </reference>
+    </groupdealsadmin_adminhtml_merchants_new>
+	
+    <groupdealsadmin_adminhtml_merchants_edit>
+   		<reference name="head">
+            <action method="addCss"><stylesheet>groupdeals.css</stylesheet></action>
+    	</reference>
+        <reference name="left">
+            <block type="adminhtml/store_switcher" name="store_switcher" before="-"></block>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/template" template="groupdeals/merchant/js.phtml" name="merchant.edit.js" as="merchant_edit_js"></block>
+        </reference>
+    </groupdealsadmin_adminhtml_merchants_edit>
+	
+    <groupdealsadmin_adminhtml_subscribers_index>
+        <reference name="content">
+            <block type="groupdeals/adminhtml_subscribers" name="groupdeals_subscribers" />
+        </reference>
+    </groupdealsadmin_adminhtml_subscribers_index>
+	
+</layout>

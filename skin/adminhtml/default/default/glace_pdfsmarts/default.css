@@ -1,0 +1,16 @@
+.smartpdf-logo{border: 1px dashed #FF0000;width: 200px; height: 50px;}
+@page { margin: 0.5in 0.5in 0.5in 0.5in;}
+.page {
+	page-break-after:always;
+	clear: both;
+	position: relative;
+}
+
+.end-page{
+	page-break-after:auto;
+}
+p, h1,h2,h3,h4,h5,h6,ul,li{margin: 0; padding: 0;}
+.trial-brand{position: absolute; bottom: 10px; right: 10px;}
+.trial-brand a{text-decoration: none; color: #61686D;}
+.page_header { position: absolute; left: 0px;  top: -0.5in; }
+.page_footer{ position: absolute; left: 0px;  bottom: -0.5in; }

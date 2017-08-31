@@ -1,0 +1,101 @@
+<?php 
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_SimiPOS
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+
+/**
+ * @see Magestore_SimiPOS_Block_Adminhtml_User_Edit_Renderer_Permission
+ */
+?>
+
+<?php
+    $_element = $this->getElement();
+    $_roleAcl = Mage::getSingleton('simipos/role')->getRoleAcl();
+    $_advancedOption = Mage::getSingleton('simipos/role')->getPermissionOption();
+?>
+
+<!-- ACL -->
+<tr class="simipos_permission">
+<td class="label"><?php echo $_element->getLabel() ?></td>
+<td colspan="2">
+<?php foreach ($_roleAcl as $_key => $_role): ?>
+    <?php $_value = $this->getValue($_key) ?>
+    <?php $_name = $_element->getName() . '[' . $_key . ']' ?>
+    <?php $_id = $_element->getName() . '_' . $_key ?>
+    <?php if (is_array($_role) && isset($_role['depend'])): ?>
+        <div style="padding-left:16px; margin: 0 0 10px; float: left;" id="<?php echo $_id ?>_container">
+        <script type="text/javascript">
+        $('<?php echo $_element->getName() . '_' . $_role['depend'] ?>').observe('change', function(event){
+            var el = event.findElement('input');
+            if (el.checked) {
+                $('<?php echo $_id ?>_container').show();
+            } else {
+                $('<?php echo $_id ?>_container').hide();
+            }
+        });
+        if ($('<?php echo $_element->getName() . '_' . $_role['depend'] ?>').checked) {
+            $('<?php echo $_id ?>_container').show();
+        } else {
+            $('<?php echo $_id ?>_container').hide();
+        }
+        </script>
+    <?php elseif (is_array($_role) && isset($_role['type']) && $_role['type'] == 'group'): ?>
+        <div style="padding-left:16px; margin: 0 0 10px; float: left;" id="<?php echo $_id ?>_container">
+    <?php else: ?>
+        <div style="margin: 4px 0; clear: both;" id="<?php echo $_id ?>_container">
+    <?php endif ?>
+    <?php if (!is_array($_role) || empty($_role['type']) || $_role['type'] == 'simple' || $_role['type'] == 'group'): ?>
+        <input type="checkbox" name="<?php echo $_name ?>" id="<?php echo $_id ?>" value="1" <?php if ($_value): ?>checked="checked" <?php endif ?>/>
+        <?php $isBold = (isset($_role['type']) && $_role['type'] == 'group') ? false : true ?>
+        <?php $isBold = $isBold && (!is_array($_role) || empty($_role['depend'])) ?>
+        <label for="<?php echo $_id ?>"<?php if ($isBold): ?> style="font-weight: bold;"<?php endif ?>>
+            <?php if (is_array($_role)): ?>
+                <?php echo $_role['label'] ?>
+            <?php else: ?>
+                <?php echo $_role ?>
+            <?php endif ?>
+        </label>
+    <?php elseif ($_role['type'] == 'advanced'): ?>
+        <label for="<?php echo $_id ?>" style="font-weight: bold;"><?php echo $_role['label'] ?></label>
+        <div style="margin:0 0 10px; min-width:500px; overflow:hidden;">
+	        <?php foreach ($_advancedOption as $_val => $_label): ?>
+	        <div style="margin-left: 16px; float: left;">
+	            <input type="radio" name="<?php echo $_name ?>" id="<?php echo $_id . $_val ?>" value="<?php echo $_val ?>" <?php if ($_value == $_val): ?>checked="checked" <?php endif ?>/>
+	            <label for="<?php echo $_id . $_val ?>"><?php echo $_label ?></label>
+	        </div>
+	        <?php endforeach ?>
+        </div>
+    <?php elseif ($_role['type'] == 'label'): ?>
+        <label style="font-weight: bold;"><?php echo $_role['label'] ?></label>
+    <?php endif ?>
+    </div>
+<?php endforeach ?>
+</td></tr>
+
+<!-- Toggle Role -->
+<script type="text/javascript">
+function changeUserRole(el) {
+	if (el.value == '<?php echo Magestore_SimiPOS_Model_Role::ROLE_ADMIN ?>') {
+		$$('.simipos_permission').first().hide();
+	} else {
+		$$('.simipos_permission').first().show();
+	}
+}
+changeUserRole($('user_role'));
+</script>

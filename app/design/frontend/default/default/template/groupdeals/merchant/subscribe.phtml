@@ -1,0 +1,157 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="merchant-subscribe">
+    <div class="page-title">
+        <h1><?php echo $this->__('Become a Merchant') ?></h1>
+    </div>
+	<form id="merchant_subscribe" method="post" action="<?php echo $this->getUrl('groupdeals/merchant/post'); ?>">
+		<div class="fieldset">
+	    	<h2 class="legend"><?php echo $this->__('General Deal Information') ?></h2>
+	    	<ul class="form-list">
+	    	    <li class="fields">
+	    	        <div class="customer-name">
+			    	    <div class="field ">
+			    	        <label class="required" for="name"><em>*</em><?php echo $this->__('Name') ?></label>
+			    	        <div class="input-box">
+			    	            <input type="text" class="input-text required-entry" title="Name" value="" name="name" id="name"/>
+			    	        </div>
+			    	    </div>
+			    	    <div class="field ">
+			                <label class="required" for="email"><em>*</em><?php echo $this->__('Email') ?></label>
+			                <div class="input-box">
+			                    <input type="text" class="input-text validate-email required-entry" title="Email Address" value="" id="email" name="email"/>
+			                </div>
+			    	    </div>
+			    	</div>
+	    	    </li>
+	    	   
+	 		    <li>
+	    	        <label for="website"><?php echo $this->__('Website') ?></label>
+	    	        <div class="input-box">
+	    	            <input type="text" class="input-text" title="Website" value="" id="website" name="website"/>
+	    	        </div>
+	    	    </li>
+			
+	    	    <li class="fields">
+	    	        <div class="customer-name">
+			    	    <div class="field ">
+			    	        <label for="phone"><?php echo $this->__('Phone') ?></label>
+			    	        <div class="input-box">
+			    	            <input type="text" class="input-text" title="Phone" value="" name="phone" id="phone"/>
+			    	        </div>
+			    	    </div>
+			    	    <div class="field ">
+			                <label for="mobile"><?php echo $this->__('Mobile') ?></label>
+			                <div class="input-box">
+			                    <input type="text" class="input-text" title="Mobile" value="" name="mobile" id="mobile"/>
+			                </div>
+			    	    </div>
+			    	</div>
+	    	    </li>
+	    	    
+	 		    <li class="fields">
+	    	        <div class="customer-name">
+	    	       		<?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/facebook_link')): ?>
+			    	    <div class="field ">
+			    	        <label for="facebook"><?php echo $this->__('Facebook link') ?></label>
+			    	        <div class="input-box">
+			    	            <input type="text" class="input-text" title="Facebook link" value="" name="facebook" id="facebook"/>
+			    	        </div>
+			    	    </div>
+			    	    <?php endif; ?>
+			    	    <?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/twitter_link')): ?>
+			    	    <div class="field ">
+			                <label for="twitter"><?php echo $this->__('Twitter link') ?></label>
+			                <div class="input-box">
+			                    <input type="text" class="input-text" title="Twitter link" value="" name="twitter" id="twitter"/>
+			                </div>
+			    	    </div>
+			    	    <?php endif; ?>
+			    	</div>
+	    	    </li>    
+	    	    
+      		   <li class="wide">
+      		       <label class="required" for="description"><em>*</em><?php echo $this->__('Description') ?></label>
+      		       <div class="input-box">
+      		           <textarea rows="3" cols="5" class="required-entry input-text" title="Description" id="description" name="description"></textarea>
+      		       </div>
+      		   </li>                           
+	    	
+	    	   <?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/bussiness_hours')): ?>
+      		   <li class="wide">
+      		       <label for="business_hours"><?php echo $this->__('Business Hours') ?></label>
+      		       <div class="input-box">
+      		           <textarea rows="3" cols="5" class="input-text" title="Business Hours" id="business_hours" name="business_hours"></textarea>
+      		       </div>
+      		   </li>
+        	   <?php endif; ?>
+        	   
+	    	</ul>
+	    </div>
+	    
+	    <?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/redeem') || Mage::getStoreConfig('groupdeals/merchants_subscribe/address')>0): ?>
+		<div class="fieldset">
+	    	<h2 class="legend"><?php echo $this->__('Address Information') ?></h2>
+	    	<ul class="form-list">
+	    	    <?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/address')>0): ?>  
+        		<li class="wide">
+	    	        <label for="address_1"><?php echo $this->__('1st Address') ?></label>
+	    	        <div class="input-box">
+	    	            <input type="text" class="input-text" id="address_1" title="1st Address" value="" name="address_1"/>
+	    	        </div>
+        		</li> 
+        		<?php endif; ?>
+        		<?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/address')>1): ?>
+        		<li class="wide">
+	    	        <label for="address_2"><?php echo $this->__('2nd Address') ?></label>
+	    	        <div class="input-box">
+	    	            <input type="text" class="input-text" id="address_2" title="2st Address" value="" name="address_2"/>
+	    	        </div>
+        		</li>
+        		<?php endif; ?>
+        		<?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/address')>2): ?>
+        		<li class="wide">
+	    	        <label for="address_3"><?php echo $this->__('3rd Address') ?></label>
+	    	        <div class="input-box">
+	    	            <input type="text" class="input-text" id="address_3" title="3st Address" value="" name="address_3"/>
+	    	        </div>
+        		</li>
+        		<?php endif; ?>
+        		<?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/address')>3): ?>
+        		<li class="wide">
+	    	        <label for="address_4"><?php echo $this->__('4th Address') ?></label>
+	    	        <div class="input-box">
+	    	            <input type="text" class="input-text" id="address_4" title="4st Address" value="" name="address_4"/>
+	    	        </div>
+        		</li>
+        		<?php endif; ?>
+        		<?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/address')>4): ?>
+        		<li class="wide">
+	    	        <label for="address_5"><?php echo $this->__('5th Address') ?></label>
+	    	        <div class="input-box">
+	    	            <input type="text" class="input-text" id="address_5" title="5st Address" value="" name="address_5"/>
+	    	        </div>
+        		</li>
+        		<?php endif; ?>
+        		<?php if(Mage::getStoreConfig('groupdeals/merchants_subscribe/redeem')): ?>
+			    <li class="wide">
+	    	        <label class="required" for="redeem"><em>*</em><?php echo $this->__('Redeem at') ?></label>
+	    	        <div class="input-box">
+	    	            <input type="text" class="input-text required-entry" id="redeem" title="Redeem at" value="<?php echo $this->__('Redeem at location'); ?>" name="redeem"/>
+	    	        </div>
+        		</li> 
+        		<?php endif; ?>
+	    	</ul>
+	    </div>
+	    <?php endif; ?>
+	    
+        <div class="buttons-set">
+            <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+            <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+        </div>
+	</form>
+    <script type="text/javascript">
+    //<![CDATA[
+    	var dataForm = new VarienForm('merchant_subscribe', true);
+    //]]>
+    </script>
+</div>

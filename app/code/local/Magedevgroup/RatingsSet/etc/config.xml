@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_RatingsSet
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_RatingsSet>
+            <version>0.0.4</version>
+        </Magedevgroup_RatingsSet>
+    </modules>
+    <global>
+        <blocks>
+            <magedevgroup_ratingsset_adminhtml>
+                <class>Magedevgroup_RatingsSet_Block_Adminhtml</class>
+            </magedevgroup_ratingsset_adminhtml>
+
+            <itactica_extendedreviews>
+                <rewrite>
+                    <helper>Magedevgroup_RatingsSet_Block_Review_Helper</helper>
+                    <form>Magedevgroup_RatingsSet_Block_Review_Form</form>
+                    <product_review_list>Magedevgroup_RatingsSet_Block_Review_List</product_review_list>
+                </rewrite>
+            </itactica_extendedreviews>
+        </blocks>
+        <helpers>
+            <magedevgroup_ratingsset>
+                <class>Magedevgroup_RatingsSet_Helper</class>
+            </magedevgroup_ratingsset>
+        </helpers>
+        <models>
+            <review>
+                <rewrite>
+                    <review>Magedevgroup_RatingsSet_Model_Review</review>
+                </rewrite>
+            </review>
+            <magedevgroup_ratingsset>
+                <class>Magedevgroup_RatingsSet_Model</class>
+                <resourceModel>magedevgroup_ratingsset_resource</resourceModel>
+            </magedevgroup_ratingsset>
+            <magedevgroup_ratingsset_resource>
+                <class>Magedevgroup_RatingsSet_Model_Resource</class>
+                <entities>
+                    <set>
+                        <table>magedevgroup_ratingsset_set</table>
+                    </set>
+                </entities>
+            </magedevgroup_ratingsset_resource>
+        </models>
+        <resources>
+            <magedevgroup_ratingsset_setup>
+                <setup>
+                    <module>Magedevgroup_RatingsSet</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </magedevgroup_ratingsset_setup>
+        </resources>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Magedevgroup_RatingsSet after="Mage_Adminhtml">Magedevgroup_RatingsSet_Adminhtml</Magedevgroup_RatingsSet>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

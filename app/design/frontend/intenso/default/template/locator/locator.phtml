@@ -1,0 +1,390 @@
+<link type="text/css" rel="stylesheet" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>locator/javaslider/slider.css"/>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>locator/javaslider/kapil.js"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>locator/javaslider/slider.js"></script>
+<style>
+
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+td.firstDiv {
+  width:40%;
+}
+td.secondDiv {
+  width:50%;
+}
+th { 
+
+}
+td, th { 
+  text-align: left; 
+}
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	td.firstDiv {
+  		width:100%;
+	}
+	td.secondDiv {
+  		width:100%;
+		margin-top: 20px;
+		clear: both;
+		height: 473px;
+	}
+	td.hideHeading {
+		display:none;
+	}
+	
+	#element_to_pop_up {
+		left:0px !important;
+		min-width:90% !important;
+		margin-left:5% !important;
+	}
+	td:before { 
+		
+		width: 55%; 
+		
+	}
+	.gm-style-iw {
+		width:200px !important;
+	}
+</style>
+<?php
+$pos = Mage::getStoreConfig('locator/setting/locator_block_enable');
+if($_POST['searches']){
+	$coreResource 	= Mage::getSingleton('core/resource');
+	$conn 		= $coreResource->getConnection('core_read');
+	$conQuery 	= '';
+	$i 		= 0;
+
+	if($_POST['zipes'] != ''){
+		$conQuery .= '`zip_code`=\''.$_POST['zipes'].'\'';
+		$i++;
+	}
+	if($_POST['states'] != ''){
+		if($i > 0){
+		   $conQuery .= ' and `state`=\''. $_POST['states'].'\'';
+		} else {
+		   $conQuery .= '`state`=\''. $_POST['states'].'\'';
+		}
+		$i++;
+	}
+	if($_POST['countries'] != ''){
+		if($i > 0){
+		   $conQuery .= ' and `country`=\''.$_POST['countries'].'\'';
+		} else {
+		   $conQuery .= '`country`=\''.$_POST['countries'].'\'';
+		}
+		   $i++;
+	}
+
+	if($conQuery != ''){
+       		$select = $conn->select()->from($coreResource->getTableName('locator'),new Zend_Db_Expr('*')). " where ".$conQuery;
+    	} else {
+    		$select = $conn->select()->from($coreResource->getTableName('locator'),new Zend_Db_Expr('*'));
+    }
+
+	$collection 	= array();
+	$collect 	= $conn->fetchAll($select);
+	for($i =0; $i < count($collect);$i++){
+		
+	$collection[$i]->locator_id 	= $collect[$i]['locator_id'];
+	$collection[$i]->store_name 	= $collect[$i]['store_name'];
+	$collection[$i]->address	= $collect[$i]['address'];
+	$collection[$i]->city 		= $collect[$i]['city'];
+	$collection[$i]->state 		= $collect[$i]['state'];
+	$collection[$i]->country	= $collect[$i]['country'];
+	$collection[$i]->zip_code 	= $collect[$i]['zip_code'];
+	$collection[$i]->phone 		= $collect[$i]['phone'];
+	$collection[$i]->email 		= $collect[$i]['email'];
+	$collection[$i]->lat		= $collect[$i]['lat'];
+    	$collection[$i]->description 	= $collect[$i]['description'];
+    	$collection[$i]->long 		= $collect[$i]['long'];
+    	$collection[$i]->custom_icon 	= $collect[$i]['custom_icon'];
+    	$collection[$i]->store_image 	= $collect[$i]['store_image'];
+    	$collection[$i]->status	 	= $collect[$i]['status'];
+}
+	} else {
+		$collection = Mage::getModel('locator/locator')->getCollection()->setOrder('locator_id','asc');
+	} ?>
+<style>
+	#map_wrapper {
+	    background-color: #FFFFFF;
+    	    border-radius: 5px 5px 5px 5px;
+    	    float: left;
+    	    height: 440px;
+	    padding: 0px;
+	    width: 100%;
+	    margin-top:5px;
+	}
+	#map_canvas {
+	    width:  100%;
+	    height: 100%;
+	}
+	
+	#searches {
+            background: #F18200;
+            border: 1px solid #DE5400;
+            color: #FFFFFF;
+            display: block;
+            font: bold 12px/19px Arial,Helvetica,sans-serif;
+            height: 19px;
+            padding: 0 8px;
+            text-align: center;
+	    margin-top:5px;
+	}
+</style>
+   	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    	<script>
+		function initialize() {
+    		var map;
+    		var mapOptions = {
+    		    zoom: 15,
+    		    center: new google.maps.LatLng(-25.363882, 131.044922),
+  		};
+                map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    		var cnt = 0;
+		var markers = [];
+		var icons   = [];
+		var message = [];
+        <?php    
+	     foreach($collection as $row){ 
+	     	if($row->status == 1){
+			$string = ""; 
+			$string = $row->state." ".$row->country;
+	     ?> 
+    		markers[cnt] = ['<?php echo $string; ?>',<?php echo $row->lat?>,<?php echo $row->long?>];
+    		icons.push('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);?>storeLocator/<?php echo $row->custom_icon;?>');
+    		message.push('<table width="200px" height="" style="padding:10px;"><tr><td class="thirdDiv" valign="top" align="left"><table width="100%" height=""><tr><td valign="top" align="left"><p><?php echo $row->store_name;?><br><?php echo $row->address;?>,<br><?php echo $row->city;?>, <?php echo $row->state;?>, <?php echo $row->country;?>- <?php echo $row->zip_code;?></p></td> </tr></table></td> <td clas="thirdDiv" valign="top" align="left"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);?>storeLocator/<?php echo $row->store_image;?>" width="80" height=80" align="left"></td></tr></table>');
+cnt++;
+      <?php } } ?>   
+		var bounds = new google.maps.LatLngBounds();
+		map.fitBounds(bounds);
+    			for( i = 0; i < markers.length; i++ ) {
+        			var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        			bounds.extend(position);
+        			marker = new google.maps.Marker({
+            			position: position,
+            			map: map,
+	    			icon:icons[i]
+        		});   
+    		attachSecretMessage(marker, i,message[i]);
+  }
+}
+		function attachSecretMessage(marker, num,messag) {
+  			var infowindow = new google.maps.InfoWindow({
+    			content: messag
+  		});
+
+  		google.maps.event.addListener(marker, 'click', function() {
+    			infowindow.open(marker.get('map'), marker);
+  		});
+}
+		google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+<?php 
+if($pos == 1){ ?>
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?> " name="customGoogleForm">
+	<table height="" border="0" style="padding-bottom:25px;border-spacing: 5px;">
+	     <tr>
+	        <td valign="top" align="left">
+			<table border="0">
+	     			<tr>
+	        			<td valign="top" align="left">Zip Code:</td>
+				</tr>
+				<tr>
+					<td valign="top" align="left"><input type="text" name="zipes" id="zipes"/></td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" align="left">
+			<table border="0">
+	     			<tr>
+	        			<td valign="top" align="left">State:</td>
+				</tr>
+				<tr>
+					<td valign="top" align="left"><input type="text" name="states" id="states"/></td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" align="left">
+			<table border="0">
+	     			<tr>
+	        			<td valign="top" align="left">Country:</td>
+				</tr>
+				<tr>
+					<td valign="top" align="left"><input type="text" name="countries" id="countries"/></td>
+				</tr>
+			</table>
+		</td>
+	     </tr>
+	     <tr>
+		<td colspan="2" valign="top" align="left"><input class="googleSubmit" type="submit" name="searches" id="searches" value= "Search"/></td>
+	     </tr>
+	</table>
+   </form>
+<?php } ?>
+<table height="auto" border="0">
+<tr>
+<td valign="top" align="left">	
+<div id="map_wrapper">
+    <div id="map_canvas" class="mapping"></div>
+</div>
+</td>
+</tr>
+</table>
+
+	<script>
+		function onePagegoogle(storeName,address,city,zip_code,country,state,custom_icon,store_image,lat,long,url) {
+   		    var mapOptions = {
+   			zoom: 4,
+			center: new google.maps.LatLng(lat,long),
+		    };
+		    document.getElementById("map_canvas").innerHTML='';              
+		    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    
+    var message = '<table width="300px" height="" style="padding:10px;"><tr><td class="thirdDiv" valign="top" align="left"><table width="100%" height=""><tr><td valign="top" align="left"><p>'+storeName+'<br>'+address+',<br>'+city+', '+state+',<br>'+country+'- '+zip_code+'</p></td> </tr></table></td> <td width="40%" valign="top" align="left"><img src="'+url+'storeLocator/'+store_image+'" align="left" class="thirdDiv" height="80"></td></tr></table>';
+		var bounds 	= new google.maps.LatLngBounds();  
+		var infowindow 	= new google.maps.InfoWindow({
+      				      content: message
+  				   });
+        var position 	= new google.maps.LatLng(lat, long);
+        marker 		= new google.maps.Marker({
+            position: position,
+            map: map,
+	    icon:url+'storeLocator/'+custom_icon
+        });   
+var infowindow = new google.maps.InfoWindow({
+      content: message
+ });
+   infowindow.open(map,marker);
+google.maps.event.addListener(marker, 'resize', function() {
+    infowindow.open(map,marker);
+  });
+}
+
+
+</script>
+<div id="dataDetail" style="padding-top: 15px;clear:both;">
+<div id="horizontal_slider_1234" class="horizontal_slider carousel white">
+	
+  <div class="carousel-wrapper">
+     <div class="carousel-content">
+
+<?php
+	  foreach($collection as $row){ 
+	    if($row->status == 1){
+	?>
+	<div class="slide-item" onclick="onePagegoogle('<?php echo $row->store_name; ?>','<?php echo $row->address; ?>','<?php echo $row->city; ?>','<?php echo $row->zip_code; ?>','<?php echo $row->country; ?>','<?php echo $row->state; ?>','<?php echo $row->custom_icon; ?>','<?php echo $row->store_image; ?>','<?php echo $row->lat?>','<?php echo $row->long?>','<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);?>')" style="cursor:pointer;">
+			<div class="image_container">
+<?php if($row->store_image != ''){ ?>
+				<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);?>storeLocator/<?php echo $row->store_image;?>" alt = "" onmouseover="pick(this);" onmouseout="unpick(this);" />		
+<?php } else { ?>
+<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);?>storeLocator/vivacity-96x96.png" alt = "" onmouseover="pick(this);" onmouseout="unpick(this);" />
+<?php } ?>
+                	</div>
+			<div class="store-inform">
+				<h5 class="storeName"><?php echo $row->store_name;?></h5>
+				<div class="storeAddress"><?php echo $row->address;?></div>
+				<div class="StorecitnStat"><?php echo $row->city;?>, <?php echo $row->state;?></div>
+				<div class="storecounty"><?php echo $row->country;?> - <?php echo $row->zip_code;?></div>
+                	</div>
+			<div class="storeMail"><span>Email: </span><?php echo $row->email; ?></div>
+			<div class="storeTel"><span>Tel no: </span><?php echo $row->phone; ?></div>             
+	</div>
+<?php } } ?>
+	
+      </div>
+
+   </div>
+<div class="sw-navigation">
+    		<a href="javascript:" class="carousel-control prev sw-prev" rel="prev"><span>Previous</span></a>
+    		<a href="javascript:" class="carousel-control next sw-next" rel="next"><span>Next</span></a>
+	</div>
+ </div>
+	<script type="text/javascript">
+            var kap123;
+            document.observe("dom:loaded", function() {
+                kap123 = new Carousel2('#horizontal_slider_1234 .carousel-wrapper', '#horizontal_slider_1234 .carousel-content', '#horizontal_slider_1234 .carousel-content .slide-item', '#horizontal_slider_1234 a.carousel-control', {
+                    initial:0,
+                    wheel:false,
+                    auto:true,
+                    frequency: 7,
+                    circular:true,
+                    horizontal: true,
+                    effect: 'scroll',
+                    visibleSlides:4,
+		    controlClassName: 'carousel-control',
+                    afterResize: function () {
+                        $('horizontal_slider_1234').setStyle({visibility:"visible"});
+                        var scrollerWidth = this.scroller.getWidth();
+                        $(this.scroller.parentNode).setStyle({width: scrollerWidth + 'px'});
+                    }
+                });
+
+                if (isTouchDevice()) {
+                    var mainHolder = document.getElementById('horizontal_slider_' + '1234');
+                    var wrapper = mainHolder.select('.carousel-wrapper').first();
+                    new Orange35.Swiper(wrapper, kap123, 'horizontal');
+                }
+
+                function resizeKap123(){
+                    var mainContainer = $('horizontal_slider_1234');
+                    mainContainer.setStyle({width:"auto"});
+                    var hsInstance = sliderInstanced9239779672509eea473391aa6edb141;
+                    var mainWidth = mainContainer.getWidth();
+                    if(mainWidth/4 < 150){
+
+                        hsInstance.options.visibleSlides = parseInt(mainWidth/150);
+                        hsInstance.options.afterResize = function(){};
+                    }
+                    else{
+                        hsInstance.options.visibleSlides =  4;
+                        hsInstance.options.afterResize = function(){};
+                    }
+                    //hsInstance.options.visibleSlides = 1;
+                    hsInstance.init();
+                    mainContainer.setStyle({width: mainWidth+"px"});
+                    mainContainer.select(".carousel-wrapper").first().setStyle({width: mainWidth+"px", height:"auto"});
+                    mainContainer.select(".carousel-wrapper .carousel-content").first().setStyle({height:"auto"});
+                    mainContainer.select(".carousel-wrapper .carousel-content .slide-item").each(function(slide){
+                        slide.setStyle({height:"auto"});
+                    });
+                    hsInstance.updateSize();
+                    if (hsInstance.current){
+                        hsInstance.jumpTo(sliderInstanced9239779672509eea473391aa6edb141.current);
+                    }
+                }
+                function initObserv(){
+                    Event.observe(window, "resize", resizeKap123, sliderInstanced9239779672509eea473391aa6edb141 = kap123);
+                }
+
+                Event.observe(window, "load", resizeKap123, sliderInstanced9239779672509eea473391aa6edb141 = kap123);
+
+                if(typeof (jQuery) != undefined) {
+                    setTimeout(initObserv(),1000);
+                } else {
+                    initObserv()
+                }
+            });
+function pick(obj) {
+obj.style.opacity = "2.0";
+}
+function unpick(obj) {
+obj.style.opacity = "0.7";
+}
+        </script>
+</div>

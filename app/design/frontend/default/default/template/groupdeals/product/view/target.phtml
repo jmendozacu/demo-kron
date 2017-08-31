@@ -1,0 +1,51 @@
+<?php
+    $_product = $this->getProduct();
+    $_groupdeal = $this->getGroupdeal();
+?>
+<?php $soldQty = $this->getSoldQty($_groupdeal); ?> 
+<?php $minimumQty = $_groupdeal->getMinimumQty(); ?>			
+<?php if ($minimumQty>0): ?>
+    <?php $progressBarWidth = number_format(190*$soldQty/$minimumQty,0); ?> 
+    <div class="progress_bar">
+    	<h1><?php echo $this->__('%s bought', $soldQty); ?></h1>
+    	<?php if ($_product->isSaleable()): ?>
+    		<?php if ($soldQty<$minimumQty): ?>
+    			<?php if ($soldQty!=0): ?>
+    				<div class="progress_bar_marker">
+    					<img style="padding-left:<?php echo $progressBarWidth-1; ?>px;" src="<?php echo $this->getSkinUrl('groupdeals/images/arrow.png') ?>" />	
+    				</div>
+    			<?php endif; ?>
+    			<div class="progress_bar_bottom">
+    				<div class="progress_bar_top" style="/float:left; width:<?php echo $progressBarWidth; ?>px; <?php if ($progressBarWidth>=3 && $progressBarWidth<=187): ?>border-right:1px solid #139CB5;<?php endif; ?>"></div><br/>
+    			</div>
+    			<div class="qtys"><div class="left">0</div><div class="right"><?php echo $minimumQty; ?></div></div>
+    			<div class="clearer"></div>
+    			<i><?php echo $this->__('%s more needed to get the deal', $minimumQty-$soldQty); ?></i>
+    		<?php else: ?>
+    			<div class="cross-check"><img src="<?php echo $this->getSkinUrl('groupdeals/images/check.png') ?>" alt="check"/><?php echo $this->__('The deal is on!') ?></div>
+    			<div class="clearer"></div>						
+    			<i><?php echo $this->__('Tipped at %s with %s bought', $this->getTippingTime($_groupdeal), $minimumQty); ?></i>
+    		<?php endif; ?>
+    	<?php else: ?>		
+    		<?php if ($soldQty>=$minimumQty): ?>
+    			<div class="cross-check"><img src="<?php echo $this->getSkinUrl('groupdeals/images/check.png') ?>" alt="check"/><?php echo $this->__('The deal is over.') ?></div>
+    			<i><?php echo $this->__('Tipped at %s with %s bought', $this->getTippingTime($_groupdeal), $minimumQty); ?></i>
+    		<?php else: ?>
+    			<div class="cross-check"><img src="<?php echo $this->getSkinUrl('groupdeals/images/cross.png') ?>" alt="cross"/><?php echo $this->__('The deal is over.') ?></div>
+    			<i><?php echo $this->__('The deal\'s target wasn\'t met.') ?></i>
+    		<?php endif; ?>
+    	<?php endif; ?>
+    </div>
+<?php elseif ($_product->isSaleable()): ?>
+    <div class="progress_bar" style="padding-top:16px;">
+    	<?php if ($soldQty>0): ?>
+    		<h1><?php echo $this->__('%s bought', $soldQty); ?></h1>
+    	<?php endif; ?>
+    	<div class="cross-check"><img src="<?php echo $this->getSkinUrl('groupdeals/images/check.png') ?>" alt="check"/><?php echo $this->__('The deal is on!') ?></div>
+    </div>
+<?php else: ?>
+    <div class="progress_bar" style="padding-top:16px;">
+    	<h1><?php echo $this->__('%s bought', $soldQty); ?></h1>
+    	<div class="cross-check"><img src="<?php echo $this->getSkinUrl('groupdeals/images/check.png') ?>" alt="check"/><?php echo $this->__('The deal is over.') ?></div>
+    </div>
+<?php endif; ?>

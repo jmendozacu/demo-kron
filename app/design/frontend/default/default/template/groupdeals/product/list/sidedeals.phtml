@@ -1,0 +1,51 @@
+<?php if (Mage::helper('groupdeals')->isEnabled()): ?>
+<?php
+	$sidedealsNumber = $this->getSidealsNumber();
+    $_gdHelper = $this->helper('groupdeals');
+    $crcId = $this->getCrcId();
+?>
+
+<?php if (count($this->getItems())>0 && $sidedealsNumber>0): ?>
+<div class="block block-related gd-block">
+    <div class="block-title">
+        <strong><span><?php echo $this->getTitle(); ?></span></strong>
+    </div>
+    <div class="block-content">
+        <ol class="mini-products-list" id="block-related">
+        <?php $i = 0; foreach($this->getItems() as $_item): $i++; ?>
+            <li class="item">
+                <a href="<?php echo $_item->getProductUrl().'?crc='.$crcId; ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" class="product-image">
+                	<img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50) ?>" width="50" height="50" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" />
+                </a>
+                <div class="product-details">
+                    <p class="product-name">
+                    	<a href="<?php echo $_item->getProductUrl().'?crc='.$crcId; ?>">
+                    		<?php echo $this->htmlEscape($_item->getName()) ?>
+                    	</a>
+                    </p>
+                </div>
+				<div class="gd-info">
+				    <div class="special-price">
+				    	<span class="price-label"><?php echo $this->__('Price:') ?></span>
+				    	<span class="price" id="product-price-<?php echo $_item->getId(); ?>"><?php echo $_gdHelper->getFormatedPrice($_item, $_item->getSpecialPrice()); ?></span>
+				    </div>	
+				    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_item) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+				</div>
+            </li>
+			<?php if ($sidedealsNumber<=$i) break; ?>
+        <?php endforeach; ?>
+        </ol>
+		<div class="actions">
+			<div class="left"><?php echo $this->__('View: ') ?></div>
+			<a href="<?php echo $this->getUrl('groupdeals/product/list', array('crc'=>$crcId)); ?>">
+				<?php echo $this->__('All Deals') ?>
+			</a>
+			<div class="separator">||</div>
+			<a href="<?php echo $this->getUrl('groupdeals/product/recent', array('crc'=>$crcId)); ?>">
+				<?php echo $this->__('Recent Deals') ?>
+			</a>
+		</div>
+    </div>
+</div>
+<?php endif; ?>
+<?php endif; ?>

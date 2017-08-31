@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_AdminPayments
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_AdminPayments>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Magedevgroup_Core />
+            </depends>
+        </Magedevgroup_AdminPayments>
+    </modules>
+</config>

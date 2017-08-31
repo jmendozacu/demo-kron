@@ -1,0 +1,93 @@
+<?php 
+if(Mage::helper('mw_socialgift')->isEnabled() && ( $this->getCollection()->getSize() > 0 ) && (count($this->getFreegiftIds()) > 0)  ) : 
+    $helper = Mage::helper('mw_socialgift');
+    $SocialGiftStatus = Mage::getSingleton('checkout/session')->getSocialGiftStatus();
+
+    $google_plus        = $helper->isGPEnabled();
+    $facebook_share     = $helper->isFBEnabled();
+    $twitter           = $helper->isTWEnabled();
+    $box_title = $helper->getBoxTitle();
+    $description = $helper->getDescription();
+    $display_social = FALSE;
+
+    if($google_plus == 'TRUE' || $facebook_share == 'TRUE' || $twitter == 'TRUE'){
+        $display_social = TRUE;
+    }
+    $time =  Mage::getModel('core/date')->gmtTimestamp();
+    
+    // begin social
+    if($display_social == FALSE ){ } else {
+?>
+    <div id="fb-root"></div>
+
+    <?php if ($SocialGiftStatus != 'shared') : ?>
+    <div id="mw_socialgift_socialbox" class="social" >
+        <div>
+            <?php echo ($box_title ? '<h2>'.$box_title.'</h2>' : '<h2>' . Mage::helper("mw_socialgift")->__("Social Sharing") . '</h2>' ) ;?>
+            <div class="sg-mesage-social">
+                <?php echo ($description ? '<p>'.$description.'</p>' : ''); ?>
+                <?php if ($facebook_share) { ?>
+                    <a class="fancybox" href="javascript: void(0);" onclick="facebook_share()">
+                        <span class="social-likes__button social-likes__button_facebook"><span class="social-likes__icon social-likes__icon_facebook"></span>Facebook</span>
+                    </a>
+                <?php } if ($google_plus) { ?>
+                    <a class="fancybox" href="javascript: void(0);" onclick="twitter_share()">
+                        <span class="social-likes__button social-likes__button_twitter"><span class="social-likes__icon social-likes__icon_twitter"></span>Twitter</span>
+                    </a>
+                <?php } if ($twitter) { ?>
+                    <a class="fancybox" href="javascript: void(0);" onclick="gplus_share()">
+                        <span class="social-likes__button social-likes__button_plusone"><span class="social-likes__icon social-likes__icon_plusone"></span>Google+</span>
+                    </a>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <div style="display:none;">
+        <div id="socialgift-popup" class="container">
+            <?php if ($SocialGiftStatus == 'shared') {
+                echo $this->getChildHtml('social.gift.gift');
+            }else{ ?>
+
+            <div class="sub-container">
+                <div class="page-title title-buttons"><h1><?php echo Mage::helper("mw_socialgift")->__("Select product to share") ?></h1></div>
+                <div class="content">
+                    <h3 style="text-align: center;">Share this product and save 5% on this order!</h3>
+                    <form id="social_gift_form">
+                        <ul id="sg-cart-table" class="sg-cart-table">
+                            <?php 
+                            $quote = Mage::getSingleton('checkout/session')->getQuote()->getAllVisibleItems(); //getAllItems()
+                            $productModel = Mage::getModel('catalog/product');
+                            foreach ($quote as $item) :
+                                $product = $productModel->loadByAttribute('sku',$item->getSku());
+                                $product_url = $item->getProduct()->getProductUrl();
+                            ?>
+                            <li>          
+                                <div class="chose_product">
+                                    <input type="radio" name="chose_product">
+                                    <input type="hidden" name="product_id" value="<?php echo $item->getProduct()->getId(); ?>">
+                                </div>
+                                <div class="product_image"><a href="<?php echo $product_url; ?>" title="<?php echo $item->getName(); ?>"><img src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail'); ?>" width="75" height="75" alt="<?php echo $item->getName(); ?>"></a></div>
+                                <div class="product_name">
+                                    <h2 class="product-name"><a href="<?php echo $product_url; ?>" title="<?php echo $item->getName(); ?>"><?php echo $item->getName(); ?></a></h2>
+                                    <span class="cart-price"><span class="price"><?php echo Mage::helper('core')->currency($item->getParentItemId() ? $item->getParentItem()->getPrice() : $item->getPrice(), TRUE, FALSE); ?></span></span>
+                                </div>
+                                <div class="hide product_description"><p><?php echo $product->getDescription(); ?></p></div>
+                                <div class="hide product_price"><span class="cart-price"><span class="price"><?php echo Mage::helper('core')->currency($item->getParentItemId() ? $item->getParentItem()->getPrice() : $item->getPrice(), TRUE, FALSE); ?></span></span></div>
+                            </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <div id="socialgift-share">
+                <button class="button facebook-share"><?php echo Mage::helper("mw_socialgift")->__("Share Now") ?></button>
+                <a href="#" id="button"><?php echo Mage::helper("mw_socialgift")->__("Share Now") ?></a>
+                <div id="sg_gplus" class="hide"><div id="widget-div"  class="g-plusone" data-href="#" data-callback="" ></div></div>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+    <?php } 
+endif; ?>

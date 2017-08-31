@@ -1,0 +1,473 @@
+<?xml version="1.0"?>
+<!--
+ * Velan Info Services India Pvt Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.velanapps.com/License.txt
+ *
+  /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ * *************************************** */
+/* This package designed for Magento COMMUNITY edition
+ * Velan Info Services does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Velan Info Services does not provide extension support in case of
+ * incorrect edition usage.
+  /***************************************
+ *         DISCLAIMER   *
+ * *************************************** */
+/* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ * ****************************************************
+ * @category   velanapps
+ * @package    EzLogin
+ * @author     Velan Team
+ * @copyright  Copyright (c) 2012 - 2013 Velan Info Services India Pvt Ltd. (http://www.velanapps.com)
+ * @license    http://store.velanapps.com/License.txt
+-->
+<config>
+    <tabs>
+        <myconf translate="label" module="ezlogin">
+            <label>EZLOGIN</label>
+            <sort_order>100</sort_order>
+        </myconf>
+    </tabs>
+    <sections>
+        <social translate="label" module="ezlogin">
+            <label>Social Accounts Configuration</label>
+            <tab>myconf</tab>
+            <sort_order>999</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <facebook translate="label">
+                    <label>Facebook Account Settings</label>
+					<frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+					   <active translate="label">
+                            <label>Facebook Login</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <fbappid translate="label">
+                            <label>Application Id</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fbappid>
+						<fbappsec translate="label">
+                            <label>Application Secret Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>111</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fbappsec>
+                    </fields>
+                </facebook>
+				<twitter translate="label">
+                    <label>Twitter Account Settings</label>
+					<frontend_type>text</frontend_type>
+                    <sort_order>110</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<active translate="label">
+                            <label>Twitter Login</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+						<twappid translate="label">
+                            <label>Twitter Consumer Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </twappid>
+                        <twappsec translate="label">
+                            <label>Twitter Consumer Secret</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>111</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </twappsec>
+                    </fields>
+                </twitter>
+				<google translate="label">
+                    <label>Google Account Settings</label>
+					<frontend_type>text</frontend_type>
+                    <sort_order>111</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<active translate="label">
+                            <label>Google Login</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                    </fields>
+				</google>
+				<yahoo translate="label">
+                    <label>Yahoo Account Settings</label>
+                    <sort_order>150</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<active translate="label">
+                            <label>Yahoo Login</label>
+							<frontend_type>text</frontend_type>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <yahooappid translate="label">
+                            <label>Yahoo Application Id</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </yahooappid>
+						  <yahooappkey translate="label">
+                            <label>Yahoo Consumer Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>111</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </yahooappkey>
+					    <yahooappsec translate="label">
+                            <label>Yahoo Consumer Secret</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </yahooappsec>
+                    </fields>
+				</yahoo>
+				<linkedin translate="label">
+                    <label>Linked In Account Settings</label>
+					<frontend_type>text</frontend_type>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<active translate="label">
+                            <label>Linked In Login</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <linkappid translate="label">
+                            <label>Linked In API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </linkappid>
+						<linkappkey translate="label">
+                            <label>Linked In Secret Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>111</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </linkappkey>
+                    </fields>
+				</linkedin>
+            </groups>
+        </social>
+		<settings translate="label" module="ezlogin">
+            <label>Custom Settings</label>
+            <tab>myconf</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+				<image translate="label">
+                    <label>Custom Social Login Image Settings</label>
+                    <sort_order>10</sort_order>
+					<frontend_type>text</frontend_type>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<facebook translate="label">
+                            <label>Upload Facebook Login Image</label>
+                            <frontend_type>file</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_file</backend_model>
+                            <upload_dir>media/ezlogin/images</upload_dir>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </facebook>
+						<twitter translate="label">
+                            <label>Upload Twitter Login Image</label>
+                            <frontend_type>file</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_file</backend_model>
+                            <upload_dir>media/ezlogin/images</upload_dir>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </twitter>
+						<google translate="label">
+                            <label>Upload Google Login Image</label>
+                            <frontend_type>file</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_file</backend_model>
+                            <upload_dir>media/ezlogin/images</upload_dir>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </google>
+						<yahoo translate="label">
+                            <label>Upload Yahoo Login Image</label>
+                            <frontend_type>file</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_file</backend_model>
+                            <upload_dir>media/ezlogin/images</upload_dir>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </yahoo>
+                        <linkedin translate="label">
+                            <label>Upload Linked-In Login Image</label>
+                            <frontend_type>file</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_file</backend_model>
+                            <upload_dir>media/ezlogin/images</upload_dir>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </linkedin>
+                    </fields>
+				</image>
+                <url translate="label">
+                    <label>Custom Social URL Re-Write Settings</label>
+                    <sort_order>90</sort_order>
+					<frontend_type>text</frontend_type>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <facebook translate="label">
+                            <label>Facebook Custom URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </facebook>
+						<twitter translate="label">
+                            <label>Twitter Custom URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </twitter>
+						<google translate="label">
+                            <label>Google Custom URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>111</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </google>
+						<yahoo translate="label">
+                            <label>Yahoo Custom URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </yahoo>
+						<linkedin translate="label">
+                            <label>LinkedIn Custom URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </linkedin>
+                    </fields>
+                </url>
+				<icon translate="label">
+                    <label>Custom Social Login Icons Size Settings</label>
+                    <sort_order>300</sort_order>
+					<frontend_type>text</frontend_type>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<width translate="label">
+                            <label>Login Icons Width</label>
+                            <comment>Default Width 40px.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </width>
+						<height translate="label">
+                            <label>Login Icons Height</label>
+                            <comment>Default Height 40px.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>111</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </height>
+                    </fields>
+				</icon>
+				<iconsort translate="label">
+                    <label>Login Icons Sorting Order</label>
+                    <sort_order>399</sort_order>
+					<frontend_type>text</frontend_type>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+					<facebook translate="label">
+                            <label>Facebook Icon</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    </facebook>
+					<twitter translate="label">
+                            <label>Twitter Icon</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    </twitter>
+					<google translate="label">
+                            <label>Google Icon</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    </google>
+					<yahoo translate="label">
+                            <label>Yahoo Icon</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    </yahoo>
+					<linkedin translate="label">
+                            <label>Linked In Icon</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    </linkedin>
+                    </fields>
+				</iconsort>
+            </groups>
+        </settings>
+		<activation translate="label" module="ezlogin">
+				<label>Activation</label>
+				<tab>myconf</tab>
+				<sort_order>1010</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>1</show_in_website>
+				<show_in_store>1</show_in_store>
+				<groups>
+					<access translate="label">
+						<label>Extension Activation</label>
+						<frontend_type>text</frontend_type>
+						<sort_order>100</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<fields>
+							<key translate="label">
+								<label>Activation Key</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>111</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</key>
+						</fields>
+					</access>
+				</groups>
+		</activation>
+		<help translate="label" module="ezlogin">
+				<label>Help</label>
+				<tab>myconf</tab>
+				<sort_order>1020</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>1</show_in_website>
+				<show_in_store>1</show_in_store>
+				<groups>
+					<ezlogin translate="label">
+						<label>Help</label>
+						<frontend_type>text</frontend_type>
+						<sort_order>100</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment><![CDATA[ 
+						<table>
+						<tr><td><b>Extension Name     </b></td><td><b>:&nbsp;EzLogin</b></td></tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td><b>Version Support    </b></td><td><b>:&nbsp;1.5, 1.6, 1.7&nbsp;(All Series)</b></td></tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td><b>Site URL           </b></td><td><b>:&nbsp;<a href="http://velanapps.com" target="_blank">velanapps.com</a></b></td></tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td><b>Product Link       </b></td><td><b>:&nbsp;<a href="http://store.velanapps.com" target="_blank">EzLogin Page</a></b></td></tr>
+						</table>
+						]]></comment>
+					</ezlogin>
+				</groups>
+		</help>
+    </sections>
+</config>

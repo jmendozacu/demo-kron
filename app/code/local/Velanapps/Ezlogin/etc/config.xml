@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!--
+ * Velan Info Services India Pvt Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.velanapps.com/License.txt
+ *
+  /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ * *************************************** */
+/* This package designed for Magento COMMUNITY edition
+ * Velan Info Services does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Velan Info Services does not provide extension support in case of
+ * incorrect edition usage.
+  /***************************************
+ *         DISCLAIMER   *
+ * *************************************** */
+/* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ * ****************************************************
+ * @category   velanapps
+ * @package    EzLogin
+ * @author     Velan Team
+ * @copyright  Copyright (c) 2012 - 2013 Velan Info Services India Pvt Ltd. (http://www.velanapps.com)
+ * @license    http://store.velanapps.com/License.txt
+-->
+    <config>
+        <modules>
+            <Velanapps_Ezlogin>
+                <version>1.0.0</version>
+            </Velanapps_Ezlogin>
+        </modules>
+        <frontend>
+        	<routers>
+                <ezlogin>
+                    <use>standard</use>
+                    <args>
+                        <module>Velanapps_Ezlogin</module>
+                        <frontName>ezlogin</frontName>
+                    </args>
+                </ezlogin>
+            </routers>
+		<layout>
+            <updates>
+                <ezlogin>
+                    <file>ezlogin.xml</file>
+                </ezlogin>
+            </updates>
+        </layout>
+		</frontend>   
+        <global>
+            <models>
+                <ezlogin>
+                    <class>Velanapps_Ezlogin_Model</class>
+                    <resourceModel>ezlogin_mysql4</resourceModel>
+                </ezlogin>
+				<ezlogin_mysql4>
+                    <class>Velanapps_Ezlogin_Model_Mysql4</class>
+                    <entities>
+                        <ezloginaccounts>
+                            <table>ezlogin_accounts</table>
+                        </ezloginaccounts>
+						<ezlogincustomers>
+                            <table>ezlogin_customers</table>
+                        </ezlogincustomers>
+                    </entities>
+                </ezlogin_mysql4>
+            </models>
+            <resources>
+                <ezlogin_setup>
+                    <setup>
+                        <module>Velanapps_Ezlogin</module>
+                    </setup>
+                    <connection>
+                        <use>core_setup</use>
+                    </connection>
+                </ezlogin_setup>
+                <ezlogin_write>
+                    <connection>
+                        <use>core_write</use>
+                    </connection>
+                </ezlogin_write>
+                <ezlogin_read>
+                    <connection>
+                        <use>core_read</use>
+                    </connection>
+                </ezlogin_read>
+            </resources>
+            <blocks>
+                <ezlogin>
+                    <class>Velanapps_Ezlogin_Block</class>
+                </ezlogin>
+            </blocks>
+            <helpers>
+                <ezlogin>
+                    <class>Velanapps_Ezlogin_Helper</class>
+                </ezlogin>
+            </helpers>
+			<events>
+				<admin_system_config_changed_section_activation>
+					<observers>
+						<ezlogin>
+							<type>singleton</type>
+							<class>ezlogin/observer</class>
+							<method>registration</method>
+						</ezlogin>
+					</observers>
+				</admin_system_config_changed_section_activation>
+				
+				<!-- Automatically Create NewsLetter -->
+				<sales_order_place_after>
+					<observers>
+						<ezlogin>
+							<class>ezlogin/AutoSubscribe</class>
+							<method>salesOrderPlaceAfter</method>
+						</ezlogin>
+					</observers>
+				</sales_order_place_after>
+				<customer_register_success>
+					<observers>
+						<ezlogin>
+							<class>ezlogin/AutoSubscribe</class>
+							<method>customerRegisterSuccess</method>
+						</ezlogin>
+					</observers>
+				</customer_register_success>
+				<!-- Automatically Create NewsLetter END -->
+				
+			</events>
+			<template>
+				<email>
+					<twitter_email_template translate="label" module="ezlogin">
+						<label>Ezlogin Twitter Email Template</label>
+						<file>ezlogin_twitter_email.html</file>
+						<type>html</type>
+					</twitter_email_template>
+				</email>
+			</template>
+        </global>
+	<!-- Overriding Customer Admin Controller -->	
+	<admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Velanapps_Ezlogin before="Mage_Adminhtml">Velanapps_Ezlogin</Velanapps_Ezlogin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+	<!-- Default values for system config sections -->
+	<default>
+        <social>
+            <facebook>
+                <active>0</active>
+            </facebook>
+			<twitter>
+                <active>0</active>
+            </twitter>
+			<google>
+                <active>0</active>
+            </google>
+			<yahoo>
+                <active>0</active>
+            </yahoo>
+			<linkedin>
+                <active>0</active>
+            </linkedin>
+        </social>
+		<settings>
+			<icon>
+				<width>40</width>
+				<height>40</height>
+			</icon>
+			<iconsort>
+				<facebook>1</facebook>
+				<twitter>2</twitter>
+				<google>3</google>
+				<yahoo>4</yahoo>
+				<linkedin>5</linkedin>
+			</iconsort>
+		</settings>
+    </default>
+    </config>

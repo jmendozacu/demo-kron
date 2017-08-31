@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+
+    <testimonial_adminhtml_testimonial_index>
+
+        <reference name="content">
+
+            <block type="testimonial/adminhtml_testimonial" name="testimonial" />
+
+        </reference>
+
+    </testimonial_adminhtml_testimonial_index>
+	
+	<testimonial_adminhtml_testimonial_edit>
+		<update handle="editor"/>
+	</testimonial_adminhtml_testimonial_edit>
+
+</layout>

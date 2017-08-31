@@ -1,0 +1,141 @@
+/**
+ * Developer: Rene Voorberg
+ * Team site: http://cmsideas.net/
+ * Support: http://support.cmsideas.net/ 
+ * 
+*/
+i.glace,
+a.popupplusAction,
+a.popup_back,
+.pdf-smart-adminhtml-key-index td.a-left,
+.pdf-smart-adminhtml-key-index #anchor-content button,
+.pdf-smart-adminhtml-key-index #anchor-content label,
+.pdf-smart-adminhtml-key-index #anchor-content h3,
+.pdf-smart-adminhtml-key-index #anchor-content h4,
+.pdf-smart-adminhtml-key-index #anchor-content input,
+.pdf-smart-adminhtml-key-index #anchor-content li a,
+
+.pdf-smart-adminhtml-key-edit #anchor-content button,
+.pdf-smart-adminhtml-key-edit #anchor-content label,
+.pdf-smart-adminhtml-key-edit #anchor-content h3,
+.pdf-smart-adminhtml-key-edit #anchor-content h4,
+.pdf-smart-adminhtml-key-edit #anchor-content input,
+.pdf-smart-adminhtml-key-edit #anchor-content li a,
+
+.pdfprocessor-adminhtml-template-index #anchor-content button,
+.pdfprocessor-adminhtml-template-index #anchor-content label,
+.pdfprocessor-adminhtml-template-index #anchor-content h3,
+.pdfprocessor-adminhtml-template-index #anchor-content h4,
+.pdfprocessor-adminhtml-template-index #anchor-content input,
+.pdfprocessor-adminhtml-template-index #anchor-content li a,
+.pdfprocessor-adminhtml-template-index #anchor-content p,
+
+.pdfprocessor-adminhtml-template-edit #anchor-content button,
+.pdfprocessor-adminhtml-template-edit #anchor-content label,
+.pdfprocessor-adminhtml-template-edit #anchor-content h3,
+.pdfprocessor-adminhtml-template-edit #anchor-content h4,
+.pdfprocessor-adminhtml-template-edit #anchor-content input,
+.pdfprocessor-adminhtml-template-edit #anchor-content li a,
+.pdfprocessor-adminhtml-template-edit #anchor-content p
+
+{
+	font-family:'Montserrat',sans-serif !important;
+	letter-spacing: 1px;
+}
+
+.adminhtml-popupplus-template td.a-left
+{
+	font-size:18px;
+}
+
+#logo_cmsideas a
+{
+	display:inline-block;
+	width:100%;
+	background:url("logo_cmsideas.png") no-repeat scroll center top #FFFFFF;
+	height:85px;
+}
+
+.pdf-smart-adminhtml-key-index #anchor-content button.add span,
+.pdf-smart-adminhtml-key-index #anchor-content button.save span,
+.pdf-smart-adminhtml-key-index #anchor-content button.add span,
+.pdf-smart-adminhtml-key-index #anchor-content button.delete span,
+
+.pdf-smart-adminhtml-key-edit #anchor-content button.add span,
+.pdf-smart-adminhtml-key-edit #anchor-content button.save span,
+.pdf-smart-adminhtml-key-edit #anchor-content button.add span,
+.pdf-smart-adminhtml-key-edit #anchor-content button.delete span,
+.pdf-smart-adminhtml-key-edit #anchor-content button.back span,
+
+.pdfprocessor-adminhtml-template-index #anchor-content button.add span,
+.pdfprocessor-adminhtml-template-index #anchor-content button.save span,
+.pdfprocessor-adminhtml-template-index #anchor-content button.add span,
+.pdfprocessor-adminhtml-template-index #anchor-content button.delete span,
+
+.pdfprocessor-adminhtml-template-edit #anchor-content button.add span,
+.pdfprocessor-adminhtml-template-edit #anchor-content button.save span,
+.pdfprocessor-adminhtml-template-edit #anchor-content button.add span,
+.pdfprocessor-adminhtml-template-edit #anchor-content button.delete span,
+.pdfprocessor-adminhtml-template-edit #anchor-content button.back span
+{
+	background-image:none !important;
+	padding-left:0px;
+}
+
+a.popupplusAction,
+a.popup_back
+{
+	background-color:#FFAC47;
+    border-color: #ED6502 #A04300 #A04300 #ED6502;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font: bold 12px arial,helvetica,sans-serif;
+    padding: 1px 7px 2px;
+    text-align: center !important;
+    white-space: nowrap;
+    display:inline-block;
+    min-width:73px;
+    text-decoration: none;
+    margin:5px 0px;
+}
+a.popup_back
+{
+	float:right;
+}
+
+
+.adminhtml-popupplus-edit p.nm
+{
+	display:none;
+}
+
+.adminhtml-popupplus-edit td.value:hover p.nm
+{
+	display:block;
+	position: relative;
+}
+
+.adminhtml-popupplus-edit td.value:hover i.glace
+{
+	background-color: #EB5E00;
+    max-width: 200px;
+    padding: 10px;
+    position: absolute;
+    right: -200px;
+    top: -20px;
+    z-index: 99999;
+    color:#FFFFFF;
+    font-size:14px;
+}
+
+.adminhtml-popupplus-edit td.value:hover i.glace a
+{
+	color:#ffffff;
+}
+.head-adminhtml-key,
+.head-adminhtml-template
+{
+	padding-left:0px !important;
+}

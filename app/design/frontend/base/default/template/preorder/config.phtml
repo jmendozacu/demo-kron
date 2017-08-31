@@ -1,0 +1,59 @@
+<div class="wk-loading-mask">
+	<div class="wk-loader"></div>
+</div>
+<?php
+	$helper =  Mage::helper("preorder");
+	$_product = $this->getProduct();
+?>
+<script type="text/javascript">
+	if (typeof jQuery == 'undefined'){
+		document.write(unescape("%3Cscript src='//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+	}
+	</script>
+<script>
+	jQuery.noConflict();
+	(function(jQuery){
+		jQuery(".super-attribute-select").change(function(event){
+			jQuery(".wk-loading-mask").show();
+			jQuery(".wk-preorder-message-block").remove();
+			var attributeArray = [];
+			flag = 0;
+			jQuery(".super-attribute-select").each(function(){
+				var val = jQuery(this).find("option:selected").val();
+				var id = jQuery(this).attr("id");
+				id = id.split("attribute");
+				attrId = id[1];
+				result = attrId+"~"+val;
+				attributeArray.push(result);
+				if(val=="" || val==0) {
+					flag=1;
+				}
+			});
+
+			if(flag!=1) {
+				jQuery.ajax({
+					url: "<?php echo Mage::getUrl('preorder/index/checkPreOrder');?>",
+					type: "POST",
+					data: {product_id:<?php echo $_product->getId()?>,value:attributeArray},
+					dataType: 'json',
+					success:function(data){
+						var status = data.preorder;
+						if(status==1) {
+							var html = data.msg;
+							jQuery(".short-description").before(html);
+							jQuery(".product-shop .button.btn-cart span span").text("Preorder");
+							jQuery(".product-shop .availability span").text("Out of Stock");
+						} else {
+							jQuery(".preorder-config-status").remove();
+							jQuery(".product-shop .button.btn-cart span span").text("Add to Cart");
+							jQuery(".product-shop .availability span").text("In Stock");
+						}
+						jQuery(".wk-loading-mask").hide();
+					}
+				});
+			} else {
+				jQuery(".wk-loading-mask").hide();
+			}
+		});
+	})(jQuery);
+</script>

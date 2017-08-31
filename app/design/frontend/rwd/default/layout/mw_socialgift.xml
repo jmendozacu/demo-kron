@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_cart_index>
+        <reference name="checkout.cart">
+            <block type="mw_socialgift/socialgift" name="socialgift.quote" template="mw_socialgift/quote.phtml" as="form_before" />
+            <block type="mw_socialgift/socialgift" name="checkout.cart.social" as="checkout.cart.social"  template="mw_socialgift/checkout/cart/social.phtml">
+                <block type="mw_socialgift/socialgift" name="social.gift.gift" template="mw_socialgift/socialgift_gift.phtml" />
+            </block>
+        </reference>
+        <reference name="head">
+            <block type="mw_socialgift/top" name="socialgift.head" template="mw_socialgift/top.phtml"></block>
+        </reference>
+    </checkout_cart_index>
+    <checkout_onepage_index>
+        <reference name="content">
+            <block type="mw_socialgift/socialgift" name="socialgift.quote" before="-" template="mw_socialgift/quote.phtml"  />
+            <block type="mw_socialgift/socialgift" name="checkout.cart.social" before="-"  template="mw_socialgift/checkout/cart/social.phtml">
+                <block type="mw_socialgift/socialgift" name="social.gift.gift" template="mw_socialgift/socialgift_gift.phtml" />
+            </block>
+        </reference>
+        <reference name="head">
+            <block type="mw_socialgift/top" name="socialgift.head" template="mw_socialgift/top.phtml"></block>
+        </reference>
+    </checkout_onepage_index>
+</layout>

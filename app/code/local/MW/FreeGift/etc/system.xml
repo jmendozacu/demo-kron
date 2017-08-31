@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <mageworld translate="label">
+            <label>Mage World</label>
+            <sort_order>100</sort_order>
+        </mageworld>
+    </tabs>
+    <sections>
+        <freegift translate="label" module="freegift">
+            <label>Free Gift Pro</label>
+            <tab>mageworld</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>110</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <config>
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled>
+                            <label>Enable Free Gift</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <showfreegiftpromotion>
+                            <label>Show Free Gift Promotion</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>freegift/system_config_showfreegiftpromotion</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showfreegiftpromotion>
+
+                        <showfreegiftlabel>
+                            <label>Show free gift label</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showfreegiftlabel>
+
+                        <freegiftlabel>
+                            <label>Free gift label</label>
+                            <comment>Allowed file types: gif, png.</comment>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </freegiftlabel>
+
+                        <showfreegiftoncategory>
+                            <label>Show free gift on category</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showfreegiftoncategory>
+
+						<sizepromotionbanner>
+							<label>Size Promotion Banner</label>
+		                    <frontend_type>text</frontend_type>
+		                    <sort_order>60</sort_order>
+		                    <show_in_default>1</show_in_default>
+		                    <show_in_website>1</show_in_website>
+		                    <show_in_store>1</show_in_store>
+							<comment>Set height vs width for Promotion Banner. (120x900)</comment>
+						</sizepromotionbanner>
+                        <versionfg>
+                            <label>Version</label>
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>freegift/system_config_getversion</frontend_model>
+                            <sort_order>99</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </versionfg>
+                    </fields>
+                </config>
+                <social>
+                    <label>Social Sharing Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <facebookid>
+                            <label>Facebook App ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Your App Facebook ID</comment>
+                        </facebookid>
+                        <boxtitle>
+                            <label>Sharing Block Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Please write the Sharing Block Title</comment>
+                        </boxtitle>
+                        <description>
+                            <label>Sharing Block Description</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Please write the content of Sharing Block Description</comment>
+                        </description>
+                    </fields>
+                </social>
+                <author_information translate="label">
+                    <label>Author</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>The Free Gift Extension is developed and supported by &lt;a href="http://www.mage-world.com/"&gt;www.Mage-World.com&lt;/a&gt;.If you need any support or have any question, please contact us at &lt;a href="mailto:support@mage-world.com"&gt;support@mage-world.com.&lt;/a&gt;</comment>
+                </author_information>
+            </groups>
+            <sales>
+                <totals_sort>
+                    <free_gift>
+                        <label>Free Gift Total</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>6</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>0</show_in_store>
+                    </free_gift>
+                </totals_sort>
+            </sales>
+        </freegift>
+    </sections>
+</config>

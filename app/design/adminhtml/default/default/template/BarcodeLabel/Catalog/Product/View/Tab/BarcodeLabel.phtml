@@ -1,0 +1,96 @@
+<?php
+/**
+* dasENIGMA.
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://codecanyon.net/licenses/regular
+*
+* =================================================================
+*                 MAGENTO EDITION USAGE NOTICE
+* =================================================================
+* This package designed for Magento community edition
+* dasENIGMA does not guarantee correct work of this extension
+* on any other Magento edition except Magento community edition.
+* dasENIGMA does not provide extension support in case of
+* incorrect edition usage.
+* =================================================================
+*
+* @category   Enigma
+* @package    Enigma_BarcodeLabel
+* @version    1.0
+* @copyright  Copyright (c) 2014 dasENIGMA. (http://codecanyon.net/user/dasEnigma/portfolio?ref=dasEnigma)
+* @license    http://codecanyon.net/licenses/regular
+*/
+?>
+<script>
+    var printBarcodeLabelUrl = '<?php echo $this->getPrintUrl(); ?>';
+    var printBarCodeChildrenURL = '<?php echo $this->getChildrenPrintUrl(); ?>';    
+    function urlMaker(){
+        var NumberValue = document.getElementById('label_count').value;
+        if(isNaN(NumberValue) || NumberValue == '' || NumberValue == 0){
+            <?php $message = $this->__('Please, enter the amount of barcode labels you want to print.'); ?>
+            alert('<?php echo $message; ?>');        
+            return false;
+        }        
+		document.location.href = (printBarcodeLabelUrl + document.getElementById('label_count').value); 
+     }
+</script>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Barcode Label Preview'); ?></h4>
+    </div>
+    <div class="entry-edit">
+        <fieldset>
+            <img src="<?php echo $this->getLabelImageUrl(); ?>" border="1"/>
+        </fieldset>
+    </div>
+
+    <?php if (!( $this->isConfigurableProduct() )): ?>
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Quick Barcode Label Print'); ?></h4>
+        </div>
+        <div class="entry-edit">
+            <fieldset>
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                        <tr>
+                            <td class="label"><label for="label_count"><?php echo $this->__('How much Barcode Labels do you want to print?'); ?></label></td>
+                            <td class="value">
+                                <input name="label_count" id="label_count" value="" class=" input-text" type="text"></td>
+                            <td class="scope-label"><span class="nobr"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="label_count"><?php echo $this->__('Run'); ?></label></td>
+                            <td class="value">
+                                <input type="button" id="print_button" value="<?php echo $this->__('Print Barcode Labels'); ?>" onclick='urlMaker()'></td>
+                            <td class="scope-label"><span class="nobr"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($this->isConfigurableProduct()) : ?>
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Print Barcode Labels for Children Variations'); ?></h4>
+        </div>
+        <div class="entry-edit">
+            <fieldset>
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                        <tr>
+                            <td class="value">
+                                <input type="button" value="<?php echo $this->__('Print Barcode Labels'); ?>" onclick="document.location.href = (printBarCodeChildrenURL );"></td>
+                            <td class="scope-label"><span class="nobr"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    <?php endif; ?>
+</div>

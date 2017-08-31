@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+
+	<modules>
+		<GaugeInteractive_FBPixel>
+			<version>0.2.0</version>
+		</GaugeInteractive_FBPixel>
+	</modules>
+
+	<global>
+		<helpers>
+			<fbpixel>
+				<class>GaugeInteractive_FBPixel_Helper</class>
+			</fbpixel>
+		</helpers>
+
+		<blocks>
+			<fbpixel>
+				<class>GaugeInteractive_FBPixel_Block</class>
+			</fbpixel>
+		</blocks>
+	</global>
+
+	<frontend>
+		<routers>
+        <fbpixel>
+            <use>standard</use>
+            <args>
+                <module>GaugeInteractive_FBPixel</module>
+                <frontName>fbpixel</frontName>
+            </args>
+        </fbpixel>
+    </routers>
+		<layout>
+			<updates>
+				<fbpixel>
+					<file>gaugeinteractive_fbpixel.xml</file>
+				</fbpixel>
+			</updates>
+		</layout>
+	</frontend>
+
+</config>

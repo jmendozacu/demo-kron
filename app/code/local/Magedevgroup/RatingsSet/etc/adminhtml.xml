@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_RatingsSet
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <menu>
+        <catalog>
+            <children>
+                <reviews_ratings>
+                    <children>
+                        <set translate="title"
+                             module="magedevgroup_ratingsset">
+                            <title>Ratings Set</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/ratings_set/</action>
+                        </set>
+                    </children>
+                    <sort_order>50</sort_order>
+                </reviews_ratings>
+            </children>
+        </catalog>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <reviews_ratings>
+                        <children>
+                            <ratingsset translate="title"
+                                   module="magedevgroup_ratingsset">
+                                <title>Magedevgroup - Ratings Set</title>
+                            </ratingsset>
+                        </children>
+                    </reviews_ratings>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <ratingsset translate="title" module="magedevgroup_ratingsset">
+                                        <title>Magedevgroup - Ratings Set</title>
+                                    </ratingsset>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

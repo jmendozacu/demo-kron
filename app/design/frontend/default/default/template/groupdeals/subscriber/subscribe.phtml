@@ -1,0 +1,39 @@
+<?php if (Mage::helper('groupdeals')->isEnabled()): ?>
+<?php $city = $this->getCity(); ?>
+<div class="block block-subscribe">
+    <div class="block-title">		
+        <strong><span><?php echo $this->__('Subscriptions') ?></span> 
+        <a href="javascript:void(0)" onMouseOver="document.getElementById('trunc').className = 'truncated_full_value show';" onMouseOut="document.getElementById('trunc').className = 'truncated_full_value';" class="details">(?)</a></strong>
+		<div class="dificulty-level small">
+			<div class="truncated right" style="margin-left:2px;">
+				<div class="truncated_full_value" id="trunc">
+					<dl class="item-options" style="color:#000; text-align:left;">
+						<?php echo $this->__('Subscribe to receive updates whenever a new deal is posted, when it reaches it\'s target or when it\'s over.') ?>
+					</dl>				
+				</div>			
+			</div>                   
+		</div>		
+    </div>
+    <form action="<?php echo $this->getUrl('groupdeals/subscriber/subscribe') ?>" method="post" id="gd-subscriptions">
+        <div class="block-content">			
+		  <?php if ($city): ?>         
+			<font style="font-size:10px;"><label for="email"><?php echo $this->__('Subscribe to %s Deals:', $this->__($city)) ?></label></font>			
+            <div class="input-box">
+               <input type="text" name="email" id="email" title="<?php echo $this->__('Subscribe to %s Deals:', $this->__($city)) ?>" class="input-text required-entry validate-email" />
+            </div>
+            <div class="actions">
+                <button type="submit" title="<?php echo $this->__('Subscribe') ?>" class="button"><span><span><?php echo $this->__('Subscribe') ?></span></span></button>
+            </div>
+		  <?php else: ?>
+			<?php echo $this->__('Please <a href="javascript:void(0)" onclick="%s">select a city</a> in order to subscribe.', 'popup.showPopup()') ?>
+		  <?php endif; ?>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        var groupdealSubscriberForm = new VarienForm('gd-subscriptions');
+    //]]>
+    </script>
+</div>
+<?php endif; ?>

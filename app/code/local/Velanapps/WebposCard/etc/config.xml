@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Velanapps_WebposCard>
+			<version>1.0.0</version>
+		</Velanapps_WebposCard>
+	</modules>
+	<frontend>
+		<routers>
+			<webposcard>
+				<use>standard</use>
+				<args>
+					<module>Velanapps_WebposCard</module>
+					<frontName>webposcard</frontName>
+				</args>
+			</webposcard>
+		</routers>
+		<layout>
+			<updates>
+				<webposcard>
+					<file>velanapps_webposcard.xml</file>
+				</webposcard>
+			</updates>
+		</layout> 
+	</frontend>
+		
+	<global>
+		<models>
+			<webposcard>
+				<class>Velanapps_WebposCard_Model</class>
+			</webposcard>
+		</models>
+		<helpers>
+			<webposcard>
+				<class>Velanapps_WebposCard_Helper</class>
+			</webposcard>
+		</helpers>
+	</global>
+	<default>
+		<payment>
+			<webposcard>
+				<model>webposcard/standard</model>
+				<!-- very important thing, here you select the model for your payment method-->
+				<active>1</active>
+				<order_status>pending</order_status>
+				<title>WebPOS Card</title>
+				<payment_action>sale</payment_action>
+				<allowspecific>0</allowspecific>
+				<sort_order>1</sort_order>
+			</webposcard>
+		</payment>
+	</default>
+
+</config>

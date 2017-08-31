@@ -1,0 +1,212 @@
+.stylist{
+    margin-top:56px;
+    display: block;
+}
+.showroom a{
+    text-decoration:none;
+}
+.showroom .image a{
+	border-bottom: 1px solid #CCCCCC;
+}
+.showrooms .products-grid {
+    background:none;
+    border-bottom: none;
+    position: relative;
+}
+.showrooms button.create span{
+background:url("images/btn-create.png") no-repeat ;
+border:none;
+height:45px ;
+line-height:50px ;
+color:#fff;
+padding:0 0 0 6px;
+font-size:15px ;
+float:left;
+text-transform:uppercase;
+font-weight:bold;
+}
+.showrooms button.create span span{
+background-position:100% 0;
+padding-right:40px;
+*width:200px;
+}
+.products-grid .product-name {
+    color: #000000;
+    font-size: 1em;
+    font-weight: normal;
+    margin: 16px 0 5px;
+}
+.showroomlisting .products-grid li.item {
+    float: left;
+    padding: 12px 0 0;
+    width: 24%;
+	border:none;
+	margin:0;
+}
+.showroom .image a:hover {
+    border-bottom: 1px solid #B9D232;
+}
+.showroom .price {
+    color: #7D7D7D;
+}
+.view-all{
+  float:right;
+  margin-right:15px;
+}
+/*all*/
+/*showroom form register*/
+
+#showroom_popup_div  h1{
+color:#363636;
+}
+#showroom_popup_div  h2{
+color:#707070;
+border-bottom:1px solid #ccc;
+}
+#showroom_popup_div   .popup-content  label{
+color:#363636;
+}
+#showroom_popup_div   .popup-content .step{
+background:url("images/bkg-step.png") no-repeat;
+}
+#showroom_popup_div   .popup-content .step strong{
+color:#fff;
+background:url("images/bkg-strong.png") no-repeat center 0;
+}
+#showroom_popup_div   .popup-content .step span{
+color:#4c646b;
+}
+#showroom_popup_div .actions button.button span{
+background:url("images/btn-st.png") no-repeat;
+color:#fff;
+}
+#showroom_form_popup .page-title{
+background:url("images/bkg-title.png") no-repeat center bottom ;
+}
+#showroom_form_popup .page-title h1{
+color:#b9d232;
+}
+#showroom_form_popup .page-title h2{
+color:#636363;
+}
+#showroom_form_popup .page-title h3{
+color:#898989;
+}
+#showroom_form_popup .fieldset{
+background:#fff;
+}
+#showroom_form_popup .fieldset .form-list input.input-text{
+color:#898989;
+}
+#showroom_form_popup .fieldset .form-list label.required{
+color:#636363;
+}
+#showroom_form_popup .buttons-set  button.button span{
+background:url("images/btn-st2.png") no-repeat;
+color:#fff;
+}
+#showroom_form_popup div label{
+color:#898989;
+}
+#showroom-question  .page-title h1{
+color:#252525;
+}
+#showroom-question  .page-title h2{
+color:#707070;
+}
+#showroom-question .showroom-question{
+border-top:1px dashed #c4c4c4;
+}
+.showroom-question  h1{
+color:#464646;
+}
+.showroom-question  h1 strong{
+background:url("images/bkg-str.png") no-repeat;
+color:#fff;
+border:none;
+}
+#showroom-question .fullbar{
+background:url("images/bkg-fullbar.png") no-repeat;
+margin:10px auto;
+}
+#showroom-question .fullbar label{
+color:#fff;
+position:absolute;
+left:275px;
+top:0;
+}
+#showroom-question .fullbar{
+background:url("images/bkg-fullbar.png") no-repeat;
+width:624px;
+text-align:center;
+margin:0 auto;
+}
+#showroom-question .fullbar .bar .bar-left{
+background:url("images/bar-left.png") no-repeat;
+}
+#showroom-question .fullbar .bar  .bar-middle{
+background:url("images/bar-middle.png") repeat-x;
+}
+#showroom-question .fullbar .bar  .bar-right{
+background:url("images/bar-right.png") no-repeat;
+}
+.showroom-question-answer .showroom-question-ul li.active{border:5px solid #b9d232;}
+#showroom-question .showroom-submit  button.button span{
+background:url("images/btn-con.png") no-repeat;
+padding: 0 0 0 8px;
+height:37px;
+line-height:38px;
+font-size:14px;
+font-family:myriadpro;
+color:#fff;
+border:none;
+}
+#showroom-question .showroom-submit  button.button span span {
+background-position:100% 0;
+padding-right:35px;
+}
+.showrooms button.button  span{
+background:url("images/btn-follow.png") no-repeat;
+padding:0 0 0 4px;
+border:none;
+height:25px;
+line-height:23px;
+color:#fff;
+font-size:11px;
+font-family:arial;
+}
+.showrooms button.followded  span{
+background:url("images/btn-unfollow.png") no-repeat;
+padding:0 0 0 2px;
+border:none;
+height:25px;
+color:#fff;
+font-size:11px;
+}
+.showrooms  button.button span span{
+background-position:100% 0;
+padding-right:8px;
+}
+ .products-grid .showroom-detail .actions .follows{
+background:url("images/bkg-follow.png") no-repeat;
+color:#586512;
+}
+.showroom-index-overview  .showrooms  .page-title .actions{float:right;}
+.showrooms  ul  li{float:left;}
+/* showroom edit */
+.showroom-edit-submit{
+    margin-top: -100px;
+    float: right;
+}
+.edit-showroom{
+    display: inline-block;
+}
+.edit-showroom  .active img{
+    border: 3px solid #B9D232;
+}
+.showroom-edit-submit-end button{
+    float:right;
+}
+.showroom-edit-submit-end button{
+    float:right;
+}

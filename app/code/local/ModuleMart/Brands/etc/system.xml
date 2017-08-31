@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * ModuleMart_Brands extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Module-Mart License
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.modulemart.com/license.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to modules@modulemart.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * versions in the future. If you wish to customize this extension for your
+ * needs please refer to http://www.modulemart.com for more information.
+ *
+ * @category   ModuleMart
+ * @package    ModuleMart_Brands
+ * @author-email  modules@modulemart.com
+ * @copyright  Copyright 2014 © modulemart.com. All Rights Reserved
+ */
+--> 
+<config>
+	<tabs>
+		<modulemart translate="label" module="brands">
+			<label>ModuleMart</label>
+			<sort_order>200</sort_order>
+		</modulemart>
+	</tabs>
+ 	<sections>
+		<brands translate="label" module="brands">
+			<class>separator-top</class>
+			<label>Shop by Brands</label>
+			<tab>modulemart</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>20</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<brand translate="label" module="brands">
+					<label>General</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<is_brand_enabled translate="label">
+                            <label>Enable Shop by Brands</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+							<![CDATA[<span style="color: #204908;">If set to <strong>"Yes"</strong> - module is enabled, if set to 
+							<strong>"No"</strong> - module is disabled.</span>]]></comment>
+                        </is_brand_enabled>
+						<jquery_enabled translate="label">
+                            <label>Enabled jQuery</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+							<![CDATA[Select "No" if jQuery conflict on frontend.]]></comment>
+                        </jquery_enabled>
+						<is_on_top translate="label">
+                            <label>Enable Brands in Navigation Menu</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+							<![CDATA[<span style="color: #204908;">Set to <strong>"Yes"</strong> - to show brands link on top menu.</span>]]></comment>
+                        </is_on_top>
+						<is_brand_enabled_product_page translate="label">
+                            <label>Show Brand logo on product view page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>Select 'Yes' for display brand logo on product view page</comment>
+                        </is_brand_enabled_product_page>						
+						<breadcrumbs translate="label" module="brands">
+							<label>Use Breadcrumbs For Brands Pages</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</breadcrumbs>
+						<meta_title translate="label" module="brands">
+							<label>Meta title for brands list page</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</meta_title>
+						<meta_description translate="label" module="brands">
+							<label>Meta description for brands list page</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</meta_description>
+						<meta_keywords translate="label" module="brands">
+							<label>Meta keywords for brands list page</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</meta_keywords>
+					</fields>
+				</brand>
+				<brands_slider translate="label" module="brands">
+					<label>Featured Brands Slider</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>15</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<is_enabled translate="label">
+							<label>Enable Brands Slider</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>
+							<![CDATA[<span style="color: #204908;">If set to <strong>"Yes"</strong> - brands slider is enabled, if set to 
+							<strong>"No"</strong> - brands slider is disabled.</span>]]></comment>
+						</is_enabled>
+						<featured_brands_title translate="label" module="brands">
+							<label>Feaured Brands Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</featured_brands_title>
+						<is_auto_play translate="label">
+							<label>Enable Auto Play</label>
+							<frontend_type>select</frontend_type>
+							<source_model>brands/autoplay</source_model>
+							<sort_order>25</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</is_auto_play>
+						<show_items translate="label" module="brands">
+							<label>Minimum Brands per Slide</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Display number of brands per slide.</comment>
+						</show_items>
+					</fields>
+				</brands_slider>
+				<left_block translate="label" module="brands">
+					<label>Brands Left Block</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<show_sideber translate="label">
+							<label>Enable Brands on Left Block</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Select 'Yes' for display brands on left block</comment>
+						</show_sideber>
+						<sidebar_title>
+							<label>Brands Left Block Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </sidebar_title>
+						<total_brands_sidebar>
+							<label>Total Brands on Left Block</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Display number of brands on left block.</comment>
+                       	</total_brands_sidebar>
+						<show_images translate="label">
+							<label>Show Brand Images on Left Block</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Select 'Yes' for display brand images on left block</comment>
+						</show_images>
+					</fields>
+				</left_block>
+				<link_options translate="label" module="brands">
+					<label>Links Options</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>30</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<show_footerlink>
+							<label>Show Brands on Footer Links</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Select 'Yes' for display brands link on footer.</comment>
+						</show_footerlink>
+						<show_toplink translate="label">
+							<label>Show Brands on Top Links</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Select 'Yes' for display brands link on top.</comment>
+						</show_toplink>
+					</fields>
+				</link_options>
+			</groups>
+		</brands>
+	</sections>
+</config> 

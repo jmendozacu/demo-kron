@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_ThemeOne
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <modules>
+        <Simi_Themeone>
+            <version>0.1.1</version>
+        </Simi_Themeone>
+    </modules>
+    <frontend>
+        <routers>
+            <themeone>
+                <use>standard</use>
+                <args>
+                    <module>Simi_Themeone</module>
+                    <frontName>themeone</frontName>
+                </args>
+            </themeone>
+        </routers>
+        <layout>
+            <updates>
+                <themeone>
+                    <file>themeone.xml</file>
+                </themeone>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Simi_Themeone>
+                    <files>
+                        <default>Simi_Themeone.csv</default>
+                    </files>
+                </Simi_Themeone>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml> 
+                <args> 
+                    <modules> 
+                        <Simi_Themeone after="Mage_Adminhtml">Simi_Themeone_Adminhtml</Simi_Themeone>
+                    </modules> 
+                </args> 
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <themeone>
+                    <file>themeone.xml</file>
+                </themeone>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Simi_Themeone>
+                    <files>
+                        <default>Simi_Themeone.csv</default>
+                    </files>
+                </Simi_Themeone>
+            </modules>
+        </translate>            
+    </adminhtml>   
+    <global>
+        <models>
+            <themeone>
+                <class>Simi_Themeone_Model</class>
+                <resourceModel>themeone_mysql4</resourceModel>
+            </themeone>
+            <themeone_mysql4>
+                <class>Simi_Themeone_Model_Mysql4</class>
+                <entities>
+                    <banner>
+                        <table>themeone_banner</table>
+                    </banner>
+                    <categories>
+                        <table>themeone_categories</table>
+                    </categories>
+                    <spotproduct>
+                        <table>themeone_spotproduct</table>
+                    </spotproduct>
+                    <images>
+                        <table>themeone_images</table>
+                    </images>
+                </entities>
+            </themeone_mysql4>	
+            <connector>
+              <rewrite>
+                  <banner>Simi_Themeone_Model_Banner</banner>
+              </rewrite>
+          </connector>	
+        </models>
+        <resources>
+            <themeone_setup>
+                <setup>
+                    <module>Simi_Themeone</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </themeone_setup>
+            <themeone_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </themeone_write>
+            <themeone_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </themeone_read>
+        </resources>
+        <blocks>
+            <themeone>
+                <class>Simi_Themeone_Block</class>
+            </themeone>
+        </blocks>
+        <helpers>
+            <themeone>
+                <class>Simi_Themeone_Helper</class>
+            </themeone>
+        </helpers>        
+        <events>              	
+            <!--controller_front_init_before>
+                <observers>
+                    <simi_themeone_observer>
+                        <type>singleton</type>
+                        <class>Simi_Themeone_Model_Observer</class>
+                        <method>disablemodule</method>
+                    </simi_themeone_observer>
+                </observers>
+            </controller_front_init_before-->    
+            <admin_system_config_section_save_after>
+                <observers>
+                    <simi_themeone_observer>
+                        <type>singleton</type>
+                        <class>Simi_Themeone_Model_Observer</class>
+                        <method>configsave</method>
+                    </simi_themeone_observer>
+                </observers>
+            </admin_system_config_section_save_after>
+            <connector_config_get_plugins_return>
+                <observers>
+                    <themeone_observers>
+                        <class>themeone/observer</class>
+                        <method>connectorConfigGetPluginsReturn</method>
+                    </themeone_observers>
+                </observers>
+            </connector_config_get_plugins_return>               
+        </events>             
+    </global>
+	<default>                
+        <themeone>
+			<general>1</general>
+		</themeone>
+	</default>                
+</config>

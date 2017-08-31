@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Magedevgroup
+ * @package    Magedevgroup_CmsPageAboutUs
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_CmsPageAboutUs>
+            <version>0.0.1</version>
+        </Magedevgroup_CmsPageAboutUs>
+    </modules>
+
+    <global>
+        <resources>
+            <magedevgroup_cmspageaboutus_setup>
+                <setup>
+                    <module>Magedevgroup_CmsPageAboutUs</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </magedevgroup_cmspageaboutus_setup>
+        </resources>
+    </global>
+</config>

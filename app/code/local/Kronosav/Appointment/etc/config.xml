@@ -1,0 +1,134 @@
+<config>
+	<modules>
+		<Kronosav_Appointment>
+			<version>1.0.1</version>
+		</Kronosav_Appointment>
+	</modules>
+	<frontend>
+		<routers>
+		<appointment>
+				<use>standard</use>
+				<args>
+					<module>Kronosav_Appointment</module>
+					<frontName>appointment</frontName>
+				</args>
+		</appointment>
+	  
+			<customer>
+				<args>
+					<modules>
+						<!--name / before: change existing -->
+						<appointment before="Mage_Customer">Kronosav_Appointment</appointment>
+					</modules>
+				</args>
+			</customer>
+		</routers>
+		<layout>
+		  <updates>
+			<appointment>
+               <file>appointment.xml</file>
+			</appointment>
+		  </updates>
+		</layout>
+		
+	</frontend>
+	<global>
+	<!-- <events>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <kronosav_appointment_prepare_layout_before>
+                        <class>appointment/observer</class>
+                        <method>prepareLayoutBefore</method>
+                    </kronosav_appointment_prepare_layout_before>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+    </events> -->
+	 <template>
+        <email>
+            <new_customer_email_template translate="label" module="appointment">
+                    <label>Customer Email Template</label>
+                    <file>kronosav_appointment_email.html</file>
+                    <type>html</type>
+            </new_customer_email_template>
+			<appointment_confirm_email_template translate="label" module="appointment">
+					<label>Appointment Confirm Email Template</label>
+                    <file>kronosav_appointment_confirm_email.html</file>
+                    <type>html</type>
+           	</appointment_confirm_email_template>
+			<status_email_template translate="label" module="appointment">
+                    <label>Status Email Template</label>
+                    <file>kronosav_status_confirm_email.html</file>
+                    <type>html</type>
+            </status_email_template>
+        </email>
+    </template>
+		<helpers>
+			<appointment>
+				<class>Kronosav_Appointment_Helper</class>
+			</appointment>
+		</helpers>
+		<blocks>
+			<appointment>
+				<class>Kronosav_Appointment_Block</class>
+			</appointment>
+		</blocks>
+		<models>
+		       <customer>
+					<rewrite>
+					<accountcontroller>Kronosav_Appointment_AccountController</accountcontroller>
+					</rewrite>
+				</customer>
+			<appointment>
+				<class>Kronosav_Appointment_Model</class>
+				<resourceModel>appointment_mysql4</resourceModel>
+			</appointment>
+			<appointment_mysql4>
+				<class>Kronosav_Appointment_Model_Mysql4</class>
+				<entities>
+					<appointment>
+						<table>appointment</table>
+					</appointment>
+				</entities>
+			</appointment_mysql4>
+		</models>
+		<resources>
+			<appointment_setup>
+				<setup>
+					<module>Kronosav_Appointment</module>
+				</setup>			
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</appointment_setup>
+			<appointment_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</appointment_write>
+			<appointment_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</appointment_read>
+		</resources>		
+	</global>
+	<admin>
+		<routers>
+			<appointment>
+                 <use>admin</use>
+                <args>
+					<module>Kronosav_Appointment</module>
+					<frontName>appointment</frontName>
+                </args>
+            </appointment>
+		</routers>
+		
+		<layout>
+			<updates>
+				<appointment>
+				   <file>appointment.xml</file>
+				</appointment>
+			</updates>
+		</layout>
+	</admin>
+</config>

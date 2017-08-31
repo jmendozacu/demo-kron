@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category   Magedevgroup
+ * @package    Magedevgroup_ScrappageScheme
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_ScrappageScheme>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magedevgroup_ScrappageScheme>
+    </modules>
+</config>

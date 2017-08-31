@@ -1,0 +1,99 @@
+<?php
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category 	Magestore
+ * @package 	Magestore_Madapter
+ * @copyright 	Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license 	http://www.magestore.com/license-agreement.html
+ */
+/**
+ * madapter template
+ * 
+ * @see Magestore_Madapter_Block_Madapter
+ */
+?>
+<?php $urlAcion = Mage::helper("adminhtml")->getUrl('madapteradmin/adminhtml_notice/save'); ?>
+<?php
+$title = Mage::helper('madapter')->getConfigNotice('title');
+$message = Mage::helper('madapter')->getConfigNotice('message');
+$url = Mage::helper('madapter')->getConfigNotice('url');
+?>
+<div class="side-col" id="page:left">
+    <h3><?php echo $this->__('Notification Information');?></h3>
+    <ul id="notice_tabs" class="tabs">
+    <li>
+        <a href="#" id="banner_tabs_form_section" name="form_section" title="Notification Information" class="tab-item-link active">
+            <span><span class="changed" title="The information in this tab has been changed."></span><span class="error" title="This tab contains invalid data. Please solve the problem before saving."></span><?php echo $this->__('Notification Information');?></span>
+        </a>
+        
+    </li>
+</ul>
+</div>
+<div class="main-col" id="content" style ="border-left: solid 1px #DBD3D3">
+    <div class="main-col-inner">
+        <div id="messages"></div>
+        <div class="content-header">
+            <h3 class="icon-head head-adminhtml-banner"><?php echo $this->__('Notification');?></h3>    <p class="form-buttons">               
+        </div>
+        <div class="entry-edit">
+            <form id="edit_form" action="<?php echo $urlAcion; ?>" method="post" enctype="multipart/form-data">
+                <div><input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>"></div><div id="banner_tabs_form_section_content" style=""><div class="entry-edit">
+                        <div class="entry-edit-head">
+                            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Notification information');?></h4>
+                            <div class="form-buttons"></div>
+                        </div>
+                        <div class="fieldset " id="madapter_form">
+                            <div class="hor-scroll">
+                                <table cellspacing="0" class="form-list">
+                                    <tbody>
+                                        <tr>
+                                            <td class="label"><label for="title"><?php echo $this->__('Title');?> <span class="required">*</span></label></td>
+                                            <td class="value">
+                                                <input id="title" name="title" value="<?php echo $title ?>" class="required-entry input-text required-entry" type="text">            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label"><label for="message"><?php echo $this->__('Message');?> <span class="required">*</span></label></td>
+                                            <td class="value">
+                                                <textarea id="message" name="message" title="message" rows="2" cols="15" class="required-entry required-entry textarea" ><?php echo $message ?></textarea>            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="label"><label for="url"><?php echo $this->__('Url');?> <span class="required">*</span></label></td>
+                                            <td class="value">
+                                                <input id="url" name="url" value="<?php echo $url ?>" class="required-entry input-text required-entry" type="text">            </td>
+                                        </tr>                                         
+                                        <tr id ="tr-send">
+                                            <td class="label"><label for="send"><?php echo $this->__('Send Notification');?></label></td>
+                                            <td class="value">
+                                                <button id="send" name="send" value="" onclick="editForm.submit();"  type="button" class="scalable"><span><span><span>Send</span></span></span></button>           </td>
+                                        </tr>  
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div></form></div>
+        <script type="text/javascript">
+            editForm = new varienForm('edit_form', '');
+        </script>
+        <script type="text/javascript">              
+            function toggleEditor() {
+                if (tinyMCE.getInstanceById('madapter_content') == null)
+                    tinyMCE.execCommand('mceAddControl', false, 'madapter_content');
+                else
+                    tinyMCE.execCommand('mceRemoveControl', false, 'madapter_content');
+            }
+           
+        </script>                        </div>
+</div>

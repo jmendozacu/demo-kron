@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category   Magedevgroup
+ * @package    Magedevgroup_FileUploadAttribute
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_FileUploadAttribute>
+            <version>0.0.2</version>
+        </Magedevgroup_FileUploadAttribute>
+    </modules>
+
+    <global>
+        <blocks>
+            <magedevgroup_fileuploadattribute>
+                <class>Magedevgroup_FileUploadAttribute_Block</class>
+            </magedevgroup_fileuploadattribute>
+        </blocks>
+
+        <models>
+            <magedevgroup_fileuploadattribute>
+                <class>Magedevgroup_FileUploadAttribute_Model</class>
+            </magedevgroup_fileuploadattribute>
+        </models>
+
+        <helpers>
+            <magedevgroup_fileuploadattribute>
+                <class>Magedevgroup_FileUploadAttribute_Helper</class>
+            </magedevgroup_fileuploadattribute>
+        </helpers>
+
+        <resources>
+            <magedevgroup_fileuploadattribute_setup>
+                <setup>
+                    <module>Magedevgroup_FileUploadAttribute</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </magedevgroup_fileuploadattribute_setup>
+        </resources>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <magedevgroup_fileuploadattribute>
+                    <file>magedevgroup/fileuploadattribute.xml</file>
+                </magedevgroup_fileuploadattribute>
+            </updates>
+        </layout>
+        <product>
+            <collection>
+                <attributes>
+                    <file1_upload/>
+                    <file2_upload/>
+                </attributes>
+            </collection>
+        </product>
+    </frontend>
+</config>

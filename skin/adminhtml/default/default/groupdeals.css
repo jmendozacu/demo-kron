@@ -1,0 +1,10 @@
+.fieldset-medium .form-list td.value input.input-text { width:596px; }
+.fieldset-medium .form-list td.value textarea { width:596px; }
+#ordersGrid .notice { display:none; }
+
+.groupdealsadmin-adminhtml-merchants-edit .buttons-set .add-widget {display:none !important;}
+.groupdealsadmin-adminhtml-merchants-edit .buttons-set .add-image {display:none !important;}
+.groupdealsadmin-adminhtml-merchants-edit .buttons-set .add-variable {display:none !important;}
+.groupdealsadmin-adminhtml-merchants-new .buttons-set .add-widget {display:none !important;}
+.groupdealsadmin-adminhtml-merchants-new .buttons-set .add-image {display:none !important;}
+.groupdealsadmin-adminhtml-merchants-new .buttons-set .add-variable {display:none !important;}

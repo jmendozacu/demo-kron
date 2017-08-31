@@ -1,0 +1,610 @@
+.cost_per_month {
+    display: inline-block;
+    text-align: left;
+    line-height: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.cost_per_month div {
+    float: left;
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border: 0px solid #000000;
+    color: #fff;
+    background: #f70;
+    padding: 0px 3px;
+    font-weight: normal;
+    margin-right: 5px;
+    font-size: 10px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+.pay4later_info {
+    background: #f6f6f6 !important;
+    border: 1px solid #ccc;
+    color: #f70;
+    padding: 10px 15px !important;
+}
+
+.price-box .cost_per_month {
+    font-size: 11px;
+    font-weight: normal;
+    color: #000;
+    font-weight: 700;
+
+    margin-right: 10px;
+}
+
+.data-table td {
+    position: relative;
+}
+
+.pay_product_cond {
+    color: red;
+    margin-top: 10px;
+}
+
+#one-step-checkout-form .checkout-review-load .data-table td h2, #one-step-checkout-form .checkout-review-load .data-table td .price {
+    font-size: 14px !important;
+}
+
+.paylater_error_icon {
+    background: url(../images/exclamation.png) no-repeat !important;
+    float: left;
+    width: 30px;
+    height: 22px;
+}
+
+.pay4later_wrapper {
+    margin-bottom: 10px;
+    float: left;
+}
+
+.show_hide_mobile {
+    display: none !important;
+}
+
+.data-table td {
+    position: relative;
+}
+
+.payclass {
+    width: 88%;
+}
+
+.pay4later_tooltip {
+    display: inline-block;
+}
+
+.tooltip-container, .tooltip-hint, a.tooltip-hint {
+    display: inline-block;
+    position: relative
+}
+
+.tooltip-hint, a.tooltip-hint {
+    background: #999;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 6px;
+    font-style: normal;
+    font-weight: 400;
+    top: -1px;
+    margin-left: 3px;
+    cursor: help
+}
+
+.tooltip-hint:hover, a.tooltip-hint:hover {
+    color: #fff;
+    background: #777;
+    text-decoration: none
+}
+
+a.tooltip-hint, a.tooltip-hint:hover {
+    cursor: pointer
+}
+
+.tooltip-content {
+    display: none;
+    position: absolute;
+    top: 27px;
+    right: 0;
+    width: 230px;
+    padding: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1;
+    z-index: 100;
+    background: #555;
+    border-radius: 3px;
+    box-shadow: 0 1px 5px #999;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .5)
+}
+
+.product-view .rrp {
+    font-style: italic;
+    float: left;
+    position: relative
+}
+
+.product-view .rrp .rrp-hint {
+    display: inline-block;
+    background: #999;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 6px;
+    font-style: normal;
+    position: relative;
+    top: 6px;
+    margin-left: 3px;
+    cursor: help
+}
+
+.product-view > .rrp > .rrp-hint {
+    left: 0px;
+}
+
+.opc .section.allow:not(.active) .step-title, .swatch-link:hover {
+    cursor: pointer
+}
+
+.product-view .rrp .rrp-tooltip {
+    display: none;
+    position: absolute;
+    top: 27px;
+    right: 0;
+    width: 230px;
+    padding: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1;
+    z-index: 100;
+    background: #555;
+    border-radius: 3px;
+    box-shadow: 0 1px 5px #999;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .5);
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.product-view .rrp-hint:hover + .rrp-tooltip {
+    display: block
+}
+
+#financeImg {
+    width: 120px;
+    float: left;
+    /* background: none repeat scroll 0 0 #CCCCCC; */
+    margin-right: 10px;
+}
+
+#more_option {
+    width: 120px;
+    float: left;
+    /* background: none repeat scroll 0 0 #CCCCCC; */
+    margin-right: 10px;
+}
+
+.desktop_pay4later_view {
+    clear: both;
+
+    display: none;
+}
+
+#pay4later_details_option {
+    text-align: right;
+    /* float: left; */
+    clear: both;
+    display: block;
+}
+
+table, textarea {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.bg-box {
+    background: #eee;
+    padding: 5px;
+    width: 100% !important;
+    display: block;
+    text-align: left;
+}
+
+.bg-box tr td {
+    background: #eee;
+    padding: 5px;
+    /* float: left; */
+    /* width: 100%; */
+    box-sizing: border-box;
+}
+
+.bg-box tr td select {
+    font-size: 14px;
+    border-color: #ccc;
+}
+
+.select-box-width {
+    width: 100%;
+}
+
+.weight-700 {
+    font-weight: 700;
+}
+
+.main-fluid {
+    display: inline-block;
+    min-width: 320px;
+    width: 74% !important;
+    /*float:right;*/
+}
+
+#checkout-step-review .main-fluid {
+    width: 100% !important;
+    margin-top: 50px;
+}
+
+.main-fluid h3 {
+    font-size: 19px;
+    font-weight: bold;
+    text-transform: none;
+    margin: 0px;
+    color: #777;
+}
+
+.bullet-style {
+    color: #0197D8;
+}
+
+.main-fluid .child-box {
+    width: 100%;
+    display: block;
+    margin: 7px 4px;
+    clear: both;
+}
+
+.main-fluid .child-box .notification {
+    padding: 0px;
+    margin: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    color: #0197D8;
+}
+
+.tagline {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.main-fluid .deposite-meter .left-box {
+    float: left;
+    width: 27%;
+    margin: 4px;
+    text-align: center;
+    min-height: 91px;
+    border-radius: 4px;
+    background-image: url('../images/pay4later/price-back.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.heading {
+    position: relative;
+    background-image: url('../images/pay4later/heading.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 80%;
+    min-height: 30px;
+    margin: 0 auto;
+    top: -5px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+
+.left-box .amount {
+    font-size: 21px;
+    padding: 4px;
+    font-weight: bold;
+    vertical-align: middle;
+    margin: 10px 0 10px;
+}
+
+.main-fluid .deposite-meter .right-box {
+    float: right;
+    width: 65%;
+    margin: 20px 4px;
+    min-height: 54px;
+    background-image: url('../images/pay4later/slider-back.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}
+
+.main-fluid .child-box .inner-box {
+    float: left;
+    margin: 3px 15px;
+    width: 29%;
+    background-color: #E1E1E1;
+    border-radius: 2px 2px 7px 7px;
+    padding: 1px 8px;
+}
+
+.right-icon {
+    background-image: url('../images/pay4later/right-tick.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 8px 8px;
+    position: relative;
+    top: 5px;
+    margin-right: 5px;
+}
+
+.inner-box .heading {
+    text-align: center;
+    margin-right: -3px;
+}
+
+.inner-box h1 {
+    margin: 0px;
+    color: #636363;
+}
+
+.inner-box table {
+    width: 100%;
+}
+
+.big {
+    font-size: 22px;
+}
+
+.text-right {
+    text-align: right;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.text-left {
+    text-align: left;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.small {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.apply-now {
+    background-image: url('../images/pay4later/applynow-bg.png') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% !important;
+    border: none;
+    padding: 2px 10px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: bold;
+    float: right;
+    min-height: 32px;
+    margin-bottom: 18px;
+    margin-top: 10px;
+}
+
+#slider label {
+    position: absolute;
+    width: 20px;
+    margin-left: -10px;
+    text-align: center;
+    margin-top: -29px;
+}
+
+/* below is not necessary, just for style */
+#slider {
+    width: 90%;
+    margin: 17px auto;
+    background-image: url('../images/pay4later/slider-color.png');
+    background-repeat: repeat-x;
+    border-radius: 10px;
+    border: 1px solid #BEBEBE;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background-image: url('../images/pay4later/dial.png') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% !important;
+    border-radius: 10px;
+}
+
+.product-desc {
+    display: inline-block !important;
+    float: left;
+}
+
+.price-text {
+    font-size: 40px;
+    color: #0280ca;
+    padding: 0 20px;
+    float: left;
+    width: 150px;
+}
+
+.pay4later_detail_view {
+    position: absolute;
+    top: 82px;
+    left: 130px;
+    color: #fff;
+}
+
+.detail-box {
+    clear: none;
+    width: 100%;
+    float: right !important;
+    max-width: 340px;
+    padding: 10px;
+    background: #cdcfce;
+    height: auto;
+    color: #000;
+    margin: 3px 0 !important;
+    position: relative;
+}
+
+.price-text {
+    font-size: 27px;
+    text-align: center;
+}
+
+.detail-box .btn {
+    margin-top: 0;
+    background: #0280ca;
+    padding: 10px;
+    float: left;
+    color: #fff;
+}
+
+.product-info {
+    min-height: 150px;
+}
+
+.product-view .product-shop .availability {
+    position: absolute;
+    margin-top: 43px;
+}
+
+.header-text {
+    color: #0280ca;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 25px;
+}
+
+.header-text span {
+    font-size: 18px;
+    color: #0280ca;
+    font-weight: 600;
+    line-height: 25px;
+}
+
+.price-text span {
+    font-size: 15px;
+    line-height: 20px;
+    display: block;
+    text-align: center;
+}
+
+.finance_info_text {
+    clear: both;
+    padding: 0 20px;
+    font-size: 11px;
+    text-align: center;
+}
+
+.header-text {
+    margin: 0 0 7px;
+}
+
+.product-view .product-shop .price-box {
+    margin: 0 0 12px 0;
+}
+
+@media only screen and (max-width: 760px), (max-device-width: 1024px) and (min-device-width: 768px) {
+    table.pay4later_details th, table.pay4later_details td {
+        width: 18%;
+        display: table-cell;
+    }
+
+}
+
+.wrp_img_div {
+    float: left;
+    width: 25%
+}
+
+.prd_later_image {
+    float: left;
+    width: 95%;
+    border: 1px solid #d2d2d2;
+    margin-bottom: 50px;
+}
+
+.prd_later_image img {
+    width: 100%;
+}
+
+.p_img1,
+.p_img2 {
+    float: left;
+    margin-bottom: 20px;
+    line-height: 17px;
+}
+
+.p_img1 img,
+.p_img2 img {
+    float: left;
+    margin-right: 10px;
+}
+
+#p4ldetails {
+    float: left;
+}
+
+#p4ldetails .step-box-main {
+    width: 100%;
+    padding: 10px;
+}
+
+#p4ldetails .slider-main {
+    margin-right: 30px;
+}
+.product-view.pay4later_tooltip {
+    display: inline-table;
+}
+.tooltip_paylater {
+    background: none;
+    margin-left: 0;
+    padding: 0;
+    display: block;
+    position: relative;
+    border-radius: 25px;
+    color: #fff;
+    font-style: normal;
+    cursor: help;
+}
+.tooltip_paylater:hover:before {
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 0px 6px 6px 6px;
+    top: 17px;
+    content: "";
+    left: 25%;
+    position: absolute;
+    z-index: 99;
+}
+.tooltip_paylater:hover:after {
+    background: #333;
+    background: rgba(0,0,0,.8);
+    border-radius: 0px;
+    top: 23px;
+    color: #fff;
+    content: attr(title);
+    left: -110px;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 220px;
+    font-size: 11px;
+}

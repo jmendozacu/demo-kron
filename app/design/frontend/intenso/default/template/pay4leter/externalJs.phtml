@@ -1,0 +1,10 @@
+<?php 
+$_payHelper = Mage::helper('pay4leter');
+$_payHelper->getPay4leterTypeName();
+
+if($_payHelper->isActive){
+?>
+<!--<script type="text/javascript" src="https://test.pay4later.com/js_api/FinanceDetails.js.php?api_key=<?php echo $_payHelper->apiKey?>"></script>-->
+<?php 
+}
+?>

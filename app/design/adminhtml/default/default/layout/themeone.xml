@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_ThemeOne
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<layout version="0.1.0">
+    <adminhtml_themeone_categories_index>
+        <reference name="content">
+            <block type="themeone/adminhtml_categories" name="themeone" />
+        </reference>
+    </adminhtml_themeone_categories_index>
+    <adminhtml_themeone_spotproduct_index>
+        <reference name="content">
+            <block type="themeone/adminhtml_spot" name="themeone" />
+        </reference>
+    </adminhtml_themeone_spotproduct_index>
+    <adminhtml_themeone_banner_index>
+        <reference name="content">
+            <block type="themeone/adminhtml_banner" name="themeone" />
+        </reference>
+    </adminhtml_themeone_banner_index>
+</layout>

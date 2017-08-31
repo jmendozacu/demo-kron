@@ -1,0 +1,22 @@
+<?php 
+
+$_product = Mage::registry('current_product');
+$_helper = $this->helper('catalog/output');
+$pay4laterArray = Mage::getStoreConfig('payment/pay4later');
+$attributeValue = Mage::getModel('catalog/product')->load($_product->getId())->getAttributeText('product_for_pay4later');?>
+<?php if($pay4laterArray['product_detail_active'] == 1):?>
+<div class="pay4later_wrapper">
+	<?php if($attributeValue == 'Yes'){?>
+	<div class="pay4later_script">
+		<div id="financeImg"><img src="<?php echo $this->getSkinUrl('images/pay4later/pay4later.png');?>"></div>
+		<div class="request-viewing show_hide money-bg" id="more_option">
+			<a href="javascript:void(0)" class="btn btn-3 btn-3a" style="display:block;margin-top:7px;"> <img src="<?php echo $this->getSkinUrl('images/pay4later/more.png');?>"></a>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	<?php }?>
+
+	
+	<?php echo $this->getChildHtml('total_prototal') ?>
+</div>
+<?php endif;?>

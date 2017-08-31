@@ -1,0 +1,62 @@
+<config>
+  <tabs>
+    <conversions360 translate="label"
+      module="conversionsondemand_conversions360">
+      <label>Conversions On Demand</label>
+      <sort_order>99999</sort_order>
+    </conversions360>
+  </tabs>
+  <sections>
+    <conversions360_options translate="label"
+      module="conversionsondemand_conversions360">
+      <label>Conversions On Demand Setup</label>
+      <tab>conversions360</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>1000</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <store translate="label">
+          <label>Store Information</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>1</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <magentoedition translate="label comment">
+              <label>Choose Edition</label>
+              <comment><![CDATA[Choose the appropriate Magento Edition of your store.]]></comment>
+              <frontend_type>select</frontend_type>
+              <source_model>conversions360/config_source_edition</source_model>
+              <sort_order>1</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </magentoedition>
+            <identifier>
+              <label>Store Identifier</label>
+              <comment><![CDATA[Please use the store identifier provided during registration.]]></comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>2</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </identifier>
+            <enabled translate="label comment">
+              <label>Enabled</label>
+              <comment><![CDATA[Choose "yes" after you have completed signing up for <a href="https://www.conversionsondemand.com/signup.php">Conversions on Demand</a> and received your welcome email with the store identifier.]]></comment>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>3</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </enabled>
+          </fields>
+        </store>
+      </groups>
+    </conversions360_options>
+  </sections>
+</config>

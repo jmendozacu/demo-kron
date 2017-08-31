@@ -1,0 +1,41 @@
+/**
+ * Developer: Rene Voorberg
+ * Team site: http://cmsideas.net/
+ * Support: http://support.cmsideas.net/
+ * 
+*/
+i.glace
+{
+	font-family: 'Special Elite', cursive;
+	letter-spacing: 1px;
+}
+
+#fullpagecache_config p.note,
+#newproductalert_productview p.note,
+#newproductalert_productlist p.note
+{
+	display:none;
+}
+
+#fullpagecache_config td.value:hover p.note,
+#newproductalert_productview  td.value:hover p.note,
+#newproductalert_productlist  td.value:hover p.note
+{
+	display:block;
+	position: relative;
+}
+
+#fullpagecache_config td.value:hover i.glace,
+#newproductalert_productview td.value:hover i.glace,
+#newproductalert_productlist td.value:hover i.glace
+{
+	background-color: #EB5E00;
+    max-width: 200px;
+    padding: 10px;
+    position: absolute;
+    right: -220px;
+    top: -20px;
+    z-index: 99999;
+    color:#FFFFFF;
+    font-size:14px;
+}

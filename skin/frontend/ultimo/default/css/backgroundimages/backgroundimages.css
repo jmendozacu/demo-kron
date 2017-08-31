@@ -1,0 +1,17 @@
+.fme_bgi_specs{
+		left: 0;
+		position: fixed;
+		top: 0;
+		z-index: -1;
+                width:100%;
+}
+.header-container{
+    background: none !important;
+}
+.main-container{
+    background: none !important;
+}
+.footer-container{
+    border: none !important;
+    background: none !important;
+}

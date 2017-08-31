@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <socialtabs>
+            <label>Social Tabs</label>
+			<sort_order>0</sort_order>
+        </socialtabs>
+    </tabs>
+    <sections>
+        <socialtabs>
+            <tab>socialtabs</tab>
+            <label>Social Account Settings</label>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>                
+                <social_accounts>
+                    <label>Facebook / Twitter / Youtube video / Google map</label>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <heading_facebook translate="label">
+                            <label><![CDATA[<span style="color:#4664B7">Facebook Fan box</span>]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading_facebook>
+
+                        <facebook_profile_name>
+                            <label>Facebook profile name</label>
+                            <comment>Account ID for Facebook fan box. If you want use your own facebook code - do changes in file /app/design/frontend/smartwave/porto/template/socialtabs/social_contacts.phtml</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </facebook_profile_name>
+						
+                        <heading_twitter translate="label">
+                            <label> <![CDATA[<span style="color:#00A0D1">Twitter feeds</span>]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading_twitter>
+
+                        <twitter_account>
+                            <label>Account name</label>
+                            <comment>Account name for twitter block.  If you want use your own twitter code - do changes in file /app/design/frontend/smartwave/porto/template/socialtabs/social_contacts.phtml</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </twitter_account>
+
+                        <twitter_feeds_count>
+                            <label>Count of tweets</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </twitter_feeds_count>
+
+                        <heading_youtube translate="label">
+                            <label> <![CDATA[<span style="color:#A21616">Youtube video</span>]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading_youtube>
+
+                        <youtube>
+                            <label>Embed code</label>
+                            <comment>Paste iframe code here with width ~ 430px / height ~ 244px</comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </youtube>
+						
+                    </fields>
+                </social_accounts>
+                <google_plus>
+                    <label>Google Plus + </label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <page_type>
+                            <label>Page Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>velanapps_socialtabs/config_source_pagetype</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page_type>
+                        <page_url>
+                            <label>Page Url</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page_url>
+                        <wigth>
+                            <label>Wight</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </wigth>
+                        <color_scheme>
+                            <label>Color scheme</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>velanapps_socialtabs/config_source_colorscheme</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </color_scheme>
+                        <gp_layout>
+                            <label>Layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>velanapps_socialtabs/config_source_layout</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gp_layout>
+                        <cover_photo>
+                            <label>Cover photo</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cover_photo>
+                        <tagline>
+                            <label>Tagline</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tagline>
+
+                    </fields>
+                </google_plus>
+            </groups>
+        </socialtabs>
+    </sections>
+</config>

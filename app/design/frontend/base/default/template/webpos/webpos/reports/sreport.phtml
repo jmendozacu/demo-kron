@@ -1,0 +1,59 @@
+
+<?php
+$data = $this->getSalesInfo();
+if (count($data) > 0) {
+    ?>
+    <style>
+        .dataTable-gird { height:auto;}
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="dataTable-gird">
+                <table id="report_till">
+                    <tr>
+                        <td>
+                            <div class="tablezreport">
+                                <table id="sreport_table" class="table-bordered webpos_bordered_table">
+                                    <thead>  
+                                        <?php if ($data['type'] == 'cashier'): ?>
+                                        <th><?php echo $this->__('Cashier'); ?></th>
+                                    <?php elseif ($data['type'] == 'location'): ?>
+                                        <th><?php echo $this->__('Location'); ?></th>  
+                                    <?php elseif ($data['type'] == 'customer_group'): ?>
+                                        <th><?php echo $this->__('Customer Group'); ?></th> 
+                                    <?php elseif ($data['type'] == 'payment'): ?>
+                                        <th><?php echo $this->__('Payment Method'); ?></th>  
+                                    <?php endif; ?> 
+                                    <th><?php echo $this->__('Sales'); ?></th>                      
+                                    <th><?php echo $this->__('Total Orders'); ?></th>                      
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (count($data['data']) > 0):
+                                            foreach ($data['data'] as $key => $salesData) {
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $salesData['name']; ?></td>
+                                                    <td><?php echo Mage::helper('core')->currency($salesData['sales'], true, false); ?></td>
+                                                    <td><?php echo $salesData['total_orders']; ?></td>
+                                                </tr>
+                                            <?php
+                                            }
+                                        else:
+                                            ?>
+                                            <tr><td colspan="3" class="text-center"><?php echo $this->__('No Data'); ?></td></tr>
+    <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+<?php
+}else {
+    echo "<h5 style='margin-top: 40px;margin-left: 50px;font-weight: bold;text-align: center;'> No Data </h5>";
+}
+?>

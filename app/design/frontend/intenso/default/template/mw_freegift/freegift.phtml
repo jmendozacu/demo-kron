@@ -1,0 +1,144 @@
+<?php
+$count_product = 0;
+$freeGiftCatalogProduct = null;
+$ruleApplieFree   = $this->getRuleApplieQuote();
+/*$display 		  = $this->_displayFreeGift();*/
+$couponCode       = Mage::getSingleton('core/session')->getFlagCoupon();
+$flagRule         = Mage::getSingleton('core/session')->getFlagRule();
+$productIds       = $this->_getFreeGiftItems($ruleApplieFree); //4sec
+$freeGiftCatalogProduct = $this->getFreeGiftCatalogProduct();
+
+$count_product = 0;
+$storeGiftProducts = array();
+if($ruleApplieFree !== false){
+    foreach ($ruleApplieFree as $ruleId){
+        $productFreeGift = $this->getProductIdByRuleFree($ruleId);
+        $rule            = Mage::getModel('freegift/salesrule')->load($ruleId);
+        foreach ($productFreeGift as $productId){
+            $isDisplay = $this->checkProductInQuote($ruleId, $productId);
+            if (in_array($productId, $productIds) && $isDisplay) {
+                $storeGiftProducts[$productId] = array(
+                    'product_id' => $productId,
+                    'rule_id'    => $ruleId,
+                );
+                $count_product++;
+            }
+        }
+    }
+}
+
+?>
+
+<?php if (($count_product > 0) || count($freeGiftCatalogProduct) > 0):?>
+    <div id="mw-fg-slider-cart">
+        <script type="text/javascript">
+            hasGiftProduct = true;
+        </script>
+        <div class="mw-fg-cart-title">
+            <strong><?php echo $this -> __('Select your free gift'); ?></strong>
+        </div>
+        <div id="the-carousel" class="bcarousel">
+            <ul id="freegift" class="jcarousel-skin-tango mw-fg-slide" >
+                <?php
+                $i     = 1;
+                $j     = 0;
+                $count = (count($productIds)) + 1;
+                $clast = '';
+                if(count($storeGiftProducts) > 0){
+                    foreach ($storeGiftProducts as $gift):
+                        $ruleId = $gift['rule_id'];
+                        $productId = $gift['product_id'];
+                        $rule            = Mage::getModel('freegift/salesrule')->load($ruleId);
+                        $product         = Mage::getModel('catalog/product')->load($productId);
+                        $tipid = $product->getId() . $rule->getRuleId();
+                        if ($product->isSaleable()){
+                ?>
+                            <li class="mw-fg-items">
+                                <?php
+                                if ($product->isSaleable()):
+                                if ($rule){
+                                    $r_id = $rule->getId();
+                                    if ($flagRule != "" && in_array($rule->getId(),explode(",",$flagRule))) {
+                                        $urlAddToCart = $this->getAddToCartUrl($product, array(
+                                            'freegift' => 1,
+                                            'freegift_with_code' => 1,
+                                            'freegift_coupon_code' => $couponCode[$r_id],
+                                            'rule_id' => $r_id,
+                                            'apllied_rule' => $r_id,
+                                            'ajax_gift' => true
+
+                                        ));
+                                        $couponC = $couponCode[$rule->getId()];
+                                        $urlProduct = $product -> getProductUrl() . "?freegift=1&freegift_with_code=1&freegift_coupon_code=$couponC&rule_id=$r_id";
+                                        $attr_data = "data-freegift-code=".$couponC." data-rule-id='".$r_id."' data-ffg-type='coupon'";
+                                    } else {
+                                        $urlAddToCart = $this->getAddToCartUrl($product, array(
+                                            'freegift' => 1,
+                                            'apllied_rule' => $r_id
+                                        ));
+                                        $urlProduct = $product -> getProductUrl() . "?freegift=1&apllied_rule=$r_id";
+                                        $attr_data = "data-applied-rule=".$r_id."  data-ffg-type='sale'";
+                                    }
+                                    $mw_class_rule = 'mw_rule' . $r_id;
+                                }
+                                else{
+                                    $urlAddToCart = $this->getAddToCartUrl($product, array('freegift' => 1, 'ajax_gift' => true));
+                                    $urlProduct = $product -> getProductUrl() . "?mw_freegift=1";
+                                    $attr_data = "data-catalog-gift=".$itemId."  data-ffg-type='catalog'";
+                                    $mw_class_rule = 'mw_rule';
+                                }
+                                ?>
+                                <a id="stay-target-<?php echo $tipid; ?>" href="<?php echo $urlProduct?>" title="<?php echo $this -> htmlEscape($this -> getImageLabel($product, 'small_image')); ?>" class="product-image"><img src="<?php echo $this -> helper('catalog/image') -> init($product, 'small_image') -> resize(140, 135); ?>" width="140" height="135" alt="<?php echo $this -> htmlEscape($this -> getImageLabel($product, 'small_image')); ?>" /></a>
+                                <span style="display: none" class="product-name"><a href="javascript:;"><?php echo $product->getName(); ?></a></span>
+                                <div id="stay-content-<?php echo $tipid; ?>" class="mw-fg-item">
+                                    <div class="mw-fg-item-options">
+                                        <div class="mw-fg-item-option-title">
+                                            <?php echo $rule -> getDescription(); ?>
+                                        </div>
+                                        <div class="mw-fg-item-option-ct">
+                                            <p class="mw-fg-item-name">
+                                                <a href="<?php echo $urlProduct ?>" title="<?php echo $this -> htmlEscape($product -> getName()); ?>"><?php echo $this -> htmlEscape($product -> getName()); ?></a>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-shop">
+                                    <div class="f-fix">
+                                        <div class="old-price">
+                                            <?php
+                                            $_coreHelper = $this -> helper('core');
+                                            $price = $product -> getPrice();
+                                            echo '<span class="price">' . $_coreHelper -> currency($price, true, false) . '</span>';
+                                            ?>
+                                        </div>
+                                        <p>
+                                            <div class="mw-hidden-product" data-product-id="<?php echo $product->getId()?>"></div>
+                                            <div class="mw-hidden-product-image" data-product-image="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(265, 265)?>"></div>
+                                            <div class="mw-hidden-product-has-options" data-has-options="<?php echo ($product->getOptions() ? "1" : "0")?>"></div>
+                                            <div class="mw-hidden-product-type" data-product-type-id="<?php echo $product->getTypeId()?>"></div>
+                                            <button id="btn<?php echo $i; ?>" <?php echo $attr_data;?> data-type-id="<?php echo $product -> getTypeId()?>" href='<?php echo $urlAddToCart?>' data-id="<?php echo $product->getId()?>" type="button" title="<?php echo $this -> __('Add to Cart'); ?>" class="button btn-cart <?php echo $mw_class_rule; ?>" data-url="<?php echo $urlAddToCart; ?>">
+                                                <span><span><?php echo $this -> __('Add to Cart'); ?></span></span>
+                                            </button>
+                                        </p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php }?>
+                <?php
+                    $i++;
+                    $j++;
+                    endforeach;
+                }
+                ?>
+                <?php echo $this->getItemProductHtml($freeGiftCatalogProduct);?>
+            </ul>
+        </div>
+    </div>
+<?php else: ?>
+    <div id="mw-fg-slider-cart">
+    </div>
+<?php endif; ?>
+<div style="clear: both"></div>
+

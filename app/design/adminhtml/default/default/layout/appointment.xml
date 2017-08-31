@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <appointment_adminhtml_appointment_edit>
+       <!--  <reference name="root">
+			<action method="addJs"><script>jquery/jquery.js</script></action>
+        </reference> -->
+    </appointment_adminhtml_appointment_edit>
+	
+    <appointment_adminhtml_appointment_create>
+       <!--  <reference name="root">
+			<action method="addJs"><script>jquery/jquery.js</script></action>
+        </reference> -->
+    </appointment_adminhtml_appointment_create>
+</layout>

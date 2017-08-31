@@ -1,0 +1,53 @@
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.margin-vertical-40 {
+    margin-top: 40px!important;
+    margin-bottom: 40px!important;
+}
+
+.col-sm-3 {
+    width: 25%;
+    float: left;
+}
+h3.latest-orders-from {
+    display: inline;
+    vertical-align: middle;
+}
+.col-sm-9 {
+    width: 75%;
+    float: left;
+}
+.col-sm-3, .col-sm-9, .col-xs-4, .col-xs-12 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.col-xs-4 {
+    width: 33.33333333%;
+}
+.latest-orders span.img {
+    float: left;
+    width: 30px;
+    height: 45px;
+    margin-right: 15px;
+    background-image: url(/skin/frontend/base/default/images/magedevgroup/customblocks/lord.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+.latest-orders span.location {
+    font-weight: 700;
+}
+
+.container:after, .container:before, .form-horizontal .form-group:after, .row:after, .row:before {
+    content: " ";
+    display: table;
+}
+.col-xs-4, .col-xs-12 {
+    float: left;
+}

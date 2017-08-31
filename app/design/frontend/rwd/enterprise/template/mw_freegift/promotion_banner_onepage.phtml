@@ -1,0 +1,27 @@
+<?php
+    if(sizeof($this->getAllActiveRules())):?>
+    <?php
+        $listBanner = array();
+        foreach($this->getAllActiveRules() as $rule):
+            if($rule->getData('promotion_banner') != ""){
+                $listBanner[] = $rule->getData('promotion_banner');
+            }                       
+            endforeach;
+        $arrShowin = array(2,3);
+        $showin = Mage::getStoreConfig('freegift/config/showfreegiftpromotion');        
+        if(in_array($showin,$arrShowin)){
+            if(count($listBanner)>0){
+            ?>
+            <div class="freegift_rules_banner_onepage_container">
+                <ul id="promotion_banner" >
+                    <?php foreach($listBanner as $banner): ?>
+                        <li><img src="<?php echo $this->resizeImg($banner,900,100,'resizedpromotionbanner');?>" alt=""></li>
+                        <?php endforeach; ?>                
+                </ul>
+            </div>
+
+            <?php
+            } 
+        }
+        endif;
+?>

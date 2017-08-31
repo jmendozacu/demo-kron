@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_NoisyPopup
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_NoisyPopup>
+            <version>0.0.1</version>
+        </Magedevgroup_NoisyPopup>
+    </modules>
+    <global>
+        <helpers>
+            <magedevgroup_noisypopup>
+                <class>Magedevgroup_NoisyPopup_Helper</class>
+            </magedevgroup_noisypopup>
+        </helpers>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <magedevgroup_noisypopup>
+                    <file>magedevgroup/noisypopup.xml</file>
+                </magedevgroup_noisypopup>
+            </updates>
+        </layout>
+    </frontend>
+    <default>
+        <noisypopup>
+            <general>
+                <width>500</width>
+                <height>250</height>
+                <delay>5</delay>
+                <cookieexp>1</cookieexp>
+                <showoncepersession>1</showoncepersession>
+            </general>
+        </noisypopup>
+    </default>
+</config>

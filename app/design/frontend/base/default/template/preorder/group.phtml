@@ -1,0 +1,59 @@
+<?php 
+	$helper =  Mage::helper("preorder");
+	$this->setPreconfiguredValue();
+	$_product = $this->getProduct();
+	$_associatedProducts = $this->getAssociatedProducts();
+	$_hasAssociatedProducts = count($_associatedProducts) > 0;
+	$temp=array();
+	if ($_hasAssociatedProducts) {
+    	foreach ($_associatedProducts as $_item) {
+			if($helper->isGroupedPreorder($_product->getId())) {
+				if($helper->isPreorder($_item->getId())) {
+					$result="";
+					$temp[$_item->getId()]['preorder']=1;
+					$result.=$helper->getPreordetAmountHtml($_item->getId());
+					$temp[$_item->getId()]['result']=$result;
+				} else {
+					$temp[$_item->getId()]['preorder']=2;
+				}
+			}
+		}
+	}
+?>
+<script type="text/javascript">
+	if (typeof jQuery == 'undefined'){
+		document.write(unescape("%3Cscript src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+	}
+</script>
+<script>
+	jQuery.noConflict();
+	(function(jQuery){
+		var temp=<?php echo json_encode($temp)?>;
+		jQuery('.grouped-items-table >tbody > tr').each(function(){
+			var priceId=jQuery(this).find('.regular-price').attr('id');
+			var arr=priceId.split('-');
+			var id=arr[arr.length-1];
+			if(temp[id]['preorder']==1){
+				jQuery(this).find('.price-box').append(temp[id]['result']);
+				jQuery(this).find('.qty').addClass("wk-preorder")
+			} else {
+				jQuery(this).find('.qty').addClass("wk-normal")
+			}
+		});
+
+		jQuery(".wk-preorder").blur(function(){
+			var val = jQuery(this).val();
+			if(val>0) {
+				jQuery(".grouped-items-table input").val(0);
+				jQuery(this).val(val);
+			}
+			
+		})
+		jQuery(".wk-normal").blur(function(){
+			var val = jQuery(this).val()
+			if(val>0) {
+				jQuery(".wk-preorder").val(0);
+			}
+		})
+	})(jQuery);
+</script>

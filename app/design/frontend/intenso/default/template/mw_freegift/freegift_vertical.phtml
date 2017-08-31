@@ -1,0 +1,51 @@
+<?php
+$ruleApplieFree   = $this->getRuleApplieQuote();
+$display 		  = $this->_displayFreeGift();
+$couponCode       = Mage::getSingleton('core/session')->getFlagCoupon();
+$flagRule         = Mage::getSingleton('core/session')->getFlagRule();            
+$productIds       = $this->_getFreeGiftItems();
+if ($display):
+?>
+<div class="block mw-block-freegift">
+	<div class="block-title">
+		<strong><span><?php echo $this->__('Free Gift');?></span></strong>
+	</div>
+	<ul id="freegift" class="jcarousel-skin-tango freegift-vetical" >
+		<?php $_count= 1;?>
+		<?php 	
+		foreach ($ruleApplieFree as $ruleId):
+		        $productFreeGift = $this->getProductIdByRuleFree($ruleId);
+		        $rule            = Mage::getModel('freegift/salesrule')->load($ruleId);
+		        foreach ($productFreeGift as $productId) {
+		            $isDisplay = $this->checkProductInQuote($ruleId, $productId);
+		            if (in_array($productId, $productIds) && $isDisplay) {
+		                $product         = Mage::getModel('catalog/product')->load($productId);                              
+		?>
+			<li>
+				<a href="<?php echo $product->getProductUrl().'?mw_freegift=1'; ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($product, 'small_image')) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(50); ?>" width="50" height="50" alt="<?php echo $this->htmlEscape($this->getImageLabel($product, 'small_image')) ?>" /></a>
+				<div class="product-shop">
+					<div class="">                	
+						<p class="product-name"><a href="<?php echo $product->getProductUrl().'?mw_freegift=1'; ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>"><?php echo $this->htmlEscape($product->getName())?></a></p>
+						<div class="old-price">
+							<?php echo $this->getPriceHtml($product, true) ?>
+						</div>
+						<?php if($product->isSaleable()): ?>	
+						<?php if($rule): $url = $this->getAddToCartUrl($product,array('freegift'=>1,'apllied_rule'=>$rule->getId())); ?>
+						<?php $mw_class_rule = 'mw_rule'.$rule->getId();?>
+						<?php else:$url = $this->getAddToCartUrl($product,array('freegift'=>1));?>
+						<?php $mw_class_rule = 'mw_rule';?>
+						<?php endif;?>
+						<p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart <?php echo $mw_class_rule;?>" onclick="setLocation('<?php echo $url;?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+						<?php else: ?>
+						<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+						<?php endif; ?>
+					</div>
+				</div>
+			</li>	
+			<?php }} ?>	
+		<?php $_count ++; endforeach ?> 	
+	</ul>
+	<script type="text/javascript">decorateGeneric($$('ul.freegift-vetical li'), ['odd','even','first','last'])</script>
+	<div style="clear: both;"></div>
+</div>
+<?php endif;?>

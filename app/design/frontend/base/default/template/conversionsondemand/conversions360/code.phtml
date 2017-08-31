@@ -1,0 +1,17 @@
+<?php
+if($this->codSnippetEnabled() && strlen($this->getStoreIdentifier()) > 0):
+$storeIdentifier = strip_tags($this->getStoreIdentifier());
+$storePlatform  = strip_tags($this->getStorePlatform());
+$codServiceUrl = $this->getCodServiceUrl() . 'magento-loader.php?d=' . $storeIdentifier . '&p=' . $storePlatform ;
+?>
+<!--- Conversions On Demand script, more info at www.conversionsondemand.com - Do Not Remove or Replace -->
+<script language="javascript">
+var cod_cartSubtotalAmt = parseFloat(<?php echo floatval(Mage::helper('conversionsondemand_conversions360')->getCartSubTotal()); ?>);
+var cod_cartItems = "<?php echo Mage::helper('conversionsondemand_conversions360')->getCartItems(); ?>";
+var COD_CONFIG= {'platform': '<?php echo $storePlatform; ?>','stoken':'<?php echo $storeIdentifier; ?>'};
+</script>
+<script	language=javascript src="<?php echo $codServiceUrl; ?>"></script>
+<!--- Conversions On Demand script, more info at www.conversionsondemand.com - Do Not Remove or Replace -->
+<?php
+endif;
+?>

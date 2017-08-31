@@ -1,0 +1,77 @@
+#image_avatar_showroom {
+    margin-left: 325px;
+}
+#showroom_info {
+    margin-top:-150px;
+}
+#image_avatar_menu{
+    margin-top:0px;
+    margin-left: -1px;
+}
+
+.showroom-question-answer .showroom-question-ul li.active{border:5px solid #2f2f2f; }
+.creat-showroom a:hover img{
+    border:2px solid #00FF00;
+}
+.showrooms .toolbar {
+    width: 100%;
+    overflow: visible;
+    padding:6px 1px 15px;
+}
+.showrooms .toolbar .pager {
+    float: left;
+    width: 100%;
+    padding:3px 0;
+}
+
+.showrooms button.create span{
+background:#FF9F07  ;
+border:none;
+height:40px ;
+line-height:40px ;
+color:#fff;
+padding:0 0 0 6px;
+font-size:16px ;
+float:left;
+text-transform:uppercase;
+font-weight:bold;
+border-radius:6px;
+}
+.showrooms button.create span span{
+background-position:100% 0;
+padding-right:10px;
+}
+.showrooms .listing {
+    width: 100%;
+    overflow: visible;
+}
+.toolbar .pager .showroom-listing{
+    text-align:left;
+    float: left;
+}
+.showrooms .page-title .actions {
+    float: right;
+}
+.showroomlisting .products-grid li.item {
+    border: medium none;
+    float: left;
+    margin: 0;
+    padding: 12px 1% 0;
+    width: 23%;
+}
+
+
+/* showroom edit */
+.showroom-edit-submit{
+    margin-top: -100px;
+    float: right;
+}
+.edit-showroom{
+    display: inline-block;
+}
+.edit-showroom  .active img{
+    border: 3px solid #2F2F2F;
+}
+.showroom-edit-submit-end button{
+    float:right;
+}

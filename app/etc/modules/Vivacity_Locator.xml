@@ -1,0 +1,9 @@
+<?xml version = "1.0"?>
+   <config>
+      <modules>
+        <Vivacity_Locator>
+            <active>true</active>
+            <codePool>local</codePool>
+         </Vivacity_Locator>
+       </modules>
+    </config>

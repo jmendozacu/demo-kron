@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <catalog_product_view>
+        <reference name='head'>
+            <action method="addItem"><type>js</type><name>preorder/varien/product.js</name></action>
+            <action method="addItem"><type>js_css</type><name>preorder/preorder.css</name></action>
+        </reference>
+    </catalog_product_view>
+    <PRODUCT_TYPE_simple>
+        <reference name="content">
+            <block type="catalog/product_view_type_simple" name="preorder" template="preorder/default.phtml"/>
+        </reference>
+    </PRODUCT_TYPE_simple>
+    <PRODUCT_TYPE_configurable>
+        <reference name="content">
+            <block type="catalog/product_view_type_configurable" name="preorder" template="preorder/config.phtml"/>
+        </reference>
+    </PRODUCT_TYPE_configurable>
+    <PRODUCT_TYPE_grouped>
+         <reference name="content">
+            <block type="catalog/product_view_type_grouped" name="preorder" template="preorder/group.phtml"/>
+        </reference>
+    </PRODUCT_TYPE_grouped>
+    <PRODUCT_TYPE_virtual>
+        <reference name="content">
+            <block type="catalog/product_view_type_virtual" name="preorder" template="preorder/default.phtml"/>
+        </reference>
+    </PRODUCT_TYPE_virtual>
+    <PRODUCT_TYPE_downloadable>
+         <reference name="content">
+            <block type="catalog/product_view_type_simple" name="preorder" template="preorder/default.phtml"/>
+        </reference>
+    </PRODUCT_TYPE_downloadable>
+    <catalog_category_default translate="label">
+        <reference name="content">
+            <block type="catalog/product_list" name="preorder" template="preorder/pre.phtml"/>
+    </reference>
+    </catalog_category_default>
+    <catalog_category_layered translate="label">
+        <reference name="content">
+            <block type="catalog/product_list" name="preorder" template="preorder/pre.phtml"/>
+         </reference>
+    </catalog_category_layered>
+    <catalogsearch_result_index translate="label">
+        <reference name="content">
+            <block type="catalog/product_list" name="preorder" template="preorder/pre.phtml"/>
+         </reference>
+    </catalogsearch_result_index>
+    <checkout_cart_index translate="label">
+        <reference name="content">
+            <block type="checkout/cart_item_renderer" name="preorder" template="preorder/checkout/default.phtml"/>
+        </reference>
+    </checkout_cart_index>
+     <sales_order_view>
+        <reference name="sales.order.info">
+            <action method="setTemplate">
+                <template>preorder/order/info.phtml</template>
+            </action>
+        </reference>
+    </sales_order_view>
+</layout>

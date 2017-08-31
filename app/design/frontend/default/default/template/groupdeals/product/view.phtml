@@ -1,0 +1,207 @@
+<?php
+    $_helper = $this->helper('catalog/output');
+    $_product = $this->getProduct();
+    
+    $_gdHelper = $this->helper('groupdeals');
+    $_groupdeal = $this->getGroupdeal();
+    	
+	$_merchant = $this->getMerchant($_groupdeal);
+    $addressCollection = $this->getAddressCollection($_merchant);
+?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<!-- google maps scripts -->
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">  
+//<![CDATA[
+	Event.observe(window, 'load', function() { 	
+		<?php if ($_merchant->getStatus()==1 && count($addressCollection)>0): ?>	
+  			initializeGoogleMaps();
+  			<?php if ($addressCollection[0]!=''): ?>codeAddress('<?php echo $addressCollection[0]; ?>', 'A', '<?php echo $this->getSkinUrl('groupdeals/images'); ?>');<?php endif; ?>
+		<?php endif; ?>
+	});
+//]]>
+</script>
+<!-- facebook scripts -->
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1" type="text/javascript"></script>
+
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view gd-view">
+    <div class="product-essential">
+    <form action="<?php echo $this->getAddToCartUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>    		   
+        <div class="product-name">
+            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+        </div>		
+        <div class="gd-product-shop">        
+            <?php echo $this->getChildHtml('alert_urls') ?>
+            <?php echo $this->getChildHtml('product_type_data') ?>
+            <?php echo $this->getChildHtml('extrahint') ?>
+            
+			<!-- add to/prices block -->
+			<div class="gd-add-to-box">
+				<div class="gd-buy">
+            		<?php $taxDisplayType = Mage::getStoreConfig('tax/display/type'); ?>
+					<div class="special-price" id="<?php if ($taxDisplayType==1): ?>product-price-<?php else: ?>price-including-tax-<?php endif; ?><?php echo $_product->getId(); ?>"><?php echo $_gdHelper->getFormatedPrice($_product, $_product->getFinalPrice()); ?></div>
+					<div class="gd-add-to-cart">						
+					    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="gd-button<?php if(!$_product->isSaleable()): ?> disabled<?php endif; ?>" <?php if($_product->isSaleable()): ?>onclick="productAddToCartForm.submit(this)"<?php else: ?>disabled="disabled"<?php endif; ?>></button>
+					</div>  				
+				</div>
+				<div class="gd-box">
+					<small><?php echo $this->__('Value') ?></small><br/>
+					<span id="old-price-<?php echo $_product->getId(); ?>"><?php echo $_gdHelper->getFormatedPrice($_product, $_product->getPrice()); ?></span>
+				</div>
+				<div class="gd-box">
+					<small><?php echo $this->__('Discount') ?></small><br/>
+					<span id="discount-<?php echo $_product->getId(); ?>"><?php echo $this->getDiscountPercent($_product); ?></span>
+				</div>
+				<div class="gd-box">
+					<small><?php echo $this->__('You Save') ?></small><br/>
+					<span id="you-save-<?php echo $_product->getId(); ?>"><?php echo $_gdHelper->getFormatedPrice($_product, ($_product->getPrice()-$_product->getFinalPrice())); ?></span>
+				</div>
+				<?php echo $this->getChildHtml('occ') ?>
+				<?php if ($_product->isVirtual() && $_gdHelper->allowGiveAsGift() && $_product->isSaleable()): ?>
+				<div class="give-as-gift">
+					<button type="button" title="<?php echo $this->__('Give as a Gift') ?>" class="gd-button" onclick="submitProductAddToCartFormGift();"><span><span><?php echo $this->__('Give as a Gift') ?></span></span></button>
+				</div>	
+				<?php endif; ?>
+            </div>    
+			<div class="clearer"></div>   
+            
+            <!-- custom options block -->     
+			<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+				<?php echo $this->getChildChildHtml('container', '', true, true) ?>
+			<?php endif;?>
+			
+			<!-- countdown block -->
+			<!-- if product isn't saleable set countdown to 00:00:00 -->
+			<?php $finished = ($_product->isSaleable()) ? false : true; ?>
+			<div class="countdown-box">
+				<small><?php echo $this->__('TIME LEFT TO BUY') ?></small>
+				<?php echo $_gdHelper->getCountdown($_product->getGroupdealDatetimeTo(), $_product->getId(), $finished); ?>
+			</div>
+						
+			<!-- target/share blocks -->
+            <?php echo $this->getChildHtml('target') ?>	
+            <?php echo $this->getChildHtml('share') ?>		
+			
+			<!-- add to wishlist/compare block + extra buttons block -->
+            <?php echo $this->getChildHtml('addto') ?>
+            <?php echo $this->getChildHtml('extra_buttons') ?>
+            <?php echo $this->getChildHtml('other') ?>            
+		</div>		
+        <div class="gd-product-img-box">
+            <?php echo $this->getChildHtml('media') ?>
+			<div class="details-box left">
+				<h3><?php echo $this->__('The Fine Print'); ?></h3>
+				<?php echo $this->helper('catalog/output')->productAttribute($this->getProduct(), $_product->getGroupdealFineprint(), 'groupdeal_fineprint') ?>
+			</div>
+			<div class="details-box right">
+				<h3><?php echo $this->__('Highlights'); ?></h3>
+				<?php echo $this->helper('catalog/output')->productAttribute($this->getProduct(), $_product->getGroupdealHighlights(), 'groupdeal_highlights') ?>
+			</div>
+        </div>     
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+        
+        productAddToCartForm.submitLight = function(button, url){
+            if(this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(productAddToCartForm);
+		updateDiscount('<?php echo $_product->getId() ?>');
+		<?php if ($_product->getTypeId()=='bundle' && $_product->isSaleable()): ?>bundle.reloadPrice();<?php endif; ?>
+    //]]>
+    </script>
+    </div>
+    
+	<?php if ($_merchant->getStatus()==1 || $this->hasUpsellProducts($_product) || $this->allowFacebookComments() || $this->hasVisibleFrontendAttributes()): ?>
+	<div class="product-collateral">
+      	<?php echo $this->getChildHtml('additional') ?>	  
+  		<div class="clearer"></div>  
+  		<?php if ($_merchant->getStatus()==1): ?>
+			<div class="description-box">	
+				<?php echo $this->getMerchantDescription(); ?>
+				<?php if ($this->getBusinessHours()!=''): ?>
+					<h2><?php echo $this->__('Business Hours'); ?></h2>
+					<?php echo $this->getBusinessHours(); ?>
+				<?php endif; ?>
+			</div>
+			<div class="gd-information-box">
+				<h2><?php echo $this->getMerchantName(); ?></h2>
+				<?php if ($this->getMerchantLogo()!=''): ?>
+					<div class="logo">
+						<img src="<?php echo $this->getMerchantLogo(); ?>" width="190px" alt="" />
+					</div>
+				<?php endif; ?>
+				<div class="social-links">
+					<?php if ($this->getWebsite()!=''): ?><a href="<?php echo $this->getWebsite(); ?>" target="blank"><?php echo $this->__('Company Website'); ?></a><br/><?php endif; ?>
+					<?php if ($this->getFacebook()!=''): ?><a href="<?php echo $this->getFacebook(); ?>" target="blank"><?php echo $this->__('Facebook'); ?></a><br/><?php endif; ?>
+					<?php if ($this->getTwitter()!=''): ?><a href="<?php echo $this->getTwitter(); ?>" target="blank"><?php echo $this->__('Twitter'); ?></a><br/><?php endif; ?>
+					<?php if ($this->getEmail()!=''): ?><a href="mailto:<?php echo $this->getEmail(); ?>"><?php echo $this->__('Email'); ?></a><br/><?php endif; ?>
+					<?php if ($this->getPhone()!=''): ?><b><?php echo $this->__('Phone:'); ?></b> <?php echo $this->getPhone(); ?><br/><?php endif; ?>
+					<?php if ($this->getMobile()!=''): ?><b><?php echo $this->__('Mobile:'); ?></b> <?php echo $this->getMobile(); ?><br/><?php endif; ?>
+				</div>
+				<?php $i = 'A'; ?>
+				<?php if (count($addressCollection)>0): ?>
+					<div id="map_canvas"></div>
+					<a href="javascript:void(0);" id="view_large" class="map_links" target="blank"><?php echo $this->__('View Larger Map'); ?></a><span style="color:#DDDDDD;"> || </span><a href="javascript:void(0);" id="get_directions" class="map_links" target="blank"><?php echo $this->__('Get Directions'); ?></a>
+			
+					<div class="adress-links">				
+						<?php foreach ($addressCollection as $address): ?>
+							<div class="adress-box"><div class="number"><?php echo $i; ?></div><a href="javascript:void(0);" style="cursor:hand" onClick="codeAddress('<?php echo $address; ?>', '<?php echo $i; ?>', '<?php echo $this->getSkinUrl('groupdeals/images'); ?>');"><?php echo $address; ?></a></div>
+							<?php $i++; ?>
+						<?php endforeach; ?>
+					</div>
+				<?php else: ?>
+					<b><?php echo $this->getRedeem(); ?></b>
+				<?php endif; ?>
+			</div>
+	    <?php endif; ?>
+        <div class="clearer"></div><br/>
+        <?php echo $this->getChildHtml('info_tabs') ?>
+        <?php echo $this->getChildHtml('upsell_products') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+	    
+    </div>
+	<?php endif; ?>
+</div>

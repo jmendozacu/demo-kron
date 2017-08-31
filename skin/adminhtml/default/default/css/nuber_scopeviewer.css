@@ -1,0 +1,47 @@
+/**
+ *
+ * @category   Nuber
+ * @package    Nuber_Scopeviewer
+ * @author     Martin Nuber
+ * @copyright  Copyright (c) 2014 Martin Nuber
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/* Tooltip for config - Older Magento versions don't have this style so we add it */
+.nuber-scopeviwer .with-tooltip {}
+.nuber-scopeviwer .field-tooltip { display:inline-block; width:15px; height:15px; position:relative; z-index:1; background:url(../images/note_msg_icon.gif) no-repeat 0 0; cursor:help; vertical-align:middle; }
+.nuber-scopeviwer .field-tooltip:hover { z-index:100; }
+.nuber-scopeviwer .field-tooltip > span { display:none; }
+.nuber-scopeviwer .field-tooltip:hover > div:hover,
+.nuber-scopeviwer .field-tooltip > div { width:301px; /* width:0; */ background:#f6f6f6 url(../images/bkg_tooltip.png) repeat-y 100%; opacity:0; position:absolute; z-index:999; left:-296px; bottom:28px; padding:0 12px; color:#464d50; visibility:hidden; }
+.nuber-scopeviwer .field-tooltip > div:before { position:absolute; top:-5px; left:0; content:''; width:325px; height:5px; overflow:hidden; background:url(../images/bkg_tooltip.png) no-repeat 0 0; }
+.nuber-scopeviwer .field-tooltip > div:after { position:absolute; bottom:-14px; left:-1px; content:''; width:325px; height:14px; overflow:hidden; background:url(../images/bkg_tooltip.png) no-repeat -325px 0; }
+
+.nuber-scopeviwer .field-tooltip:hover > div:hover,
+.nuber-scopeviwer .field-tooltip > div {
+/*     -moz-transition-property:opacity, visibility, bottom;
+    -moz-transition-duration:0.4s, 0s;
+    -moz-transition-timing-function:linear;
+    -moz-transition-delay:0.3s, 0.7s;
+    -webkit-transition-property:opacity, visibility, bottom;
+    -webkit-transition-duration:0.4s, 0s;
+    -webkit-transition-timing-function:linear;
+    -webkit-transition-delay:0.1s, 0.5s;
+    -o-transition-property:opacity, visibility, bottom;
+    -o-transition-duration:0.4s, 0s;
+    -o-transition-timing-function:linear;
+    -o-transition-delay:0.1s, 0.5s;
+    transition-property:opacity, visibility, bottom;
+    transition-duration:0.4s, 0s;
+    transition-timing-function:linear;
+    transition-delay:0.1s, 0.5s; */
+    }
+
+.nuber-scopeviwer .field-tooltip:hover > div { opacity:1; width:301px; visibility:visible; bottom:30px; }
+
+.nuber-scopeviwer .field-tooltip:hover > div { opacity:1; width:301px; visibility:visible; bottom:30px;
+/*     -moz-transition-duration:0.2s, 0s; -moz-transition-delay:0.1s, 0s;
+    -webkit-transition-duration:0.2s, 0s; -webkit-transition-delay:0.1s, 0s;
+    -o-transition-duration:0.2s, 0s; -o-transition-delay:0.1s, 0s;
+    transition-duration:0.2s, 0s; transition-delay:0.1s, 0s; */
+    }

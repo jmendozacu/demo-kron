@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <!--
+    Layout
+    -->
+    <default>
+        <reference name="head">
+            <action method="addJs" ifconfig="noisypopup/general/enable">
+                <script>magedevgroup/noisypopup/bioep.js</script>
+            </action>
+            <action method="addCss" ifconfig="noisypopup/general/enable">
+                <stylesheet>magedevgroup/noisypopup/style.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="before_body_end">
+            <action method="setCacheLifetime"><lifetime>86400</lifetime></action>
+            <block type="core/template" ifconfig="noisypopup/general/enable" name="magedevgroup_noisypopup"
+                   template="magedevgroup/noisypopup/footer.phtml">
+            </block>
+        </reference>
+    </default>
+</layout>

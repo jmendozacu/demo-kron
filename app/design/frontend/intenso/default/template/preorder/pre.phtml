@@ -1,0 +1,50 @@
+<?php
+	$preorderInfo=array();
+	$_productCollection=$this->getLoadedProductCollection();
+    /** @var Webkul_Preorder_Helper_Data $helper */
+	$helper = Mage::helper("preorder");
+	$typeArray = array('bundle','grouped','configurable');
+	foreach ($_productCollection as $_product){
+		$stock="";
+		$productUrl = $_product->getProductUrl();
+		$productType = $_product->getTypeId();
+		$productId = $_product->getId();
+		$product = Mage::getModel('catalog/product')->load($productId);
+		$addToCarturl = Mage::helper('checkout/cart')->getAddUrl($product);
+		$stock=$helper->getStockStatus($productId);
+		if(!in_array($productType, $typeArray)) {
+			if($helper->isPreOrder($productId)) {
+				$isPreorder = "1";
+			} else {
+				$isPreorder="2";
+			}
+		} else {
+			$isPreorder="3";
+		}
+		$preorderInfo[$productUrl]['preorder']=$isPreorder;
+		$preorderInfo[$productUrl]['stock']=$stock;
+		$preorderInfo[$productUrl]['cart_url']=$addToCarturl;
+	}
+?>
+<script>
+	$wk_jq = jQuery.noConflict();
+	var preorderInfo=<?php echo json_encode($preorderInfo); ?>;
+	$wk_jq('.products-grid > li').each(function(){
+		var url = $wk_jq(this).find('.product-image').attr('href');
+		var cartUrl = preorderInfo[url]['cart_url'];
+		if(preorderInfo[url]['preorder']==1){
+			$wk_jq(this).find('button span span').text("Pre Order");
+		} else if(preorderInfo[url]['preorder']==3) {
+			$wk_jq(this).find('button span span').text("View Details");
+		}
+	});
+	$wk_jq('.products-list > li').each(function(){
+		var url = $wk_jq(this).find('.product-image').attr('href');
+		var cartUrl = preorderInfo[url]['cart_url'];
+		if(preorderInfo[url]['preorder']==1){
+			$wk_jq(this).find('button span span').text("Pre Order");
+		} else if(preorderInfo[url]['preorder']==3) {
+			$wk_jq(this).find('button span span').text("View Details");
+		}
+	});
+</script>

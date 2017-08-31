@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<menu>
+		<promo translate="label">
+			<children>
+				<socialgift module="mw_socialgift" translate="label">
+					<title>Social Gifts</title>
+					<sort_order>71</sort_order>
+					<children>
+						<!-- <catalog  module="mw_socialgift">
+							<title>Catalog Rules</title>
+							<sort_order>10</sort_order>
+							<action>adminhtml/socialgift_catalog</action>
+						</catalog> -->
+						<quote module="mw_socialgift">
+							<title>Social Sharing Rule</title>
+							<sort_order>20</sort_order>
+							<action>adminhtml/socialgift_quote</action>
+						</quote>
+                        <!-- <report module="mw_socialgift">
+                            <title>Report</title>
+                            <sort_order>30</sort_order>
+                            <action>adminhtml/socialgift_report/dashboard</action>
+                        </report> -->
+						<configuration>
+							<title>Configuration</title>
+							<sort_order>40</sort_order>
+							<action>adminhtml/system_config/edit/section/socialgift</action>
+						</configuration>
+					</children>
+				</socialgift>
+			</children>
+		</promo>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<promo translate="label">
+						<children>
+							<socialgift module="mw_socialgift" translate="label">
+								<title>Social Gifts</title>
+								<sort_order>71</sort_order>
+								<children>
+									<!-- <catalog  module="socialgift">
+										<title>Catalog Rules</title>
+										<sort_order>10</sort_order>
+									</catalog> -->
+									<quote module="mw_socialgift">
+										<title>Social Sharing Rules</title>
+										<sort_order>20</sort_order>
+									</quote>
+									<configuration>
+										<title>Configuration</title>
+										<sort_order>30</sort_order>
+									</configuration>
+								</children>
+							</socialgift>
+						</children>
+					</promo>
+					<system>
+						<children>
+							<config>
+								<children>
+									<socialgift translate="title" module="mw_socialgift">
+										<title>Social Gifts</title>
+									</socialgift>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

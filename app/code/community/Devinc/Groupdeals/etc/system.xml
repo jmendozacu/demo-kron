@@ -1,0 +1,552 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+		<dd translate="label" module="groupdeals">
+            <label>Developers-inc</label>
+            <sort_order>200</sort_order>
+		</dd>
+    </tabs>
+	<sections>
+        <devinc_license translate="label" module="license">
+			<label>Licenses</label>
+			<tab>dd</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>100</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<groupdeals translate="label">
+					<label>Groupdeals License</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+                        <domains_label translate="label">
+							<frontend_type>label</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_label</frontend_model>
+    						<sort_order>0</sort_order>
+						  	<show_in_default>1</show_in_default>
+						  	<show_in_website>1</show_in_website>
+						  	<show_in_store>1</show_in_store>
+						</domains_label>
+                        <domains translate="label">
+							<frontend_type>text</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_multiline</frontend_model>
+						  	<backend_model>license/system_config_backend_license</backend_model>
+    						<sort_order>1</sort_order>
+						  	<show_in_default>1</show_in_default>
+						  	<show_in_website>0</show_in_website>
+						  	<show_in_store>0</show_in_store>
+						</domains>
+					</fields>
+				</groupdeals>
+			</groups>
+        </devinc_license>
+        
+		<groupdeals translate="label" module="groupdeals">
+			<label>Group Deals</label>
+			<tab>dd</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>20</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<configuration translate="label">
+					<label>Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label">
+							<label>Enable Group Deals</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enabled>
+						<homepage_deals translate="label">
+							<label>Homepage Deals</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>groupdeals/source_city</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If a city is selected, its deals will be displayed on the homepage.</comment>
+						</homepage_deals>	
+						<deals_view translate="label">
+							<label>Deals Display</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>groupdeals/source_dealsview</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Select how you wish the Deals to be displayed for the Homepage or when clicking on a City from the Group Deals Popup.</comment>
+						</deals_view>	
+						<list_type translate="label">
+							<label>List View Type</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>groupdeals/source_listtype</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</list_type>	
+						<subscribe_popup translate="label">
+							<label>Enable Subscribe Popup</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</subscribe_popup>		
+						<gift_to_friend translate="label">
+							<label>Enable Give as a Gift</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</gift_to_friend>	
+						<countdown_type translate="label">
+							<label>Countdown Type</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>groupdeals/source_countdown</source_model>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If Flash isn't present on the computer or mobile device, the Flash Countdown will automatically be replaced with the Javascript Countdown.</comment>
+						</countdown_type>	
+						<slideshow_effect translate="label">
+							<label>Slideshow Effect</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>groupdeals/source_slideshow</source_model>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</slideshow_effect>			
+						<enable_facebook_comments translate="label">
+							<label>Enable Facebook Comments</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enable_facebook_comments>							
+						<sidedeals_number translate="label">
+							<label>Maximum Number of Side Deals</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sidedeals_number>	
+						<display_upcoming translate="label">
+							<label>Display Upcoming Deals</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If Yes - then the Future/Queued Deals will be displayed in the frontend.</comment>
+						</display_upcoming>		
+						<coupons_sender translate="label">
+							<label>Coupons Sender</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_email_identity</source_model>
+						  	<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</coupons_sender>
+					</fields>
+				</configuration>
+				
+				<countdown_configuration translate="label">
+					<label>Flash Countdown Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>	
+						<display_days translate="label">
+							<label>Display Days</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If No - the countdown will convert the days to hours.</comment>
+						</display_days>
+						<bg_main translate="label">
+							<label>Background Color</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bg_main>
+						<bg_color translate="label">
+							<label>Digit Background Color</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bg_color>
+						<alpha translate="label">
+							<label>Digit Gradient Alpha %</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</alpha>
+						<textcolor translate="label">
+							<label>Digit Color</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</textcolor>
+						<txt_color translate="label">
+							<label>Sec/Min/Hour Color</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model> 
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</txt_color>
+						<sec_text translate="label">
+							<label>Seconds Text</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sec_text>
+						<min_text translate="label">
+							<label>Minutes Text</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_text>
+						<hour_text translate="label">
+							<label>Hours Text</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</hour_text>
+						<days_text translate="label">
+							<label>Days Text</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</days_text>
+					</fields>
+				</countdown_configuration>
+				
+				<js_countdown_configuration translate="label">
+					<label>Javascript Countdown Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>25</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>	
+						<textcolor translate="label">
+							<label>Digit Color</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</textcolor>
+						<days_text translate="label">
+							<label>Days Text</label>
+							<frontend_type>text</frontend_type> 
+							<frontend_model>license/adminhtml_system_config_form_text</frontend_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</days_text>
+					</fields>
+				</js_countdown_configuration>
+				
+				<merchants_subscribe translate="label">
+					<label>Merchant Subscription Form</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>30</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label">
+							<label>Enable Form</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enabled>
+						<facebook_link translate="label">
+							<label>Display Facebook Field</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</facebook_link>
+						<twitter_link translate="label">
+							<label>Display Twitter Field</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</twitter_link>
+						<bussiness_hours translate="label">
+							<label>Display Bussiness Hours Field</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bussiness_hours>
+						<address translate="label">
+							<label>Display Address Fields</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>groupdeals/source_address</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</address>		
+						<redeem translate="label">
+							<label>Display Redeem Field</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</redeem>				
+					</fields>
+				</merchants_subscribe>
+				
+				<facebook_connect translate="label" module="groupdeals">
+                    <label>Facebook Connect</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>35</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <api_key translate="label" module="groupdeals">
+                            <label>Application Api Key</label>
+                            <frontend_type>obscure</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_obscure</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_key>
+						<secret translate="label" module="groupdeals">
+                            <label>Application Secret</label>
+                            <frontend_type>obscure</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_obscure</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </secret>
+						<locale translate="label" module="groupdeals">
+                            <label>Locale</label>
+                            <frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+                            <source_model>groupdeals/source_locale</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </locale>
+                    </fields>
+	            </facebook_connect>
+				
+				<notifications translate="label">
+					<label>Notifications</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<email_sender translate="label">
+							<label>Sender</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_email_identity</source_model>
+						  	<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</email_sender>
+						<email_new_deal translate="label">
+							<label>New Deal Notification</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If Yes - subscribed customers will be notified whenever a new deal starts running.</comment>
+						</email_new_deal>
+                        <email_new_deal_template translate="label">
+							<label>New Deal Template</label>
+						  	<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+						  	<source_model>adminhtml/system_config_source_email_template</source_model>
+						  	<sort_order>3</sort_order>
+						  	<show_in_default>1</show_in_default>
+						  	<show_in_website>1</show_in_website>
+						  	<show_in_store>1</show_in_store>
+						</email_new_deal_template>
+						<email_target_met translate="label">
+							<label>Target Met Notification</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If Yes - subscribed customers will be notified when the target is met.</comment>
+						</email_target_met>
+                        <email_target_met_template translate="label">
+							<label>Target Met Template</label>
+						  	<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+						  	<source_model>adminhtml/system_config_source_email_template</source_model>
+						  	<sort_order>5</sort_order>
+						  	<show_in_default>1</show_in_default>
+						  	<show_in_website>1</show_in_website>
+						  	<show_in_store>1</show_in_store>
+						</email_target_met_template>
+						<email_deal_over translate="label">
+							<label>Deal Over Notification</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If Yes - subscribed customers will be notified whenever a deal is over.</comment>
+						</email_deal_over>
+                        <email_deal_over_template translate="label">
+							<label>Deal Over Template</label>
+						  	<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+						  	<source_model>adminhtml/system_config_source_email_template</source_model>
+						  	<sort_order>7</sort_order>
+						  	<show_in_default>1</show_in_default>
+						  	<show_in_website>1</show_in_website>
+						  	<show_in_store>1</show_in_store>
+						</email_deal_over_template>
+					</fields>
+				</notifications>
+			</groups>
+        </groupdeals>
+        
+		<gomobile translate="label">
+			<groups>
+				<configuration translate="label">
+					<fields>
+						<homepage_deals translate="label">
+							<label>Homepage Deals</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>groupdeals/source_city</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If a city is selected, its deals will be displayed on the homepage.</comment>
+						</homepage_deals>	
+					</fields>
+				</configuration>
+			</groups>
+        </gomobile>
+    </sections>
+</config>

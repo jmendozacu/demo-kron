@@ -1,0 +1,64 @@
+<?php
+    $_productCollection = $this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+    $_gdHelper = $this->helper('groupdeals');
+    $crcId = $this->getRequest()->getParam('crc');
+?>
+<div id="messages_deals_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<?php if ($this->getCity()!=''): ?>
+	<div class="page-title category-title">
+		<h1><?php echo $this->__('%s - Upcoming Deals', $this->__($this->getCity())) ?></h1> (<a href="<?php echo $this->getUrl('groupdeals/product/list', array('crc'=>$crcId)); ?>"><?php echo $this->__('view current deals') ?></a>)
+	</div>
+<?php endif; ?>
+
+<?php if(!$_productCollection->count()): ?>
+<p class="note-msg"><?php echo $this->__('There are no upcoming deals. Feel free to Subscribe to receive updates on the newest Deals.') ?></p>
+<?php else: ?>
+<p class="note-msg"><?php echo $this->__('Feel free to Subscribe to receive updates on the newest Deals.') ?></p>
+<div class="gd-normal-list">   
+	<ul class="gd-grid">
+		<?php $i=0; foreach ($_productCollection as $_product): $i++; ?>
+	    	<?php 	
+	    		$_groupdeal = $this->getGroupdeal($_product->getId());
+	    		$soldQty = $this->getSoldQty($_groupdeal);
+	    		$minimumQty = $_groupdeal->getMinimumQty(); 
+	    	?>		
+            <li class="gd-item <?php if ($i%2==0): ?> gd-last<?php endif; ?>">
+				<div class="gd-product-image">
+					<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(292, 177); ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+				</div> 
+				<div class="gd-info">
+					<h2 class="gd-product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+					<div class="gd-add-to-box">
+	    				<div class="gd-top-box">									
+	    					<div class="price-box">
+	    					    <p class="special-price">
+					    			<span class="price-label"><?php echo $this->__('Price:') ?></span>
+					    			<span class="price" id="product-price-<?php echo $_product->getId(); ?>"><?php echo $_gdHelper->getFormatedPrice($_product, $_product->getFinalPrice()); ?></span>
+					    		</p>	
+					    	</div>
+					    </div>									
+					    <div class="gd-box">
+					        <span class="gd-box-label"><?php echo $this->__('Value:') ?></span>
+					        <span class="gd-box-value"><?php echo $_gdHelper->getFormatedPrice($_product, $_product->getPrice()); ?></span>
+					    </div>
+					    <div class="gd-box">
+					        <span class="gd-box-label"><?php echo $this->__('Savings:') ?></span>
+					        <span class="gd-box-value"><?php echo $_gdHelper->getFormatedPrice($_product, ($_product->getPrice()-$_product->getFinalPrice())); ?></span>
+					    </div>	
+					    <div class="gd-box">
+					        <span class="gd-box-label"><?php echo $this->__('Discount:') ?></span>
+					        <span class="gd-box-value"><?php echo $this->getDiscountPercent($_product); ?></span>
+					    </div>
+					</div>
+					<div class="small-target">
+						 <span><b><?php echo $this->__('Target:') ?></b></span>	
+					     <div class="target upcoming"><?php echo $minimumQty; ?></div>
+					</div>
+				</div>
+            </li>
+            <?php if ($i%2==0): ?><div class="clearer"></div><?php endif; ?>
+        <?php endforeach ?>
+	</ul>
+</div>
+<?php endif; ?>

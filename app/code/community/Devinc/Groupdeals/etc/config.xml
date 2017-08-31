@@ -1,0 +1,468 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Devinc_Groupdeals>
+            <version>0.1.3.3</version>
+        </Devinc_Groupdeals>
+    </modules>
+ 	<admin>
+        <routers>
+			<groupdealsadmin>
+				<use>admin</use>
+				<args>
+					<module>Devinc_Groupdeals</module>
+					<frontName>groupdealsadmin</frontName>
+				</args>
+			</groupdealsadmin> 		
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+            <groupdeals>
+                <use>standard</use>
+                <args>
+                    <module>Devinc_Groupdeals</module>
+                    <frontName>groupdeals</frontName>
+                </args>
+            </groupdeals>
+        </routers>
+        <layout>
+            <updates>
+                <groupdeals>
+                    <file>groupdeals.xml</file>
+                </groupdeals>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <groupdeals>
+                    <files>
+                        <default>Groupdeals.csv</default>
+                    </files>
+                </groupdeals>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+		<menu>
+			<groupdeals module="groupdeals">
+				<title>Group Deals</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<merchant_info module="groupdeals">
+						<title>Merchant Account</title>
+						<sort_order>0</sort_order>
+						<action>groupdealsadmin/adminhtml_merchants/account/</action>
+						<depends><config>groupdeals/is_merchant</config></depends>
+					</merchant_info>
+					<add module="groupdeals">
+						<title>Add Deal</title>
+						<sort_order>1</sort_order>
+						<action>groupdealsadmin/adminhtml_groupdeals/new/</action>
+					</add>
+					<items module="groupdeals">
+						<title>Manage Deals</title>
+						<sort_order>2</sort_order>
+						<action>groupdealsadmin/adminhtml_groupdeals/</action>
+					</items>
+					<merchants module="groupdeals">
+						<title>Manage Merchants</title>
+						<sort_order>3</sort_order>
+						<action>groupdealsadmin/adminhtml_merchants/</action>
+					</merchants>
+					<subscribers module="groupdeals">
+						<title>Manage Subscribers</title>
+						<sort_order>4</sort_order>
+						<action>groupdealsadmin/adminhtml_subscribers/</action>
+					</subscribers>
+					<configuration module="groupdeals">
+						<title>Settings</title>
+						<sort_order>5</sort_order>
+						<action>adminhtml/system_config/edit/section/groupdeals</action>
+					</configuration>
+				</children>
+			</groupdeals>
+		</menu>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<groupdeals translate="title" module="groupdeals">
+							<title>Group Deals</title>
+							<sort_order>50</sort_order>  							 
+							<children>
+								<merchant_info translate="title" module="groupdeals">
+									<title>Merchant Account</title>
+									<sort_order>0</sort_order>
+								</merchant_info>
+								<add translate="title" module="groupdeals">
+									<title>Add Deal</title>
+									<sort_order>1</sort_order>
+								</add>
+								<items translate="title" module="groupdeals">
+									<title>Manage Deals</title>
+									<sort_order>2</sort_order>
+								</items>
+								<merchants translate="title" module="groupdeals">
+									<title>Manage Merchants</title>
+									<sort_order>3</sort_order>
+								</merchants>
+								<subscribers translate="title" module="groupdeals">
+									<title>Manage Subscribers</title>
+									<sort_order>4</sort_order>
+								</subscribers>
+								<configuration translate="title" module="groupdeals">
+									<title>Settings</title>
+									<sort_order>5</sort_order>
+								</configuration>
+							</children>
+						</groupdeals>
+						<system>
+							<children>
+								<config>
+									<children>
+										<groupdeals translate="title" module="groupdeals">
+											<title>Group Deals Settings</title>
+											<sort_order>50</sort_order>
+										</groupdeals>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>		
+		</acl>		
+		<layout>
+			<updates>
+				<groupdeals>
+					<file>groupdeals.xml</file>
+				</groupdeals>
+			</updates>
+		</layout>
+        <translate>
+            <modules>
+                <groupdeals>
+                    <files>
+                        <default>Groupdeals.csv</default>
+                    </files>
+                </groupdeals>
+            </modules>
+        </translate>
+    </adminhtml>   
+    <global>
+		<events> 	
+          <!-- Adminhtml Events -->		  
+          <controller_action_postdispatch>
+              <observers>
+                  <controller_action_after>
+                      <class>groupdeals/observer</class>
+                      <method>hookToControllerActionPostDispatch</method>
+                  </controller_action_after>
+              </observers>
+          </controller_action_postdispatch>
+          
+		  <admin_session_user_login_success> 
+			<observers> 
+			  <groupdeals_observer_merchant_verification> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>merchantVerification</method> 
+			  </groupdeals_observer_merchant_verification> 
+			</observers> 
+		  </admin_session_user_login_success> 	
+          
+		  <refresh_indexes> 
+			<observers> 
+			  <refresh_indexes> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>refreshIndexes</method> 
+			  </refresh_indexes> 
+			</observers> 
+		  </refresh_indexes> 
+		  
+		  <catalog_controller_product_delete> 
+			<observers> 
+			  <groupdeals_observer_mass_delete> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>deleteDeal</method> 
+			  </groupdeals_observer_mass_delete> 
+			</observers> 
+		  </catalog_controller_product_delete> 	
+		  
+		  <catalog_product_delete_before> 
+			<observers> 
+			  <groupdeals_observer_delete> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>deleteDeal</method> 
+			  </groupdeals_observer_delete> 
+			</observers> 
+		  </catalog_product_delete_before> 	  
+		  
+		  <order_cancel_after> 
+			<observers> 
+			  <delete_coupon> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>deleteCoupon</method> 
+			  </delete_coupon> 
+			</observers> 
+		  </order_cancel_after> 
+		  
+		  <admin_system_config_changed_section_general> 
+			<observers> 
+			  <refresh_groupdeals_if_timezone_change> 
+				<type>singleton</type> 
+				<class>groupdeals/groupdeals</class> 
+				<method>refreshGroupdeals</method> 
+			  </refresh_groupdeals_if_timezone_change> 
+			</observers> 
+		  </admin_system_config_changed_section_general> 
+		  
+		  <sales_order_invoice_register> 
+			<observers> 
+			  <groupdeals_observer_create_coupons_after_invoice> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>createCouponsAfterInvoice</method> 
+			  </groupdeals_observer_create_coupons_after_invoice> 
+			</observers> 
+		  </sales_order_invoice_register>
+		  
+		  <sales_order_payment_refund> 
+			<observers> 
+			  <groupdeals_observer_void_coupons> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>voidCouponsAfterRefund</method> 
+			  </groupdeals_observer_void_coupons> 
+			</observers> 
+		  </sales_order_payment_refund>	
+
+		  <!-- Frontend Events -->      		  
+		  <http_response_send_before> 
+			<observers> 
+			  <homepage_redirect> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>homepageRedirect</method> 
+			  </homepage_redirect> 
+			</observers> 
+		  </http_response_send_before> 	
+		      
+		  <catalog_controller_product_init_after> 
+			<observers> 
+			  <groupdeals_observer_validate> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>validateGroupdeal</method> 
+			  </groupdeals_observer_validate> 
+			</observers> 
+		  </catalog_controller_product_init_after> 
+		  
+		  <catalog_product_is_salable_after> 
+			<observers> 
+			  <groupdeals_observer_saleable> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>isGroupdealSaleable</method> 
+			  </groupdeals_observer_saleable> 
+			</observers> 
+		  </catalog_product_is_salable_after> 	  
+		  
+		  <checkout_cart_product_add_after> 
+			<observers> 
+			  <groupdeals_set_region_city_to_quote_item> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>setRegionCityToQuoteItem</method> 
+			  </groupdeals_set_region_city_to_quote_item> 
+			</observers> 
+		  </checkout_cart_product_add_after> 	  
+		  
+		  <checkout_cart_add_product_complete> 
+			<observers> 
+			  <groupdeals_open_gift> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>openGiftPopup</method> 
+			  </groupdeals_open_gift> 
+			</observers> 
+		  </checkout_cart_add_product_complete> 
+		
+		  <sales_quote_item_qty_set_after> 
+			<observers> 
+			  <groupdeals_observer_cart_review> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>reviewCartItem</method> 
+			  </groupdeals_observer_cart_review> 
+			</observers> 
+		  </sales_quote_item_qty_set_after>			  
+		  	  
+		  <sales_quote_merge_before> 
+			<observers> 
+			  <groupdeals_observer_quote_merge_gift> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>quoteMergeGift</method> 
+			  </groupdeals_observer_quote_merge_gift> 
+			</observers> 
+		  </sales_quote_merge_before> 	
+		  
+		  <sales_order_place_after> 
+			<observers> 
+			  <groupdeals_observer_subscribe_customer> 
+				<type>singleton</type> 
+				<class>groupdeals/observer</class> 
+				<method>subscribeCustomer</method> 
+			  </groupdeals_observer_subscribe_customer> 
+			</observers> 
+		  </sales_order_place_after>	  
+        </events>		
+        <fieldsets>
+            <sales_convert_quote>                           
+                <groupdeals_coupon_from><to_order>*</to_order></groupdeals_coupon_from>
+                <groupdeals_coupon_to><to_order>*</to_order></groupdeals_coupon_to>
+                <groupdeals_coupon_to_email><to_order>*</to_order></groupdeals_coupon_to_email>
+                <groupdeals_coupon_message><to_order>*</to_order></groupdeals_coupon_message>
+            </sales_convert_quote>
+            
+            <sales_convert_quote_item>   
+                <crc_id><to_order_item>*</to_order_item></crc_id>
+            </sales_convert_quote_item>
+            
+            <sales_convert_order>                                              
+                <groupdeals_coupon_from><to_quote>*</to_quote></groupdeals_coupon_from>
+                <groupdeals_coupon_to><to_quote>*</to_quote></groupdeals_coupon_to>
+                <groupdeals_coupon_to_email><to_quote>*</to_quote></groupdeals_coupon_to_email>
+                <groupdeals_coupon_message><to_quote>*</to_quote></groupdeals_coupon_message>
+            </sales_convert_order>
+            
+            <sales_convert_order_item>   
+                <crc_id><to_quote_item>*</to_quote_item></crc_id>
+            </sales_convert_order_item>
+        </fieldsets>        
+        <models>
+            <groupdeals>
+                <class>Devinc_Groupdeals_Model</class>
+                <resourceModel>groupdeals_mysql4</resourceModel>
+            </groupdeals>
+            <groupdeals_mysql4>
+                <class>Devinc_Groupdeals_Model_Mysql4</class>
+                <entities>
+                    <groupdeals>
+                        <table>groupdeals</table>
+                    </groupdeals>
+                    <crc>
+                        <table>groupdeals_crc</table>
+                    </crc>
+                    <merchants>
+                        <table>groupdeals_merchants</table>
+                    </merchants>
+                    <subscribers>
+                        <table>groupdeals_subscribers</table>
+                    </subscribers>
+                    <notifications>
+                        <table>groupdeals_notifications</table>
+                    </notifications>
+                    <coupons>
+                        <table>groupdeals_coupons</table>
+                    </coupons>
+                </entities>
+            </groupdeals_mysql4>
+        </models>        
+        <resources>
+            <groupdeals_setup>
+                <setup>
+                    <module>Devinc_Groupdeals</module>
+                    <class>Devinc_Groupdeals_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </groupdeals_setup>
+            <groupdeals_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </groupdeals_write>
+            <groupdeals_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </groupdeals_read>
+        </resources>
+        <blocks>
+            <groupdeals>
+                <class>Devinc_Groupdeals_Block</class>
+            </groupdeals>            
+			<checkout>
+				<rewrite>
+					<cart_item_renderer>Devinc_Groupdeals_Block_Checkout_Cart_Item_Renderer</cart_item_renderer>
+				</rewrite>
+			</checkout>
+        </blocks>
+        <helpers>
+            <groupdeals>
+                <class>Devinc_Groupdeals_Helper</class>
+            </groupdeals>
+        </helpers>
+        <template>
+            <email>
+                <groupdeals_notifications_email_new_deal_template translate="label" module="groupdeals">
+                    <label>New Deal</label>
+                    <file>groupdeals/new_deal.html</file>
+                    <type>html</type>
+                </groupdeals_notifications_email_new_deal_template>
+                <groupdeals_notifications_email_target_met_template translate="label" module="groupdeals">
+                    <label>Target Met</label>
+                    <file>groupdeals/limit_met.html</file>
+                    <type>html</type>
+                </groupdeals_notifications_email_target_met_template>
+                <groupdeals_notifications_email_deal_over_template translate="label" module="groupdeals">
+                    <label>Deal Over</label>
+                    <file>groupdeals/deal_over.html</file>
+                    <type>html</type>
+                </groupdeals_notifications_email_deal_over_template>
+                <groupdeals_notifications_email_coupon_template translate="label" module="groupdeals">
+                    <label>Coupon</label>
+                    <file>groupdeals/coupon.html</file>
+                    <type>html</type>
+                </groupdeals_notifications_email_coupon_template>
+                <groupdeals_notifications_email_merchant_template translate="label" module="groupdeals">
+                    <label>Merchant Coupon List</label>
+                    <file>groupdeals/merchant.html</file>
+                    <type>html</type>
+                </groupdeals_notifications_email_merchant_template>
+            </email>
+        </template>
+    </global>
+	<crontab>
+       <!-- <jobs>
+            <groupdeals_notifications_update>
+                <schedule><cron_expr>*/5 * * * *</cron_expr></schedule> 
+                <run><model>groupdeals/notifications::createNotifications</model></run>
+            </groupdeals_notifications_update> 
+            <groupdeals_notifications_notify>
+                <schedule><cron_expr>*/5 * * * *</cron_expr></schedule> 
+                <run><model>groupdeals/notifications::notify</model></run>
+            </groupdeals_notifications_notify> 
+            <groupdeals_coupons_update>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule> 
+                <run><model>groupdeals/coupons::updateCoupons</model></run>
+            </groupdeals_coupons_update> 
+            <groupdeals_coupons_email>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule> 
+                <run><model>groupdeals/coupons::email</model></run>
+            </groupdeals_coupons_email> 
+            <groupdeals_refresh>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule> 
+                <run><model>groupdeals/groupdeals::refreshGroupdeals</model></run>
+            </groupdeals_refresh>
+        </jobs>-->
+    </crontab>
+</config>

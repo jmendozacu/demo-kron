@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @package    Magedevgroup_ScrappageScheme
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <menu>
+        <catalog>
+            <children>
+                <magedevgroup translate="title" module="scrappagescheme">
+                    <title>ScrapPage Products</title>
+                    <action>adminhtml/scrappage</action>
+                    <sort_order>40</sort_order>
+                </magedevgroup>
+            </children>
+        </catalog>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <magedevgroup translate="title" module="scrappagescheme">
+                                <title>ScrappageScheme</title>
+                            </magedevgroup>
+                        </children>
+                    </catalog>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

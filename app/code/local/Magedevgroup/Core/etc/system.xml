@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_Core
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <tabs>
+        <magedevgroup translate="label" module="magedevgroupcore">
+            <label>MageDevGroup Functions</label>
+            <sort_order>100</sort_order>
+        </magedevgroup>
+    </tabs>
+</config>

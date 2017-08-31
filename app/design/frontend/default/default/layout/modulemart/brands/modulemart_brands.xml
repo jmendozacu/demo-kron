@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ModuleMart_Brands extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Module-Mart License
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.modulemart.com/license.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to modules@modulemart.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * versions in the future. If you wish to customize this extension for your
+ * needs please refer to http://www.modulemart.com for more information.
+ *
+ * @category   ModuleMart
+ * @package    ModuleMart_Brands
+ * @author-email  modules@modulemart.com
+ * @copyright  Copyright 2014 © modulemart.com. All Rights Reserved
+ */
+-->
+<layout>
+	<default>
+		<reference name="head">
+			<action method="addCss"><stylesheet>modulemart/brands/css/brands.css</stylesheet></action>
+		 </reference>
+		<reference name="top.links">
+			<action method="addLink" translate="label title" module="brands" ifconfig="brands/link_options/show_toplink">
+				<label>Brands</label><url helper="brands/getBrandsUrl" />
+				<title>Brands</title>
+				<prepare />
+				<urlParams/>
+				<position>100</position>
+			</action>
+		</reference>
+		
+		<reference name="footer_links">
+			<action method="addLink" translate="label title" module="brands" ifconfig="brands/link_options/show_footerlink">
+				<label>Brands</label>
+				<url helper="brands/getBrandsUrl" />
+				<title>Brands</title>
+				<prepare />
+				<urlParams/>
+				<position>120</position>
+			</action>
+		</reference>
+		<reference name="left">
+           <block type="brands/brand_list" before="-" name="brand_list_left" as="brand_list_left_block">
+        <action method="setTemplate" ifconfig="brands/left_block/show_sideber">
+               <template>modulemart/brands/modulemart_brands/brand/brands_left_block.phtml</template> 
+        </action>
+            </block>
+        </reference>
+	</default>
+	<brands_index_index translate="label" module="brands">
+		<label>Brands list</label>
+		 <reference name="head">
+			<action method="addCss"><stylesheet>modulemart/brands/slider/css/flexslider.css</stylesheet></action>
+		 </reference>
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>		
+		<reference name="content">
+			<block type="brands/brand_list" name="brand_list" template="modulemart/brands/modulemart_brands/brand/list.phtml" />
+		</reference>
+	</brands_index_index>
+	<brands_brand_view translate="label" module="brands">
+		<label>Brand view page</label>
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+		<reference name="content">
+			<block type="brands/brand_view" name="brand_view" template="modulemart/brands/modulemart_brands/brand/view.phtml" />
+			<block type="brands/brand_catalog_product_list" name="brand.info.products" as="brand_products" template="catalog/product/list.phtml" />
+		</reference>
+	</brands_brand_view>
+	
+	 <catalog_product_view>
+		<reference name="product.info">
+			<reference name="alert.urls">
+			<block type="brands/catalog_product_list_brand" name="product.info.brands" as="product_brands" template="modulemart/brands/modulemart_brands/catalog/product/list/brand.phtml">
+				<action method="addToParentGroup"><group>detailed_info</group></action>
+				<action method="setTitle" translate="value" module="brands"><value>Brands</value></action>
+			</block>
+		</reference>
+	</reference>
+	</catalog_product_view>
+</layout>

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_ThemeOne
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <menu>
+        <connector>
+            <children>
+				<themeone module="themeone" translate="title">
+					<title>Manage Matrix Theme</title>
+					<children>
+						<banner module="themeone" translate="title">
+							<title>Manage Banners</title>
+							<sort_order>1</sort_order>
+							<action>adminhtml/themeone_banner</action>
+						</banner>
+						<categories module="themeone" translate="title">
+							<title>Manage Categories</title>
+							<sort_order>10</sort_order>
+							<action>adminhtml/themeone_categories</action>
+						</categories>
+						<spotproduct module="themeone" translate="title">
+							<title>Manage Spot Products</title>
+							<sort_order>20</sort_order>
+							<action>adminhtml/themeone_spotproduct</action>
+						</spotproduct>
+						<settings module="themeone" translate="title">
+							<title>Settings</title>
+							<sort_order>30</sort_order>
+							<action>adminhtml/system_config/edit/section/themeone</action>
+						</settings>
+					</children>
+					<sort_order>120</sort_order>
+				</themeone>
+            </children>
+        </connector>
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <themeone module="themeone" translate="title">
+                                        <title>Manage Matrix Theme</title>
+                                        <sort_order>71</sort_order>
+                                    </themeone>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <connector>
+                        <children>
+                            <simi_theme>
+                                <children>
+                                    <themeone module="themeone" translate="title">
+                                        <title>Manage Matrix Theme</title>
+                                        <children>
+                                            <settings module="themeone" translate="title">
+                                                <title>Settings</title>
+                                                <sort_order>30</sort_order>
+                                            </settings>
+                                        </children>
+                                        <sort_order>120</sort_order>
+                                    </themeone>
+                                </children>
+                            </simi_theme>
+                        </children>
+                    </connector>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

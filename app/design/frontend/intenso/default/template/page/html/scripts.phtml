@@ -1,0 +1,45 @@
+<?php
+/**
+ * Intenso Premium Theme
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Itactica (http://www.itactica.com)
+ * @license     http://getintenso.com/license/regular
+ */
+/**
+ * Scripts added before the body closing tag
+ */
+?>
+
+<script>
+	// Init Foundation framework
+	$j(document).foundation({
+		topbar: {
+			custom_back_text: true,
+			back_text: '<?php echo $this->__("Back"); ?>' 
+		}
+	});
+	// Init Intenso Theme framework
+	$j(document).intenso({
+		productsGrid: {
+			<?php if ($itemMinWidth = Mage::getStoreConfig('intenso/catalog/catalog_min_product_width', Mage::app()->getStore())): ?>
+			min_item_width: <?php echo $itemMinWidth; ?>
+			<?php else: ?>
+			min_item_width: 220
+			<?php endif; ?>
+		},
+        revealModalTimer: {
+            duration: '<?php echo Mage::getStoreConfig('intenso/global_messages/time', Mage::app()->getStore()); ?>s'
+        }
+	})
+	var lightboxInstance, lightboxMobileInstance;
+	$j(function () {
+		lightboxInstance = $j('.lightbox').imageLightbox({
+			quit_on_doc_click: false
+		});
+		lightboxMobileInstance = $j('.lightbox-mobile').imageLightbox({
+			quit_on_doc_click: false
+		});
+	});
+</script>

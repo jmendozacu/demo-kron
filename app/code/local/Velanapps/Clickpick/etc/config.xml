@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config>
+
+  <modules>
+    <Velanapps_Clickpick>
+      <version>1.0</version>
+    </Velanapps_Clickpick>
+  </modules>
+  
+  <global>
+    <models>
+      <velanapps_clickpick>
+        <class>Velanapps_Clickpick_Model</class>
+      </velanapps_clickpick>
+    </models>
+    <helpers>
+      <velanapps_clickpick>
+        <class>Velanapps_Clickpick_Helper</class>
+      </velanapps_clickpick>
+    </helpers>
+  </global>
+  
+  <default>
+    <carriers>
+      
+      <velanapps_clickpick_dungannon>
+        <active>1</active>
+        <sallowspecific>1</sallowspecific>
+        <model>velanapps_clickpick/clickpick</model>
+        <name>Store Pick Up</name>
+        <price>0.00</price>
+        <title>Store Pick Up</title>
+      </velanapps_clickpick_dungannon>
+      
+    </carriers>
+  </default>
+  
+</config>

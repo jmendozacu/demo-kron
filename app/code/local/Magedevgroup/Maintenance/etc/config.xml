@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_Maintenance
+ * @author     Magedevgroup
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_Maintenance>
+            <version>0.0.1</version>
+        </Magedevgroup_Maintenance>
+    </modules>
+    <global>
+        <resources>
+            <magedevgroupmaintenance_setup>
+                <setup>
+                    <module>Magedevgroup_Maintenance</module>
+                </setup>
+            </magedevgroupmaintenance_setup>
+        </resources>
+    </global>
+</config>

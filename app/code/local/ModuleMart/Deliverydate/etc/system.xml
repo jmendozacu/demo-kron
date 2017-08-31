@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * ModuleMart_Deliverydate extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Module-Mart License
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.modulemart.com/license.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to modules@modulemart.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * versions in the future. If you wish to customize this extension for your
+ * needs please refer to http://www.modulemart.com for more information.
+ *
+ * @category   ModuleMart
+ * @package    ModuleMart_Deliverydate
+ * @author-email  modules@modulemart.com
+ * @copyright  Copyright © modulemart.com. All Rights Reserved
+ */
+-->
+<config>
+	<tabs>
+		<modulemart translate="label" module="deliverydate">
+			<label>ModuleMart</label>
+			<sort_order>200</sort_order>
+		</modulemart>
+	</tabs>
+ 	<sections>
+		<deliverydate translate="label" module="deliverydate">
+			<class>separator-top</class>
+			<label>Delivery Date</label>
+			<tab>modulemart</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>20</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<delivery translate="label" module="deliverydate">
+					<label>General</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<is_enabled translate="label">
+                            <label>Enabled Offer</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+							<![CDATA[<span style="color: #204908;">If set to <strong>"Yes"</strong> - module is enabled, if set to 
+							<strong>"No"</strong> - module is disabled.</span>]]></comment>
+                        </is_enabled>
+					</fields>
+				</delivery>
+				<email translate="label" module="deliverydate">
+                    <label>Email Notifications</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <delivery_template translate="label">
+                            <label>Customer Delivery Date Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </delivery_template>
+						<pickup_template translate="label">
+                            <label>Customer Pickup Date Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pickup_template>
+                    </fields>
+                </email>		
+			</groups>
+		</deliverydate>
+	</sections>
+</config> 

@@ -1,0 +1,66 @@
+<style>
+#pay4later_details_option {
+    text-align: center; }
+
+</style>
+<?php
+
+$_payHelper = Mage::helper('pay4leter');
+$_payHelper->getPay4leterTypeName();
+
+if($_payHelper->isActive){
+	$_taxHelper = $this->helper('tax');
+
+	$_product = ($this->getProduct())?$this->getProduct():Mage::registry('current_product');
+	$for_details=1;
+	$_id = $_product->getId();
+	$_store = $_product->getStore();
+	$isActive = Mage::getModel('catalog/product')->load($_product->getId())->getAttributeText('pay4leter_enable');
+
+	$pid=$_product->getId();
+	/*if(!$isActive){
+		 $sku = substr($_product->getSku(),1);
+		 $id = Mage::getModel('catalog/product')->getResource()->getIdBySku($sku);
+		 $isActive = Mage::getModel('catalog/product')->load($id )->getAttributeText('pay4leter_enable');
+		$pid=$id;
+	}*/
+	
+
+	if($isActive =='Yes'){
+		$productPlans = Mage::getModel('catalog/product')->load($pid)->getAttributeText('pay4leter_plans');
+        
+        if(!is_array($productPlans)) { 
+        $productPlans1 = array();
+            $productPlans1[]= $productPlans;
+            $productPlans = $productPlans1;
+        } 
+        natcasesort($productPlans);
+		 
+        $lastElement = end($productPlans);
+ 		$planFirstDeposites = $_payHelper->getFirstPercentage($lastElement);
+
+		 $planCode = explode("-",$lastElement);
+		 $minimumLoanValue = $_payHelper->loanvalue;
+		 $_convertedFinalPrice = $_store->roundPrice($_store->convertPrice($_product->getFinalPrice()));
+		 $_pfinalPrice = $_taxHelper->getPrice($_product, $_convertedFinalPrice);
+
+		 $label_html = '<span style="display:none;" class="product_identity_'.$_id.'" id="'.$_id.'"></span><div class="pay4later_details_'.$_id.'" id="pay4later_details_option"><div class="cost_per_month" id="cost_per_month_'.$_id.'"></div>';
+		$label_html .= '<div class="product-view pay4later_tooltip"><div class="rrp"><span class="rrp-hint">?</span><span class="rrp-tooltip">Pay4later Finance Option is only available for minimum loan value of &#163;'.$minimumLoanValue.'</span></div></div></div>';
+
+		echo $label_html;
+		?>
+	
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				var product_id=jQuery(this).find(".product_identity_<?php echo $_id;?>");
+				
+				if(typeof product_id !='undefined' && product_id!=''){
+					
+					loadFinanceDetails_price(product_id,"<?php echo $planCode[1];?>", <?php echo $_pfinalPrice;?>, <?php echo $planFirstDeposites;?>, 0,"<?php echo $_id;?>","<?php echo $for_details;?>");
+				}
+			});
+		</script>
+		<?php 
+	}
+}
+?>

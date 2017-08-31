@@ -1,0 +1,30 @@
+<?php
+/*
+ * Developer: Michael Jacky
+ * Team site: http://cmsideas.net/
+ * Support: http://support.cmsideas.net/
+ * 
+ */ 
+    $selected = $this->getMappedColumns();
+?>
+<table>
+    
+
+<?php 
+    foreach ($this->getAttributes() as $attribute) {
+?>
+    <tr>
+        <td>
+            <input id="attr_<?php print $attribute->getAttributeId();?>" type="checkbox" name="attribute[<?php echo $attribute->getAttributeCode(); ?>]" value="1" <?php if (in_array($attribute->getAttributeCode(), $selected)): ?>checked="checked"<?php endif; ?> />
+            <label for="attr_<?php print $attribute->getAttributeId();?>"><?php echo $attribute->getAttributeCode(); ?></label>
+        </td>
+        <td style="padding-left: 10px;">
+            <label for="attr_<?php print $attribute->getAttributeId();?>"><?php echo $attribute->getFrontendLabel(); ?></label>
+        </td>
+    </tr>
+    
+    
+<?php
+    }
+?>
+</table>

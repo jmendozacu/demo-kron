@@ -1,0 +1,73 @@
+<?php
+$items = $this->getData();
+if(count($items) > 0):
+    ?>
+    <?php foreach($items as $itemId => $item):?>
+    <?php if(count($item) > 0):?>
+        <?php foreach($item as $ruleId => $products):?>
+        <?php foreach($products as $productId):?>
+            <?php
+                $product         = Mage::getModel('catalog/product')->load($productId);
+                $tipid = $product->getId() . time();
+                $rule            = Mage::getModel('freegift/rule')->load($ruleId);
+            ?>
+            <?php if ($product->isSaleable()):?>
+                <li class="mw-fg-items">
+                    <?php
+                        $urlAddToCart = $this->getLayout()->getBlockSingleton('freegift/product')->getAddToCartUrl($product, array('free_catalog_gift' => $itemId, 'ajax_gift' => true, 'applied_catalog_rule' => $ruleId));
+                        $urlProduct = $product -> getProductUrl() . "?mw_freegift=1";
+                        $mw_class_rule = 'mw_rule';
+                    ?>
+                    <a id="stay-target-<?php echo $tipid; ?>" href="<?php echo $product -> getProductUrl()?>" title="<?php echo $this -> htmlEscape($this -> getImageLabel($product, 'small_image')); ?>" class="product-image">
+                        <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(140, 135); ?>" width="140" height="135" alt="<?php echo $this -> htmlEscape($this -> getImageLabel($product, 'small_image')); ?>" />
+                    </a>
+                    <span style="display: none" class="product-name"><a href="javascript:;"><?php echo $product->getName(); ?></a></span>
+                    <div id="stay-content-<?php echo $tipid; ?>" class="mw-fg-item">
+                        <div class="mw-fg-item-options">
+                            <div class="mw-fg-item-option-title">
+                                <?php echo $rule -> getDescription(); ?>
+                            </div>
+                            <div class="mw-fg-item-option-ct">
+                                <p class="mw-fg-item-name">
+                                    <a href="<?php echo $urlProduct ?>" title="<?php echo $this -> htmlEscape($product -> getName()); ?>"><?php echo $this -> htmlEscape($product -> getName()); ?></a>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-shop">
+                        <div class="f-fix">
+                            <div class="old-price">
+                                <?php
+                                $_coreHelper = $this -> helper('core');
+                                $price = $product -> getPrice();
+                                //echo '<span class="price">' . $_coreHelper -> currency(number_format($price, 2), true, true) . '</span>';
+                                echo '<span class="price">' . $_coreHelper -> currency($price, true, false) . '</span>';
+                                ?>
+                            </div>
+                            <p>
+                                <div class="mw-hidden-product" data-product-id="<?php echo $product->getId()?>"></div>
+                                <div class="mw-hidden-product-image" data-product-image="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(265, 265)?>"></div>
+                                <div class="mw-hidden-product-has-options" data-has-options="<?php echo ($product->getOptions() ? "1" : "0")?>"></div>
+                                <div class="mw-hidden-product-type" data-product-type-id="<?php echo $product->getTypeId()?>"></div>
+                                <button id="btn<?php echo $i; ?>" type="button" title="<?php echo $this -> __('Add to Cart'); ?>" data-has-options="<?php echo ($product->getOptions() ? "1" : "0")?>" data-type-id="<?php echo $product -> getTypeId()?>" data-url-cart='<?php echo $urlAddToCart?>' data-ffg-type='catalog' data-applied-catalog-rule='<?php echo $ruleId?>' data-catalog-gift="<?php echo $itemId?>" data-id="<?php echo $product->getId()?>" class="button btn-cart <?php echo $mw_class_rule; ?>" data-url="<?php echo $urlAddToCart; ?>">
+                                    <span><span><?php echo $this -> __('Add to Cart'); ?></span></span>
+                                </button>
+                            </p>
+
+                        </div>
+                    </div>
+                </li>
+            <?php else: ?>
+                <li>
+                    <p class="availability out-of-stock">
+                        <span><?php echo $this -> __('Out of stock'); ?></span>
+                    </p>
+                </li>
+
+            <?php endif; ?>
+        <?php endforeach;?>
+        <?php endforeach;?>
+    <?php endif;?>
+<?php endforeach;?>
+<?php endif;?>

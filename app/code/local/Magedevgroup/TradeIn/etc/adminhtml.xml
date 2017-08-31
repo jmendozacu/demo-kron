@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @package    Magedevgroup_TradeIn
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <menu>
+        <sales>
+            <children>
+                <magedevgroup translate="title" module="tradein">
+                    <title>TradeIn Proposals</title>
+                    <action>adminhtml/tradein</action>
+                    <sort_order>30</sort_order>
+                </magedevgroup>
+            </children>
+        </sales>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <magedevgroup translate="title" module="tradein">
+                                <title>TradeIn</title>
+                            </magedevgroup>
+                        </children>
+                    </sales>
+
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <magedevgroup_tradein translate="title" module="tradein">
+                                        <title>Magedevgroup - TradeIn Proposal</title>
+                                    </magedevgroup_tradein>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

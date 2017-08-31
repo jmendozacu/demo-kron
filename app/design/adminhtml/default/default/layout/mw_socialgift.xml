@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <adminhtml_socialgift_quote_index>
+        <reference name="content">
+            <block type="mw_socialgift/adminhtml_quote" name="socialgift.quote" />
+        </reference>
+    </adminhtml_socialgift_quote_index>
+
+    <adminhtml_socialgift_quote_edit>
+        <reference name="head">
+            <action method="setCanLoadExtJs"><flag>1</flag></action>
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+            <action method="addItem"><type>js</type><name>mw_socialgift/lib/jquery.plugin.js</name></action>
+            <action method="addItem"><type>js</type><name>mw_socialgift/adminhtml/view.js</name></action>
+        </reference>
+        <reference name="left">
+            <block type="mw_socialgift/adminhtml_quote_edit_tabs" name="socialgift_quote_edit_tabs">
+                <block type="mw_socialgift/adminhtml_quote_edit_tab_main" name="socialgift_quote_edit_tab_main" />
+                <block type="mw_socialgift/adminhtml_quote_edit_tab_gift" name="socialgift_quote_edit_tab_gift"/>
+                <block type="mw_socialgift/adminhtml_quote_edit_tab_actions" name="socialgift_quote_edit_tab_actions"/>
+                <action method="addTab"><name>main_section</name><block>socialgift_quote_edit_tab_main</block></action>
+                <action method="addTab"><name>gift_section</name><block>socialgift_quote_edit_tab_gift</block></action>
+                <action method="addTab"><name>actions_section</name><block>socialgift_quote_edit_tab_actions</block></action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="mw_socialgift/adminhtml_quote_edit" name="socialgift_quote_edit"></block>
+        </reference>
+    </adminhtml_socialgift_quote_edit>
+
+</layout>

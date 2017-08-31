@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+  <config>
+     <modules>
+        <Vivacity_Locator>
+          <version>1.0.0</version>
+        </Vivacity_Locator>
+     </modules>
+     <frontend>
+       <routers>
+          <locatorfrontend>
+              <use>standard</use>
+              <args>
+                 <module>Vivacity_Locator</module>
+                 <frontName>locator</frontName>
+              </args>
+           </locatorfrontend>
+       </routers>
+	<layout>
+   	   <updates>
+        	<locator>
+             	<file>locator.xml</file>
+         </locator>
+    </updates>
+</layout>
+    </frontend>
+<admin>
+     <routers>
+         <locator>
+            <use>admin</use>
+            <args>
+               <module>Vivacity_Locator</module>
+               <frontName>adminlocator</frontName>
+            </args>
+         </locator>
+      </routers>
+ </admin>
+ <adminhtml>
+   <layout>
+      <updates>
+          <locator>
+              <file>locator.xml</file>
+           </locator>
+      </updates>
+   </layout>
+</adminhtml>
+<global>
+<models>
+<locator>
+     <class>Vivacity_Locator_Model</class>
+     <resourceModel>locator_mysql4</resourceModel>
+ </locator>
+<locator_mysql4>
+     <class>Vivacity_Locator_Model_Mysql4</class>
+     <entities>
+         <locator>
+           <table>locator</table>
+         </locator>
+      </entities>
+</locator_mysql4>
+</models>
+<resources>
+<locator_setup>
+                <setup>
+                    <module>Vivacity_Locator</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </locator_setup>
+<locator_write>
+            <connection>
+                <use>core_write</use>
+            </connection>
+        </locator_write>
+        
+       <locator_read>
+          <connection>
+             <use>core_read</use>
+          </connection>
+       </locator_read>
+</resources>
+<blocks>
+         <locator>
+              <class>Vivacity_Locator_Block</class>
+         </locator>
+      </blocks>
+<helpers>
+<locator>
+    <class>Vivacity_Locator_Helper</class>
+            </locator>
+        </helpers>
+</global>
+</config>

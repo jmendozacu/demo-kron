@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magedevgroup_Content>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Magedevgroup_Core />
+            </depends>
+        </Magedevgroup_Content>
+    </modules>
+</config>

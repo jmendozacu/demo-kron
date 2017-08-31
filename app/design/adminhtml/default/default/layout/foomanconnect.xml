@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <action method="addTab">
+                <name>foomanconnect_xero</name>
+                <block>foomanconnect/adminhtml_sales_order_view_tab_xero</block>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+    <adminhtml_sales_order_invoice_view>
+        <reference name="content">
+            <block type="foomanconnect/adminhtml_sales_invoice_xero" name="foomanconnect_invoice_xero"
+                   template="fooman/connect/order/view/tab/xero.phtml"/>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="content">
+            <block type="foomanconnect/adminhtml_sales_creditmemo_xero" name="foomanconnect_creditmemo_xero"
+                   template="fooman/connect/order/view/tab/xero.phtml"/>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+</layout>

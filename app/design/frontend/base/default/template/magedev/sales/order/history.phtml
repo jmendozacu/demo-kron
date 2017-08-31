@@ -1,0 +1,182 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?php $_orders = $this->getOrders(); ?>
+<div class="page-title">
+    <h1><?php echo $this->__('My Orders') ?></h1>
+</div>
+<?php echo $this->getChildHtml('info');?>
+<?php echo $this->getPagerHtml(); ?>
+<?php if($_orders->getSize()): ?>
+<table class="data-table orders" id="my-orders-table">
+    <col width="1" />
+    <col width="1" />
+    <col />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <thead>
+        <tr>
+            <th class="number"><?php echo $this->__('Order #') ?></th>
+            <th class="date"><?php echo $this->__('Date') ?></th>
+            <th class="ship"><?php echo $this->__('Ship To') ?></th>
+            <th class="total"><span class="nobr"><?php echo $this->__('Order Total') ?></span></th>
+            <th class="status"><span class="nobr"><?php echo $this->__('Order Status') ?></span></th>
+            <th class="view">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $_percent = 0;?>
+        <?php /** @var Mage_Sales_Model_Order $_order */?>
+        <?php foreach ($_orders as $_order): ?>
+        <?php
+            if($this->deliveryDate($_order)){
+                $deliveryDate = strtotime($this->deliveryDate($_order));
+                $createAtDate = strtotime($_order->getCreatedAt());
+                $fullDays = ceil(($deliveryDate - $createAtDate)/86400);
+                $deltaDays = ceil((time() - $createAtDate )/86400) ? ceil((time() - $createAtDate )/86400) : 1;
+            }
+            $commentCollection = Mage::getResourceModel('sales/order_status_history_collection')
+                ->setOrderFilter($_order)
+                ->setOrder('created_at', 'asc')
+                ->setOrder('entity_id', 'asc');
+            /** @var Mage_Sales_Model_Order_Status_History $comment */
+            foreach ($commentCollection as $comment) {
+                if ($comment->getStatus() === Mage_Sales_Model_Order::STATE_NEW ||
+                    $comment->getStatus() === 'pending') {
+                    $orderNewDate = date('d F', strtotime($comment->getCreatedAt()));
+                    $_percent = 20;
+                    if($deliveryDate){
+                        $_percent += ($deltaDays / $fullDays) * 80;
+                    }
+                }
+                elseif ($comment->getStatus() === Mage_Sales_Model_Order::STATE_PROCESSING) {
+                    $orderProcessingDate = date('d F', strtotime($comment->getCreatedAt()));
+                    $_percent = 40;
+                    if($deliveryDate){
+                        $_percent += ($deltaDays / $fullDays) * 60;
+                    }
+                }
+                elseif($comment->getStatus() === Mage_Sales_Model_Order::STATE_COMPLETE) {
+                    $orderCompleteDate = date('d F', strtotime($comment->getCreatedAt()));
+                    $_percent = 50;
+                    if($deliveryDate){
+                        $orderCompleteDate = date('d F', strtotime($this->deliveryDate($_order)));
+                        $_percent += ($deltaDays / $fullDays) * 50;
+                    }else{
+                        $_percent = 100;
+                    }
+                }
+            }
+            ?>
+        <tr>
+            <td class="number"><?php echo $_order->getRealOrderId() ?></td>
+            <td class="date"><span class="nobr"><?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></span></td>
+            <td class="ship"><?php echo $_order->getShippingAddress() ? $this->escapeHtml($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+            <td class="total"><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></td>
+            <td class="status"><em><?php echo $_order->getStatusLabel() ?></em></td>
+            <td class="a-center view">
+                <span class="nobr"><a href="<?php echo $this->getViewUrl($_order) ?>"><?php echo $this->__('View Order') ?></a>
+                    <?php /*<span class="separator">|</span><a href="<?php echo $this->getTrackUrl($_order) ?>"><?php echo $this->__('Track Order') ?></a>&nbsp;*/ ?>
+                    <?php if ($this->helper('sales/reorder')->canReorder($_order)) : ?>
+                    <span class="separator">|</span> <a href="<?php echo $this->getReorderUrl($_order) ?>" class="link-reorder"><?php echo $this->__('Reorder') ?></a>
+                <?php endif ?>
+                </span>
+            </td>
+        </tr>
+            <tr>
+                <td colspan="6" align="center">
+                    <div class="progress-wrap progress" data-progress-percent="<?php echo $_percent; ?>">
+                        <div class="progress-bar progress"></div>
+                    </div>
+                    <div>
+                        <div style="display: inline-block; float: left" class="order-new-date">
+                            <h1>Ordered</h1>
+                            <?php echo $orderNewDate;?>
+                        </div>
+                        <div style="display: inline-block;" class="order-processing-date">
+                            <h1>Dispatched</h1>
+                            <?php echo $orderProcessingDate;?>
+                        </div>
+                        <div style="display: inline-block; float: right" class="order-complete-date">
+                            <h1>Delivered</h1>
+                            <?php echo $orderCompleteDate;?>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-orders-table');</script>
+<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('You have placed no orders.'); ?></p>
+<?php endif ?>
+<style>
+    .progress {
+        width: 100%;
+        height: 35px;
+    }
+    .progress-wrap {
+        background: #0ecc09;
+        margin: 20px 0;
+        overflow: hidden;
+        position: relative;
+        border-radius: 25px;
+    }
+    .progress-bar {
+        background: #ddd;
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+    .progress-wrap.progress > div{
+         border: none;
+         padding: 0;
+    }
+</style>
+<script>
+    // on page load...
+    moveProgressBar();
+    // on browser resize...
+    jQuery(window).resize(function() {
+        moveProgressBar();
+    });
+
+    // SIGNATURE PROGRESS
+    function moveProgressBar() {
+        var getPercent = (jQuery('.progress-wrap').data('progress-percent') / 100);
+        var getProgressWrapWidth = jQuery('.progress-wrap').width();
+        var progressTotal = getPercent * getProgressWrapWidth +5;
+        var animationLength = 2500;
+        jQuery('.progress-bar').stop().animate({
+            left: progressTotal
+        }, animationLength);
+    }
+</script>
+

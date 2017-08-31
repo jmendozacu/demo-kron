@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_SimiPOS
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<layout version="0.1.0">
+    <simiposadmin_adminhtml_user_index>
+        <reference name="content">
+            <block type="simipos/adminhtml_user" name="simipos.user" />
+        </reference>
+    </simiposadmin_adminhtml_user_index>
+    <simiposadmin_adminhtml_user_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="simipos/adminhtml_user_grid" name="simipos.user.grid" />
+        </block>
+    </simiposadmin_adminhtml_user_grid>
+    <simiposadmin_adminhtml_user_orders>
+        <block type="core/text_list" name="root">
+            <block type="simipos/adminhtml_user_edit_tab_orders" name="simipos.user.orders.grid" />
+        </block>
+    </simiposadmin_adminhtml_user_orders>
+    
+    <simiposadmin_adminhtml_location_index>
+        <reference name="content">
+            <block type="simipos/adminhtml_location" name="simipos.location" />
+        </reference>
+    </simiposadmin_adminhtml_location_index>
+    <simiposadmin_adminhtml_location_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="simipos/adminhtml_location_grid" name="simipos.location.grid" />
+        </block>
+    </simiposadmin_adminhtml_location_grid>
+    <simiposadmin_adminhtml_location_users>
+        <block type="core/text_list" name="root">
+            <block type="simipos/adminhtml_location_edit_tab_users" name="simipos.location.users.grid" />
+        </block>
+    </simiposadmin_adminhtml_location_users>
+    <simiposadmin_adminhtml_location_orders>
+        <block type="core/text_list" name="root">
+            <block type="simipos/adminhtml_location_edit_tab_orders" name="simipos.location.orders.grid" />
+        </block>
+    </simiposadmin_adminhtml_location_orders>
+    
+    <simiposadmin_adminhtml_order_index>
+        <reference name="content">
+            <block type="simipos/adminhtml_order" name="simipos.order" />
+        </reference>
+    </simiposadmin_adminhtml_order_index>
+    <simiposadmin_adminhtml_order_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="simipos/adminhtml_order_grid" name="simipos.order" />
+        </block>
+    </simiposadmin_adminhtml_order_grid>
+    
+    <adminhtml_sales_order_view>
+        <reference name="order_totals">
+            <block type="simipos/adminhtml_order_cash" name="simipos.cash" />
+        </reference>
+    </adminhtml_sales_order_view>
+    
+    <!-- Invoice -->
+    <adminhtml_sales_order_invoice_new>
+        <reference name="invoice_totals">
+            <block type="simipos/adminhtml_invoice_cash" name="simipos.cash" />
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+    <adminhtml_sales_order_invoice_updateqty>
+        <reference name="invoice_totals">
+            <block type="simipos/adminhtml_invoice_cash" name="simipos.cash" />
+        </reference>
+    </adminhtml_sales_order_invoice_updateqty>
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_totals">
+            <block type="simipos/adminhtml_invoice_cash" name="simipos.cash" />
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+</layout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @package    Magedevgroup_NoisyPopup
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <acl>
+        <resources>
+             <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <noisypopup translate="title">
+                                        <title>Magedevgroup - NoisyPopup</title>
+                                    </noisypopup>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+ </config>

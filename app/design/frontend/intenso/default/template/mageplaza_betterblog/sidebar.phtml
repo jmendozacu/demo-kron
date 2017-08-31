@@ -1,0 +1,96 @@
+<?php
+    $posts = $this->getPosts();
+    $mostviews = $this->getMostviews();
+?>
+<?php if ($posts->getSize() > 0) :?>
+<div class="latest-and-popular-posts">
+    <div class="block-title clearfix">
+        <?php if(!is_null($mostviews) AND $mostviews->getSize() > 0):?>
+            <strong data-toggle-tab="popular-posts-list"><i class="icon-thumbs-up"></i> <span><?php echo $this->__('Popular'); ?></span></strong>
+        <?php endif;?>
+        <strong data-toggle-tab="latest-posts-list"><i class="icon-clock"></i> <span><?php echo $this->__('Latest'); ?></span></strong>
+    </div>
+    <div class="block-content">
+        <?php if(!is_null($mostviews) AND $mostviews->getSize() > 0):?>
+            <div id="popular-posts-list">
+                <ul class="posts-list">
+                    <?php foreach ($mostviews as $post): ?>
+                        <li class="post-item clearfix">
+                             <?php if ($post->getImage()) :?>
+                                <div class="post-image">
+                                    <a href="<?php echo $post->getPostUrl(); ?>">
+                                        <img src="<?php echo Mage::helper('mageplaza_betterblog/post_image')->init($post, 'image');?>"
+                                             alt="<?php echo $this->escapeHtml($post->getPostTitle());?>">
+                                    </a>
+                                </div>
+                             <?php endif; ?>
+                            <div class="post-description">
+                                <h4><a href="<?php echo $post->getPostUrl(); ?>"><?php echo $post->getPostTitle(); ?></a></h4>
+                                <p class="post-date"><?php echo $this->__('On ') . $post['created_at']; ?></p>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif;?>
+
+        <div id="latest-posts-list">
+            <ul class="posts-list">
+                <?php foreach ($posts as $post): ?>
+                    <li class="post-item clearfix">
+                        <?php if ($post->getImage()) :?>
+                            <div class="post-image">
+                                <a href="<?php echo $post->getPostUrl(); ?>">
+                                    <img src="<?php echo Mage::helper('mageplaza_betterblog/post_image')->init($post, 'image');?>"
+                                         alt="<?php echo $this->escapeHtml($post->getPostTitle()); ?>">
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        <div class="post-description">
+                            <h4><a href="<?php echo $post->getPostUrl(); ?>"><?php echo $post->getPostTitle(); ?></a></h4>
+                            <p class="post-date"><?php echo $this->__('On ') . $post['created_at']; ?></p>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<?php $_categories = $this->getCategories(); ?>
+<?php if ($_categories->getSize() > 0) : ?>
+    <div class="block blog-categories">
+        <div class="block-title">
+            <h3><span><?php echo Mage::helper('mageplaza_betterblog')->__('Categories') ?></span></h3>
+        </div>
+        <div class="block-content categories-list-container">
+            <ul>
+                <?php foreach ($_categories as $_category) : ?>
+                    <li class="category-list-item clearfix">
+                        <a href="<?php echo $_category->getCategoryUrl() ?>">
+                            <?php echo $_category->getName(); ?>
+                        </a>
+                        <span class="category-posts-number">(<?php echo $_category->getPostCount(); ?>)</span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script>
+    (function($){
+        $( document ).ready(function() {
+            $('.latest-and-popular-posts .block-content > div').hide();
+
+            $('.latest-and-popular-posts .block-title > strong').on('click', function(){
+               $(this).addClass('active-tab').siblings('strong').removeClass('active-tab');
+                var activeTabId = '#' + $(this).data('toggleTab');
+                $(activeTabId).show().siblings().hide();
+            });
+
+            $('.latest-and-popular-posts .block-title > strong:first-child').click();
+        });
+    })(jQuery);
+</script>

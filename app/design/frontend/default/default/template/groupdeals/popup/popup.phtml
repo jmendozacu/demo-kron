@@ -1,0 +1,89 @@
+<?php if (Mage::helper('groupdeals')->isEnabled()): ?>
+<?php $productIds = $this->getProductIds(); ?>
+<div id="gd-popup-bg" class="gd-popup-bg" style="display:none;" onClick="popup.hidePopup()"></div>
+<div id="gd-popup" class="gd-popup" style="display:none;">
+	<div class="close">
+		<a href="javascript:void(0)" onClick="popup.hidePopup();"><?php echo $this->__('(x) close'); ?></a>
+	</div>
+	<?php 
+	    $crc = $this->getCurrentCrc();
+	    $cityCount = 0;
+	    $mainUrl = $this->getUrl('groupdeals/product/noDeals');
+	    $tabNr = 1;
+	    $lastTab = 'tab1';
+	?>
+	<div class="countries">
+		<h1 class="title"><?php echo $this->__('Search by Country:'); ?></h1> 
+		<ul>
+			<?php $countryCollection = $this->getCountryCollection($productIds); ?>
+			<?php foreach ($countryCollection as $country): ?>
+				<?php if ($crc['country']!=''): ?>
+					<li <?php if ($crc['country']==$country['value']): $lastTab = 'tab'.$tabNr; ?>class="tab_hover"<?php else: ?>class="tab"<?php endif; ?> id="tab<?php echo $tabNr; ?>" onClick="popup.nextTab('tab<?php echo $tabNr; ?>')">
+						<?php echo $country['label']; ?>
+					</li>
+				<?php else: ?>
+					<li <?php if ($tabNr==1): ?>class="tab_hover"<?php else: ?>class="tab"<?php endif; ?> id="tab<?php echo $tabNr; ?>" onClick="popup.nextTab('tab<?php echo $tabNr; ?>')">
+						<?php echo $country['label']; ?>
+					</li>
+				<?php endif; ?>
+				<?php $tabNr++; ?> 
+			<?php endforeach; ?>
+				
+			<?php if ($universalUrl = $this->getCityUrl('Universal')): ?>
+				<?php $cityCount++; ?>
+				<?php if ($tabNr==1): ?>
+				    <?php $mainUrl = $universalUrl; ?>
+				<?php endif; ?>				
+				<?php if ($crc['country']!=''): ?>
+				    <li <?php if ($crc['country']=='Universal'): ?>class="tab_hover"<?php else: ?>class="tab"<?php endif; ?> id="universal" onClick="popup.nextTab('universal')">
+				    	<a id="universal_anchor" href="<?php echo $universalUrl; ?>">
+				    		<?php echo $this->__('Universal'); ?>
+				    	</a>
+				    </li>
+				<?php else: ?>
+					<li class="tab">
+						<a href="<?php echo $universalUrl; ?>">
+							<?php echo $this->__('Universal'); ?>
+						</a>
+					</li>
+				<?php endif; ?>	
+			<?php endif; ?>
+		</ul>
+	</div>
+	<div class="regions-cities">
+		<?php $tabNr = 1; ?>
+		<?php foreach ($countryCollection as $country): ?>
+			<?php if ($crc['country']!=''): ?>
+			<ul id="tab<?php echo $tabNr; ?>_data" class="tab-content" <?php if ($crc['country']!=$country['value']): ?>style="display:none"<?php endif; ?>>
+			<?php else: ?>
+			<ul id="tab<?php echo $tabNr; ?>_data" class="tab-content" <?php if ($tabNr!=1): ?>style="display:none"<?php endif; ?>>
+			<?php endif; ?>
+			<?php $regionCollection = $this->getRegionCollection($country['value'], $productIds); ?>
+			<?php foreach ($regionCollection as $region): ?>
+				<?php $cityCollection = $this->getCityCollection($region, $productIds); ?>
+			    <li class="main-city"><?php echo $region; ?></li>
+			    <?php $cityNr = 0; foreach ($cityCollection as $city): $cityNr++; ?>
+			    	<?php $cityCount++; ?>
+			    	<?php $cityUrl = $this->getCityUrl($city, $region); ?>
+			    	<?php if ($tabNr==1 && $cityNr==1): ?>
+			    		<?php $mainUrl = $cityUrl; ?>
+			    	<?php endif; ?>
+			    	<li <?php if ($crc['city']!='' && $crc['city']==$city && $crc['region']==$region): ?>class="city_tab_hover"<?php endif; ?>>
+			    	    <a id="city<?php echo $tabNr.$cityNr; ?>" href="<?php echo $cityUrl; ?>">
+			    	    	<?php echo $city; ?>
+			    	    </a>
+			    	</li>
+			    <?php endforeach; ?>					
+			<?php endforeach; ?>
+			</ul>
+		<?php $tabNr++; ?>
+		<?php endforeach; ?>
+	</div>
+</div>
+	
+<script type="text/javascript">
+//<![CDATA[
+	var popup = new Popup('gd-popup', 'gd-popup-bg', {lastTab: '<?php echo $lastTab; ?>', cityCount: '<?php echo $cityCount; ?>', mainDealUrl: '<?php echo $mainUrl; ?>'});
+//]]>
+</script>
+<?php endif; ?>

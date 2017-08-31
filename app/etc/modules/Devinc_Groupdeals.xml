@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Devinc_Groupdeals>
+            <active>false</active>
+            <codePool>community</codePool>
+            <depends>
+                <Devinc_License/>
+            </depends>
+        </Devinc_Groupdeals>
+    </modules>
+</config>

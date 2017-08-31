@@ -1,0 +1,68 @@
+<div class="middle" id="anchor-content">
+	<div id="page:main-container">
+		<div class="columns ">
+                	<div class="side-col" id="page:left">
+				<ul id="locator_tabs" class="tabs">
+    					<li><a href="#" class="tab-item-link active"><span>Import Store location</span></li>
+				</ul>
+			</div>
+			<div class="main-col" id="content">
+                        	<div class="main-col-inner">
+                            		<div id="messages"><?php print $this->getLayout()->createBlock('core/messages')->toHtml(); ?></div>
+                            		<div class="content-header">
+						<h3 class="icon-head head-adminhtml-locator">Import Store</h3>
+						<p class="form-buttons">
+<button title="Reset" type="button" class="scalable " onclick="setLocation(window.location.href)" style=""><span><span><span>Reset</span></span></span></button>
+<button  title="Save Store" type="button" class="scalable save" onclick="submitBulk();"><span><span><span>Import Store </span></span></span></button>
+						</p>
+					</div>
+					<div class="entry-edit">
+<?php $url = Mage::helper('adminhtml')->getUrl('locator/adminhtml_bulk/new'); ?>
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend">Fill Store Bulk</h4>
+    <div class="form-buttons"></div>
+</div>
+	<div class="fieldset">
+		<div class="hor-scroll">
+			<form action="<? echo $url; ?>" method="POST" id="bulkSubmit" enctype="multipart/form-data">
+				<input type="hidden" name="form_key" value="<? echo $this->getFormKey(); ?>" />
+<table cellspacing="0" class="form-list" style="width:50%;">
+            <tbody>
+                <tr>
+        <td class="label"><label for="store_name">Upload CSV File<span class="required">*</span></label></td>
+    <td class="value">
+        <input id="bulk_csv" name="bulkcsv" value="" type="file"><span id="uploadId" style="color:#ff0000;"></span></td>
+    </tr>
+<tr>
+        <td class="label"></td>
+	<td class="value">Please download sample CSV file from <a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>locator/sample.csv" style="color:#ff0000;" download>Here</a></td>
+</tr>
+    
+            </tbody>
+        </table>
+			</form>
+		</div>
+	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function submitBulk(){
+var fileExt = document.getElementById('bulk_csv').value;
+var sFileExtension = fileExt.split('.')[fileExt.split('.').length - 1].toLowerCase();
+
+	if(document.getElementById('bulk_csv').files.length == 0){
+		document.getElementById("uploadId").innerHTML ="Please select a file";
+		return false;
+	}
+ 	if(sFileExtension != "csv"){
+		document.getElementById("uploadId").innerHTML ="Please Select CSV File";
+		return false;
+	} else {
+		document.getElementById("bulkSubmit").submit();
+	}
+}
+</script>

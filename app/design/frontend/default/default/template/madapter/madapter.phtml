@@ -1,0 +1,39 @@
+<?php
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category 	Magestore
+ * @package 	Magestore_Madapter
+ * @copyright 	Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license 	http://www.magestore.com/license-agreement.html
+ */
+/**
+ * madapter template
+ * 
+ * @see Magestore_Madapter_Block_Madapter
+ */
+?>
+<?php $url = Mage::helper('madapter')->getConfig('link_alert'); ?>
+<?php $message = Mage::helper('madapter')->getConfig('content_alert'); ?>
+<script type="text/javascript">
+    document.observe("dom:loaded", function() {
+        // initially hide all containers for tab content
+        var r=confirm("<?php echo $message;?>");
+        if (r==true)
+        {
+            setLocation('<?php echo $url; ?>');
+        }       
+    });            
+
+</script>

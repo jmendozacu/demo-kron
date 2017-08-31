@@ -1,0 +1,67 @@
+<?php $_quote = $this->getQuote(); ?>
+<?php if ($_quote->getId() && $this->quoteHasCoupons() && Mage::helper('groupdeals')->isEnabled() && Mage::helper('groupdeals')->allowGiveAsGift()): ?>
+<div id="gd-popup-gift-bg" class="gd-popup-gift-bg" style="display:none;" onClick="giftPopup.hidePopup()"></div>
+<div id="gd-popup-gift" class="gd-popup-gift" style="display:none;"> 
+	<div class="close-corner">
+		<a href="javascript:void(0)" onClick="giftPopup.hidePopup();"><?php echo $this->__('(x) close'); ?></a>
+	</div>
+	<div class="title">
+	    <h1><?php echo $this->__('Gift Options') ?></h1>
+	    <p><?php echo $this->__('Fill out the form below to send the coupon(s) as a gift!') ?></p>
+	</div>
+	<form name="gd-gift-form" id="gd-gift-form" action="">
+	    <div class="left">
+	    	<ul class="form-list">
+	    		<li>
+	    			<label class="required" for="coupon_from"><?php echo $this->__('From') ?></label>
+	    			<div class="input-box">
+	    				<input type="text" class="input-text required-entry" title="From" value="<?php echo $_quote->getGroupdealsCouponFrom(); ?>" id="coupon_from" name="coupon_from">
+	    			</div>
+	    		</li>
+	    		<li>
+	    			<label class="required" for="coupon_to"><?php echo $this->__('To') ?></label>
+	    			<div class="input-box">
+	    				<input type="text" class="input-text required-entry" title="To" value="<?php echo $_quote->getGroupdealsCouponTo(); ?>" id="coupon_to" name="coupon_to">
+	    			</div>
+	    		</li>
+	    		<li class="radio">
+	    			<div class="input-box">
+	    				<input type="radio" onclick="gift.enableEmail();" class="input-text" title="Email to" value="" id="email_radio1" checked="checked" name="email_radio">
+	    			</div>
+	    			<label for="email_radio"><?php echo $this->__('Email to') ?></label>
+	    		</li>
+	    		<li>
+	    			<div class="input-box">
+	    				<input type="text" class="input-text validate-email required-entry" title="Email Address" value="<?php echo $_quote->getGroupdealsCouponToEmail(); ?>" id="coupon_to_email" name="coupon_to_email" >
+	    			</div>
+	    		</li>
+	    		<li class="radio">
+	    			<div class="input-box">
+	    				<input type="radio" onclick="gift.disableEmail();" class="input-text" title="I'll print it myself" value="" id="email_radio2" name="email_radio">
+	    			</div>
+	    			<label for="email_radio"><?php echo $this->__('I\'ll print it myself') ?></label>
+	    		</li>
+	    	</ul>
+	    </div>
+	    <div class="right" style="margin-right:10px;">
+	    	<ul class="form-list">
+	    		<li>
+	    			<label class="required" for="coupon_message"><?php echo $this->__('Message') ?> <small><?php echo $this->__('(Max 255 characters)') ?></small></label>
+	    			<div class="input-box">
+	    				<textarea rows="3" cols="5" onkeyup="gift.checkMaxLength(this, 255);" class="input-text required-entry" title="Message" id="coupon_message" name="coupon_message"><?php echo $_quote->getGroupdealsCouponMessage(); ?></textarea>
+	    			</div>
+	    		</li>
+	    	</ul>
+	    </div>
+	    <div class="clearer"></div>
+	    <div class="actions right" id="gift-buttons-container">
+	    	<span id="gift-buttons">
+	    		<button type="button" title="<?php echo $this->__('Save') ?>" class="button" onclick="gift.saveGift()"><span><span><?php echo $this->__('Save') ?></span></span></button>&nbsp; <span><?php echo $this->__('or') ?></span>&nbsp; <span class="close" onClick="giftPopup.hidePopup();"><?php echo $this->__('Cancel') ?></span>
+	    	</span>
+	    	<span class="please-wait" id="gift-please-wait" style="display:none;">
+	    		<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Saving...') ?>" title="<?php echo $this->__('Saving...') ?>" class="v-middle" /> <?php echo $this->__('Saving...') ?>
+	    	</span>
+	    </div>
+	</form>
+</div>
+<?php endif; ?>

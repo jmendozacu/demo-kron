@@ -1,0 +1,30 @@
+<?php $_quote = $this->getQuote(); ?>
+<?php if ($_quote->getId() && $this->quoteHasCoupons() && Mage::helper('groupdeals')->isEnabled() && Mage::helper('groupdeals')->allowGiveAsGift()): ?>
+	<span id="gift-link">
+		<?php if ($_quote->getGroupdealsCouponTo()!=''): ?>
+			<?php echo $this->__('Gift for:') ?> <strong><?php echo $_quote->getGroupdealsCouponTo(); ?></strong><br/>
+			<span id="link-actions"><a href="javascript:void(0)" onclick="giftPopup.showPopup();"><?php echo $this->__('Edit') ?></a> <?php echo $this->__('or') ?> <a href="javascript:void(0)" onclick="gift.removeGift();"><?php echo $this->__('Remove') ?></a></span>
+		<?php else: ?>
+			<a href="javascript:void(0)" onclick="giftPopup.showPopup();"><?php echo $this->__('Give the Coupon(s) as a Gift') ?></a>
+		<?php endif; ?>
+	</span>			
+	<span id="gift-link-please-wait" style="display:none;">
+	    <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading...') ?>" title="<?php echo $this->__('Loading...') ?>" class="v-middle" /> <?php echo $this->__('Loading...') ?>
+	</span>
+	<script type="text/javascript">
+		//<![CDATA[
+		var giftPopup = new Popup('gd-popup-gift', 'gd-popup-gift-bg', false);
+		var gift = new Gift('gd-gift-form', {saveUrl: '<?php echo $this->getUrl('groupdeals/coupons/saveGift'); ?>', failureUrl: '<?php echo $this->getUrl('checkout/cart'); ?>'});
+		<?php if (Mage::getModel('core/session')->getGiftDeal()): ?>
+			Event.observe(window, 'load', function() { 	
+				giftPopup.showPopup();
+			});
+			<?php Mage::getModel('core/session')->setGiftDeal(); ?>
+		<?php endif; ?>		
+		//]]>	
+	</script>
+<?php endif; ?>
+
+
+
+

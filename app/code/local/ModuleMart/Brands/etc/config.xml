@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * ModuleMart_Brands extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Module-Mart License
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.modulemart.com/license.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to modules@modulemart.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * versions in the future. If you wish to customize this extension for your
+ * needs please refer to http://www.modulemart.com for more information.
+ *
+ * @category   ModuleMart
+ * @package    ModuleMart_Brands
+ * @author-email  modules@modulemart.com
+ * @copyright  Copyright 2014 © modulemart.com. All Rights Reserved
+ */
+-->
+<config>
+	<modules>
+		<ModuleMart_Brands>
+			<version>0.0.1</version>
+		</ModuleMart_Brands>
+	</modules>
+	<global>
+		<resources>
+			<modulemart_brands_setup>
+				<setup>
+					<module>ModuleMart_Brands</module>
+					<class>ModuleMart_Brands_Model_Resource_Setup</class>
+				</setup>
+			</modulemart_brands_setup>
+		</resources>
+		<blocks>
+			<brands>
+				<class>ModuleMart_Brands_Block</class>
+			</brands>
+		</blocks>
+		<helpers>
+			<brands>
+				<class>ModuleMart_Brands_Helper</class>
+			</brands>
+		</helpers>
+		<models>
+			<brands>
+				<class>ModuleMart_Brands_Model</class>
+				<resourceModel>brands_resource</resourceModel>
+			</brands>
+			<brands_resource>
+				<class>ModuleMart_Brands_Model_Resource</class>
+				<entities>
+					<brand>
+						<table>brands_brand</table>
+					</brand>
+					<brand_store>
+						<table>brands_brand_store</table>
+					</brand_store>
+					<brand_product>
+						<table>brands_brand_product</table>
+					</brand_product>
+				</entities>
+			</brands_resource>
+		</models>
+		<events>
+			<controller_front_init_routers>
+				<observers>
+					<modulemart_brands>
+						<class>ModuleMart_Brands_Controller_Router</class>
+						<method>initControllerRouters</method>
+					</modulemart_brands>
+				</observers>
+			</controller_front_init_routers>
+		</events>
+	</global>
+	<adminhtml>
+		<layout>
+			<updates>
+				<modulemart_brands>
+					<file>modulemart/brands/modulemart_brands.xml</file>
+				</modulemart_brands>
+			</updates>
+		</layout>
+		<translate>
+			<modules>
+				<ModuleMart_Brands>
+					<files>
+						<default>ModuleMart_Brands.csv</default>
+					</files>
+				</ModuleMart_Brands>
+			</modules>
+		</translate>
+		<events>
+			<core_block_abstract_prepare_layout_after>
+				<observers>
+					<brand>
+						<type>singleton</type>
+						<class>brands/adminhtml_observer</class>
+						<method>addBrandBlock</method>
+					</brand>
+				</observers>
+			</core_block_abstract_prepare_layout_after>
+			<catalog_product_save_after>
+				<observers>
+					<brand>
+						<type>singleton</type>
+						<class>brands/adminhtml_observer</class>
+						<method>saveBrandData</method>
+					</brand>
+				</observers>
+			</catalog_product_save_after>
+		</events>
+		<global_search>
+			<brand>
+				<class>brands/adminhtml_search_brand</class>
+				<acl>brands</acl>
+			</brand>
+		</global_search>
+	</adminhtml>
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<ModuleMart_Brands before="Mage_Adminhtml">ModuleMart_Brands_Adminhtml</ModuleMart_Brands>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	<frontend>
+		<routers>
+			<brands>
+				<use>standard</use>
+				<args>
+					<module>ModuleMart_Brands</module>
+					<frontName>brands</frontName>
+				</args>
+			</brands>
+		</routers>
+		<layout>
+			<updates>
+				<modulemart_brands>
+					<file>modulemart/brands/modulemart_brands.xml</file>
+				</modulemart_brands>
+			</updates>
+		</layout>
+		<!--<translate>
+			<modules>
+				<ModuleMart_Brands>
+					<files>
+						<default>ModuleMart_Brands.csv</default>
+					</files>
+				</ModuleMart_Brands>
+			</modules>
+		</translate>-->
+		 <events>
+            <page_block_html_topmenu_gethtml_before>
+                <observers>
+                    <brands>
+                        <class>brands/observer</class>
+                        <method>brandsOnTop</method>
+                    </brands>
+                </observers>
+            </page_block_html_topmenu_gethtml_before>
+        </events>
+	</frontend>
+	<default>
+		<brands>
+			<brand>
+				<is_brand_enabled>1</is_brand_enabled>
+				<jquery_enabled>1</jquery_enabled>
+				<is_on_top>1</is_on_top>
+				<is_brand_enabled_product_page>1</is_brand_enabled_product_page>
+				<breadcrumbs>1</breadcrumbs>
+				<meta_title>Shop by Brands</meta_title>
+			</brand>
+			<brands_slider>
+				<is_enabled>0</is_enabled>
+				<featured_brands_title>Feaured Brands Title</featured_brands_title>
+				<is_auto_play>1</is_auto_play>
+				<show_items>4</show_items>
+   			</brands_slider>
+			<left_block>
+				<show_sideber>1</show_sideber>
+				<sidebar_title>Shop By Brands</sidebar_title>
+				<total_brands_sidebar>7</total_brands_sidebar>
+				<show_images>1</show_images>
+   			</left_block>
+			<link_options>
+				<show_footerlink>1</show_footerlink>
+				<show_toplink>0</show_toplink>
+   			</link_options>
+		</brands>
+	</default>
+</config>

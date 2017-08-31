@@ -1,0 +1,13 @@
+<?php 
+	$coupon = Mage::getModel('groupdeals/coupons')->load($this->getRequest()->getParam('coupon_id')); 
+	$item = Mage::getModel('sales/order_item')->load($coupon->getOrderItemId());
+	$order = Mage::getModel('sales/order')->load($item->getOrderId());
+?>
+<?php echo $this->getCoupon($coupon, $order, $item); ?>
+
+<script type="text/javascript">window.print();</script>
+<style type="text/css">
+<!--
+.groupdeals-coupons-print .print-head { display:none; }
+-->
+</style>

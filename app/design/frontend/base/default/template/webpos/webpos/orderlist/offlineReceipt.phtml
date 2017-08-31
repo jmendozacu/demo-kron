@@ -1,0 +1,366 @@
+
+<style> 
+    @media (max-width: 480px) {
+        .items-view table .row-total {
+            display: none;
+        }items-view table td[data-metadata='qty']
+        .methods {
+            display: block !important;
+        }
+    }
+    @media (max-width: 380px) {
+        .items-view table .item-name {
+            max-width: 120px;
+        }
+        .items-view table .price-container,
+        .items-view table .tax {
+            display: none !important;
+        }
+        .items-view table .row-total {
+            display: table-cell !important;
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+    html {
+        font-family: <?php echo $this->getFont(); ?>;
+        font-size: 13px;
+    }
+    body, h1, h2, h3, h4, h5, h6, ul {
+        padding: 0;
+        margin: 0;
+        font-weight: normal;
+    }
+    table {
+        border-spacing: 0;
+    }
+    ul {
+        list-style: none;
+    }
+    .flex-container {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+    }
+
+    .paper {
+        margin: 0;
+        padding: 5px 0;
+    }
+
+    .logo-container, .store-info, .print-footer {
+        text-align: center;
+    }
+    .store-info {
+        margin-bottom: 7px;
+    }
+    .store-info .name {
+        font-weight: 800;
+        text-align: inherit;
+    }
+
+    #logo {
+        font-family: Segoe UI, Arial, sans-serif;
+        font-weight: 800;
+        font-size: 32px;
+    }
+
+    #logo img {
+        max-width: 200px;
+    }
+
+    .receipt-info {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        margin-bottom: 7px;
+    }
+
+    .receipt-info .customer-info {
+        text-transform: uppercase;
+    }
+
+    .items-view {
+        padding: 3px 0;
+        margin-bottom: 7px;
+    }
+    .items-view table {
+        width: 100%;
+        text-align: right;
+        font-size: inherit;
+        font-weight: inherit;
+        border-collapse: separate;
+    }
+
+    .items-view table thead {
+        vertical-align: top;
+    }
+
+    .items-view table tbody {
+        vertical-align: top;
+    }
+
+    .items-view table tbody tr td {
+        padding: 5px 0;
+    }
+
+    .items-view table td,
+    .items-view table th {
+        border-left: 10px solid transparent;
+    }
+
+    .items-view table td:first-child,
+    .items-view table th:first-child {
+        border-left: none;
+    }
+
+    .items-view table .item-name {
+        overflow: hidden;
+        white-space: normal;
+        text-transform: capitalize;
+    }
+
+    .items-view table .item-name .sku {
+        display: block;
+        text-transform: none;
+    }
+
+    .total-zone {
+        margin-bottom: 7px;
+        text-transform: uppercase;
+    }
+    .total-zone .title {
+        display: -webkit-flex;
+        display: flex;
+        font-weight: 800;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .total-zone .title .literal {
+
+    }
+    .total-zone table {
+        font-weight: inherit;
+        font-size: inherit;
+        width: 100%;
+    }
+    .methods {
+        display: block;
+        margin-bottom: 7px;
+        text-transform: uppercase;
+    }
+    .shipping_area, .shipping_area address {
+        text-transform: uppercase;
+        font-style: normal;
+    }
+    .footer {
+        text-align: center;
+    }
+    .footer .highlight {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 28px;
+    }
+    .footer .separate {
+
+    }
+    .date {
+        text-align: right;
+    }
+    #store-name {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 30px;
+    }
+    #store-star {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 16px;
+    }
+    #store-info {
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    @media screen {
+        .paper {
+            margin: 5px auto;
+            max-width: 600px;
+        }
+    }
+    @media print {
+        body {
+            color: #000;
+            background-color: #fff;
+        }
+    }
+    @page 
+    {
+        size: auto;
+        margin: 2mm 4mm;
+    }
+    #print_layout .barcode{
+        text-align:center;
+        margin-top: 5px;
+    }
+    #print_layout .logo-container img{
+        max-width:100%;
+    }
+</style>
+<!--Header-->
+<?php
+$helper = Mage::helper('webpos/receipt');
+$userDataFromOrder = $helper->getUserData();
+$storeInformation = $helper->getStoreInformation();
+$receiptSettings = $helper->getReceiptSettings();
+$title = Mage::helper('webpos')->__('ORDER SUMMARY');
+$userName = '';
+if (isset($userDataFromOrder['display_name'])) {
+    $userName = $userDataFromOrder['display_name'];
+}
+$storeInformations = Mage::app()->getStore()->getName();
+if (isset($storeInformation['storeName']) && $storeInformation['storeName'] != '') {
+    $storeInformations = $storeInformation['storeName'];
+}
+if (isset($storeInformation['storeAddress']) && $storeInformation['storeAddress'] != '') {
+    $storeInformations .= ': ' . $storeInformation['storeAddress'];
+}
+if (isset($storeInformation['storePhone']) && $storeInformation['storePhone'] != '') {
+    $storeInformations .= '<br/>' . $this->__('Phone: ') . $storeInformation['storePhone'];
+}
+?>
+<?php
+?>
+<div class="paper fluid-container" onclick="window.close();">
+
+    <div id="print_layout">
+        <?php
+        $header = $receiptSettings['header_text'];
+        $footer = $receiptSettings['footer_text'];
+        $date_format = $receiptSettings['date_format'];
+        $logoPath = $receiptSettings['webpos_logo'];
+        $logoUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . DS . 'webpos' . DS . 'logo' . DS . $logoPath;
+        ?>
+        <div class="logo-container container">
+            <?php if (isset($receiptSettings['show_receipt_logo']) && $receiptSettings['show_receipt_logo'] == true): ?>
+                <img src="<?php echo ($logoPath) ? $logoUrl : $this->getSkinUrl('images/icon/logo.png'); ?>" title="Webpos Receipt Logo" alt="Webpos Receipt Logo"/>
+            <?php endif; ?>
+            <div id="store-name"><?php echo $this->__('INVOICE'); ?></div>
+            <div id="store-star"><?php echo $this->__('**** ****'); ?></div>
+            <?php if (isset($receiptSettings['show_store_information']) && $receiptSettings['show_store_information'] == true): ?>
+                <div id="store-info"><?php echo $storeInformations; ?></div> 
+            <?php endif; ?>
+            <div class="header-text"><?php echo $header; ?></div> 
+            <div class="info-invoice">
+                <br/><span><span id='offline_receipt_order_number'></span>&nbsp;<br/><b id='offline_receipt_order_date'></b></span>
+            </div>
+            <?php if (isset($receiptSettings['show_cashier_name']) && $receiptSettings['show_cashier_name'] == true): ?>
+                <div class="user-info">
+                    <p style="text-transform: uppercase;margin-bottom:0px;"><?php echo $this->__('CASHIER'); ?>: <span id='offline_receipt_cashier_name'><?php echo $userName; ?></span></p>
+                </div>
+            <?php endif; ?>
+            <div class="user-info">
+                <p style="text-transform: uppercase;margin-top:0px;margin-bottom:0px;"><?php echo $this->__('CUSTOMER'); ?>: <span id='offline_receipt_customer_name'></span></p>
+            </div>
+        </div>
+
+        <div class="shipping_area">
+            <?php if (isset($receiptSettings['show_shipping_method']) && $receiptSettings['show_shipping_method'] == true): ?>
+                <span><?php echo $this->__('SHIPPING : ') ?><b id='offline_receipt_shipping_method'></b></span> <br/>
+            <?php endif; ?>
+            <?php if (isset($receiptSettings['show_payment_method']) && $receiptSettings['show_payment_method'] == true): ?>
+                <span><?php echo $this->__('PAYMENT :') ?><b id='offline_receipt_payment_method'></b></span>
+            <?php endif; ?>
+        </div>
+        <div class="items-view-container container">
+            <div class="items-view">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="item-name" data-metadata="item-name" align="left"><?php echo Mage::helper('webpos')->__('ITEM'); ?></th>
+                            <th data-metadata="qty"><?php echo Mage::helper('webpos')->__('Qty'); ?></th>
+                            <th class="price-container" data-metadata="price"><?php echo Mage::helper('webpos')->__('PRICE'); ?></th>
+                            <th class="tax" data-metadata="tax-amount"><?php echo Mage::helper('webpos')->__('TAX'); ?></th>
+                            <th class="row-total" data-metadata="row-total" align="right"><?php echo Mage::helper('webpos')->__('SUBTOTAL'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody id='offline_receipt_items'>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="total-zone-container container">
+            <div class="total-zone">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $this->helper('sales')->__('Subtotal') ?></td>
+                            <td align="right"><strong id='offline_receipt_subtotal'></strong></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->helper('sales')->__('Taxes') ?></td>
+                            <td align="right"><strong id='offline_receipt_tax'></strong></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->helper('sales')->__('Shipping') ?></td>
+                            <td align="right"><strong id='offline_receipt_shipping'></strong></td>
+                        </tr>
+                        <tr>
+                            <td style='padding-bottom:5px;'><?php echo $this->helper('sales')->__('Total') ?></td>
+                            <td align="right"><strong id='offline_receipt_grandtotal'></strong></td>
+                        </tr>
+                        <tr>
+                            <td style='border-top: dashed 1px #000;padding:2px 0px;'></td>
+                            <td style='border-top: dashed 1px #000;padding:2px 0px;'></td>
+                        </tr>
+                        <tr id='offline_receipt_row_cashforpos'>
+                            <td><?php echo $this->helper('webpos/payment')->getCashMethodTitle(); ?></td>
+                            <td align="right"><strong id='offline_receipt_cashforpos'></strong></td>
+                        </tr>
+                        <tr id='offline_receipt_row_change'>
+                            <td><?php echo $this->helper('sales')->__('POS Change') ?></td>
+                            <td align="right"><strong id='offline_receipt_change'></strong></td>
+                        </tr>
+                        <tr id='offline_receipt_row_ccforpos'>
+                            <td><?php echo $this->helper('webpos/payment')->getCcMethodTitle(); ?></td>
+                            <td align="right"><strong id='offline_receipt_ccforpos'></strong></td>
+                        </tr>
+                        <tr id='offline_receipt_row_cp1forpos'>
+                            <td><?php echo $this->helper('webpos/payment')->getCp1MethodTitle(); ?></td>
+                            <td align="right"><strong id='offline_receipt_cp1forpos'></strong></td>
+                        </tr>
+                        <tr id='offline_receipt_row_cp2forpos'>
+                            <td><?php echo $this->helper('webpos/payment')->getCp2MethodTitle(); ?></td>
+                            <td align="right"><strong id='offline_receipt_cp2forpos'></strong></td>
+                        </tr>
+                        <tr id='offline_receipt_row_codforpos'>
+                            <td><?php echo $this->helper('webpos/payment')->getCodMethodTitle(); ?></td>
+                            <td align="right"><strong id='offline_receipt_codforpos'></strong></td>
+                        </tr>
+                        <tr id='offline_receipt_row_balance'>
+                            <td><?php echo $this->helper('sales')->__('Balance') ?></td>
+                            <td align="right"><strong id='offline_receipt_balance'></strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <?php
+        if (isset($receiptSettings['show_comment']) && $receiptSettings['show_comment'] == true):
+            ?>
+            <div id='offline_receipt_comment'>
+            </div>
+            <?php
+        endif;
+        ?>
+        <div class="print-footer" id="store-star"><?php echo $this->__('-------- **** --------'); ?></div>
+        <div class="print-footer"><?php echo html_entity_decode($footer); ?></div>
+    </div>
+</div>

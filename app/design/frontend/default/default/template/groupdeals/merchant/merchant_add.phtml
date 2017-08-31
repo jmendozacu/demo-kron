@@ -1,0 +1,6 @@
+<?php if(Mage::helper('groupdeals')->isEnabled() && Mage::getStoreConfig('groupdeals/merchants_subscribe/enabled')): ?>
+<div class="gd-merchant-subscribe-add" onclick="setLocation('<?php echo $this->getUrl('groupdeals/merchant/subscribe') ?>')">
+	<h1><?php echo $this->__('Not A Merchant Yet?') ?></h1>
+	<p><?php echo $this->__('Subscribe to get your business featured on our %s website.', Mage::app()->getStore()->getFrontendName()) ?></p>
+</div>
+<?php endif; ?>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<tabs>
+		<webkul>
+			<label>WEBKUL&lt;img width="15" height="15" style="margin-left: 10px; vertical-align: middle;" src='//webkul.com/blog/wp-content/uploads/2013/09/wklogo.png'/></label>
+			<sort_order>1</sort_order>
+		</webkul>
+	</tabs>
+	<sections>
+		<preorder>
+			<class>separator-top</class>
+			<label>Preorder</label>
+			<tab>webkul</tab>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<preorder>
+					<label>Options</label>
+					<frontend_type>text</frontend_type>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<preorderStatus translate="label comment">
+							<label>Preorder Type</label>
+							<frontend_type>select</frontend_type>
+							<source_model>preorder/option</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</preorderStatus>
+						<percent translate="label">
+							<label>Percent Payment Accept for Preorder</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+							<depends>
+								<preorderStatus>1</preorderStatus>
+							</depends>
+						</percent>
+						<preorderAction translate="label comment">
+							<label>Enable Preorder for</label>
+							<frontend_type>select</frontend_type>
+							<source_model>preorder/preorderaction</source_model>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>if you choose 'per product' option you have to enable preorder on every product by selecting preorder status</comment>
+						</preorderAction>
+						<fewProducts translate="label">
+							<label>Enable Preorder for these Products</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+							<depends>
+								<preorderAction>2</preorderAction>
+							</depends>
+							<comment>Enter ',' seperated product ids for those you want to enable Preorder</comment>
+						</fewProducts>
+						<manyProducts translate="label">
+							<label>Disable Preorder for these Products</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+							<depends>
+								<preorderAction>3</preorderAction>
+							</depends>
+							<comment>Enter ',' seperated product ids for those you don't want to enable Preorder</comment>
+						</manyProducts>
+						<custom_message translate="label">
+							<label>Custom Message to display on preorder product</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</custom_message>
+						<preorderMail translate="label">
+							<label>Send email to customer when product is in stock</label>
+							<frontend_type>select</frontend_type>
+							<source_model>preorder/email</source_model>
+							<sort_order>18</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>if you choose 'manual' option. you will have to manually send mail to customer from admin</comment>
+						</preorderMail>
+						<adminEmail translate="label">
+							<label>Enter Admin Email Id</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>22</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>All Preorder email will be send from this email id</comment>
+						</adminEmail>
+					</fields>
+				</preorder>
+			</groups>
+		</preorder>
+	</sections>
+</config>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_freegift_catalog_index>
+        <reference name="content">
+            <block type="freegift/adminhtml_catalog" name="freegift" />
+        </reference>
+    </adminhtml_freegift_catalog_index>
+    <adminhtml_freegift_catalog_edit>
+    	<reference name="head">
+    		<action method="setCanLoadExtJs"><flag>1</flag></action>
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+    	</reference>
+    	<reference name="left">
+            <block type="freegift/adminhtml_catalog_edit_tabs" name="freegift_edit_tabs">
+                <block type="freegift/adminhtml_catalog_edit_tab_main" name="freegift_edit_tab_main"/>
+                <block type="freegift/adminhtml_catalog_edit_tab_conditions" name="freegift_edit_tab_conditions"/>
+                <block type="freegift/adminhtml_catalog_edit_tab_actions" name="freegift_edit_tab_actions"/>
+                <action method="addTab"><name>main_section</name><block>freegift_edit_tab_main</block></action>
+                <action method="addTab"><name>conditions_section</name><block>freegift_edit_tab_conditions</block></action>
+                <action method="addTab"><name>actions_section</name><block>freegift_edit_tab_actions</block></action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="freegift/adminhtml_catalog_edit" name="freegift_edit"/>
+        </reference>
+    </adminhtml_freegift_catalog_edit>
+    <adminhtml_freegift_report_dashboard>
+        <reference name="head">
+
+            <action method="addJs"><script>mw_freegift/adminhtml/lib/prototype-adapter.js</script></action>
+            <action method="addJs"><script>mw_freegift/adminhtml/lib/highcharts.js</script></action>
+            <action method="addJs"><script>mw_freegift/adminhtml/lib/exporting.js</script></action>
+
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params></params></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <block type="core/html_calendar" name="head.calendar" as="calendar" template="page/js/calendar.phtml"></block>
+
+            <action method="addJs"><script>mw_freegift/lib/validate.js</script></action>
+            <action method="addJs"><script>mw_freegift/adminhtml/head.main.js</script></action>
+        </reference>
+    </adminhtml_freegift_report_dashboard>
+    
+    
+    <adminhtml_freegift_quote_index>
+        <reference name="content">
+            <block type="freegift/adminhtml_quote" name="freegift.quote" />
+        </reference>
+    </adminhtml_freegift_quote_index>
+    
+    <adminhtml_freegift_quote_edit>
+        <reference name="head">
+            <action method="setCanLoadExtJs"><flag>1</flag></action>
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+        </reference>
+        <reference name="left">
+            <block type="freegift/adminhtml_quote_edit_tabs" name="freegift_quote_edit_tabs">
+                <block type="freegift/adminhtml_quote_edit_tab_main" name="freegift_quote_edit_tab_main" />
+                <block type="freegift/adminhtml_quote_edit_tab_conditions" name="freegift_quote_edit_tab_conditions"/>
+                <block type="freegift/adminhtml_quote_edit_tab_actions" name="freegift_quote_edit_tab_actions"/>				
+				<block type="freegift/adminhtml_quote_edit_tab_coupons" name="freegift_quote_edit_tab_coupons">
+                    <block type="freegift/adminhtml_quote_edit_tab_coupons_form" name="freegift_quote_edit_tab_coupons_form"/>
+                    <block type="freegift/adminhtml_quote_edit_tab_coupons_grid" name="freegift_quote_edit_tab_coupons_grid"/>
+                </block>
+                <block type="freegift/adminhtml_quote_edit_tab_social" name="freegift_quote_edit_tab_social"/>
+                <action method="addTab"><name>main_section</name><block>freegift_quote_edit_tab_main</block></action>
+                <action method="addTab"><name>conditions_section</name><block>freegift_quote_edit_tab_conditions</block></action>
+                <action method="addTab"><name>actions_section</name><block>freegift_quote_edit_tab_actions</block></action>		
+				<action method="addTab"><name>coupons_section</name><block>freegift_quote_edit_tab_coupons</block></action>
+                <action method="addTab"><name>social_section</name><block>freegift_quote_edit_tab_social</block></action>
+            </block>
+			<block type="adminhtml/template" template="mw_freegift/couponsjs.phtml" name="freegift_quote_edit_jsinit"/>
+        </reference>
+        <reference name="content">
+            <block type="freegift/adminhtml_quote_edit" name="freegift_quote_edit"></block>
+        </reference>
+    </adminhtml_freegift_quote_edit>
+	<adminhtml_freegift_quote_couponsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="freegift/adminhtml_quote_edit_tab_coupons_grid" name="freegift_quote_edit_tab_coupons_grid" />
+        </block>
+    </adminhtml_freegift_quote_couponsgrid>
+</layout>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<repair module="repair">
+			<title>Repairs</title>
+			<sort_order>3</sort_order>
+			<children>
+				<manage_repair module="repair">
+					<title>Manage Repairs</title>
+					<sort_order>2</sort_order>
+					<action>repair/repair</action>
+				</manage_repair>
+			</children>
+		</repair>
+	</menu>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<repair module="repair">
+						<title>Repair</title>
+						<sort_order>2</sort_order>
+					</repair>
+					<system>
+						<config>
+							<children>
+								<options>
+									<title>Kronosav Repair</title>
+								</options>
+							</children>
+						</config>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

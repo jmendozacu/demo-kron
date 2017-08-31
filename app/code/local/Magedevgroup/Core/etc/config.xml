@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_Core
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_Core>
+            <version>0.0.1</version>
+        </Magedevgroup_Core>
+    </modules>
+    <global>
+        <helpers>
+            <magedevgroupcore>
+                <class>Magedevgroup_Core_Helper</class>
+            </magedevgroupcore>
+        </helpers>
+    </global>
+</config>

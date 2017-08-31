@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <tradein_adminhtml_tradein_index>
+        <reference name="content">
+            <block type="tradein/adminhtml_tradein" name="tradein" />
+        </reference>
+    </tradein_adminhtml_tradein_index>
+</layout>

@@ -1,0 +1,7 @@
+.variables-content {margin:0;}
+.variables-content li a.control {color: inherit;font-weight: bold;text-decoration: none;}
+.control {background: url("../images/nolines_plus.gif") no-repeat scroll 0 0 transparent;display: block;padding-left: 18px;}
+.selected {background: url("../images/nolines_minus.gif") no-repeat scroll 0 0 transparent;}
+.variables-content .variables-list {margin-left: 30px;}
+.variables-content li a {color: #D98734;text-decoration: underline;}
+.pdfprocessor{font-weight: bold;}

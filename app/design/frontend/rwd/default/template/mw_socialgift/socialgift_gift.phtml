@@ -1,0 +1,64 @@
+<?php 
+if(Mage::helper('mw_socialgift')->isEnabled()) : $helper = Mage::helper('mw_socialgift'); 
+?>
+    <script>
+        var SOCIALGIFT_MESSAGE = '<p><span class="sg_add_gift_success"> </span> <?php echo Mage::helper('mw_socialgift')->__('Thank you! You have shared product to social network, You still have %s gift(s) to choose, <a href="javascript:void(0);" class="fancybox" title="Add gift to cart"> <i> click here </i></a>', Mage::getSingleton('checkout/session')->getNumberSocialGiftRule() - Mage::getSingleton('checkout/session')->getNumberSocialGift()) ?> </p>';
+    </script>
+    <div id="socialgift-gift" class="socialgift-gift">
+    <?php
+        $sesion = Mage::getSingleton('checkout/session');
+        $SocialGiftStatus = $sesion->getSocialGiftStatus();
+        $FreegiftIds = $this->getFreegiftIds();
+        if( isset($SocialGiftStatus) && ($SocialGiftStatus == 'shared') && (count($FreegiftIds) >0) ) {
+            $productCollection = Mage::getModel('catalog/product'); 
+    ?>
+            <div class="mw-sg-cart-title"><p><?php echo Mage::helper("mw_socialgift")->__('You can select %s gifts', $sesion->getNumberSocialGiftRule() - $sesion->getNumberSocialGift() ) ?></p></div>
+            <div class="jcarousel-wrapper">
+                <div class="jcarousel">
+                    <ul>
+                    <?php 
+                    foreach ($FreegiftIds as $product_id) {
+                        $socialgift = $productCollection->load($product_id);
+                        if ($socialgift->getTypeId() == 'simple') {
+                            $ruleId = Mage::helper('mw_socialgift')->getRuleByFreeProductId($product_id);
+                            $ruleData = Mage::helper('mw_socialgift')->getRuleDataById($ruleId);
+                    ?>
+                            <li class="mw-fg-items">
+                                <a id="stay-target-3784" href="<?php echo $socialgift->getProductUrl(); ?>" title="<?php echo $socialgift->getName(); ?>" class="product-image"><img src="<?php echo $socialgift->getImageUrl(); ?>" width="145" alt="<?php echo $socialgift->getName(); ?>"></a>
+                                <span style="display: none" class="product-name"><a href="javascript:;"><?php echo $socialgift->getName(); ?></a></span>
+                                <div id="stay-content-3784" class="mw-fg-item">
+                                    <div class="mw-fg-item-options">
+                                        <div class="mw-fg-item-option-ct">
+                                            <p class="mw-fg-item-name"><a href="<?php echo $socialgift->getProductUrl(); ?>" title="<?php echo $socialgift->getName(); ?>"><?php echo $socialgift->getName(); ?></a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-shop">
+                                    <div class="f-fix">
+                                        <div>
+                                            <span class="old-price"><span class=price><?php echo Mage::helper('core')->currency($socialgift->getPrice(), TRUE, FALSE); ?></span></span>
+                                            <span class="new-price"><span class=price><?php echo Mage::helper('core')->currency(Mage::helper('mw_socialgift')->_getPriceByItem($socialgift->getPrice(), $ruleData['discount_amount'], $ruleData['simple_action']), TRUE, FALSE); ?></span></span>
+                                        </div>
+                                            <div class="mw-hidden-product" data-product-id="378"></div>
+                                            <div class="mw-hidden-product-image" data-product-image="<?php echo $socialgift->getImageUrl(); ?>"></div>
+                                            <div class="mw-hidden-product-has-options" data-has-options="0"></div>
+                                            <div class="mw-hidden-product-type" data-product-type-id="simple"></div>
+                                            <?php if($socialgift->isSaleable()): ?>
+                                                <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo Mage::helper('checkout/cart')->getAddUrl($socialgift).'?socialgift=1&rule='.$ruleId; ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>                                   
+                                            <?php else: ?>
+                                                <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                            <?php endif; ?>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php } 
+                    } ?>
+                    </ul>
+                </div>
+                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+            </div>
+        <?php } ?>
+    </div>  
+<?php endif; ?>

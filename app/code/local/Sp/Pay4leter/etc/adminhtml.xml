@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <pay4leter module="sp_pay4leter">
+                                        <title>Pay4leter Section</title>
+                                    </pay4leter>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

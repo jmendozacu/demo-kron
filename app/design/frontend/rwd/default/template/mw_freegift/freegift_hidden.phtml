@@ -1,0 +1,9 @@
+<?php if($this->getRequest()->getParam('freegift') || $this->getRequest()->getParam('free_catalog_gift')):?>
+    <!--<input type="hidden" name="freegift" value="1" />
+	<input type="hidden" name="apllied_rule" value="<?php /*echo $this->getRequest()->getParam('apllied_rule')*/?>" />-->
+    <?php foreach($this->getRequest()->getParams() as $key => $request):?>
+        <?php if($key != 'id'):?>
+            <input type="hidden" name="<?php echo $key?>" value="<?php echo $request?>" />
+        <?php endif;?>
+    <?php endforeach;?>
+<?php endif;?>

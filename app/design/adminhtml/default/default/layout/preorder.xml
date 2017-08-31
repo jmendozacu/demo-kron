@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <preorder_adminhtml_preorder_index>
+        <reference name="content">
+            <block type="preorder/adminhtml_preorder" name="preorder" />
+        </reference>
+    </preorder_adminhtml_preorder_index>
+    <adminhtml_sales_order_view>
+    	<reference name="order_items">
+	        <action method="addItemRender">
+                <type>default</type>
+                <block>adminhtml/sales_order_view_items_renderer_default</block>
+                <template>preorder/sales/order/view/items/renderer/default.phtml</template>
+            </action>
+	        <action method="setTemplate">
+                <template>preorder/sales/order/view/items.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>downloadable</type>
+                <block>adminhtml/sales_order_view_items_renderer_default</block>
+                <template>preorder/downloadable/sales/order/view/items/renderer/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>bundle</type>
+                <block>bundle/adminhtml_sales_order_view_items_renderer</block>
+                <template>preorder/bundle/sales/order/view/items/renderer.phtml</template>
+            </action>
+	    </reference>
+    </adminhtml_sales_order_view>
+</layout>

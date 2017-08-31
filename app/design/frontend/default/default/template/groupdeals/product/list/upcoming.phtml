@@ -1,0 +1,44 @@
+<?php if (Mage::helper('groupdeals')->isEnabled()): ?>
+<?php
+	$displayUpcoming = $this->getDisplayUpcoming();
+	$sidedealsNumber = $this->getSidealsNumber();
+    $_gdHelper = $this->helper('groupdeals');
+    $crcId = $this->getCrcId();
+?>
+<?php if (count($this->getItems())>0 && $sidedealsNumber>0 && $displayUpcoming): ?>
+<div class="block block-related gd-block">
+    <div class="block-title">
+        <strong><span><?php echo $this->getTitle(); ?></span></strong>
+    </div>
+    <div class="block-content">
+        <ol class="mini-products-list" id="block-related">
+        <?php $i = 0; foreach($this->getItems() as $_item): $i++; ?>
+            <li class="item">
+					<div class="product-image">
+						<img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50) ?>" width="50" height="50" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" />
+					</div>
+                    <div class="product-details">
+                        <p class="product-name"><?php echo $this->htmlEscape($_item->getName()) ?></p>
+                    </div>
+					<div class="gd-info">
+						<div class="special-price">
+							<span class="price-label"><?php echo $this->__('Price:') ?></span>
+							<span class="price" id="product-price-<?php echo $_item->getId(); ?>">
+								<?php echo $_gdHelper->getFormatedPrice($_item, $_item->getSpecialPrice()); ?>
+							</span>
+						</div>	
+					</div>
+            </li>
+			<?php if ($sidedealsNumber<=$i) break; ?>
+        <?php endforeach; ?>
+        </ol>
+		<div class="actions">
+			<div class="left"><?php echo $this->__('View: ') ?></div>
+			<a href="<?php echo $this->getUrl('groupdeals/product/upcoming', array('crc'=>$crcId)); ?>">
+				<?php echo $this->__('All Upcoming Deals') ?>
+			</a>
+		</div>
+    </div>
+</div>
+<?php endif; ?>
+<?php endif; ?>

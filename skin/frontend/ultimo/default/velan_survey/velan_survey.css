@@ -1,0 +1,31 @@
+
+#poll_content .block{
+	width:70%;
+	border:10px solid black;
+	margin-bottom:30px;
+	color:white;
+}
+#poll_content .block:nth-child(odd) {
+background:rgb(255,0,0);
+float:left;
+}
+#poll_content .block:nth-child(even){
+background:white;
+border:10px solid rgb(0,0,0);
+float:right;
+color:black;
+}
+#poll_content .block:nth-child(odd) .block-subtitle{
+background:rgb(200, 0, 0);
+padding:18px 27px;
+}
+#poll_content .block:nth-child(even) .block-subtitle{
+background:rgb(144, 26, 232);
+padding:18px 28px;
+color:white;
+}
+#poll_content  button{color:white;}
+.poll-logo{
+margin-bottom: 35px;
+text-align: center;
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category 	Magestore
+ * @package 	Magestore_Simicontact
+ * @copyright 	Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license 	http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <modules>
+        <Simi_Simicontact>
+            <version>0.1.0</version>
+        </Simi_Simicontact>
+    </modules>
+    <frontend>
+        <routers>
+            <simicontact>
+                <use>standard</use>
+                <args>
+                    <module>Simi_Simicontact</module>
+                    <frontName>simicontact</frontName>
+                </args>
+            </simicontact>
+        </routers>
+        <layout>
+            <updates>
+                <simicontact>
+                    <file>simicontact.xml</file>
+                </simicontact>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Simi_Simicontact>
+                    <files>
+                        <default>Simi_Simicontact.csv</default>
+                    </files>
+                </Simi_Simicontact>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <simicontactadmin>
+                <use>admin</use>
+                <args>
+                    <module>Simi_Simicontact</module>
+                    <frontName>simicontactadmin</frontName>
+                </args>
+            </simicontactadmin>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <!--
+                <simicontact>
+                    <file>simicontact.xml</file>
+                </simicontact>
+                -->
+                <basket>
+                    <file>simicontact.xml</file>
+                </basket>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Simi_Simicontact>
+                    <files>
+                        <default>Simi_Simicontact.csv</default>
+                    </files>
+                </Simi_Simicontact>
+            </modules>
+        </translate>
+    </adminhtml>   
+    <global>        
+        <models>
+            <simicontact>
+                <class>Simi_Simicontact_Model</class>                
+            </simicontact>
+        </models>
+        <helpers>
+            <simicontact>
+                <class>Simi_Simicontact_Helper</class>
+            </simicontact>
+        </helpers>        
+        <events>
+                <connector_config_get_plugins_return>
+                        <observers>
+                                <simicontact_observers>
+                                        <class>simicontact/observer</class>
+                                        <method>connectorConfigGetPluginsReturn</method>
+                                </simicontact_observers>
+                        </observers>
+                </connector_config_get_plugins_return>
+        </events>
+        <!-- <events>
+                <controller_action_predispatch>
+                        <observers>
+                                <simicontact_observers>
+                                        <class>simicontact/observer</class>
+                                        <method>controllerActionPredispatch</method>
+                                </simicontact_observers>
+                        </observers>
+                </controller_action_predispatch>
+        </events> -->
+    </global>
+    <default>                
+        <simicontact>
+            <general>
+                <enable>1</enable>				
+                <email></email>
+                <phone></phone>
+                <website></website>
+                <style>2</style>
+                <icon_color>FF9900</icon_color>
+            </general>
+        </simicontact>
+    </default>   
+</config>

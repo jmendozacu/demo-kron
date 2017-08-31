@@ -1,0 +1,333 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @deprecated  after 1.4.0.0-alpha3
+ */
+$product_id = $this->getProduct()->getId();
+$product= Mage::getModel('catalog/product')->load($product_id);
+$productMainPrice = $product->getFinalPrice();
+$formattedPrice = Mage::helper('core')->currency($productMainPrice,false,false);
+$productPrice = number_format($formattedPrice,2);
+$productPrice  = str_replace(",","",$productPrice);
+/*
+?>
+<style>
+.pay4later_details{
+	display:block !important;
+}
+.bg-box.pay4later_details td{
+	padding:5px !important;
+}
+</style>
+<?php 
+$pay4laterArray = Mage::getStoreConfig('payment/pay4later');
+$minimumLoanValue = $pay4laterArray['loanvalue'];
+$infopaylater = $pay4laterArray['infopaylater'];
+
+
+$typeArray = array();
+$discountArray = array();
+for($i=1;$i<=5;$i++){
+    if($pay4laterArray['finance_code_'.$i] != ''){
+        $typeArray[$pay4laterArray['finance_code_'.$i]]['name'] =  $pay4laterArray['finance_offer_'.$i.'name'];
+        foreach(range('a','f') as $key){
+            if($pay4laterArray['deposit_pertange_code_'.$i.'_'.$key] != ''){
+                 $typeArray[$pay4laterArray['finance_code_'.$i]]['pertange']['deposit_pertange_code_'.$i.'_'.$key] = $pay4laterArray['deposit_pertange_code_'.$i.'_'.$key];
+                 $discountArray[$pay4laterArray['finance_code_'.$i]][] = $pay4laterArray['deposit_pertange_code_'.$i.'_'.$key];
+                 
+            }
+        }
+    }
+}
+
+$discountJsonArray = array();
+$i = 1;
+$first_key = 'ONIF6';
+$firstPertange = '10';
+$firstPertangeArray = array();
+foreach($typeArray as $ty_key => $ty_value){
+    if($i == 1){
+        reset($typeArray);
+        $first_key = key($typeArray);
+        $firstType = $first_key;
+        reset($typeArray[$first_key]['pertange']);
+        $firstPertangekey = key($typeArray[$first_key]['pertange']);
+        $firstPertangeArray = $typeArray[$first_key]['pertange'];
+        $firstPertange =  $typeArray[$first_key]['pertange'][$firstPertangekey];
+        
+    }
+    foreach(range('a','f') as $key){
+        $discountJsonArray[$ty_key][] =  $ty_value['pertange'];
+    }
+
+$i++;
+}
+
+$discountJson = json_encode($discountArray);
+?>
+<?php $attributePayTabValue = Mage::getModel('catalog/product')->load($product_id)->getAttributeText('product_for_pay4later');?>
+<?php 
+$currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+$currency_symbol = Mage::app()->getLocale()->currency( $currency_code )->getSymbol();?>
+
+<?php if($attributePayTabValue == 'Yes'){?>
+<?php if($pay4laterArray['product_detail_active'] == 1):?>
+
+
+	<script type="text/javascript">
+    jQuery(document).ready(function() {
+	
+		jQuery(".pay4later_details").hide();
+		jQuery(".show_hide").click(function(){
+			jQuery('.pay4later_details').toggle('slow');
+			//jQuery(".pay4later_details").show('slow');
+		});
+	
+	
+        loadFinanceDetails('<?php echo $first_key;?>', <?php echo $productPrice;?>, <?php echo $firstPertange;?>, 0);
+
+        jQuery("#var_product_type").change(function(){
+            var product_type = jQuery(this).val();
+            
+            var discountJson = jQuery.parseJSON('<?php echo $discountJson;?>');
+            
+           // console.log(product_type);
+           // console.log(discountJson);        
+            var discountLoop = discountJson[product_type];
+            
+            var option_content = '';
+            jQuery( discountLoop ).each(function( index,value ) {
+                option_content += '<option value='+value+'>'+value+'%</option>';
+              });
+              jQuery("#var_deposit_percentage").html(option_content);
+
+            
+        });
+        jQuery(".pay_class").change(function(){
+            var deposit_percentage = jQuery("#var_deposit_percentage").val();
+            var var_cost_of_goods = jQuery("#var_cost_of_goods").val();
+            var discounted_price = (var_cost_of_goods * deposit_percentage) / 100;
+            discounted_price = discounted_price.toFixed(2);
+            jQuery("#var_deposit_amount").val(discounted_price);
+
+
+            var p1 = jQuery(":input[name='var_product_type']").val();
+            var p2 = parseFloat(jQuery(":input[name='var_cost_of_goods']").val());
+            var p3 = parseFloat(jQuery(":input[name='var_deposit_percentage']").val());
+            var p4 = parseFloat(jQuery(":input[name='var_deposit_amount']").val());
+
+            if (p1 == '' || isNaN(p2) || isNaN(p3) || isNaN(p4)) {
+                alert("Please enter all the required fields in order to instantiate a new FinanceDetails object.");
+            } else {
+                loadFinanceDetails(p1, p2, p3, p4);
+            }
+
+            return false;
+        });
+
+        function loadFinanceDetails(product_type, cost_of_goods, deposit_percentage, deposit_amount) {
+
+            var my_fd_obj = new FinanceDetails(product_type, cost_of_goods, deposit_percentage, deposit_amount);
+			
+		//	jQuery("#rate_of_interest").html(my_fd_obj.rate_of_interest+"<br/><span class='subline'>"+my_fd_obj.rate_of_interest+" APR representative</span>");
+			jQuery("#rate_of_interest_frm").html(my_fd_obj.rate_of_interest+"<br/><span class='subline'>"+my_fd_obj.rate_of_interest+" APR representative</span>");
+			jQuery("#product_name").html(my_fd_obj.p_name);
+            jQuery("#finance_term").html(my_fd_obj.term+" monthly instalments");
+            jQuery("#cost_per_month").html('<?php echo $currency_symbol;?>' +my_fd_obj.m_inst.toFixed(2));
+            jQuery("#cost_of_goods").html('<?php echo $currency_symbol;?>' +my_fd_obj.goods_val);
+            jQuery("#deposit_percentage").html('<?php echo $currency_symbol;?>' +my_fd_obj.d_pc);
+            jQuery("#deposit_amount").html('<?php echo $currency_symbol;?>' +my_fd_obj.d_amount);
+            jQuery("#apr").html('<?php echo $currency_symbol;?>' +my_fd_obj.apr);
+            jQuery("#monthly_repayment").html('<?php echo $currency_symbol;?>' +my_fd_obj.l_repay);
+            jQuery("#total").html('<?php echo $currency_symbol;?>' +my_fd_obj.total);
+            jQuery("#credit_amount").html('<?php echo $currency_symbol;?>' +my_fd_obj.l_amount);
+            jQuery("#loan_cost").html('<?php echo $currency_symbol;?>' +my_fd_obj.l_cost);
+            jQuery("#loan_true_cost").html('<?php echo $currency_symbol;?>' +my_fd_obj.l_truecost);
+        }
+
+    });
+
+	
+</script>
+
+
+
+		<div class="desktop_pay4later_view"	>
+<form method="POST"  >
+    <table class="bg-box pay4later_details" style="clear:both"  >
+        <tbody >
+            <tr>
+                <td><b>Product Type</b></td>
+                <td class="var_product_type">
+                    <select name="var_product_type" class="pay_class select-box-width" id="var_product_type">
+                        <?php foreach($typeArray as $t_key => $t_value):?>
+                            <option value="<?php echo $t_key;?>"><?php echo $t_value['name']; ?></option>
+                        <?php endforeach;?>
+                    </select>
+                </td>
+            </tr>
+            <tr style="display: none">
+                <td>Cost of Goods (&pound;)</td>
+                <td class="var_cost_of_goods"><input type="hidden" readonly="readonly" id="var_cost_of_goods" name="var_cost_of_goods" size="5" value="<?php echo $productPrice;?>" /></td>
+            </tr>
+            <tr>
+                <td><b>Deposit Percentage</b></td>
+                <td class="var_deposit_percentage">
+                    <select name="var_deposit_percentage" class="pay_class select-box-width"  id="var_deposit_percentage">
+                    <?php foreach($firstPertangeArray as $key1 => $value1):?>
+                            <option value="<?php echo $value1;?>"><?php echo $value1;?>%</option>
+                    <?php endforeach;?>
+                         </select>
+                </td>
+            </tr>
+            <tr style="display: none">
+                <td>Deposit Amount (&pound;)</td>
+                <td class="var_deposit_amount"><input type="hidden" id="var_deposit_amount" name="var_deposit_amount" size="4" /></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr style="display: none">
+                <td colspan="3"><input type="button" id="params"  value="Update Values" /></td>
+            </tr>
+        </tfoot>
+    </table>
+</form>
+
+<table class="bg-box pay4later_details" style="margin-bottom:10px;">
+    <!--<thead>
+        <tr>
+            <th><strong>Property Name</strong></th>
+            <th><strong>Property Value</strong></th>
+            
+        </tr>
+    </thead>-->
+    <tbody>
+       
+        <tr>
+            <td><b>Deposit you Pay</b></td>
+            <td id="deposit_amount" class="weight-700" ></td>
+        </tr>
+        <!--
+        <tr>
+            <td>Percentage of Deposit</td>
+            <td id="deposit_percentage" class="weight-700"></td>
+        </tr>-->
+        
+           <tr>
+            <td><b>Monthly Instalment</b></td>
+            <td id="cost_per_month" class="weight-700"></td>
+        </tr>
+		
+		
+		<tr>
+            <td><b>Rate of Interest (fixed)</b></td>
+            <td id="rate_of_interest_frm" class="weight-700"></td>
+        </tr>
+		
+		
+         <tr>
+            <td><b>Cash Price</b></td>
+            <td id="cost_of_goods" class="weight-700"></td>
+        </tr>
+         <tr>
+            <td><b>Amount of Loan</b></td>
+            <td id="credit_amount" class="weight-700"></td>
+        </tr>
+         <tr>
+            <td><b>Cost of Loan</b></td>
+            <td id="loan_cost" class="weight-700"></td>
+        </tr>
+          <tr>
+            <td><b>Total Amount Payable</b></td>
+            <td id="total" class="weight-700"></td>
+        </tr>
+        <tr>
+            <td><b>Duration of Agreement</b></td>
+            <td id="finance_term" class="weight-700"></td>
+        </tr>
+        
+		<?php if($minimumLoanValue != ''):?>
+		<tr>
+            <td><b>Minimum loan value</b></td>
+            <td id="min_loan_value" class="weight-700"><?php echo $currency_symbol. $minimumLoanValue;?></td>
+        </tr>
+		<?php endif;?>
+        
+		
+		<?php if($infopaylater != ''):?>
+        <tr>
+		<td colspan="2" class="pay4later_info">
+			<b><?php echo $infopaylater;?></b>
+		</td>
+		</tr>
+		<?php endif;?>
+        
+        
+        <!--
+        
+        <tr>
+            <td>Product Name</td>
+            <td><code><em>my_fd_obj.</em>p_name</code></td>
+            <td id="product_name"></td>
+        </tr>
+       
+        
+        <tr>
+            <td>Amount of Deposit</td>
+            <td><code><em>my_fd_obj.</em>d_amount</code></td>
+            <td id="deposit_amount"></td>
+        </tr>
+       
+       
+        <tr>
+            <td>APR</td>
+            <td><code><em>my_fd_obj.</em>apr</code></td>
+            <td id="apr"></td>
+        </tr>
+     
+        <tr>
+            <td>Loan Repayment</td>
+            <td><code><em>my_fd_obj.</em>l_repay</code></td>
+            <td id="monthly_repayment"></td>
+        </tr>
+      
+       
+        <tr>
+            <td>True Cost of Loan</td>
+            <td><code><em>my_fd_obj.</em>l_truecost</code></td>
+            <td id="loan_true_cost"></td>
+        </tr>
+        -->
+    </tbody>
+</table>
+
+
+</div>
+
+<?php endif;?>
+<?php }
+*/
+?>

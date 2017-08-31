@@ -1,0 +1,28 @@
+<?php if (Mage::helper('groupdeals')->isEnabled()): ?>
+<div class="page-title">
+    <h1><?php echo $this->__('Redeem your Coupons!') ?></h1>
+</div>
+<form action="<?php echo $this->getUrl('groupdeals/coupons/redeemCoupon'); ?>" id="redeemForm" method="post">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Redeem Information') ?></h2>
+		<p><?php echo $this->__('Please enter the Coupon Code below to redeem it and view it\'s status.') ?></p>
+        <ul class="form-list">
+            <li>
+                <label class="required" for="coupon_code"><em>*</em><?php echo $this->__('Coupon Code') ?></label>
+                <div class="input-box">
+                    <input name="coupon_code" id="coupon_code" title="<?php echo $this->__('Coupon Code') ?>" value="" class="input-text required-entry" type="text" />
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo Mage::helper('groupdeals')->__('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo Mage::helper('groupdeals')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('groupdeals')->__('Submit') ?></span></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('redeemForm', true);
+//]]>
+</script>
+<?php endif; ?>

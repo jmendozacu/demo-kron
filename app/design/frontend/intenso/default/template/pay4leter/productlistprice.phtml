@@ -1,0 +1,158 @@
+<?php 
+
+$_coreHelper = $this->helper('core');
+$_weeeHelper = $this->helper('weee');
+$_taxHelper = $this->helper('tax');
+
+$_product = ($this->getProduct())?$this->getProduct():Mage::registry('current_product');
+$for_details=1;
+$pay4laterArray = Mage::getStoreConfig('payment/pay4later');
+
+//echo $this->getProduct->getId();exit;
+if(!$this->getProduct()){
+	$for_details=0;
+}
+$_storeId = $_product->getStoreId();
+$_store = $_product->getStore();
+$_id = $_product->getId();
+$_weeeSeparator = '';
+$_simplePricesTax = ($_taxHelper->displayPriceIncludingTax() || $_taxHelper->displayBothPrices());
+$_minimalPriceValue = $_product->getMinimalPrice();
+$_minimalPriceValue = $_store->roundPrice($_store->convertPrice($_minimalPriceValue));
+$_minimalPrice = $_taxHelper->getPrice($_product, $_minimalPriceValue, $_simplePricesTax);
+$_convertedFinalPrice = $_store->roundPrice($_store->convertPrice($_product->getFinalPrice()));
+
+$attributeValue = Mage::getModel('catalog/product')->load($_product->getId())->getAttributeText('product_for_pay4later');
+$label_html = '';
+
+?>
+
+
+<?php $_pfinalPrice = $_taxHelper->getPrice($_product, $_convertedFinalPrice) ?>
+
+<?php 
+if($pay4laterArray['active'] == 1){
+	$condition='';
+
+	if($this->getProduct()) {
+		$condition=$pay4laterArray['product_list_active'] == 1 && $attributeValue == 'Yes';
+	}else{
+		$condition=$pay4laterArray['product_detail_active'] == 1&& $attributeValue == 'Yes';
+	}
+
+	if($condition){
+		$pay4laterArray = Mage::getStoreConfig('payment/pay4later');
+
+		$minimumLoanValue = $pay4laterArray['loanvalue'];
+		$typeArray = array();
+		$discountArray = array();
+		for($i=1;$i<=5;$i++){
+			if($pay4laterArray['finance_code_'.$i] != ''){
+				$typeArray[$pay4laterArray['finance_code_'.$i]]['name'] =  $pay4laterArray['finance_offer_'.$i.'name'];
+				foreach(array('a','b','c','d','f') as $key){
+					if($pay4laterArray['deposit_pertange_code_'.$i.'_'.$key] != ''){
+						$typeArray[$pay4laterArray['finance_code_'.$i]]['pertange']['deposit_pertange_code_'.$i.'_'.$key] = $pay4laterArray['deposit_pertange_code_'.$i.'_'.$key];
+						$discountArray[$pay4laterArray['finance_code_'.$i]][] = $pay4laterArray['deposit_pertange_code_'.$i.'_'.$key];
+
+					}
+				}
+
+			}
+		}
+
+		reset($typeArray);
+		$first_key = key($typeArray);
+		$firstType = $first_key;
+		reset($typeArray[$first_key]['pertange']);
+		$firstPertangekey = key($typeArray[$first_key]['pertange']);
+		$firstPertangeArray = $typeArray[$first_key]['pertange'];
+		$firstPertange = $typeArray[$first_key]['pertange'][$firstPertangekey];
+							//echo $first_key."----".$_finalPrice.'==='.$firstPertange;
+		?>
+
+
+		<?php
+		$label_html = '<span style="display:none;" class="product_identity_'.$_id.'" id="'.$_id.'"></span><div class="pay4later_details_'.$_id.'" id="pay4later_details_option"><div class="cost_per_month" id="cost_per_month_'.$_id.'"></div>';
+		$label_html .= '<div class="product-view pay4later_tooltip"><div class="rrp"><span class="rrp-hint">?</span><span class="rrp-tooltip">Pay4later Finance Option is only available for minimum loan value of &#163;'.$minimumLoanValue.'</span></div></div></div>';
+
+
+		?>
+
+		<?php if (!$_product->isGrouped()): 
+
+		$_weeeTaxAmount = $_weeeHelper->getAmountForDisplay($_product); 
+		$_weeeTaxAttributes = $_weeeHelper->getProductWeeeAttributesForRenderer($_product, null, null, null, true); 
+		$_weeeTaxAmountInclTaxes = $_weeeTaxAmount; 
+		if ($_weeeHelper->isTaxable()): 
+			$_weeeTaxAmountInclTaxes = $_weeeHelper->getAmountInclTaxes($_weeeTaxAttributes); 
+		endif; 
+		$_weeeTaxAmount = $_store->roundPrice($_store->convertPrice($_weeeTaxAmount)); 
+		$_weeeTaxAmountInclTaxes = $_store->roundPrice($_store->convertPrice($_weeeTaxAmountInclTaxes)); 
+
+
+		$_convertedPrice = $_store->roundPrice($_store->convertPrice($_product->getPrice())); 
+		$_price = $_taxHelper->getPrice($_product, $_convertedPrice); 
+		$_regularPrice = $_taxHelper->getPrice($_product, $_convertedPrice, $_simplePricesTax); 
+		$_finalPrice = $_taxHelper->getPrice($_product, $_convertedFinalPrice); 
+		$_finalPriceInclTax = $_taxHelper->getPrice($_product, $_convertedFinalPrice, true); 
+		$_weeeDisplayType = $_weeeHelper->getPriceDisplayType(); 
+
+
+		if ($_finalPrice >= $_price):
+			if (!$_taxHelper->displayBothPrices()):
+
+				if ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, array(0, 1))):
+					$finalPay4Price = $_price + $weeeAmountToDisplay;
+				echo $label_html;
+
+				elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 2)):
+					$finalPay4Price = $_price + $weeeAmountToDisplay;
+				echo $label_html;
+
+				else:
+					if ($_finalPrice == $_price):
+						$finalPay4Price = $_price;
+					else:
+						$finalPay4Price = $_finalPrice;
+					endif;
+					echo $label_html;
+					endif;
+					endif;
+					else:
+						if ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 0)):
+							if (!$_taxHelper->displayBothPrices()):
+								$finalPay4Price = $_finalPrice + $_weeeTaxAmountInclTaxes;
+							echo $label_html;
+							endif;
+							elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 1)):
+								if (!$_taxHelper->displayBothPrices()):
+									$finalPay4Price = $_finalPrice + $_weeeTaxAmountInclTaxes;
+								echo $label_html;
+								endif;
+								else:
+									if (!$_taxHelper->displayBothPrices()):
+										$finalPay4Price = $_finalPrice;
+									echo $label_html;
+									endif;
+									endif;
+									endif;
+
+									endif;	?>
+
+									<script type="text/javascript">
+									jQuery(document).ready(function() {
+											var product_id=jQuery(this).find(".product_identity_<?php echo $_id;?>");
+											
+											if(typeof product_id !='undefined' && product_id!=''){
+												
+												loadFinanceDetails_price(product_id,"<?php echo $first_key;?>", <?php echo $_pfinalPrice;?>, <?php echo $firstPertange;?>, 0,"<?php echo $_id;?>","<?php echo $for_details;?>");
+										}
+								});
+									</script>
+
+<?php 	}
+
+}?>
+
+
+

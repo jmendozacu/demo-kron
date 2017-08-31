@@ -1,0 +1,82 @@
+<!--@subject TradeIn Proposal Shipping email template @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var logo_alt":"Email Logo Image Alt",
+
+"var customer_name":"CustomerName",
+"var order_increment_id":"Order Id"}
+@-->
+
+<style type="text/css">
+    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+</style>
+
+<body style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+    <table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+        <tr>
+            <td align="center" valign="top" style="padding:20px 0 20px 0">
+                <!-- [ header starts here] -->
+                <table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="700" style="border:20px solid #F6F6F6;">
+                    <tr>
+                        <td valign="top" style="width:70%; padding-bottom: 0px;">
+                            <a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin:10px 0;" border="0"/></a>
+                            <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:11px 0 11px;">Hello, {{var customer_name()}},</h1>
+                            <p style="font-size:12px; line-height:16px; margin:0;">Thanks for placing an order with Kronos AV,</p>
+                        </td>
+                        <td valign="top" style="width:30%; padding-bottom: 0px;">
+                            <img border="0" alt="Trade-In Guarantee" src="{{store url=""}}skin/frontend/smartwave/porto/watermark/trade-in_guarantee_badge.jpg" width="135" height="132" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <table bgcolor="F9F9F9" cellspacing="0" cellpadding="10" border="0" width="700" style="border: 1px solid #e0e0e0;">
+                                <tr>
+                                    <td style="padding-bottom: 0px; width: 40%;">
+                                        <a href="https://www.myhermes.co.uk"><img src="{{store url=""}}skin/frontend/smartwave/porto/watermark/hermes.png" alt="www.myhermes.co.uk" width="260" height="195" style="padding:5px;" border="0"/></a>
+                                    </td>
+                                    <td style="padding: 0px; width: 10%;"><img src="{{store url=""}}skin/frontend/smartwave/porto/watermark/delivery_truck.png" width="60" height="56" alt="Delivery Truck" style="padding:5px;" border="0"/></td>
+                                    <td style="padding-bottom: 0px;" valign="top">
+                                        <h2 style="font-size: 2em; margin-top:10px;">Return Address</h2>
+                                        <p style="font-size: 16px; line-height: 25px; text-align: justify;margin-top: 30px;">
+                                            Order #{{var order_increment_id}} <br>Trade-In Guarantee Dept <br> Kronos Audio Visual <br> 8-9 Scotch Street Centre <br> BT70 1AR</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><p style="border-bottom: 2px dotted red;"></p></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="padding-bottom: 0;">
+                                        <span style="color: rgb(255, 255, 255); text-align: center; border-radius: 25px; position: absolute; background: none repeat scroll 0% 0% rgb(59, 61, 60); opacity: 0.9; margin-left: 15px; width: 45px; line-height: 45px; height: 45px;"><span style="font-size: 4em; font-family: sans-serif; font-weight: bold;">1</span></span>
+                                        <h1 style="color: red; text-align: center; font-size: 4em;">Ship your trade in to us</h1>
+                                        <h1 style="color: red; text-align: center; font-size: 2em;">(click the link above for great shipping rates)</h1>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" style="padding: 0px;">
+                                        <img src="{{store url=""}}skin/frontend/smartwave/porto/watermark/go_down.png" width="35" height="69" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="padding-top: 0; padding-bottom: 20px;">
+                                        <span style="color: rgb(255, 255, 255); border-radius: 25px; position: absolute; background: none repeat scroll 0% 0% rgb(59, 61, 60); opacity: 0.9; width: 45px; line-height: 45px; height: 45px; text-align: center; margin-top: -10px; margin-left: 44px;"><span style="font-size: 4em; font-family: sans-serif; font-weight: bold;">2</span></span>
+                                        <h1 style="color: red; text-align: center; font-size: 2.6em;">Once received our shipping dept</h1>
+                                        <h1 style="color: red; text-align: center; font-size: 2.6em;"> will release your order within 24hr's</h1>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><p style="font-size:12px; margin:0; color:#B4748B;">If you have any questions about your account or any other matter, please feel free to contact us at <a href="mailto:support@velanapps.com" stlye="color:#EAFDFF;">support@velanapps.com</a> or by phone at.</p></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#EAEAEA" align="center" colspan="2" style="background:#EAEAEA; text-align:center;"><center><p style="font-size: 12px; margin: 0px; padding-top: 4px; padding-bottom: 4px;">Thank you again,</strong></p></center></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>

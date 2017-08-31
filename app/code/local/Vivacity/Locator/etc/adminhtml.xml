@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <vivacity translate="title" module="locator">
+            <title>Vivacity Extensions</title>
+		<sort_order>71</sort_order>               
+		<children>
+                <locator translate="title" module="locator">
+                    <title>Store Locator</title>
+                    <sort_order>102</sort_order>               
+                    <children>
+                        <configuration translate="title" module="locator">
+			    <title>List All Stores</title>
+			    <sort_order>1</sort_order>
+			    <action>adminlocator/adminhtml_index</action>
+			</configuration>
+			<bulkconfiguration translate="title" module="locator">
+			    <title>Import Store</title>
+			    <sort_order>2</sort_order>
+			    <action>adminlocator/adminhtml_bulk</action>
+			</bulkconfiguration>
+			</children>
+                </locator>
+            </children>
+        </vivacity>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <locator translate="title">
+                                        <title>Google Locator Module</title>
+                                        <sort_order>10</sort_order>
+                                    </locator>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <vivacity translate="title" module="locator">
+                        <title>Vivacity Extensions</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <locator translate="title" module="locator">
+                                <title>Store Locator</title>
+                                <sort_order>102</sort_order>               
+                                <children>
+                                    <configuration translate="title" module="locator">
+                                        <title>List All Stores</title>
+                                        <sort_order>1</sort_order>
+                                        <action>adminlocator/adminhtml_index</action>
+                                    </configuration>
+                    		</children>
+			     </locator>
+                        </children>
+                    </vivacity>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <placeholders>
+    <conversionsondemand_conversions360code>
+      <block>conversions360/code</block>
+      <placeholder>CONVERSIONSONDEMAND_CONVERSIONS360CODE</placeholder>
+      <container>Conversionsondemand_Conversions360_Model_Container_Code</container>
+      <cache_lifetime>86400</cache_lifetime>
+    </conversionsondemand_conversions360code>
+    <conversionsondemand_conversions360identifier>
+      <block>conversions360/identifier</block>
+      <placeholder>CONVERSIONSONDEMAND_CONVERSIONS360IDENTIFIER</placeholder>
+      <container>Conversionsondemand_Conversions360_Model_Container_Identifier</container>
+      <cache_lifetime>86400</cache_lifetime>
+    </conversionsondemand_conversions360identifier>
+  </placeholders>
+</config>

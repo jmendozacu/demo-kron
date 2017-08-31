@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @package    Magedevgroup_ScrappageScheme
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_ScrappageScheme>
+            <version>0.0.1</version>
+        </Magedevgroup_ScrappageScheme>
+    </modules>
+
+    <global>
+        <blocks>
+            <scrappagescheme_adminhtml>
+                <class>Magedevgroup_ScrappageScheme_Block_Adminhtml</class>
+            </scrappagescheme_adminhtml>
+        </blocks>
+
+        <models>
+            <scrappagescheme>
+                <class>Magedevgroup_ScrappageScheme_Model</class>
+                <resourceModel>scrappagescheme_resource</resourceModel>
+            </scrappagescheme>
+
+            <scrappagescheme_resource>
+                <class>Magedevgroup_ScrappageScheme_Model_Resource</class>
+                <entities>
+                    <scrap>
+                        <table>magedevgroup_scrappagescheme</table>
+                    </scrap>
+                </entities>
+            </scrappagescheme_resource>
+        </models>
+
+        <resources>
+            <magedevgroup_scrappagescheme_setup>
+                <setup>
+                    <module>Magedevgroup_ScrappageScheme</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </magedevgroup_scrappagescheme_setup>
+        </resources>
+
+        <helpers>
+            <scrappagescheme>
+                <class>Magedevgroup_ScrappageScheme_Helper</class>
+            </scrappagescheme>
+        </helpers>
+
+        <events>
+            <checkout_onepage_controller_success_action>
+                <observers>
+                    <scrappagescheme>
+                        <type>singleton</type>
+                        <class>scrappagescheme/observer</class>
+                        <method>proCollection</method>
+                    </scrappagescheme>
+                </observers>
+            </checkout_onepage_controller_success_action>
+        </events>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <magedevgroup_scrappagescheme after="Mage_Adminhtml">Magedevgroup_ScrappageScheme_Adminhtml</magedevgroup_scrappagescheme>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

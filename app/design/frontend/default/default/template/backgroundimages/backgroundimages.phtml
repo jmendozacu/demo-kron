@@ -1,0 +1,81 @@
+
+<?php
+
+if (Mage::helper('backgroundimages')->isEnableExtension())
+{
+	$data = $this->getBackgroundimagesHtml(); //echo '<pre>';print_r($data);
+	$categories = $this->getCategoryBackgroundImages();
+	$cmsImages = $this->cmsPageBackgroundImages();
+	$slider = Mage::helper('backgroundimages')->isEnableSlider();
+	$output = '';
+	$cmsPage = Mage::getBlockSingleton('cms/page')->getPage()->getIdentifier(); 
+	$layer = Mage::getSingleton('catalog/layer');
+	$_category = $layer->getCurrentCategory();
+	$currentCategoryId = $_category->getId(); //echo $currentCategoryId;
+	$media = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA). DS .'backgroundimages';
+
+	$images = '';
+	$page = '';
+	/* for product page */
+	if (!empty($data))
+	{
+		?><link rel="stylesheet" href="<?php echo $this->getSkinUrl().'css/backgroundimages/backgroundimages.css'?>"/><?php
+		$output = "<div id='fme_bg_images'>";
+		foreach ($data as $d)
+		{
+				$images = Mage::helper('backgroundimages')->fetchGallery($d['backgroundimages_id'],$slider);
+				
+				if (is_array($images) AND !empty($images))
+				{
+						foreach ($images as $i)
+						{
+							$output .= "<img class='fme_bgi_specs' src='".$media.$i['image_file']."'/>";
+							
+						}
+				}
+		}
+		$output .= "</div>";
+	}
+	elseif (!empty($categories))
+	{
+		?><link rel="stylesheet" href="<?php echo $this->getSkinUrl().'css/backgroundimages/backgroundimages.css'?>"/><?php
+		$output = "<div id='fme_bg_images'>";
+		foreach ($categories as $_c)
+		{
+			$image = $media.$_c['image_file'];
+			$output .= "<img style='display:none;' class='fme_bgi_specs' src='".$image."'/>";
+		}
+		$output .= "</div>";
+	}
+	/* for cms page */
+	if (!empty($cmsImages))
+	{
+		?><link rel="stylesheet" href="<?php echo $this->getSkinUrl().'css/backgroundimages/backgroundimages.css'?>"/><?php
+		$output = "<div id='fme_bg_images'>";
+		if (is_array($cmsImages) AND !empty($cmsImages))
+		{
+			foreach ($cmsImages as $i)
+			{
+				$image = $media.$i['image_file'];
+				$output .= "<img class='fme_bgi_specs' src='".$image."'/>";
+				$page = $i['cms_pages'];
+				
+			}
+		}
+		
+		$output .= "</div>";
+	}
+	
+	echo $output;
+ } ?>
+ <!--<link rel="stylesheet" href="<?php echo $this->getSkinUrl().'css/backgroundimages/backgroundimages.css'?>"</link>-->
+ <script type="text/javascript">
+	 document.observe("dom:loaded", function() {
+		//$("fme_bg_images img").each(function(e){e.fadeOut()});
+		//var arr = $('fme_bg_images').select('img').toArray();
+		$('fme_bg_images').select('img').each(function(element) {
+        	element.appear(); 
+		})
+		
+	 });
+ </script>

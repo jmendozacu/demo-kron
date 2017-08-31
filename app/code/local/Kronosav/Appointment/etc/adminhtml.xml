@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <appointment module="appointment">
+            <title>Appointments</title>
+            <sort_order>1</sort_order>
+            <children>
+                <manage_appointments  module="appointment">
+                    <title>Manage Appointments</title>
+                    <sort_order>2</sort_order>
+                    <action>appointment/adminhtml_appointment/</action>
+                </manage_appointments>
+			</children>
+        </appointment>
+    </menu>
+	<acl>
+            <resources>
+                <admin>
+                    <children>
+						 <appointment  module="appointment">
+							<title>Appointment</title>
+							<sort_order>1</sort_order>
+						</appointment>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <options>
+                                            <title>Kronosav Appointments</title>
+                                        </options>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+	</acl>
+</config>
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Velanapps_Tutorial11>
+            <version>0.1.0</version>
+        </Velanapps_Tutorial11>
+    </modules>
+    <global>
+        <models>
+            <tutorial11>
+                <class>Velanapps_Tutorial11_Model</class>
+            </tutorial11>
+        </models>
+		<helpers>
+            <tutorial1>
+                <class>Velanapps_Tutorial11_Helper</class>
+            </tutorial1>
+        </helpers> 
+    </global>
+    <!-- Default configuration -->
+    <default>
+        <carriers>
+            <shippingmethod>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>tutorial11/carrier_shippingmethod</model>
+                <name>Fixed</name>
+                <price>5.00</price>
+                <title>Flat Rate in UK</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+                <handling_type>F</handling_type>
+			</shippingmethod>
+        </carriers>
+    </default>
+</config>
+

@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MW_SocialGift>
+            <version>1.0.5</version>
+        </MW_SocialGift>
+    </modules>
+    <global>
+        <models>
+            <mw_socialgift>
+                <class>MW_SocialGift_Model</class>
+                <resourceModel>socialgift_resource</resourceModel>
+            </mw_socialgift>
+            <socialgift_resource>
+                <!-- definition -->
+                <class>MW_SocialGift_Model_Resource</class>
+                <entities>
+                    <salesrule>
+                        <table>mw_socialgift_salesrule</table>
+                    </salesrule>
+                    <reports>
+                        <table>mw_socialgift_reports</table>
+                    </reports>
+                </entities>
+            </socialgift_resource>
+            <rewrite><!-- definition --></rewrite>
+        </models>
+        <resources>
+            <socialgift_setup><setup><module>MW_SocialGift</module><class>Mage_Core_Model_Resource_Setup</class></setup><connection><use>core_setup</use></connection></socialgift_setup>
+            <socialgift_read><connection><use>core_read</use></connection></socialgift_read>
+            <socialgift_write><connection><use>core_write</use></connection></socialgift_write>
+        </resources>
+        <blocks>
+            <mw_socialgift>
+                <class>MW_SocialGift_Block</class>
+            </mw_socialgift>
+    
+        </blocks>
+        <helpers>
+            <mw_socialgift>
+                <class>MW_SocialGift_Helper</class>
+            </mw_socialgift>
+        </helpers>
+        <!-- <fieldsets>
+            <(page_handle?)>
+                <(field_name)>?</(field_name)>
+            </(page_handle?)>
+        </fieldsets> -->
+        <template>
+            <email>
+                <!-- <(email_template_name) module="(modulename)" translate="[label][,description]" >
+                <(/email_template_name)> -->
+            </email>
+        </template>
+        <events>
+            <!-- <controller_front_init_before>
+                <observers>
+                    <socialgift>
+                        <type>singleton</type>
+                        <class>freegift/observer</class>
+                        <method>checkLicense</method>
+                    </socialgift>
+                </observers>
+            </controller_front_init_before> -->
+
+            <controller_action_layout_load_before>
+                <observers>
+                    <mw_socialgift_controller_action_layout_before>
+                        <class>mw_socialgift/observer_layout</class>
+                        <method>controllerLayoutBefore</method>
+                    </mw_socialgift_controller_action_layout_before>
+                </observers>
+            </controller_action_layout_load_before>
+
+            <checkout_cart_product_add_after>
+                <observers>
+                    <apply_discount>
+                        <class>mw_socialgift/observer</class>
+                        <method>applyDiscount</method>
+                    </apply_discount>
+                </observers>
+            </checkout_cart_product_add_after>
+
+            <checkout_cart_update_items_after>
+                <observers>
+                    <check_product_after_update>
+                        <class>mw_socialgift/observer</class>
+                        <method>checkoutCartProductUpdateAfter</method>
+                    </check_product_after_update>
+                </observers>
+            </checkout_cart_update_items_after>
+
+            <sales_quote_remove_item>
+                <observers>
+                    <check_product_in_socialgift>
+                        <class>mw_socialgift/observer</class>
+                        <method>checkProductInSocialGift</method>
+                    </check_product_in_socialgift>
+                </observers>
+            </sales_quote_remove_item>
+
+            <sales_order_place_after>
+                <observers>
+                    <clear_checkout_session>
+                        <class>mw_socialgift/observer</class>
+                        <method>saleOrderPlaceAfterUpdateTimeUsed</method>
+                    </clear_checkout_session>
+                    <!-- <update_table_reports>
+                        <class>mw_socialgift/observer</class>
+                        <method>updateTableReport</method>
+                    </update_table_reports> -->
+                </observers>
+            </sales_order_place_after>
+
+            <checkout_cart_save_after>
+                <observers>
+                    <check_empty_cart>
+                        <class>mw_socialgift/observer</class>
+                        <method>checkEmptyCart</method>
+                    </check_empty_cart>
+                </observers>
+            </checkout_cart_save_after>
+
+            <controller_action_predispatch_checkout_onepage_saveBilling>
+                <observers>
+                     <check_coutry_of_user>
+                         <type>singleton</type>
+                         <class>mw_socialgift/observer</class>
+                         <method>checkCountryOfUser</method>
+                     </check_coutry_of_user>
+                 </observers>
+            </controller_action_predispatch_checkout_onepage_saveBilling>
+
+            <sales_quote_merge_before><!--calling this event before merging the old cart with newly added cart items while login-->
+                <observers>
+                    <check_merge_item_when_user_login>
+                        <type>singleton</type>
+                        <class>mw_socialgift/observer</class>
+                        <method>checkMergeItemGiftInCart</method>
+                    </check_merge_item_when_user_login>
+                </observers>
+            </sales_quote_merge_before>
+
+            <sales_convert_quote_item_to_order_item>
+                <observers>
+                    <extra_options>
+                        <type>model</type>
+                        <class>mw_socialgift/observer</class>
+                        <method>salesConvertQuoteItemToOrderItem</method>
+                    </extra_options>
+                </observers>
+            </sales_convert_quote_item_to_order_item>
+
+        </events>
+        <!-- <eav_attributes>definition</eav_attributes> -->
+        <!-- <(modulename)>custom config variables</(modulename)> -->
+    </global>
+
+    <admin>
+        <!-- <attributes>
+            <(attribute_name) />
+        <attributes> -->
+        <!-- <fieldsets>definition</fieldsets> -->
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <socialgift before="Mage_Adminhtml">MW_SocialGift_Adminhtml</socialgift>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <!-- <events>
+            <(event_name)>
+                <observers>observers</observers>
+            </(event_name)>
+        </events> -->
+        <!-- <global_search>
+            <products>
+                <class>(modulename)/search_catalog</class>
+                <acl>catalog</acl>
+            </products>
+            <customers>
+                <class>adminhtml/search_customer</class>
+                <acl>customer</acl>
+            </customers>
+            <sales>
+                <class>adminhtml/search_order</class>
+                <acl>sales</acl>
+            </sales>
+        </global_search> -->
+        <translate>
+            <modules>
+                <MW_SocialGift>
+                    <files>
+                        <default>MW_SocialGift.csv</default>
+                    </files>
+                </MW_SocialGift>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <mw_socialgift>
+                    <file>mw_socialgift.xml</file>
+                </mw_socialgift>
+            </updates>
+        </layout>
+        <!-- <(modulename)>custom config variables</(modulename)> -->
+    </adminhtml>
+
+    <frontend>
+        <!-- <secure_url>
+            <(page_handle)>/relative/url</page_handle>
+        </secure_url> -->
+        <!-- <events>
+            <(event_name)>
+                <observers>observers</observers>
+            </(event_name)>
+        </events> -->
+        <routers>
+            <mw_socialgift>
+                <use>standard</use>
+                <args>
+                    <module>MW_SocialGift</module>
+                    <frontName>socialgift</frontName>
+                </args>
+            </mw_socialgift>
+        </routers>
+        <translate>
+            <modules>
+                <MW_SocialGift>
+                    <files>
+                        <default>MW_SocialGift.csv</default>
+                    </files>
+                </MW_SocialGift>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <mw_socialgift>
+                    <file>mw_socialgift.xml</file>
+                </mw_socialgift>
+            </updates>
+        </layout>
+    </frontend>
+
+
+</config>
+
+<!-- http://www.magentocommerce.com/wiki/5_-_modules_and_development/reference/module_config.xml -->

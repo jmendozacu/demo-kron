@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <pay4later_api_accept>
+        <reference name="content">
+            <block type="pay4leter/pay4later" name="pay4later" template="pay4later/accept.phtml" />
+        </reference>
+    </pay4later_api_accept>
+    <pay4later_api_decline>
+        <reference name="content">
+            <block type="pay4leter/pay4later" name="pay4later" template="pay4later/decline.phtml" />
+        </reference>
+    </pay4later_api_decline>
+    <pay4later_api_refer>
+        <reference name="content">
+            <block type="pay4leter/pay4later" name="pay4later" template="pay4later/refer.phtml" />
+        </reference>
+    </pay4later_api_refer>
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addJs"><file>pay4later/orderplace.js</file></action>
+        </reference>
+    </checkout_onepage_index>
+
+    <!-- Start of premium widgets -->
+    <catalog_product_view>
+        <block type="pay4leter/p4lProductWidget" name="product.info.pay4later" template="pay4later/product-page-monthly.phtml" />
+        <reference name="product.info.addtocart">
+           <action method="append"><block>product.info.pay4later</block></action>
+        </reference>	
+        <reference name="product.info">
+            <block type="pay4leter/p4lProductWidget" name="finance.widget.pay4later" as="finance_widget" template="pay4later/finance-widget.phtml" before="description">
+                <!-- Compatibility alert. Comment below for using widgets on Magento < v1.4 -->
+                <action method="addToParentGroup"><group>detailed_info</group></action>
+            </block>
+        </reference>
+    </catalog_product_view>
+    <catalog_category_view>
+        <block type="pay4leter/p4lProductWidget" name="product.info.pay4later" template="pay4later/category-page-monthly.phtml" ifconfig="pay4later/productpage/showmonthlyprice">
+            <action method="setShowCategoryPageMonthlyPrice"><show>1</show></action>
+        </block>
+    </catalog_category_view>
+    <!-- End of premium widgets -->
+    
+</layout> 

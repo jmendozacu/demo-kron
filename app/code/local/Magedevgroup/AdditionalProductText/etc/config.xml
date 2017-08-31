@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package    Magedevgroup_AdditionalProductText
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_AdditionalProductText>
+            <version>0.0.1</version>
+        </Magedevgroup_AdditionalProductText>
+    </modules>
+    <global>
+        <helpers>
+            <magedevgroup_additionalproducttext>
+                <class>Magedevgroup_AdditionalProductText_Helper</class>
+            </magedevgroup_additionalproducttext>
+        </helpers>
+        <resources>
+            <magedevgroup_additionalproducttext_setup>
+                <setup>
+                    <module>Magedevgroup_AdditionalProductText</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </magedevgroup_additionalproducttext_setup>
+        </resources>
+    </global>
+    <frontend>
+        <product>
+            <collection>
+                <attributes>
+                    <additional_product_text/>
+                </attributes>
+            </collection>
+        </product>
+    </frontend>
+</config>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0.0">
+	<winners_index_index>
+		<reference name="root">
+			<action method="setTemplate">
+				<template>page/1column.phtml</template>
+			</action>
+		</reference>
+		<reference name="content">
+			<block type="core/template" name="code1" template="winners/customcoupon.phtml" />
+        </reference>
+	</winners_index_index>
+	<winners_index_success>
+		<reference name="content">
+			<block type="core/template" name="success" template="winners/success.phtml" />
+		</reference>
+	</winners_index_success>
+	<winners_index_dran>
+		<reference name="content">
+			<block type="core/template" name="dran" template="winners/dran.phtml" />
+		</reference>
+	</winners_index_dran>
+</layout>

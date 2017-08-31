@@ -1,0 +1,142 @@
+<config>
+	<modules>
+		<Kronosav_Loan>
+			<version>1.0.2</version>
+		</Kronosav_Loan>
+	</modules>
+	<frontend>
+		<routers>
+		<loan>
+				<use>standard</use>
+				<args>
+					<module>Kronosav_Loan</module>
+					<frontName>loan</frontName>
+				</args>
+		</loan>
+	  
+			<customer>
+				<args>
+					<modules>
+						<!--name / before: change existing -->
+						<loan before="Mage_Customer">Kronosav_Loan</loan>
+					</modules>
+				</args>
+			</customer>
+		</routers>
+		<layout>
+		  <updates>
+			<loan>
+               <file>loan.xml</file>
+			</loan>
+		  </updates>
+		</layout>
+		
+	</frontend>
+	<global>
+	<!-- <events>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <kronosav_loan_prepare_layout_before>
+                        <class>loan/observer</class>
+                        <method>prepareLayoutBefore</method>
+                    </kronosav_loan_prepare_layout_before>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+    </events> -->
+
+	 <template>
+        <email>
+            <new_customer_email_template translate="label" module="loan">
+                    <label>Customer Email Template</label>
+                    <file>kronosav_newcustomer_email.html</file>
+                    <type>html</type>
+            </new_customer_email_template>
+			<loan_confirm_email_template translate="label" module="loan">
+					<label>Loan Confirm Email Template</label>
+                    <file>kronosav_newloan_email.html</file>
+                    <type>html</type>
+           	</loan_confirm_email_template>
+			<status_loan_email_template translate="label" module="loan">
+                    <label>Status Email Template</label>
+                    <file>kronosav_loan_status_email.html</file>
+                    <type>html</type>
+            </status_loan_email_template>
+			<duedate_loan_email_template translate="label" module="loan">
+                    <label>DueDate Email Template</label>
+                    <file>kronosav_loan_duedate_email.html</file>
+                    <type>html</type>
+            </duedate_loan_email_template>
+        </email>
+    </template>
+		<helpers>
+			<loan>
+				<class>Kronosav_Loan_Helper</class>
+			</loan>
+		</helpers>
+		<blocks>
+			<loan>
+				<class>Kronosav_Loan_Block</class>
+			</loan>
+		</blocks>
+		<models>
+			<loan>
+				<class>Kronosav_Loan_Model</class>
+				<resourceModel>loan_mysql4</resourceModel>
+			</loan>
+			<loan_mysql4>
+				<class>Kronosav_Loan_Model_Mysql4</class>
+				<entities>
+					<loan>
+						<table>loan</table>
+					</loan>
+					<product>
+						<table>loan_product</table>
+					</product>
+				</entities>
+			</loan_mysql4>
+		</models>
+		<resources>
+			<loan_setup>
+				<setup>
+					<module>Kronosav_Loan</module>
+				</setup>			
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</loan_setup>
+			<loan_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</loan_write>
+			<loan_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</loan_read>
+		</resources>		
+	</global>
+	
+	<admin>
+		<routers>
+			<loan>
+				 <use>admin</use>
+				<args>
+					<module>Kronosav_Loan</module>
+					<frontName>loan</frontName>
+				</args>
+			</loan>
+	   </routers>
+	</admin>
+	<adminhtml>
+		<layout>
+			<updates>
+				<loan>
+					<file>loan.xml</file>
+				</loan>
+			</updates>
+		</layout>
+	</adminhtml>
+		
+	
+</config>

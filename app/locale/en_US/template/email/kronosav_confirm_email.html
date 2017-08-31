@@ -1,0 +1,177 @@
+<!--
+ /** Velan Info Services India Pvt Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.velanapps.com/License.txt
+ *
+  /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ * *************************************** */
+/* This package designed for Magento COMMUNITY edition
+ * Velan Info Services does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Velan Info Services does not provide extension support in case of
+ * incorrect edition usage.
+  /***************************************
+ *         DISCLAIMER   *
+ * *************************************** */
+/* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ * ****************************************************
+ * @category   velanapps
+ * @package    EzLogin
+ * @author     Velan Team
+ * @copyright  Copyright (c) 2012 - 2013 Velan Info Services India Pvt Ltd. (http://www.velanapps.com)
+ * @license    http://store.velanapps.com/License.txt
+ * File path:   app/locale/en_US/template/email/ezlogin_twitter_email.html
+ */
+-->
+<!--@subject Account confirmation for {{var name}}@-->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+<style type="text/css">
+    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+	.green-button{
+	position:relative;
+		float:left;
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7cb625), color-stop(1, #5cbf2a));
+		background:-moz-linear-gradient(top, #7cb625 5%, #5cbf2a 100%);
+		background:-webkit-linear-gradient(top, #7cb625 5%, #5cbf2a 100%);
+		background:-o-linear-gradient(top, #7cb625 5%, #5cbf2a 100%);
+		background:-ms-linear-gradient(top, #7cb625 5%, #5cbf2a 100%);
+		background:linear-gradient(to bottom, #7cb625 5%, #5cbf2a 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7cb625', endColorstr='#5cbf2a',GradientType=0);
+		background-color:#7cb625;
+		-moz-border-radius:10px;
+		-webkit-border-radius:10px;
+		border-radius:10px;
+		border:1px solid #618f1b;
+		display:inline-block;
+		cursor:pointer;
+		color:#ffffff;
+		font-family:arial;
+		font-size:15px;
+		padding:16px 31px;
+		text-decoration:none;
+		text-shadow:0px 1px 0px #2f6627;
+		font-size: 20px;
+		font-weight: bold;
+		margin-left: 35%;
+	}
+	.green-button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5cbf2a), color-stop(1, #7cb625));
+	background:-moz-linear-gradient(top, #5cbf2a 5%, #7cb625 100%);
+	background:-webkit-linear-gradient(top, #5cbf2a 5%, #7cb625 100%);
+	background:-o-linear-gradient(top, #5cbf2a 5%, #7cb625 100%);
+	background:-ms-linear-gradient(top, #5cbf2a 5%, #7cb625 100%);
+	background:linear-gradient(to bottom, #5cbf2a 5%, #7cb625 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cbf2a', endColorstr='#7cb625',GradientType=0);
+	background-color:#5cbf2a;
+	}
+.green-button:active {
+	position:relative;
+	top:1px;
+}
+.red-button {
+	position:relative;
+	float:right;	
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e75658), color-stop(1, #c23e3e));
+	background:-moz-linear-gradient(top, #e75658 5%, #c23e3e 100%);
+	background:-webkit-linear-gradient(top, #e75658 5%, #c23e3e 100%);
+	background:-o-linear-gradient(top, #e75658 5%, #c23e3e 100%);
+	background:-ms-linear-gradient(top, #e75658 5%, #c23e3e 100%);
+	background:linear-gradient(to bottom, #e75658 5%, #c23e3e 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e75658', endColorstr='#c23e3e',GradientType=0);
+	background-color:#e75658;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	border:1px solid #618f1b;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #000000;
+	font-size: 20px;
+    font-weight: bold;
+    margin-right: 35%;
+}
+.red-button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c23e3e), color-stop(1, #e75658));
+	background:-moz-linear-gradient(top, #c23e3e 5%, #e75658 100%);
+	background:-webkit-linear-gradient(top, #c23e3e 5%, #e75658 100%);
+	background:-o-linear-gradient(top, #c23e3e 5%, #e75658 100%);
+	background:-ms-linear-gradient(top, #c23e3e 5%, #e75658 100%);
+	background:linear-gradient(to bottom, #c23e3e 5%, #e75658 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c23e3e', endColorstr='#e75658',GradientType=0);
+	background-color:#c23e3e;
+}
+.red-button:active {
+	position:relative;
+	top:1px;
+}
+.down-arrow{font-size: 10px;position: absolute;right: 8px;top: 18px;}
+
+</style>
+</head>
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+        <tr>
+            <td align="center" valign="top" style="padding:20px 0 20px 0">
+                <!-- [ header starts here] -->
+                <table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+                    <tr>
+                        <td valign="top">
+                            <a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:10px;" border="0"/></a>
+                        </td>
+                    </tr>
+                    <!-- [ middle starts here] -->
+                    <tr>
+                        <td valign="top">
+                            <h1 style="font-size:18px; font-weight:normal;font-style:italic; line-height:22px; margin:0 0 11px 0;">Hello, {{var customer_name}}</h1>
+                            <p style="font-size:14px; line-height:16px; margin:15px 0 16px 0;">Thanks for sending your item in for repair</p>
+                            <p style="font-size:14px; line-height:16px; margin:20px 0 16px 0;">Your Repair Details</p>
+                             <div style="border:1px solid #E0E0E0; height:300px;font-size:14px; line-height:16px; margin:0 auto; padding:22px 18px; background:#f9f9f9;">
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Product Make:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var product_make}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Product Model:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var product_model}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Serial Number:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var serial_no}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Repair Details:</strong></div><div style="float:right;width:50%;margin-bottom:15px;">  {{var repair_details}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Repair Submission Date:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var repair_submission_date}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Repair Cost:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var repair_cost}} GBP</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Deposit Amount:</strong></div><div style="float:right;width:50%;margin-bottom:15px;">&#163; {{var deposit_amount}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Repair Time:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var repair_time}} (hr's)</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Diagnosis Description:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var diagnostic_description}}</div></div> 
+						
+							</div>
+							<p style="font-weight:bold;font-size:25px;">Accpet the Request?</p>
+							<div style="border:1px solid #c6c6c6;border-radius:10px;height:120px">
+								<div style="width:50%;padding-top:20px;float:left;text-algin:center;"><a class="green-button" href="{{var yes_url}}">Accept<span class="down-arrow">&#x25BC;</span> </a><div style="width:100%;float: left;text-align: center;margin-top: 10px;">Accept and continue with the repair</div></div>
+								<div style="box-shadow: 3px 8px 2px 0 #000000;float: left;height: 84%;width: 3px;"></div>
+								<div style="width:49%;padding-top:20px;float:right;text-algin:center;"><a class="red-button" href="{{var no_url}}">Decline<span class="down-arrow">&#x25BC;</span></a>
+								<div style="width:100%;float: right;text-align: center;margin-top: 10px;">Decline and return the repair to store for pickup</div></div>
+							</div>
+							
+							
+                            <p style="font-size:12px;font-style:italic;text-align:left; line-height:16px; margi-top:20px;">Thanks</p>
+                            <p style="font-size:12px;text-align:left;font-style:italic; line-height:16px; margin:0;">Kronos Service Centre</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center><p style="font-size:12px; margin:0;"><strong>{{var store.getFrontendName()}}</strong></p></center></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>

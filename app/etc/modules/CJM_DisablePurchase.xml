@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <CJM_DisablePurchase>
+            <active>true</active>
+            <codePool>local</codePool>
+        </CJM_DisablePurchase>
+    </modules>
+</config>

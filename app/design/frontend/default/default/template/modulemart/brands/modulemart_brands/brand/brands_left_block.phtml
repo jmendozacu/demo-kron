@@ -1,0 +1,61 @@
+<?php
+/**
+ * ModuleMart_Brands extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Module-Mart License
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.modulemart.com/license.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to modules@modulemart.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * versions in the future. If you wish to customize this extension for your
+ * needs please refer to http://www.modulemart.com for more information.
+ *
+ * @category   ModuleMart
+ * @package    ModuleMart_Brands
+ * @author-email  modules@modulemart.com
+ * @copyright  Copyright 2014 © modulemart.com. All Rights Reserved
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_brands = $this->getBrandsLeftBlock(); ?>
+
+<div class="block block-brands-sidebar">
+  <div class="block-title"> <strong><span><?php echo $this->getBrandsSidebarTitle();?></span></strong> </div>
+  <div class="block-content">
+  <?php if ($_brands->getSize() > 0) :?>
+    <ul>
+      <?php $i=1;?>
+      <?php if($this->getEnableBrandImages()==1):?>
+		  <?php foreach ($_brands as $_brand): ?>
+            <li class="brand-data-img" style=" <?php if($i!=1):?>margin-top: -10px;<?php endif;?>">
+                <span> <a href="<?php echo $_brand->getBrandUrl();?>" title="<?php echo $this->htmlEscape($_brand->getBrandName()) ?>">
+                     <img width="60" height="60" src="<?php echo Mage::helper('brands/brand')->getFileBaseUrl().$_brand->getBrandLogo();?>" /></a> </span>
+                      <span class="name">
+                         <a href="<?php echo $_brand->getBrandUrl();?>" title="<?php echo $this->htmlEscape($_brand->getBrandName()) ?>"> <?php echo $_brand->getBrandName(); ?></a> </span> </li>
+          <?php $i++;?>
+          <?php endforeach; ?>
+      <?php else:?>
+		  <?php foreach ($_brands as $_brand): ?>
+            <li class="brand-data" style=" <?php if($i!=1):?>margin-top: -10px;<?php endif;?>">
+                      <span>
+                         <a href="<?php echo $_brand->getBrandUrl();?>" title="<?php echo $this->htmlEscape($_brand->getBrandName()) ?>"> <?php echo $_brand->getBrandName(); ?></a> </span> </li>
+          <?php $i++;?>
+          <?php endforeach; ?>
+      <?php endif;?>
+      <li class="all-brands">
+        <a href="<?php echo $this->getBrandsPageUrl();?>"><?php echo Mage::helper('brands')->__('All Brands') ?></a>
+     </li>
+    </ul>
+    <?php else:?>
+    	<?php echo Mage::helper('brands')->__('There are no brands at this moment');?>
+    <?php endif;?>
+  </div>
+</div>

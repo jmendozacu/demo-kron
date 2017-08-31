@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category 	Magestore
+ * @package 	Magestore_Simicontact
+ * @copyright 	Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license 	http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <menu>
+        <connector>
+            <children>
+                <simcontactsettings module="simicontact" translate="title">
+                    <title>Instant Contact</title>
+                    <sort_order>900</sort_order>
+                    <action>adminhtml/system_config/edit/section/simicontact</action>
+                </simcontactsettings>
+            </children>
+        </connector>
+    </menu>	
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <simicontact module="simicontact" translate="title">
+                                        <title>Instant Contact</title>
+                                        <sort_order>71</sort_order>									
+                                    </simicontact>								
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <simicontact module="simicontact" translate="title">
+                        <title>Instant Contact</title>
+                        <sort_order>71</sort_order>               
+                        <children>							
+                            <settings module="simicontact" translate="title">
+                                <title>Settings</title>
+                                <sort_order>1000</sort_order>
+                            </settings>
+                        </children>
+                    </simicontact>
+                    <connector>
+                        <children>
+                            <simcontactsettings module="simicontact" translate="title">
+                                <title>Instant Contact</title>
+                                <sort_order>900</sort_order>
+                            </simcontactsettings>
+                        </children>
+                    </connector>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

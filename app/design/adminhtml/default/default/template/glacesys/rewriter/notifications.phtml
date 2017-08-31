@@ -1,0 +1,14 @@
+<?php
+/*
+ * Developer: Michael Jacky
+ * Team site: http://cmsideas.net/
+ * Support: http://support.cmsideas.net/
+ * 
+ */
+if ($this->isShow()) { ?>
+<div class="notification-global">
+    <strong><?php echo $this->helper('glacesys')->__('Class Rewrites cache is disabled.') ?></strong>
+    <?php echo $this->helper('glacesys')->__('It is strongly recommended to turn it on! Do not turn it off except for development purposes!') ?>
+    <?php echo $this->helper('glacesys')->__('Click here to go to <a href="%s">Cache Management</a> and enable Class Rewrites cache.', $this->getManageUrl());?>
+</div>
+<?php } ?>

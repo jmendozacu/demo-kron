@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category   Magedevgroup
+ * @package    Magedevgroup_FileUploadAttribute
+ * @contacts   https://magedevgroup.com/
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_FileUploadAttribute>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magedevgroup_FileUploadAttribute>
+    </modules>
+</config>

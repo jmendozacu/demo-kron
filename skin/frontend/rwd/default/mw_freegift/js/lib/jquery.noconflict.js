@@ -1,0 +1,1 @@
+$xmage_freegift = jQuery.noConflict();

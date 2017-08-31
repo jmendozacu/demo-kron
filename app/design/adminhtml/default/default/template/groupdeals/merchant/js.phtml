@@ -1,0 +1,33 @@
+<script type="text/javascript">
+function saveAndContinueEdit(urlTemplate) {
+        var template = new Template(urlTemplate, /(^|.|\r|\n)({{(\w+)}})/);
+        var url = template.evaluate({tab_id:merchants_tabsJsTabs.activeTab.id});
+        editForm.submit(url);
+}
+
+//set redeem input default value
+if (document.getElementById('redeem').value=='') { 
+	document.getElementById('redeem').value = 'Redeem at location' 
+}
+
+//check selected permissions
+if (document.getElementById('merchant_info').value=='1') { 
+    document.getElementById('merchant_info').checked = true 
+}
+
+if (document.getElementById('add_edit').value=='1') { 
+    document.getElementById('add_edit').checked = true 
+}
+
+if (document.getElementById('approve').value=='1') { 
+    document.getElementById('approve').checked = true 
+}
+
+if (document.getElementById('delete').value=='1') { 
+    document.getElementById('delete').checked = true 
+}
+
+if (document.getElementById('sales').value=='1') { 
+    document.getElementById('sales').checked = true 
+}
+</script>

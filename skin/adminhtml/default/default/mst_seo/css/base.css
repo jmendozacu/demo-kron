@@ -1,0 +1,28 @@
+.mst-config #seo_url td.scope-label,
+.mst-config #seo_image td.scope-label,
+.mst-config #seo_general td.scope-label,
+.mst-config #seo_snippets td.scope-label {
+    width: 100px !important;
+    text-align: right;
+}
+
+.mst-config #seo_url .grid,
+.mst-config #seo_image .grid,
+.mst-config #seo_general .grid,
+.mst-config #seo_snippets .grid { width: auto !important; }
+
+.mst-config #seo_general_robots_editor.textarea,
+.mst-config #seo_general_canonical_url_ignore_pages.textarea { max-width: 507px; }
+
+.mst-config #seo_url .hint,
+.mst-config #seo_image .hint,
+.mst-config #seo_general .hint,
+.mst-config #seo_snippets .hint { margin-left: 15px;}
+
+.mst-config #row_seo_general_hreflang_locale_code td.scope-label {
+    left: 105px !important;
+    float: right;
+}
+.mst-config #row_seo_general_hreflang_locale_code td div.hint {
+    margin-left: 120px;
+}

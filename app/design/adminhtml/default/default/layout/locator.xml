@@ -1,0 +1,12 @@
+<layout version="0.1.0">
+      <locator_adminhtml_index_index>
+         <reference name="content">
+		<block type="locator/adminhtml_grid" name="testlocator"/>
+	 </reference>
+	</locator_adminhtml_index_index>
+	<locator_adminhtml_bulk_index>
+         <reference name="content">
+		<block type="locator/adminhtml_grid" name="bulklocator" template="locator/bulk.phtml"/>
+	 </reference>
+	</locator_adminhtml_bulk_index>
+</layout>

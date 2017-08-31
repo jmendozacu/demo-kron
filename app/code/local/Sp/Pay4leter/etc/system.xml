@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CactusCreatives Interactive
+ *
+ * @category   Mage
+ * @package    Mage_Local
+ * @author	   CactusCreatives / CactusCreatives Interactive -> support@cactuscreatives.com
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+
+<config>
+	<tabs>
+		<pay4leter translate="label" module="pay4leter">
+			<label>Pay4leter Import/Export</label>
+			<sort_order>120</sort_order>
+		</pay4leter>
+	</tabs>
+	<sections>
+		<pay4leter>
+			<label>Import/Export</label>
+			<sort_order>990</sort_order>
+			<tab>pay4leter</tab>
+			<show_in_default>1</show_in_default>
+			<show_in_website>0</show_in_website>
+			<show_in_store>0</show_in_store>
+			<groups>
+				<import_pay4leter>
+					<label>Import/Export</label>
+					<sort_order>990</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<upload_file translate="label tooltip comment">
+							<label>Upload File</label>
+							<comment>Select file for bulk import</comment>
+							<tooltip>select file for bulk import</tooltip>
+							<frontend_type>file</frontend_type>
+							<backend_model>adminhtml/system_config_backend_file</backend_model>
+							<upload_dir>var/uploads</upload_dir>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</upload_file>
+					</fields>
+				</import_pay4leter>
+
+			</groups>
+		</pay4leter>
+	</sections>
+	<sections>
+		<payment>
+			<groups>
+				 <pay4leter_configs translate="label comment" module="pay4leter">
+                    <label><![CDATA[PayPal All-in-One Payment Solutions&nbsp;&nbsp;<i>Accept and process credit cards and PayPal payments.</i>]]></label>
+                    <expanded>1</expanded>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <frontend_model>pay4leter/adminhtml_system_config_fieldset_group</frontend_model>
+                    <comment>Choose a secure bundled payment solution for your business.</comment>
+                    <help_url>https://www.paypal-marketing.com/emarketing/partner/na/merchantlineup/home.page#mainTab=checkoutlineup&amp;subTab=newlineup</help_url>
+                    <fields/>
+                </pay4leter_configs>
+					<pay4leter type="group" translate="label comment" module="pay4leter">
+						<expanded>1</expanded>
+						<label>Pay4later Payment</label>
+						<sort_order>970</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<frontend_class>complex</frontend_class>
+						<frontend_model>pay4leter/adminhtml_system_config_fieldset_group</frontend_model>
+	                    <group>pay4leter_configs</group>
+						<fields>
+							<main_tab_config type="group" translate="label">
+								<label>Required Pay4later Configuration Settings</label>
+                                <frontend_type>text</frontend_type>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <frontend_class>pay4leter-front</frontend_class>
+                                <frontend_model>pay4leter/adminhtml_system_config_fieldset_payment</frontend_model>
+                                <sort_order>10</sort_order>
+                                <fields>
+                                	<tab_required_settings type="group" translate="label">
+		                                <label>Required Pay4later Configuration Settings</label>
+		                                <expanded>1</expanded>
+		                                <frontend_type>text</frontend_type>
+		                                <show_in_default>1</show_in_default>
+		                                <show_in_website>1</show_in_website>
+		                                <frontend_class>pay4leter-front</frontend_class>
+		                                <frontend_model>pay4leter/adminhtml_system_config_fieldset_expanded</frontend_model>
+		                                <sort_order>10</sort_order>
+		                                <fields>
+											<active translate="label">
+												<label>Enabled</label>
+												<frontend_type>select</frontend_type>
+												<source_model>adminhtml/system_config_source_yesno</source_model>
+												<sort_order>1</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+											</active>
+
+
+											<pay4leter_api_key translate="label">
+												<label>Pay4later Api Key</label>
+												<frontend_type>text</frontend_type>
+												<sort_order>1</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+											</pay4leter_api_key>
+
+											<pay4leter_redirect_url translate="label">
+												<label>Pay4later Redirect Url</label>
+												<frontend_type>text</frontend_type>
+												<sort_order>2</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+											</pay4leter_redirect_url>
+
+											<pay4leter_cancel_url translate="label">
+												<label>Pay4later Cancel Url</label>
+												<frontend_type>text</frontend_type>
+												<sort_order>2</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+											</pay4leter_cancel_url>
+										</fields>
+									</tab_required_settings>
+									<tab_global_configs type="group" translate="label">
+										<label>Global Pay4later Configuration Settings</label>
+		                                <frontend_type>text</frontend_type>
+		                                <show_in_default>1</show_in_default>
+		                                <show_in_website>1</show_in_website>
+		                                <frontend_class>pay4leter-front</frontend_class>
+		                                <frontend_model>pay4leter/adminhtml_system_config_fieldset_expanded</frontend_model>
+		                                <sort_order>11</sort_order>
+										<fields>
+											<product_detail_active translate="label">
+												<label>Product Detail Page</label>
+												<frontend_type>select</frontend_type>
+												<source_model>adminhtml/system_config_source_yesno</source_model>
+												<sort_order>2</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+											</product_detail_active>
+
+											<title translate="label">
+												<label>Title</label>
+												<frontend_type>text</frontend_type>
+												<sort_order>3</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+											</title>
+
+											<loanvalue translate="label">
+												<label>Minimum Loan Value</label>
+												<frontend_type>text</frontend_type>
+												<sort_order>4</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+											</loanvalue>
+
+											<infopaylater translate="label">
+												<label>pay4later Calculation Block</label>
+												<frontend_type>textarea</frontend_type>
+												<sort_order>4</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+											</infopaylater>
+
+											<order_status translate="label">
+												<label>Order status</label>
+												<frontend_type>select</frontend_type>
+												<source_model>adminhtml/system_config_source_order_status</source_model>                            
+												<sort_order>5</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+											</order_status>
+										</fields>
+									</tab_global_configs>
+
+									<!-- Free plans fields-->
+									<dynamic_plans type="group" translate="label">
+										<label>Pay4later Dynamic plans</label>
+		                                <frontend_type>text</frontend_type>
+		                                <show_in_default>1</show_in_default>
+		                                <show_in_website>1</show_in_website>
+		                                <frontend_class>pay4leter-front</frontend_class>
+		                                <frontend_model>pay4leter/adminhtml_system_config_fieldset_expanded</frontend_model>
+		                                <sort_order>12</sort_order>
+										<fields>
+											<dynamic_pay4later_plans translate="label">
+					                            <label>Pay4later Plans</label>
+					                            <frontend_model>pay4leter/adminhtml_form_field_pay4laterplans</frontend_model>
+					                            <backend_model>sp_pay4leter/system_config_backend_pay4laterplans</backend_model>
+					                            <sort_order>6</sort_order>
+					                            <show_in_default>1</show_in_default>
+					                            <show_in_website>0</show_in_website>
+					                            <show_in_store>0</show_in_store>
+					                       </dynamic_pay4later_plans>
+										</fields>
+									</dynamic_plans>
+									
+                                </fields>
+							</main_tab_config>
+							
+						</fields>
+					</pay4leter>
+			</groups>
+		</payment>
+	</sections>
+</config>

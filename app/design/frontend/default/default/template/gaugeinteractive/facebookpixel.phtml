@@ -1,0 +1,51 @@
+<?php
+     $containerId = $this->getContainerId();
+     $carttracking = $this->isCartTrackingEnabled();
+     $checkouttracking = $this->isCheckoutTrackingEnabled();
+     $purchasetracking = $this->isPurchaseTrackingEnabled();
+?>
+
+<!-- Facebook Pixel Code -->
+     <script>
+     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+          n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+               document,'script','https://connect.facebook.net/en_US/fbevents.js');
+               fbq('init', '<?php echo $containerId;?>');
+               fbq('track', "PageView");
+     </script>
+
+     <noscript>
+          <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $containerId;?>&amp;ev=PageView&amp;noscript=1" />
+     </noscript>
+<!-- End Facebook Pixel Code -->
+
+<?php
+     $currentURL =  Mage::helper('core/url')->getCurrentUrl(); //grabs current url
+
+     if (strpos($currentURL, 'checkout/cart') !== false && $carttracking == 1)  : ?>
+          <script>
+          // AddToCart Page
+          fbq('track', 'AddToCart');
+          </script>
+<?php endif; ?>
+
+<?php
+     if (strpos($currentURL, 'checkout/onepage') !== false && $checkouttracking == 1)  : ?>
+          <script>
+          // InitiateCheckout Page:
+          fbq('track', 'InitiateCheckout');
+          </script>
+     <?php endif; ?>
+
+<?php
+     $order = Mage::getModel('sales/order')->load(Mage::getSingleton('checkout/session')->getLastOrderId());
+     $grandTotal = $order->getGrandTotal();
+     $totalFormatted = number_format($grandTotal, 2, '.', ',');
+     if (strpos($currentURL, 'checkout/onepage/success') !== false && $purchasetracking == 1)  : ?>
+          <script>
+          // Purchase Page:
+          fbq('track', 'Purchase', {value: '<?php echo $totalFormatted; ?>', currency: 'USD'});
+          </script>
+<?php endif; ?>

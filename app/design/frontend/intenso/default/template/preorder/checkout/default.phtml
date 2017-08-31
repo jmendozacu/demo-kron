@@ -1,0 +1,62 @@
+<?php
+	$isConfig=0;
+    /** @var Webkul_Preorder_Helper_Data $helper */
+	$helper = Mage::helper("preorder");
+	$result="";
+	$cartHelper = Mage::helper('checkout/cart');
+	$items = $cartHelper->getCart()->getItems();
+	foreach ($items as $item) {
+		$itemId = 0;
+		$orderItemId = $item->getProductId();
+		$product = Mage::getModel("catalog/product")->load($orderItemId);
+		$productType = strtolower($product->getTypeId());
+		$url=$product->getProductUrl();
+		$productName = explode('/', $url);
+		$productName = end($productName);
+
+		$products = Mage::getModel('catalog/product')->getCollection();
+		$products->addAttributeToFilter('url_path', $productName)
+				->getFirstItem();
+		foreach ($products as $pro) {
+			$itemId=$pro->getId();
+		}
+		if($helper->isPreOrder($itemId)) {
+			$result[$url]=1;
+		}
+		else{
+			$result[$url]=2;
+		}
+		if($productType=="configurable") {
+			$isConfig = 1;
+		}
+	}
+
+	$preorderType = $helper->getPreorderType();
+	$flag=0;
+	$cart = Mage::getSingleton("checkout/cart")->getQuote();
+	if(Mage::helper("checkout/cart")->getItemsCount()==1 && $isConfig) {
+		foreach($cart->getAllItems() as $item) {
+			$currentProductId = $item->getProductId();
+			if($helper->isPreorder($currentProductId)) {
+				$flag=1;
+			}
+		}
+	}
+	if($flag==1) {
+		$config = "yes";
+	} else {
+		$config="no";
+	}
+?>
+<script>
+	jQuery.noConflict();
+	var temp=<?php echo json_encode($result)?>;
+	var url=jQuery('.product-image').attr('href');
+	if(temp[url]==1){
+		jQuery('.product-cart-info').append('<h6 style="float:right;">Preorder</h6>');
+	}
+	var config = "<?php echo $config; ?>";
+	if(config=="yes") {
+		jQuery('.product-cart-info').append('<h6 style="float:right;">Preorder</h6>');
+	}
+</script>

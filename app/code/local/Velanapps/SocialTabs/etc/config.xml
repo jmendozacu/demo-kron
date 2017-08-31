@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Velanapps_SocialTabs>
+			<version>1.0.0</version>
+		</Velanapps_SocialTabs>
+	</modules>
+	<frontend>
+		<layout>
+			<updates>
+				<socialtabs module="socialtabs">
+					<file>socialtabs.xml</file>
+				</socialtabs>
+			</updates>
+		</layout>
+	</frontend>
+	<global>
+		<models>
+			<velanapps_socialtabs>
+				<class>Velanapps_SocialTabs_Model</class>
+			</velanapps_socialtabs>
+		</models>
+		<helpers>
+			<socialtabs>
+				<class>Velanapps_SocialTabs_Helper</class>
+			</socialtabs>
+		</helpers>
+	</global>
+	<adminhtml>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <socialtabs>
+                                            <title>Social Tabs</title>
+                                        </socialtabs>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+	</adminhtml>
+	<default>
+		<socialtabs>
+			<social_accounts>
+				<facebook_profile_name>KronosAudioVisual/?ref=hl</facebook_profile_name>
+				<twitter_account>kronosav</twitter_account>
+				<twitter_feeds_count>2</twitter_feeds_count>
+				<twappid></twappid>
+				<twsecret></twsecret>
+				<tw_access_token></tw_access_token>
+				<tw_access_token_secret></tw_access_token_secret>
+				<youtube>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/xczaYVhpiyg"  allowfullscreen&gt;&lt;/iframe&gt;</youtube>
+			</social_accounts>
+		</socialtabs>
+	</default>
+</config>

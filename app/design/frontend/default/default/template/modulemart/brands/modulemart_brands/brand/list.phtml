@@ -1,0 +1,95 @@
+<?php 
+/**
+ * ModuleMart_Brands extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Module-Mart License
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.modulemart.com/license.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to modules@modulemart.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * versions in the future. If you wish to customize this extension for your
+ * needs please refer to http://www.modulemart.com for more information.
+ *
+ * @category   ModuleMart
+ * @package    ModuleMart_Brands
+ * @author-email  modules@modulemart.com
+ * @copyright  Copyright 2014 © modulemart.com. All Rights Reserved
+ */
+?>
+
+<?php $_slider = $this->getBrandsSlider(); ?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php if($this->getEnableBrandSlider()) {?>
+	<?php /*if($this->getIsjQueryEnabled()):*/?><!--
+    	<?php /*$jsUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS);*/?>
+  	  <script type="text/javascript" src="<?php /*echo $jsUrl;*/?>modulemart/lib/jquery-1.11.1.min.js"></script>
+    --><?php /*endif;*/?>
+<script src="<?php echo $this->getSkinUrl('modulemart/brands/slider/js/jquery.flexslider.js') ?>"></script>
+<script type="text/javascript">var $brandSlide = jQuery.noConflict();</script>
+  <script type="text/javascript">
+    $brandSlide(window).load(function(){
+      $brandSlide('.flexslider').flexslider({
+        animation: "slide",
+        animationLoop: true,
+		pausePlay: <?php echo $this->getAutoPlay();?>,
+		itemWidth: 131,
+		itemMargin: 5,
+		minItems: <?php echo $this->getShowTotalItems();?>,
+		maxItems: <?php echo $this->getShowTotalItems();?>
+      });
+    });
+  </script>
+ <?php if ($_slider->getSize() > 0) :?>
+    <h1><?php echo Mage::helper('brands')->__($this->getFeaturedTitle()) ?></h1>
+   
+    <div id="container" class="cf">
+      <section class="slider">
+        <div class="flexslider carousel">
+          <ul class="slides">
+            <?php foreach ($_slider as $_brandslides) : ?>
+  	    		<li style="border:1px solid #ccc;">
+                	<a href="<?php echo $_brandslides->getBrandUrl();?>">
+  	    	    	<img width="131" height="131" style="border:1px rgba(245, 237, 237, 0.37) outset;" src="<?php echo Mage::helper('brands/brand')->getFileBaseUrl().$_brandslides->getBrandLogo();?>" /></a>
+  	    		</li>
+                <?php endforeach;?>  
+          </ul>
+        </div>
+      </section>
+  </div>                                                             
+ 
+	<?php endif;?>
+<?php } ?>
+<?php $_brands = $this->getBrands(); ?> 
+
+<div class="page-title brand-title">
+	<h1><?php echo Mage::helper('brands')->__('Brands') ?></h1>
+</div>
+<?php if ($_brands->getSize() > 0) :?>
+<div class="brand-list-container">
+	<ul>
+	<?php foreach ($_brands as $_brand) : ?>
+		<div class="brand-list-item">
+            <li class="brands">
+                <a href="<?php echo $_brand->getBrandUrl();?>" title="<?php echo $this->htmlEscape($_brand->getBrandName()) ?>">
+                    <img class="brand-img" style="" width="140" height="140" src="<?php echo Mage::helper('brands/brand')->getFileBaseUrl().$_brand->getBrandLogo();?>" />
+                </a>
+                <div class="brand-name">
+                  <a href="<?php echo $_brand->getBrandUrl();?>" title="<?php echo $this->htmlEscape($_brand->getBrandName()) ?>">
+				  <?php echo $_brand->getBrandName(); ?></a>
+         		 </div>
+          </li>
+		</div>
+	<?php endforeach;?>
+    </ul>
+</div>
+<?php else : ?>
+	<?php echo Mage::helper('brands')->__('There are no brands at this moment');?>
+<?php endif;?>

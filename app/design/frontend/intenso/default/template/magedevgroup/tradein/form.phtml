@@ -1,0 +1,107 @@
+<?php
+/**
+ * @package    Magedevgroup_TradeIn
+ * @author     Magedevgroup
+ * @contacts   https://magedevgroup.com/
+ */
+?>
+
+<div id="tradein_form_container" style="display: none; min-width: 300px;  width: 40%; max-width: 900px;">
+    <form id="tradein_form" enctype="multipart/form-data" action="<?php echo Mage::getBaseUrl() . "tradein/front/submit" ?>" method="post">
+        <input name="current_product" type="hidden" value="<?php echo Mage::registry('current_product')->getId(); ?>">
+
+        <p>
+            <label>First name: <input name="fname" type="text" class="input-text required-entry validate-alpha"/></label>
+            <label>Second name: <input name="sname" type="text" class="input-text required-entry validate-alpha"/></label>
+        </p>
+
+        <p>
+            <label>Phone: <input name="phone" type="text" class="input-text required-entry validate-phoneLax"/></label>
+            <label>e-mail: <input name="mail" type="text" class="input-text required-entry validate-email"/></label>
+        </p>
+
+        <p>
+            <label>Product brand: <input name="brand" type="text" class="input-text required-entry"/></label>
+            <label>Model: <input name="model" type="text" class="input-text required-entry"/></label>
+        </p>
+
+        <p>
+            <label>Condition:</label>
+                <select name="condition" required>
+                    <option value="">-- Please Select --</option>
+                    <option value="0">Perfect</option>
+                    <option value="1">Few marks/scratches</option>
+                    <option value="2">Major marks/damage</option>
+                    <option value="3">Not Working</option>
+                </select>
+        </p>
+
+        <p>
+            <label>Age: <input name="age" type="text" class="input-text required-entry validate-number"/></label>
+        </p>
+
+        <!-- @TODO add validation -->
+        <p>
+            <label>Photo Upload: <input name="photo[]" type="file" class="required-entry"/></label>
+            <label>Photo Upload: <input name="photo[]" type="file" class="required-entry"/></label>
+        </p>
+
+        <br>
+        <p><label>Are the following present?</label></p>
+        <p><label>Original boxes & packaging: <input name="packing" type="checkbox"/></label></p>
+        <p><label>Remote: <input name="remote" type="checkbox"/></label></p>
+        <p><label>Instructions: <input name="instructions" type="checkbox"/></label></p>
+        <p><label>Original receipt: <input name="receipt" type="checkbox"/></label></p>
+
+        <!-- @TODO add validation -->
+        <label>Payment type:</label>
+        <p>
+            <input type="radio" name="pay_type" value="0" onclick="hideP4L_options()" required/> PayPal
+            <input type="radio" name="pay_type" value="1" onclick="hideP4L_options()" required/> SagePay
+            <input type="radio" name="pay_type" value="2" onclick="showP4L_options()" required/> Pay4Later (0% Finance)
+        </p>
+        <!-- Show it If checked "Pay4Later (0% Finance)" -->
+        <div id="pay4later_options" style="display: none">
+            <p>
+                <label>Months:</label>
+                    <select name="pay4later_months">
+                        <option value="">-- Please Select --</option>
+                        <option value="6">6 months</option>
+                        <option value="10">10 months</option>
+                        <option value="12">12 months</option>
+                    </select>
+
+                <label>Deposit:</label>
+                    <select name="pay4later_deposit">
+                        <option value="">-- Please Select --</option>
+                        <option value="10">10%</option>
+                        <option value="20">20%</option>
+                        <option value="30">30%</option>
+                        <option value="40">40%</option>
+                        <option value="50">50%</option>
+                    </select>
+
+            <p style="color: red">Please note: TradeIn quotes may not be as attractive with 0% finance than with other payment options.</p>
+        </div>
+
+        <p><label>Comment:<br><textarea name="comment"></textarea></label></p>
+
+        <p><input type="submit" value="Accept"/></p>
+    </form>
+</div>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    var tradein_form = new VarienForm('tradein_form');
+    //]]>
+
+    //Show Pay4Later Options
+    function showP4L_options() {
+        document.getElementById("pay4later_options").style.display = "block";
+    }
+
+    //Hide Pay4Later Options
+    function hideP4L_options() {
+        document.getElementById("pay4later_options").style.display = "none";
+    }
+</script>

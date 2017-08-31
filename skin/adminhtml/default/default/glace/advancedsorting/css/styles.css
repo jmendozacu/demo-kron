@@ -1,0 +1,177 @@
+/**
+ * Developer: Rene Voorberg
+ * Team site: http://cmsideas.net/
+ * Support: http://support.cmsideas.net/ 
+ * 
+*/
+i.glace,
+a.popupplusAction,
+a.popup_back,
+.customerattribute-admin-adminhtml-customerattribute-index td.a-left,
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content button,
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content label,
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content h3,
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content h4,
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content input,
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content li a,
+
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content button,
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content label,
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content h3,
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content h4,
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content input,
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content li a,
+
+
+.customerattribute-admin-adminhtml-customeraddressattribute-index td.a-left,
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content button,
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content label,
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content h3,
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content h4,
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content input,
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content li a,
+
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content button,
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content label,
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content h3,
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content h4,
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content input,
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content li a,
+
+.customerattribute-admin-adminhtml-managecustomer-index td.a-left,
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content button,
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content label,
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content h3,
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content h4,
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content input,
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content li a,
+
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content button,
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content label,
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content h3,
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content h4,
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content input,
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content li a,
+
+
+.adminhtml-popupplus-edit #anchor-content button,
+.adminhtml-popupplus-edit #anchor-content label,
+.adminhtml-popupplus-edit #anchor-content h3,
+.adminhtml-popupplus-edit #anchor-content h4,
+.adminhtml-popupplus-edit #anchor-content input,
+.adminhtml-popupplus-edit #anchor-content li a,
+.adminhtml-popupplus-edit #anchor-content p
+
+{
+	font-family:'Montserrat',sans-serif !important;
+	letter-spacing: 1px;
+}
+
+.adminhtml-popupplus-template td.a-left
+{
+	font-size:18px;
+}
+
+#logo_cmsideas a
+{
+	display:inline-block;
+	width:100%;
+	background:url("logo_cmsideas.png") no-repeat scroll center top #FFFFFF;
+	height:85px;
+}
+
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content button.add span,
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content button.save span,
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content button.add span,
+.customerattribute-admin-adminhtml-customerattribute-index #anchor-content button.delete span,
+
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content button.add span,
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content button.save span,
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content button.add span,
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content button.delete span,
+.customerattribute-admin-adminhtml-customerattribute-edit #anchor-content button.back span,
+
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content button.add span,
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content button.save span,
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content button.add span,
+.customerattribute-admin-adminhtml-customeraddressattribute-index #anchor-content button.delete span,
+
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content button.add span,
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content button.save span,
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content button.add span,
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content button.delete span,
+.customerattribute-admin-adminhtml-customeraddressattribute-edit #anchor-content button.back span,
+
+
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content button.add span,
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content button.save span,
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content button.add span,
+.customerattribute-admin-adminhtml-managecustomer-index #anchor-content button.delete span,
+
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content button.add span,
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content button.save span,
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content button.add span,
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content button.delete span,
+.customerattribute-admin-adminhtml-managecustomer-edit #anchor-content button.back span,
+
+.adminhtml-popupplus-edit #anchor-content button.add span,
+.adminhtml-popupplus-edit #anchor-content button.save span,
+.adminhtml-popupplus-edit #anchor-content button.add span,
+.adminhtml-popupplus-edit #anchor-content button.delete span
+{
+	background-image:none !important;
+	padding-left:0px;
+}
+
+a.popupplusAction,
+a.popup_back
+{
+	background-color:#FFAC47;
+    border-color: #ED6502 #A04300 #A04300 #ED6502;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font: bold 12px arial,helvetica,sans-serif;
+    padding: 1px 7px 2px;
+    text-align: center !important;
+    white-space: nowrap;
+    display:inline-block;
+    min-width:73px;
+    text-decoration: none;
+    margin:5px 0px;
+}
+a.popup_back
+{
+	float:right;
+}
+
+
+#advancedsorting_general p.note
+{
+	display:none;
+}
+
+#advancedsorting_general td.value:hover p.note
+{
+	display:block;
+	position: relative;
+}
+
+#advancedsorting_general td.value:hover i.glace
+{
+	background-color: #EB5E00;
+    max-width: 300px;
+    padding: 10px;
+    position: absolute;
+    right: -300px;
+    top: -20px;
+    z-index: 99999;
+    color:#FFFFFF;
+    font-size:14px;
+}
+
+#advancedsorting_general td.value:hover i.glace a
+{
+	color:#ffffff;
+}

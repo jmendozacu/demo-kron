@@ -1,0 +1,17 @@
+image: samueldebruyn/debian-git
+
+pipelines:
+  branches:
+    production:
+      - step:
+          script:
+           - mkdir -p ~/.ssh
+           - (umask  077 ; echo $SSH_KEY | base64 --decode -i > ~/.ssh/my-key)
+           - ssh -i ~/.ssh/my-key kronosav@72.52.229.186 -t "cd /home/kronosav/public_html && git pull origin production"
+    staging:
+          - step:
+              script:
+              - mkdir -p ~/.ssh
+              - cat known_hosts >> ~/.ssh/known_hosts
+              - (umask  077 ; echo $SSH_KEY | base64 --decode -i > ~/.ssh/my-key)
+              - ssh -i ~/.ssh/my-key kronosav@72.52.229.186 -t "cd /home/kronosav/staging.kronosav.com && git pull origin staging"

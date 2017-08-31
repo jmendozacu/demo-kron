@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Velan_Pricecompare>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Velan_Pricecompare>
+	</modules>
+</config>

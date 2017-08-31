@@ -1,0 +1,52 @@
+<?php if($this->getshow()){ ?> 
+<style>
+.image{
+	float:left;
+	width:<?php echo $this->getwidth_image(); ?>px;
+}
+.content_code{
+	float:right;
+	width:<?php echo $this->getwidth()-$this->getwidth_image(); ?>px;
+	margin-left:5px;
+}
+.content_code p{ 
+text-align:justify;
+}
+.cotent_main{
+	width:<?php echo $this->getwidth()+5; ?>px;
+	margin-bottom: 10px;
+}	
+.clear{
+	clear:both;
+}
+</style>
+<h1><?php echo $this->gettitle(); ?></h1>		
+		<div class="cms_content_testimonial" >				
+			<?php						
+				foreach($this->getAllslideshow() as $slide)						
+				{				
+			?>						
+												
+														
+														
+													
+				<div class="cotent_main">												
+					<div class="image">								
+															
+							<img src='<?php echo Mage::getBaseUrl('media').$slide->getFilename(); ?>' alt="photo" width='<?php echo $this->getwidth_image(); ?>px' height='<?php echo $this->getheight_image(); ?>px' />								
+													
+					</div>	
+                    <div class="content_code">
+					<?php echo $slide->getBody(); ?>
+					<div style="float:right;">
+					<p style="font-weight:bold;margin-bottom:0px;"><?php echo $slide->getTitle(); ?></p>								
+					<p><?php echo $slide->getlink(); ?></p>
+					</div>
+                    </div>
+				<div class="clear"></div>
+				</div>				
+			<?php						
+				}				
+			?>				
+		</div>			
+<?php } ?>	

@@ -1,0 +1,31 @@
+
+<?php /* @var $this Mage_Catalog_Block_Product_View_Abstract */?>
+<?php $_product = $this->getProduct() ?>
+
+<?php if ($_product->isAvailable()): ?>
+    <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('In stock') ?></span></p>
+    <?php else: ?>
+    <p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
+    <?php endif; ?>
+<?php echo $this->getChildHtml('product_type_data_extra') ?>
+
+<?php 
+    $layout = Mage::getSingleton('core/layout');
+    $block = $layout->createBlock('freegift/product');
+
+    $mw_free_gift = 0;
+    $mw_free_gift = (int)Mage::app()->getRequest()->getParam('mw_freegift');
+    $mw_productIds = $block->getFreeProducts();
+    $mw_productId = $_product->getId();
+    if($mw_free_gift == 1  && in_array($mw_productId,$mw_productIds)){
+    ?>
+    <div class="old-price">
+        <?php echo $this->getPriceHtml($_product, true) ?>
+    </div>
+    <div class="price-box">
+        <span class="price"><?php echo Mage::helper('core')->currency(0)?></span>
+    </div>
+    <?php }else{?>
+    <?php echo $this->getPriceHtml($_product) ?>       
+    <?php }?>
+

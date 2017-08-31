@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<simicategoryadmin_adminhtml_simicategory_index>
+		<reference name="content">
+			<block type="simicategory/adminhtml_simicategory" name="simicategory" />
+		</reference>
+	</simicategoryadmin_adminhtml_simicategory_index>
+</layout>

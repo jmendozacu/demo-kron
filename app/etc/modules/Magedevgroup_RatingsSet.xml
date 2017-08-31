@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Magedevgroup
+ * @package    Magedevgroup_RatingsSet
+ */
+ -->
+<config>
+    <modules>
+        <Magedevgroup_RatingsSet>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Itactica_ExtendedReviews />
+                    <Magedevgroup_Core />
+            </depends>
+        </Magedevgroup_RatingsSet>
+    </modules>
+</config>

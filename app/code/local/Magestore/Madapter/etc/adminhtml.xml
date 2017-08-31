@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category 	Magestore
+ * @package 	Magestore_Madapter
+ * @copyright 	Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license 	http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <menu>
+        <madapter module="madapter" translate="title">
+            <title>SimiCart - Mobile</title>
+            <sort_order>71</sort_order>               
+            <children>
+                <!--madapter module="madapter" translate="title">
+                    <title>Manage Transactions</title>
+                    <sort_order>0</sort_order>
+                    <action>madapteradmin/adminhtml_madapter</action>
+                </madapter-->
+                <madapter_banner module="madapter" translate="title">
+                    <title>Manage Banner</title>
+                    <sort_order>10</sort_order>
+                    <action>madapteradmin/adminhtml_banner</action>
+                </madapter_banner>
+                <madapter_notice module="madapter" translate="title">
+                    <title>Notification</title>
+                    <sort_order>100</sort_order>
+                    <action>madapteradmin/adminhtml_notice</action>
+                </madapter_notice>
+                <madapter_pem module="madapter" translate="title">
+                    <title>Upload PEM</title>
+                    <sort_order>1000</sort_order>
+                    <action>madapteradmin/adminhtml_pem/edit</action>
+                </madapter_pem>
+                <settings module="madapter" translate="title">
+                    <title>Settings</title>
+                    <sort_order>100000</sort_order>
+                    <action>adminhtml/system_config/edit/section/madapter</action>
+                </settings>
+            </children>
+        </madapter>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <madapter module="madapter" translate="title">
+                                        <title>Madapter - Mobile</title>
+                                        <sort_order>71</sort_order>									
+                                    </madapter>								
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <madapter module="madapter" translate="title">
+                        <title>SimiCart - Mobile</title>
+                        <sort_order>71</sort_order>               
+                        <children>
+                            <!--madapter module="madapter" translate="title">
+                                <title>Manage Transactions</title>
+                                <sort_order>0</sort_order>
+                            </madapter-->
+                            <madapter_banner module="madapter" translate="title">
+                                <title>Manage Banner</title>
+                                <sort_order>10</sort_order>                                
+                            </madapter_banner>
+                            <madapter_notice module="madapter" translate="title">
+                                <title>Notification</title>
+                                <sort_order>100</sort_order>                                
+                            </madapter_notice>
+                            <madapter_pem module="madapter" translate="title">
+                                <title>Upload PEM</title>
+                                <sort_order>1000</sort_order>                               
+                            </madapter_pem>
+                            <settings module="madapter" translate="title">
+                                <title>Settings</title>
+                                <sort_order>100000</sort_order>
+                            </settings>
+                        </children>
+                    </madapter>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

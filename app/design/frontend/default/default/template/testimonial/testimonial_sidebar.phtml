@@ -1,0 +1,85 @@
+<?php if($this->getshow()){ ?> 
+<?php if($this->getjquery()){ ?> 
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('testimonial/js/jquery.js'); ?>"></script>
+<?php } ?>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('testimonial/js/jquery.innerfade.js'); ?>"></script>
+<script type="text/javascript">
+	   $(document).ready(
+				function(){
+					$('#news').innerfade({
+						animationtype: '<?php echo $this->getanimation_type(); ?>',
+						speed: <?php echo $this->getspeed(); ?>,
+						timeout: <?php echo $this->gettimeout(); ?>,
+						type: 'random',
+						containerheight: '<?php echo $this->getheight1(); ?>px'
+					});
+					
+					
+
+			});
+  	</script>
+<style>
+.image_sidebar{
+	float:left;
+	width:<?php echo $this->getwidth1_image(); ?>px;
+	height:<?php echo $this->getheight1_image(); ?>px;
+}
+.content_code_sidebar{
+	float:right;
+	width:<?php echo $this->getwidth1()-$this->getwidth1_image(); ?>px;
+	margin-left:5px;
+}
+.content_code_sidebar p{ 
+text-align:justify;
+}
+.cotent_main_sidebar{
+	width:<?php echo $this->getwidth1()+5; ?>px;
+}	
+.clear{
+	clear:both;
+}
+</style>
+<?php
+function ShortenText_fader($text,$chars) {
+        // Change to the number of characters you want to display
+        $text = $text." ";
+        $text = substr($text,0,$chars);
+        $text = substr($text,0,strrpos($text,' '));
+        $text = $text."...";
+        return $text;
+    }
+	$nchar=$this->getno_char();
+?>		
+		<div class="sidebar_content_testimonial" >	
+         <ul id="news">			
+			<?php						
+				foreach($this->getAllslideshow() as $slide)						
+				{				
+			?>						
+												
+														
+														
+				<li>								
+				<div class="cotent_main_sidebar">												
+					<div class="image_sidebar">								
+															
+							<img src='<?php echo Mage::getBaseUrl('media').$slide->getFilename(); ?>' alt="photo" width='<?php echo $this->getwidth1_image(); ?>px' height='<?php echo $this->getheight1_image(); ?>px' />								
+													
+					</div>	
+                    <div class="content_code_sidebar">
+					<?php echo ShortenText_fader($slide->getBody(),$nchar); ?>
+					
+					<div style="float:right;">
+					<p style="font-weight:bold;margin-bottom:0px;"><?php echo $slide->getTitle(); ?></p>								
+					<p><?php echo $slide->getlink(); ?></p>
+					</div>
+                    </div>
+				<div class="clear"></div>
+				</div>
+             </li>				
+			<?php						
+				}				
+			?>	
+         </ul>			
+		</div>			
+<?php  } ?>	

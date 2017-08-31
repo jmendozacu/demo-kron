@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Magedevgroup_Content>
+			<version>0.0.8</version>
+		</Magedevgroup_Content>
+	</modules>
+	<global>
+		<resources>
+			<kronosav_setup>
+				<setup>
+					<module>Magedevgroup_Content</module>
+				</setup>
+			</kronosav_setup>
+		</resources>
+	</global>
+</config>

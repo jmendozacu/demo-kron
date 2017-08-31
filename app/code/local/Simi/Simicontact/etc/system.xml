@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category 	Magestore
+ * @package 	Magestore_Simicontact
+ * @copyright 	Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license 	http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <tabs>
+        <simi translate="label">
+            <label>Simi Extension</label>
+            <sort_order>400</sort_order>
+        </simi>
+    </tabs>
+    <sections>
+        <simicontact translate="label" module="simicontact">
+            <class>separator-top</class>
+            <label>Instant Contact</label>
+            <tab>simi</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>299</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>		
+                        <enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </enable>
+                        <email translate="label">
+                            <label>Email</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>                           
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Used to send email. Seperate emails with comma.</comment>
+                        </email>  						
+                        <phone translate="label">
+                            <label>Phone Number</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>                           
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Used to call and send message. Seperate phone numbers with comma</comment>
+                        </phone> 
+                        <website translate="label">
+                            <label>Website Url</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>                           
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Please enter the URL with http or https. For example: http://yourwebsite.com or https://yourwebsite.com</comment>
+                        </website> 	
+                        <style translate="label">
+                            <label>Style</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>5</sort_order>                           
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>simicontact/config</source_model>
+                            <comment></comment>
+                        </style> 
+                        <icon_color>
+                            <label>Icon Color</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>color</validate> <!-- This is important -->
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Select the color of contact icons displayed in Contact page of your app.</comment>
+                        </icon_color>
+                    </fields>				
+                </general>
+            </groups>
+        </simicontact>
+    </sections>
+</config>

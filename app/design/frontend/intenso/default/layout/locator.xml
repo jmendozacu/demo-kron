@@ -1,0 +1,17 @@
+<layout version="0.1.0">
+     <default>
+          <reference name="right">
+		<!--<block type="locator/monblock"  name="right_locator" template="locator/testimonialLocator.phtml" >
+		<action method="setData"><name>position</name><value>right</value></action></block>-->
+	  </reference>
+	  <reference name="left">
+		<block type="locator/monblock"  name="left_locator" template="locator/testimonialLocator.phtml" >
+		<action method="setData"><name>position</name><value>left</value></action></block>
+	  </reference>
+      </default>
+      <locatorfrontend_index_index>
+           <reference name="content">
+                <block type="locator/monblock"  name="locator" template="locator/afflier.phtml" />
+           </reference>
+      </locatorfrontend_index_index>
+</layout>

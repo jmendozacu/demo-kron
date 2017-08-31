@@ -1,0 +1,11 @@
+@import "default.css"; /* or "default.css"; or "rwd.css"; - set css file according the selected theme in the section System > Configuration > Search Autocomplete  */
+/* custom changes here */
+.searchautocomplete .searchautocomplete-loader{
+right: 90px;
+}
+.header .form-search button.button{
+width: 80px;
+}
+.searchautocomplete .searchautocomplete-placeholder{
+top: 49px;
+}

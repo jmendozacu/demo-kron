@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_Hideaddress
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <modules>
+        <Simi_Hideaddress>
+            <version>0.1.0</version>
+        </Simi_Hideaddress>
+    </modules>
+    <frontend>
+        <routers>
+            <hideaddress>
+                <use>standard</use>
+                <args>
+                    <module>Simi_Hideaddress</module>
+                    <frontName>hideaddress</frontName>
+                </args>
+            </hideaddress>
+        </routers>
+        <layout>
+            <updates>
+                <hideaddress>
+                    <file>hideaddress.xml</file>
+                </hideaddress>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Simi_Hideaddress>
+                    <files>
+                        <default>Simi_Hideaddress.csv</default>
+                    </files>
+                </Simi_Hideaddress>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <hideaddressadmin>
+                <use>admin</use>
+                <args>
+                    <module>Simi_Hideaddress</module>
+                    <frontName>hideaddressadmin</frontName>
+                </args>
+            </hideaddressadmin>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <hideaddress>
+                    <file>hideaddress.xml</file>
+                </hideaddress>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Simi_Hideaddress>
+                    <files>
+                        <default>Simi_Hideaddress.csv</default>
+                    </files>
+                </Simi_Hideaddress>
+            </modules>
+        </translate>
+    </adminhtml>   
+    <global>
+        <models>
+            <hideaddress>
+                <class>Simi_Hideaddress_Model</class>
+                <resourceModel>hideaddress_mysql4</resourceModel>
+            </hideaddress>
+            <hideaddress_mysql4>
+                <class>Simi_Hideaddress_Model_Mysql4</class>
+                <entities>
+                    <hideaddress>
+                        <table>hideaddress</table>
+                    </hideaddress>
+                </entities>
+            </hideaddress_mysql4>
+            <connector>
+            <rewrite>
+            <observer>Simi_Hideaddress_Model_Observer</observer>    
+            </rewrite>    
+            </connector>
+            <paypalmobile>
+            <rewrite>
+            <observer>Simi_Hideaddress_Model_Overrideobserver</observer>    
+            </rewrite>    
+            </paypalmobile>
+        </models>
+        <resources>
+            <hideaddress_setup>
+                <setup>
+                    <module>Simi_Hideaddress</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </hideaddress_setup>
+            <hideaddress_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </hideaddress_write>
+            <hideaddress_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </hideaddress_read>
+        </resources>
+        <blocks>
+            <hideaddress>
+                <class>Simi_Hideaddress_Block</class>
+            </hideaddress>
+        </blocks>
+        <helpers>
+            <hideaddress>
+                <class>Simi_Hideaddress_Helper</class>
+            </hideaddress>
+        </helpers>
+        <!-- <events>
+            <controller_action_predispatch>
+                <observers>
+                    <hideaddress_observers>
+                        <class>hideaddress/observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </hideaddress_observers>
+                </observers>
+            </controller_action_predispatch>
+        </events> -->
+        <events>
+            <hideaddress_checkoutrewrite_get_order_config_total>
+                <observers>
+                    <connector_checkout_get_order_config_total_condition>
+                        <class>hideaddress/observer</class>
+                        <method>addCondition</method>
+                    </connector_checkout_get_order_config_total_condition>
+                </observers>
+            </hideaddress_checkoutrewrite_get_order_config_total>
+        </events> 
+        <routers>
+            <connector>
+                <rewrite>
+                    <checkout>
+                        <actions>
+                        <get_order_config>
+                        <to>hideaddress/checkoutrewrite/get_order_config</to>
+                        </get_order_config>
+                        </actions>
+                    </checkout>
+                    <customer>
+                        <actions>
+                        <save_address>
+                        <to>hideaddress/customerrewrite/save_address</to>
+                        </save_address>
+                        </actions>
+                    </customer>
+                </rewrite>
+            </connector>
+        </routers>
+        
+    </global>
+    <default>
+        <hideaddress>        
+            <field_hide_management>
+                <firstname>2</firstname>
+                <lastname>2</lastname>
+                <email>2</email>
+                <company>2</company>
+                <street>2</street>
+                <country>2</country>
+                <state>2</state>
+                <city>2</city>
+                <zipcode>2</zipcode>
+                <telephone>2</telephone>
+                <fax>2</fax>
+                <prefix>2</prefix>
+<!--                <middlename>2</middlename>-->
+                <suffix>2</suffix>
+                <birthday>2</birthday>
+            <gender>2</gender>
+            <taxvat>2</taxvat>
+         </field_hide_management>
+          		
+        </hideaddress>
+    </default>
+</config>

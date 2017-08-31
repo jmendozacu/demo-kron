@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+     <default>
+          <reference name="head">
+               <block type="fbpixel/fbp" name="facebookpixel" template="gaugeinteractive/facebookpixel.phtml" />
+          </reference>
+     </default>
+
+</layout>

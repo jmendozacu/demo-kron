@@ -1,0 +1,8 @@
+<config>
+	<modules>
+		<Kronosav_Loan>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Kronosav_Loan>
+	</modules>
+</config>

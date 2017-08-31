@@ -1,0 +1,76 @@
+<!--
+ /** Velan Info Services India Pvt Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.velanapps.com/License.txt
+ *
+  /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ * *************************************** */
+/* This package designed for Magento COMMUNITY edition
+ * Velan Info Services does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Velan Info Services does not provide extension support in case of
+ * incorrect edition usage.
+  /***************************************
+ *         DISCLAIMER   *
+ * *************************************** */
+/* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ * ****************************************************
+ * @category   velanapps
+ * @package    EzLogin
+ * @author     Velan Team
+ * @copyright  Copyright (c) 2012 - 2013 Velan Info Services India Pvt Ltd. (http://www.velanapps.com)
+ * @license    http://store.velanapps.com/License.txt
+ * File path:   app/locale/en_US/template/email/ezlogin_twitter_email.html
+ */
+-->
+<!--@subject Account confirmation for {{var name}}@-->
+
+<style type="text/css">
+    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+</style>
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+        <tr>
+            <td align="center" valign="top" style="padding:20px 0 20px 0">
+                <!-- [ header starts here] -->
+                <table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+                    <tr>
+                        <td valign="top">
+                            <a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:10px;" border="0"/></a>
+                        </td>
+                    </tr>
+                    <!-- [ middle starts here] -->
+                    <tr>
+                        <td valign="top">
+						<p style="font-size:12px;text-align:center; line-height:16px; margin:0 0 16px 0;">We are sorry!!</p>
+                            <p style="font-size:14px;text-align:center; line-height:16px; margin:0 0 16px 0;">Customer rejected service request</p>
+                            <p style="font-size:14px;text-align:left; line-height:16px; margin:0 0 16px 0;">Customer details are below:</p>
+                             <div style="border:1px solid #E0E0E0; width:80%;height:185px;font-size:14px; line-height:16px; margin:0 auto; padding:22px 18px; background:#f9f9f9;">
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Product Make:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var product_make}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Product Model:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var product_model}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Serial Number:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var serial_no}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Repair Details:</strong></div><div style="float:right;width:50%;margin-bottom:15px;">  {{var repair_details}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Repair Submission Date:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var repair_submission_date}}</div></div>
+							 <div><div style="float:left;width:50%;margin-bottom:15px;"><strong>Repair Cost:</strong></div><div style="float:right;width:50%;margin-bottom:15px;"> {{var repair_cost}} GBP</div></div>
+							 </div>
+							 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center><p style="font-size:12px; margin:0;"><strong>{{var store.getFrontendName()}}</strong></p></center></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>

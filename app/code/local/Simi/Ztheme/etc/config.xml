@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_Ztheme
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <modules>
+        <Simi_Ztheme>
+            <version>0.1.0</version>
+        </Simi_Ztheme>
+    </modules>
+    <frontend>
+        <routers>
+            <ztheme>
+                <use>standard</use>
+                <args>
+                    <module>Simi_Ztheme</module>
+                    <frontName>ztheme</frontName>
+                </args>
+            </ztheme>
+        </routers>
+        <layout>
+            <updates>
+                <ztheme>
+                    <file>ztheme.xml</file>
+                </ztheme>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Simi_Ztheme>
+                    <files>
+                        <default>Simi_Ztheme.csv</default>
+                    </files>
+                </Simi_Ztheme>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <zthemeadmin>
+                <use>admin</use>
+                <args>
+                    <module>Simi_Ztheme</module>
+                    <frontName>zthemeadmin</frontName>
+                </args>
+            </zthemeadmin>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <ztheme>
+                    <file>ztheme.xml</file>
+                </ztheme>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Simi_Ztheme>
+                    <files>
+                        <default>Simi_Ztheme.csv</default>
+                    </files>
+                </Simi_Ztheme>
+            </modules>
+        </translate>
+    </adminhtml>   
+    <global>
+        <models>
+            <ztheme>
+                <class>Simi_Ztheme_Model</class>
+                <resourceModel>ztheme_mysql4</resourceModel>
+            </ztheme>
+            <ztheme_mysql4>
+                <class>Simi_Ztheme_Model_Mysql4</class>
+                <entities>
+                    <banner>
+                        <table>ztheme_banners</table>
+                    </banner>
+                    <spotproduct>
+                        <table>ztheme_spotproduct</table>
+                    </spotproduct>
+                </entities>
+            </ztheme_mysql4>
+        </models>
+        <resources>
+            <ztheme_setup>
+                <setup>
+                    <module>Simi_Ztheme</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ztheme_setup>
+            <ztheme_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ztheme_write>
+            <ztheme_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ztheme_read>
+        </resources>
+        <blocks>
+            <ztheme>
+                <class>Simi_Ztheme_Block</class>
+            </ztheme>
+        </blocks>
+        <helpers>
+            <ztheme>
+                <class>Simi_Ztheme_Helper</class>
+            </ztheme>
+        </helpers>
+
+        <events>
+            <connector_config_get_plugins_return>
+                <observers>
+                    <ztheme_observers>
+                        <class>ztheme/observer</class>
+                        <method>connectorConfigGetPluginsReturn</method>
+                    </ztheme_observers>
+                </observers>
+            </connector_config_get_plugins_return>
+                
+            <connector_catalog_get_product_detail_return>
+                <observers>
+                    <ztheme_observers>
+                        <class>ztheme/observer</class>
+                        <method>connectorCatalogGetProductDetailReturn</method>
+                    </ztheme_observers>
+                </observers>
+            </connector_catalog_get_product_detail_return>
+            
+            <simicart_get_list_product_after>
+                <observers>
+                    <ztheme_observers>
+                        <class>ztheme/observer</class>
+                        <method>simicartGetListProductAfter</method>
+                    </ztheme_observers>
+                </observers>
+            </simicart_get_list_product_after>
+            
+            <simicart_get_list_product_before>
+                <observers>
+                    <ztheme_observers>
+                        <class>ztheme/observer</class>
+                        <method>simicartGetListProductBefore</method>
+                    </ztheme_observers>
+                </observers>
+            </simicart_get_list_product_before>
+           
+            <simi_connector_get_product_list_after>
+                <observers>
+                    <ztheme_observers>
+                        <class>ztheme/observer</class>
+                        <method>simiConnectorGetProductListAfter</method>
+                    </ztheme_observers>
+                </observers>
+            </simi_connector_get_product_list_after>
+        </events>
+        
+    </global>
+    <default>                
+        <ztheme>
+            <general>
+                <enable>0</enable>
+                <show_title>1</show_title>
+            </general>
+        </ztheme>
+    </default>   
+</config>

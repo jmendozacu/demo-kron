@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <loan module="loan">
+            <title>Loans</title>
+            <sort_order>1</sort_order>
+            <children>
+                <manage_loan  module="loan">
+                    <title>Manage Loans</title>
+                    <sort_order>2</sort_order>
+                    <action>loan/adminhtml_loan/</action>
+                </manage_loan>
+			</children>
+        </loan>
+    </menu>
+	<acl>
+            <resources>
+                <admin>
+                    <children>
+						 <loan module="loan">
+							<title>Loans</title>
+							<sort_order>1</sort_order>
+						</loan>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <options>
+                                            <title>Kronosav Loans</title>
+                                        </options>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+	</acl>
+</config>
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+
+<?php $_product = $this->getProduct(); ?>
+
+<?php 
+    $layout = Mage::getSingleton('core/layout');
+    $block = $layout->createBlock('freegift/product');
+        
+    $mw_free_gift = 0;
+    $mw_free_gift = (int)Mage::app()->getRequest()->getParam('mw_freegift');
+    $productId = $_product->getId();
+    $mw_productIds = $block->getFreeProducts();
+    $rule = $block->getRuleByFreeProductId($productId);
+    if($rule) $url = $this->getAddToCartUrl($_product,array('freegift'=>1,'apllied_rule'=>$rule->getId()));
+    else $url = $this->getAddToCartUrl($_product,array('freegift'=>1));
+?>
+
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+        <?php if(!$_product->isGrouped()): ?>
+            <label for="qty"><?php echo $this->__('Qty:') ?></label>
+            <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+            <?php endif; ?>
+        <?php if($mw_free_gift == 1  && in_array($productId,$mw_productIds)){?>
+            <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="setLocation('<?php echo $url;?>')"><span><span><?php echo $buttonTitle ?></span></span></button>
+            <?php }else {?>
+            <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
+            <?php }?>
+        <?php echo $this->getChildHtml('', true, true) ?>
+    </div>
+    <?php endif; ?>

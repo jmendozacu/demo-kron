@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <loan_adminhtml_loan_edit>
+        <!-- <reference name="root">
+			<action method="addJs"><script>jquery/jquery.js</script></action>
+        </reference> -->
+		<!-- <reference name="head">
+            <action method="addItem"><type>js</type><name>jquery/jquery.js</name></action>
+        </reference> -->
+
+    </loan_adminhtml_loan_edit>
+	
+    <!-- <loan_adminhtml_loan_create> -->
+        <!-- <reference name="root">
+			<action method="addJs"><script>jquery/jquery.js</script></action>
+        </reference> -->
+    
+	<!-- <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>jquery/jquery.js</name>
+            </action>
+        </reference> -->
+	<!-- </loan_adminhtml_loan_create> -->
+</layout>

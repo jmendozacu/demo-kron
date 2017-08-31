@@ -1,0 +1,36 @@
+<?php
+$orderSummary = $this->getOrderDetail();
+?>
+<script language=javascript>
+var cod_page_guid = 'SUCCESS';
+var cod_ab_orderSubTotal = [<?php echo implode($orderSummary['subtotals'],',') ?>];
+var cod_ab_orderTotal = [<?php echo implode($orderSummary['totals'],',') ?>];
+var cod_ab_orderNum=[<?php echo implode($orderSummary['orderids'],',') ?>];
+var cod_ab_numOfItems=[<?php echo implode($orderSummary['numitems'],',') ?>];
+var cod_ab_orderSubTotalDiscounted = [<?php echo implode($orderSummary['discounts'],',') ?>];
+<?php if(count($orderSummary['itemnames']) > 0): ?>
+var cod_ab_product_items=[<?php echo "[". implode($orderSummary['itemnames'],'],[') . "]"; ?>];
+<?php else: ?>
+var cod_ab_product_items=[];
+<?php endif;?>
+<?php if(count($orderSummary['itemids']) > 0): ?>
+var cod_ab_product_ids=[<?php echo "[". implode($orderSummary['itemids'],'],[') . "]"; ?>];
+<?php else: ?>
+var cod_ab_product_ids=[];
+<?php endif;?>
+<?php if(count($orderSummary['itemcodes']) > 0): ?>
+var cod_ab_product_codes=[<?php echo "[". implode($orderSummary['itemcodes'],'],[') . "]"; ?>];
+<?php else: ?>
+var cod_ab_product_codes=[];
+<?php endif;?>
+<?php if(count($orderSummary['itemqty']) > 0): ?>
+var cod_ab_product_qtys=[<?php echo "[". implode($orderSummary['itemqty'],'],[') . "]"; ?>];
+<?php else: ?>
+var cod_ab_product_qtys=[];
+<?php endif;?>
+<?php if(count($orderSummary['itemprices']) > 0): ?>
+var cod_ab_product_price=[<?php echo "[". implode($orderSummary['itemprices'],'],[') . "]"; ?>];
+<?php else: ?>
+var cod_ab_product_price=[];
+<?php endif;?>
+</script>

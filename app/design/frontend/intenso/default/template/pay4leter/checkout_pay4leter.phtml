@@ -1,0 +1,642 @@
+<style>
+    .main-fluid {
+        display: inline-block;
+        min-width: 320px;
+        width: 74%;
+        /*float:right;*/
+    }
+
+    #checkout-step-review .main-fluid {
+        width: 100% !important;
+    }
+
+    .main-fluid h3 {
+        font-size: 19px;
+        font-weight: bold;
+        text-transform: none;
+        margin: 0px;
+    }
+
+    .bullet-style {
+        color: #0197D8;
+    }
+
+    .main-fluid .child-box {
+        width: 100%;
+        display: block;
+        margin: 7px 4px;
+        clear: both;
+    }
+
+    .main-fluid .child-box .notification {
+        padding: 0px;
+        margin: 3px;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: left;
+        color: #0197D8;
+    }
+
+    .tagline {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    .main-fluid .deposite-meter .left-box {
+        float: left;
+        width: 27%;
+        margin: 4px;
+        text-align: center;
+        min-height: 91px;
+        border-radius: 4px;
+        background-image: url("<?php echo $this->getSkinUrl('images/pay4later/price-back.png');?>");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    .heading {
+        position: relative;
+        background-image: url("<?php echo $this->getSkinUrl('images/pay4later/heading.png');?>");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 80%;
+        min-height: 30px;
+        margin: 0 auto;
+        top: -5px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+
+    }
+
+    .left-box .amount {
+        font-size: 21px;
+        padding: 4px;
+        font-weight: bold;
+        vertical-align: middle;
+    }
+
+    .main-fluid .deposite-meter .right-box {
+        float: right;
+        width: 65%;
+        margin: 20px 4px;
+        min-height: 54px;
+        background-image: url("<?php echo $this->getSkinUrl('images/pay4later/slider-back.png');?>");
+        background-repeat: no-repeat;
+        background-size: 100%;
+
+    }
+
+    .main-fluid .child-box .inner-box {
+        float: left;
+        margin: 3px 15px;
+        width: 29%;
+        background-color: #E1E1E1;
+        border-radius: 2px 2px 7px 7px;
+        padding: 1px 8px;
+    }
+
+    .right-icon {
+        background-image: url("<?php echo $this->getSkinUrl('images/pay4later/right-tick.png');?>");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        padding: 8px 8px;
+        position: relative;
+        top: 5px;
+        margin-right: 5px;
+    }
+
+    .inner-box .heading {
+        text-align: center;
+        margin-right: -3px;
+    }
+
+    .inner-box h1 {
+        margin: 0px;
+        color: #636363;
+    }
+
+    .inner-box table {
+        width: 100%;
+    }
+
+    .big {
+        font-size: 22px;
+    }
+
+    .text-right {
+        text-align: right;
+        font-weight: bold;
+        font-size: 11px;
+    }
+
+    .text-left {
+        text-align: left;
+        font-weight: bold;
+        font-size: 11px;
+    }
+
+    .small {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .apply-now {
+        background-image: url("<?php echo $this->getSkinUrl('images/pay4later/applynow-bg.png');?>") !important;
+        background-repeat: no-repeat !important;
+        background-size: 100% !important;
+        border: none;
+        padding: 2px 10px;
+        font-size: 15px;
+        color: #fff;
+        font-weight: bold;
+        float: right;
+        min-height: 32px;
+        margin-bottom: 18px;
+        margin-top: 10px;
+    }
+
+    #slider label {
+        position: absolute;
+        width: 20px;
+        margin-left: -10px;
+        text-align: center;
+        margin-top: -29px;
+    }
+
+    /* below is not necessary, just for style */
+    #slider {
+        width: 90%;
+        margin: 17px auto;
+        background-image: url("<?php echo $this->getSkinUrl('images/pay4later/slider-color.png');?>");
+        background-repeat: repeat-x;
+        border-radius: 10px;
+        border: 1px solid #BEBEBE;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+        background-image: url("<?php echo $this->getSkinUrl('images/pay4later/dial.png');?>") !important;
+        background-repeat: no-repeat !important;
+        background-size: 100% !important;
+        border-radius: 10px;
+    }
+
+    .product-desc {
+        display: inline-block !important;
+        float: left;
+    }
+
+    .price-text {
+        font-size: 40px;
+        color: #0280ca;
+        padding: 0 20px;
+        float: left;
+        width: 150px;
+    }
+
+    .pay4later_detail_view {
+        position: absolute;
+        top: 82px;
+        left: 130px;
+        color: #fff;
+    }
+
+    .detail-box {
+        clear: none;
+        margin: 0;
+        width: 100%;
+        float: right !important;
+        max-width: 340px;
+        padding: 10px;
+        background: #cdcfce;
+        height: auto;
+
+        color: #000;
+        margin: 3px 0 !important;
+        position: relative;
+    }
+
+    .price-text {
+        font-size: 27px;
+        text-align: center;
+    }
+
+    .detail-box .btn {
+        margin-top: 0;
+        padding: 5px;
+        background: #0280ca;
+        padding: 10px;
+        float: left;
+        color: #fff;
+    }
+
+    .product-info {
+        min-height: 150px;
+    }
+
+    .product-view .product-shop .availability {
+        position: absolute;
+        margin-top: 43px;
+    }
+
+    .header-text {
+        color: #0280ca;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 25px;
+    }
+
+    .header-text span {
+        font-size: 18px;
+        color: #0280ca;
+        font-weight: 600;
+        line-height: 25px;
+    }
+
+    .price-text span {
+        font-size: 15px;
+        line-height: 20px;
+        display: block;
+        text-align: center;
+    }
+
+    .finance_info_text {
+        clear: both;
+        padding: 0 20px;
+        font-size: 11px;
+        text-align: center;
+    }
+
+    .header-text {
+        margin: 0 0 7px;
+    }
+
+    .product-view .product-shop .price-box {
+        margin: 0 0 12px 0;
+    }
+
+    @media only screen and (max-width: 760px), (max-device-width: 1024px) and (min-device-width: 768px) {
+        table.pay4later_details th, table.pay4later_details td {
+            width: 18%;
+            display: table-cell;
+        }
+
+        .main-fluid .child-box .inner-box {
+            margin: 9px 10px;
+        }
+
+        #slider {
+            margin: 10px auto;
+        }
+
+        .left-box .amount {
+            padding: 0px;
+        }
+    }
+
+    @media only screen and (max-width: 360px), (max-device-width: 700px) and (min-device-width: 360px) {
+        .main-fluid .child-box .inner-box {
+            width: 90%;
+        }
+
+        .main-fluid .deposite-meter .left-box {
+            float: none;
+            margin: 0 auto;
+            width: 78%;
+        }
+
+        .main-fluid .deposite-meter .right-box {
+            float: none;
+            width: 89%;
+            margin: 42px auto 3px;
+        }
+
+        .wrp_img_div {
+            width: 99%;
+        }
+    }
+
+
+</style>
+<?php
+$_payHelper = Mage::helper('pay4leter');
+$_payHelper->getPay4leterTypeName();
+$session = Mage::getSingleton('checkout/session');
+$quote_id = $session->getQuoteId();
+$quote = Mage::getModel('sales/quote')->load($quote_id);
+$paymentcode = $quote->getPayment()->getMethodInstance()->getCode();
+
+if ($_payHelper->isActive && $paymentcode == 'pay4leter') {
+
+    if ($_SESSION['PAY4LATER_SESSION'] == 0) {
+        ?>
+        <div class="payment pay4later_pay ">
+        <?php
+        $grandTotal = Mage::getModel('checkout/cart')->getQuote()->getGrandTotal();
+        $grandTotal = str_replace("$", "", $grandTotal);
+        $productPrice = $grandTotal;
+        ?>
+        <?php
+        $items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+        ?>
+        <?php
+        $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+        $currency_symbol = Mage::app()->getLocale()->currency($currency_code)->getSymbol();
+
+        $typeArray = array();
+        $pay4laterCodeArray = array();
+
+        $helper = Mage::helper('catalog/product_configuration');
+        $scrappage_flag = 0;
+        $scrappage_plan = Array();
+
+        $planCodeArr = array();
+        foreach ($items as $item) {
+            $options = $helper->getCustomOptions($item);
+            foreach ($options as $option) {
+                if (strtolower($option['value']) !== 'no thanks') {
+                    $scrappage_sceme = Mage::getModel('catalog/product')->load($item->getProductId())->getAttributeText('scrappage_sceme');
+                    if ($scrappage_sceme && $scrappage_sceme !== '') {
+                        $schim = explode("-", $scrappage_sceme);
+                        $scrappage_plan[] = (!$scrappage_sceme) ? '' : end($schim);
+                        $scrappage_flag = 1;
+                    }
+                }
+            }
+
+            $product_id = $item->getProductId();
+            $productPlans = Mage::getModel('catalog/product')->load($product_id)->getAttributeText('pay4leter_plans');
+
+            if (!is_array($productPlans)) {
+                $productPlans1 = array();
+                $productPlans1[] = $productPlans;
+                $productPlans = $productPlans1;
+            }
+            //$planCodeArr[]= $productPlans;
+            foreach ($productPlans as $p) {
+                if (!in_array($p, $planCodeArr)) {
+                    $planCodeArr[] = $p;
+                }
+            }
+        }
+
+        $prodcutAvailablePlans = $_payHelper->getPlanStack($planCodeArr);
+        if ($scrappage_flag == 1) {
+            $m = 0;
+
+            foreach ($scrappage_plan as $pl) {
+                $month = (strlen($pl) <= 5) ? substr($pl, -1) : substr($pl, -2);
+                if ($m < $month) {
+                    $m = $month;
+                }
+            }
+
+            foreach ($prodcutAvailablePlans as $key => $val) {
+                $month = (strlen($key) <= 5) ? substr($key, -1) : substr($key, -2);
+                if ($month > $m) {
+                    unset($prodcutAvailablePlans[$key]);
+                }
+            }
+        }
+
+        $planIds = array_keys($prodcutAvailablePlans);
+
+        $planFirstDeposites = $_payHelper->getFirstPercentage($productPlans[count($productPlans) - 1]);
+        $minimumLoanValue = $_payHelper->loanvalue;
+        ?>
+        <form id="co-pay-form" name="frmProduct" class="co-pay-form">
+            <div class="main-fluid">
+                <div class="child-box">
+                    <p class="notification"><em class="right-icon"></em>Apply Online Today....takes less than 10 mins to
+                        complete</p>
+                    <p class="notification"><em class="right-icon"></em>Same day dispatch if ordered before 3pm</p>
+                    <p class="notification"><em class="right-icon"></em>Repayments don't start untill 1 month after you
+                        receive your goods!</p>
+                </div>
+                <div class="child-box step1">
+                    <h3><span class="bullet-style">Step 1)</span> Enter your Deposit Amount</h3>
+                    <p class="tagline">Select your Deposit amount from <b>0%</b> to <b>50%</b> using slider below</p>
+                    <div class="deposite-meter">
+                        <div class="left-box">
+                            <div class="absolute-title"></div>
+                            <div class="heading">Deposit</div>
+                            <h3 class="amount" id="dynamic_amount"></h3>
+                        </div>
+                        <div class="right-box">
+                            <div id="slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="child-box step2">
+                    <h3><span class="bullet-style">Step 2)</span> Select Finance Option</h3>
+                    <p class="tagline">Choose the finance opion suitable for you and click on <b>Apply Now</b> to start
+                        your application</p>
+                    <?php
+                    $i = 1;
+                    foreach ($prodcutAvailablePlans as $p) { ?>
+                        <div class="inner-box" id="plan_box_<?php echo $i; ?>">
+                            <div class="heading">Option <?php echo $i; ?></div>
+                            <h1 id="dynamic_amount_<?php echo $i; ?>"><?php echo $grandTotal; ?><span
+                                    class="small"></span></h1>
+                            <span class="tagline">X <?php echo $p['plan_label']; ?></span>
+                            <?php $isFree = explode("_", $p['plan_code']); ?>
+                            <p class="bullet-style"><span
+                                    class="big"><?php echo count($isFree) > 1 ? $isFree[1] : 0; ?></span>% Interest</p>
+                            <hr>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="text-left">Duration Of Agreement</td>
+                                    <td class="text-right"><?php echo substr($p['plan_code'], 4); ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Deposit</td>
+                                    <td class="text-right deposit_<?php echo $p['plan_code']; ?> d_amount_<?php echo $i; ?>">
+                                        $20
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Amount Of Credit</td>
+                                    <td class="text-right  credit_amt_<?php echo $i; ?>">$0</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Total Repayable</td>
+                                    <td class="text-right total_repayable_<?php echo $i; ?>">$20</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Total Interest</td>
+                                    <td class="text-right total_ints_<?php echo $i; ?>">$20</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button class="apply-now" code="<?php echo $p['plan_code']; ?>" type="button">Apply Now
+                            </button>
+                        </div>
+                        <?php $i++;
+                    } ?>
+
+                    <input type="hidden" name="frmProduct" value="1"/>
+                    <input type="hidden" name="Identification[api_key]" value="<?php echo $_payHelper->apiKey; ?>"/>
+                    <input type="hidden" name="Identification[RetailerUniqueRef]" value="250"/>
+                    <input type="hidden" name="Identification[InstallationID]" value="8313"/>
+                    <?php
+                    $i = 0;
+                    foreach ($items as $item) {
+                        $productName = $item->getName();
+                        $productPrice = $item->getPrice();
+                        $productQty = $item->getQty();
+                        ?>
+                        <input type="hidden" name="Goods[<?php echo $i; ?>][Description]"
+                               value="<?php echo $productName; ?>"/>
+                        <input type="hidden" name="Goods[<?php echo $i; ?>][Quantity]"
+                               value="<?php echo $productQty; ?>"/>
+                        <input type="hidden" name="Goods[<?php echo $i; ?>][Price]"
+                               value="<?php echo $productPrice; ?>"/>
+                        <?php $i++;
+                    } ?>
+                    <input type="hidden" name="Finance[Code]" id="live_code" value="ONIF6"/>
+                    <input type="hidden" name="Finance[Deposit]" id="live_deposit" value="10.00"/>
+
+
+                </div>
+
+                <script type="text/javascript">
+
+                    jQuery(document).ready(function ($) {
+
+                        var plans = jQuery.parseJSON('<?php echo json_encode($prodcutAvailablePlans);?>');
+                        $(".btn-checkout").hide();
+                        $(".apply-now").click(function () {
+                            var code = $(this).attr("code");
+                            $("#live_code").val(code);
+                            $("#live_deposit").val($(".deposit_" + code).text().substr(1));
+                            $.ajax({
+                                url: "<?php echo Mage::getUrl('pay4leter/pay4leter/pay4laterSession', array('_secure' => true));?>",
+                                type: 'POST',
+                                data: $(".co-pay-form").serialize(),
+                                success: function (data) {
+                                    console.log(data);
+                                    $(".btn-checkout").trigger('click');
+                                }
+                            });
+                            return false;
+                        });
+
+                        $("#slider").slider({
+                            value: 50,
+                            min: 10,
+                            max: 50,
+                            step: 10,
+                            stop: function (event, ui) {
+                                var $deposit = 10;
+                                var i = 1;
+                                $.each(plans, function (key, value) {
+                                    switch (ui.value) {
+                                        case 0:
+                                            $deposit = 0.2;
+                                            break;
+                                        case 10:
+                                            $deposit = value.deposite_1;
+                                            break;
+                                        case 20:
+                                            $deposit = value.deposite_2;
+                                            break;
+                                        case 30:
+                                            $deposit = value.deposite_3;
+                                            break;
+                                        case 40:
+                                            $deposit = value.deposite_4;
+                                            break;
+                                        case 50:
+                                            $deposit = value.deposite_5;
+                                            break;
+                                    }
+
+                                    var deposite_amt = ($deposit * <?php echo $grandTotal;?>) / 100;
+                                    //var deposite_amt = getDeposit($deposit,<?php echo $grandTotal;?>);
+                                    var loan_val = (<?php echo $grandTotal;?> -deposite_amt);
+                                    var originalLoan = parseFloat(<?php echo $_payHelper->loanvalue;?>);
+
+                                    if ($deposit == '' || $deposit == null || loan_val < originalLoan) {
+                                        $("#plan_box_" + i).hide();
+
+                                    }
+                                    else {
+                                        $("#plan_box_" + i).show();
+                                    }
+                                    var deposite_amt = ($deposit * <?php echo $grandTotal;?>) / 100;
+                                    //var deposite_amt = getDeposit($deposit,<?php echo $grandTotal;?>);
+                                    var my_fd_obj = getFinanceDetails(value.plan_code, <?php echo $grandTotal;?>, $deposit, 0);
+                                    var amt = my_fd_obj.m_inst.toString().split(".");
+                                    var prec = (typeof(amt[1]) == 'undefined') ? 00 : amt[1];
+                                    $("#dynamic_amount_" + i).html('&pound;' + amt[0] + '<span class="small">.' + prec + '</span>');
+                                    $(".d_amount_" + i).html('&pound;' + deposite_amt);
+                                    $(".credit_amt_" + i).html('&pound;' + my_fd_obj.l_amount);
+                                    $(".total_repayable_" + i).html('&pound;' + my_fd_obj.total);
+                                    $(".total_ints_" + i).html('&pound;' + my_fd_obj.l_cost);
+                                    $("#dynamic_amount").html('&pound;' + deposite_amt);
+                                    i++;
+
+                                });
+                            }
+                        })
+                            .each(function () {
+                                var vals = 40;
+                                for (var i = 0; i <= vals; i = i + 10) {
+                                    var el = $('<label style="color:#000;">' + (i + 10) + '%</label>').css('left', (i / vals * 100) + '%');
+                                    $("#slider").prepend(el);
+                                }
+                            });
+
+                        var i = 1;
+                        $.each(plans, function (key, value) {
+                            //var deposite_amt_slider = getDeposit(value.deposite_1,<?php echo $grandTotal;?>);
+
+                            var deposite_amt_slider = (value.deposite_5 * <?php echo $grandTotal;?>) / 100;
+                            var my_fd_obj = getFinanceDetails(value.plan_code, <?php echo $grandTotal;?>, value.deposite_5, 0);
+
+                            var amt = my_fd_obj.m_inst.toString().split(".");
+                            //alert(my_fd_obj);
+                            console.log(my_fd_obj);
+                            var prec = (typeof(amt[1]) == 'undefined') ? 00 : amt[1];
+                            $("#dynamic_amount_" + i).html('&pound;' + amt[0] + '<span class="small">.' + prec + '</span>');
+
+                            $(".d_amount_" + i).html('&pound;' + deposite_amt_slider);
+                            $(".credit_amt_" + i).html('&pound;' + my_fd_obj.l_amount);
+                            $(".total_repayable_" + i).html('&pound;' + my_fd_obj.total);
+                            $(".total_ints_" + i).html('&pound;' + my_fd_obj.l_cost);
+
+                            var originalLoan = parseFloat(<?php echo $_payHelper->loanvalue;?>);
+                            var loan_val = (<?php echo $grandTotal;?> -deposite_amt_slider);
+
+                            if (loan_val < originalLoan) {
+                                $("#plan_box_" + i).hide();
+                            }
+
+                            i++;
+                        });
+                        var deposite_amt_slider = (<?php echo $planFirstDeposites;?> * <?php echo $grandTotal;?>) /
+                        100;
+                        // var deposite_amt_slider = getDeposit('<?php echo $planFirstDeposites;?>',<?php echo $grandTotal;?>);
+                        var my_fd_obj = getFinanceDetails('<?php echo $planIds[count($planIds) - 1];?>', <?php echo $grandTotal;?>,<?php echo $planFirstDeposites;?> , 0);
+                        $("#dynamic_amount").html('&pound;' + deposite_amt_slider);
+
+
+                    });
+
+                    function getFinanceDetails(plancode, price, deposite, count) {
+                        var my_fd_obj = new FinanceDetails(plancode, price, deposite, count);
+                        return my_fd_obj;
+                    }
+                    function getDeposit(deposit, total) {
+                        return ((deposit * total) / 100);
+                    }
+
+                </script>
+            </div>
+        </form>
+        <?php
+
+    }
+}
+?>

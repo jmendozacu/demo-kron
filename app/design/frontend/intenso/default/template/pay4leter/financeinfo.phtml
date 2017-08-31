@@ -1,0 +1,305 @@
+<style>
+.main-fluid{
+  width:74%;
+}
+.main-fluid .child-box .inner-box{
+ margin-bottom:10px;
+}
+hr{
+     margin-top: 5px;
+    margin-bottom: 10px;
+}
+</style>
+<?php 
+$_payHelper = Mage::helper('pay4leter');
+$_payHelper->getPay4leterTypeName();
+
+
+if($_payHelper->isActive){
+	$_product = ($this->getProduct())?$this->getProduct():Mage::registry('current_product');
+	$product_id = $_product->getId();
+	$product= Mage::getModel('catalog/product')->load($product_id);
+	$productMainPrice = $product->getFinalPrice();
+	$formattedPrice = Mage::helper('core')->currency($productMainPrice,false,false);
+	$showedPrice = Mage::helper('core')->currency($productMainPrice,true,false);
+	$_store = $_product->getStore();
+	$_taxHelper = $this->helper('tax');
+
+	$isActive = Mage::getModel('catalog/product')->load($_product->getId())->getAttributeText('pay4leter_enable');
+	$pid=$_product->getId();
+
+	if($isActive && $isActive=='Yes'){
+		$productPrice = number_format($formattedPrice,2);
+		$productPrice  = str_replace(",","",$productPrice);
+		$productPlans = Mage::getModel('catalog/product')->load($pid)->getAttributeText('pay4leter_plans');
+		$scrappage_sceme = Mage::getModel('catalog/product')->load($pid)->getAttributeText('scrappage_sceme');
+		$scrappage_array =  explode("-",$scrappage_sceme);
+		$scrappage_plan = (!$scrappage_sceme)?'':end($scrappage_array);
+
+        if(!is_array($productPlans)) { 
+        $productPlans1 = array();
+            $productPlans1[]= $productPlans;
+            $productPlans = $productPlans1;
+        }
+		$prodcutAvailablePlans = $_payHelper->getPlanStack($productPlans);
+
+		$planIds = array_keys($prodcutAvailablePlans);
+		$planFirstDeposites = $_payHelper->getFirstPercentage($productPlans[count($productPlans)-1]);
+		$minimumLoanValue = $_payHelper->loanvalue;
+		 $_convertedFinalPrice = $_store->roundPrice($_store->convertPrice($_product->getFinalPrice()));
+		 $_pfinalPrice = $_taxHelper->getPrice($_product, $_convertedFinalPrice);
+
+		?>
+		<div class="wrp_img_div product-desc">
+			<div class="prd_later_image">
+			<img src="<?php echo $product->getImageUrl();?>" />
+			</div>
+			
+			<div class="p_img1">
+				<img src="<?php echo $this->getSkinUrl('images/instant-decision.png');?>" class="icon-pos" />
+				<b>Instant Decision</b>
+				<br/>
+				You get an instant decision. No hassle and no waiting!
+				
+			</div>
+
+			<div class="p_img2">
+				<img src="<?php echo $this->getSkinUrl('images/e-signature.png');?>" class="icon-pos" />
+				<b>eSignature</b>
+				<br/>
+				No paper Forms. No sending forms in the post. No PCF's.
+			</div>
+		</div>
+		<div class="main-fluid">
+
+				<div class="child-box">
+					<p class="notification"><em class="right-icon"></em>Apply Online Today....takes less than 10 mins to complete</p>
+					<p class="notification"><em class="right-icon"></em>Same day dispatch if ordered before 3pm</p>
+					<p class="notification"><em class="right-icon"></em>Repayments don't start untill 1 month after you receive your goods!</p>
+				</div>
+				<div class="child-box step1">
+				<h3><span class="bullet-style">Step 1)</span> Enter your Deposit Amount</h3>
+				<p class="tagline">Select your Deposit amount from <b>0%</b> to <b>50%</b> using slider below</p>
+					<div class="deposite-meter">
+						<div class="left-box">
+							<div class="absolute-title"></div>
+							<div class="heading">Deposit</div>
+							<h3 class="amount" id="dynamic_amount"></h3>
+						</div>
+						<div class="right-box">
+						<div id="slider"></div>
+						</div>
+					</div>
+				</div>
+				<div class="child-box step2">
+					<h3><span class="bullet-style">Step 2)</span> Select Finance Option</h3>
+					<p class="tagline">Choose the finance option suitable for you on checkout page and click on <b>Apply Now</b> to start your application</p>
+					<?php 
+					$i =1;
+					foreach($prodcutAvailablePlans as $p){ ?>
+					<div class="inner-box box_<?php echo $p['plan_code'];?>" id="plan_box_<?php echo $i;?>">
+						<div class="heading">Option <?php echo $i;?></div>
+						<h1 id="dynamic_amount_<?php echo $i;?>"><?php echo $_pfinalPrice;?><span class="small"></span></h1>
+						<span class="tagline">X <?php echo $p['plan_label'];?></span>
+						<?php $isFree = explode("_",$p['plan_code']);?>
+						<p class="bullet-style"><span class="big"><?php echo count($isFree) > 1 ?$isFree[1] : 0;?></span>% Interest</p>
+						<hr>
+						<table>
+							<tbody>
+								<tr>
+									<td class="text-left">Duration Of Agreement</td>
+									<td class="text-right"><?php echo substr($p['plan_code'], 4);?></td>
+								</tr>
+								<tr>
+									<td class="text-left">Deposit</td>
+									<td class="text-right d_amount_<?php echo $i;?>">$20</td>
+								</tr>
+								<tr>
+									<td class="text-left">Amount Of Credit</td>
+									<td class="text-right credit_amt_<?php echo $i;?>">$20</td>
+								</tr>
+								<tr>
+									<td class="text-left">Total Repayable</td>
+									<td class="text-right total_repayable_<?php echo $i;?>">$20</td>
+								</tr>
+								<tr>
+									<td class="text-left">Total Interest</td>
+									<td class="text-right total_ints_<?php echo $i;?>">$20</td>
+								</tr>
+							</tbody>
+						</table>
+					
+					</div>
+					<?php $i++; }?>
+
+					
+				</div>
+			</div>
+		<input type="hidden" id="radio_price_value" value="0">
+		<input type="hidden" id="select_price_value" value="0">
+			<script type="text/javascript">
+			var plans = jQuery.parseJSON('<?php echo json_encode($prodcutAvailablePlans);?>');
+		 var allowed_plans = [];
+		 var finalPrice = <?php echo $_pfinalPrice;?>;
+		jQuery(document).ready(function($){
+			
+			$( "#slider" ).slider({
+			    value: 50,
+			    min: 10,
+			    max: 50,
+			    step: 10,
+			    stop: function( event, ui ) {
+			    	$deposit =10;
+			    	var i=1;
+			    	$.each(plans,function(key,value){
+			    		switch(ui.value){
+			    			case 0:
+			    				$deposit = 0.2;
+			    				break;
+			    			case 10:
+			    				$deposit = value.deposite_1;
+			    				break;
+			    			case 20:
+			    				$deposit = value.deposite_2;
+			    				break;
+			    			case 30:
+			    				$deposit = value.deposite_3;
+			    				break;
+			    			case 40:
+			    				$deposit = value.deposite_4;
+			    				break;
+			    			case 50:
+			    				$deposit = value.deposite_5;
+			    				break;
+			    		}
+                        
+                        var deposite_amt = ($deposit * finalPrice) / 100;
+			    		var loan_val = (finalPrice - deposite_amt);
+			    	  	var originalLoan = parseFloat(<?php echo $_payHelper->loanvalue;?>);
+			    		if($deposit == '' || $deposit == null){
+			    			$("#plan_box_"+i).hide();
+
+			    		}
+			    		else{
+			    			if(allowed_plans.length<=0){
+			    				$("#plan_box_"+i).show();
+			    			}
+			    			else{
+			    				$.each(allowed_plans,function(e){
+			    					if(key == e){
+			    						$("#plan_box_"+i).hide();
+			    					}
+			    				});
+			    			}
+			    		}
+							var my_fd_obj = getFinanceDetails(value.plan_code , finalPrice, $deposit, 0);
+							var amt = my_fd_obj.m_inst.toString().split(".");
+							var prec = (typeof(amt[1])=='undefined')?00:amt[1];
+							$("#dynamic_amount_"+i).html('&pound;'+amt[0]+'<span class="small">.'+prec+'</span>');
+							$(".d_amount_"+i).html('&pound;'+deposite_amt.toFixed(2));
+							$(".credit_amt_"+i).html('&pound;'+my_fd_obj.l_amount);
+							$(".total_repayable_"+i).html('&pound;'+my_fd_obj.total);
+							$(".total_ints_"+i).html('&pound;'+my_fd_obj.l_cost);
+                            $("#dynamic_amount").html('&pound;'+ deposite_amt.toFixed(2));
+							i++;
+						
+			    	});
+			    }
+			})
+			.each(function() {
+				var vals = 40;
+			  //	alert(vals);
+				for (var i = 0; i <= vals; i=i+10) {
+				    var el = $('<label style="color:#000;">'+(i+10)+'%</label>').css('left',(i/vals*100)+'%');
+				    $( "#slider" ).prepend(el);
+				}
+			});
+
+			$('.product-custom-option').click(function(){
+				var attrPrice,finalPrice;
+				if($(this).is("select")){
+					attrPrice = ($('option:selected', this).attr('price'))?$('option:selected', this).attr('price'):0;
+					$("#select_price_value").val(attrPrice);
+					finalPrice = (<?php echo $_pfinalPrice;?> + Math.abs(attrPrice) - Math.abs($("#radio_price_value").val()));
+				}
+				else{
+					attrPrice = ($(this).attr('price'))?$(this).attr('price'):0;
+					$("#radio_price_value").val(attrPrice);
+					finalPrice = (<?php echo $_pfinalPrice;?> + Math.abs($("#select_price_value").val()) - Math.abs(attrPrice));
+				}
+
+				
+				if( ($("#radio_price_value").val()!=='0')){
+					
+					var scrap_plan = '<?php echo $scrappage_plan;?>';
+					var month = (scrap_plan.length <=5)?parseInt(scrap_plan.slice(-1)):parseInt(scrap_plan.slice(-2));
+
+					var i = 0;
+					var newPlans=[];
+					$.each(plans,function(key,value){
+						
+						var m = (key.length <=5)?parseInt(key.slice(-1)):parseInt(key.slice(-2));
+						if(m <= month){
+							newPlans.push(plans[key]);
+							allowed_plans.push(key);
+						} 
+						else{
+							$(".box_"+key).hide();
+						}
+						i++;
+					});
+				
+					loadPay4laterPlans(newPlans,finalPrice);
+				}
+				else{
+					$(".inner-box").show();
+					loadPay4laterPlans(plans,finalPrice);
+				}
+			});
+			loadPay4laterPlans(plans,finalPrice);
+		});
+
+		function loadPay4laterPlans(newPlans,fPrice){
+			 var $ = jQuery.noConflict();
+			var i=1;
+		
+			finalPrice = (fPrice == -1)?<?php echo $_pfinalPrice;?>:fPrice;
+			var plans = newPlans;
+          	var plan_key ='';
+          
+			$.each(plans,function(key,value){
+                var deposite_amt_slider = (value.deposite_5 * finalPrice) / 100;
+				
+				var my_fd_obj = getFinanceDetails(value.plan_code , finalPrice, value.deposite_5, 0);
+				
+				var amt = my_fd_obj.m_inst.toString().split(".");
+				var prec = (typeof(amt[1])=='undefined')?00:amt[1];
+				$("#dynamic_amount_"+i).html('&pound;'+amt[0]+'<span class="small">.'+prec+'</span>');
+
+							$(".d_amount_"+i).html('&pound;'+deposite_amt_slider.toFixed(2));
+							$(".credit_amt_"+i).html('&pound;'+my_fd_obj.l_amount);
+							$(".total_repayable_"+i).html('&pound;'+my_fd_obj.total);
+							$(".total_ints_"+i).html('&pound;'+my_fd_obj.l_cost);
+				i++;
+				plan_key = value.plan_code;
+			});
+            
+            var deposite_amt_slider = (<?php echo $planFirstDeposites;?> * finalPrice) / 100;
+			var my_fd_obj = getFinanceDetails(plan_key , finalPrice,<?php echo $planFirstDeposites;?> , 0);
+			$("#dynamic_amount").html('&pound;'+deposite_amt_slider.toFixed(2));
+			$("#cost_per_detail_month").html("&#163;"+my_fd_obj.m_inst+"<span>per month</span>");
+
+		}
+
+		function getFinanceDetails(plancode, price, deposite,count){
+				
+				var my_fd_obj = new FinanceDetails(plancode, price, deposite, count);
+				return my_fd_obj;
+		}
+		</script>
+<?php 
+	}
+	else{
+		echo "<p>No Finance Available</p>";
+	}
+} ?>

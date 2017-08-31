@@ -1,0 +1,17 @@
+.smartpdf-logo{border: 1px dashed #FF0000;width: auto; height: auto;}
+.smartpdf-var{}
+@page { margin: 0.5in 0.5in 0.5in 0.5in;}
+.page {
+	page-break-after:always;
+	clear: both;
+	position: relative;
+}
+
+.end-page{
+	page-break-after:auto;
+}
+p, h1,h2,h3,h4,h5,h6,ul,li{margin: 0; padding: 0;}
+
+.var-statement{color: #3f7f7f;}
+.if-statement{color: #7f007f;}
+.widget{margin: 10px 0;}

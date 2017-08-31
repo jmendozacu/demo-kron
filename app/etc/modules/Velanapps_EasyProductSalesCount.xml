@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Velanapps_EasyProductSalesCount>
+            <active>false</active>
+            <codePool>local</codePool>
+			<version>1.0.0</version>
+        </Velanapps_EasyProductSalesCount>
+    </modules>
+</config>

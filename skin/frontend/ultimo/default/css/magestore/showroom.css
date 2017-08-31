@@ -1,0 +1,481 @@
+@font-face {
+font-family:'myriadpro';
+src: url("font/myriadpro.otf") format('opentype');
+}
+@font-face {
+font-family:'agencyfb';
+src:url("font/agencyfb.ttf") format('truetype'),
+    url("font/agencyfb.otf") format('opentype');
+}
+@font-face {
+font-family:'modern20';
+src: url("font/mod20.ttf");
+}
+body{z-index:0}
+#showroom_popup_image{position:fixed;top:100px;left:390px;z-index:9999}
+#showroom_popup_mask{opacity:0.8;height: 1515px;width: 100%;position: absolute;top: 0;left: 0;background: #2f2f2f;z-index: 1500;}
+
+#image_avatar_showroom {
+    float: right;
+    height: 150px;
+    margin-right: 65px;
+    overflow: hidden;
+    width: 150px;
+}
+#showroom_info {
+	overflow: hidden;
+}
+.showrooms{
+background:#fff;
+padding:2%;
+float:left;
+width:96%;
+}
+.edit-showroom {
+    display: inline-block;
+    padding-top: 20px;
+}
+.showroom{float:left;width: 100%;}
+.showroom-detail{
+	padding: 10px;
+}
+.sidebar .showroom-detail .follows span{
+	float: left;
+}
+.showrooms button{background:none;border:none;cursor:pointer;float:left;width:auto;}
+#image_avatar_menu{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin-top:0px;
+	margin-left: -1px;
+}
+#showroom-load-more{
+	margin: auto;
+	width: 30px;
+}
+.showroom-image{
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+}
+.name-stylist{
+	margin-top:1px;
+	margin-left:1px;
+}
+.sort-by-showroom{
+	float:right;
+	text-align: right;
+}
+/*showrooms toolbar*/
+.showrooms .sh-toolbar{float:left;background: none repeat scroll 0 0 #F2F2F2;margin-top:10px;padding: 11px 13px;width: auto;font-family: arial;width:97%;height:15px;}
+.showrooms .sh-toolbar .sh-pager{width: 30%;float: left;}
+.showrooms .sh-toolbar .sh-sorter{width: 60%;float: right;}
+.showrooms .sh-toolbar .sh-sorter .sort-by{float: right;padding-right: 15px;color:#000}
+.showrooms .sh-toolbar .sh-sorter .sort-by a{margin-left: 10px;}
+.showrooms .sh-toolbar .sh-sorter .sort-by  a.active{text-decoration:none;cursor:default;color: #181818;font-weight: bold;}
+.showrooms .sh-toolbar .edit-showroom-toolbar{margin-top: -3px;}
+.showrooms .sh-toolbar .edit-showroom-toolbar .sort-by {float: left;margin-left: -254px;}
+/*show room question list style*/
+.showroom-answer{float:left;padding:10px;margin:25px;
+border:5px solid #ECECEC;
+}
+.showroom-question-ul{overflow: hidden;padding-bottom:10px;}
+#showroom-button-continue{float:right;margin:15px 0 0;}
+/*showroom form register*/
+#showroom_form_mask{opacity:0.8;
+height: 1500px ;
+width: 100% ;
+position: absolute ;
+top: 0 ;
+left: 0 ;
+background: black ;
+z-index: 9999 ;
+margin:0 ;}
+#showroom_form_popup{position: fixed;top:75px;left:25%;z-index: 9999;background:#fff;padding:20px;width:620px;}
+#showroom_popup_div{
+width:450px;
+margin:0 auto;
+background:#fff;
+padding:10px 15px 0;
+border:5px solid #555554;
+position:fixed;top:75px;left:33%;z-index:99999;
+}
+#showroom_popup_div  h1{
+font-family:agencyfb;
+font-size:73px;
+color:#363636;
+text-transform:uppercase;
+font-weight:bold;
+}
+#showroom_popup_div  h2{
+font-family:myriadpro;
+font-size:23px;
+color:#707070;
+text-transform:uppercase;
+border-bottom:1px solid #ccc;
+width:187px;
+margin:0 auto 15px;
+}
+#showroom_popup_div   .popup-content{float:left;
+width:100%;
+}
+#showroom_popup_div   .popup-content  label{
+font-family:agencyfb;
+font-size:22px;
+color:#363636;
+float:left;
+text-align:center;
+width:100%;
+}
+#showroom_popup_div   .popup-content .step{
+background:url("images/bkg-step.png") no-repeat;
+width:137px;
+height:137px;
+float:left;
+margin:15px  0 0;
+}
+#showroom_popup_div   .popup-content .step1{margin-right:20px;}
+#showroom_popup_div   .popup-content .step3{float:right;}
+#showroom_popup_div   .popup-content .step strong{
+font-family:modern20;
+font-size:30px;
+width:100%;
+height:39px;
+line-height:37px;
+float:left;
+margin-top:5px;
+}
+#showroom_popup_div   .popup-content .step span{
+font-family:Microsoft Sans Serif;
+font-size:14px;
+color:#4c646b;
+text-transform:uppercase;
+text-align:center;
+padding-top:10px;
+float:left;
+width:100%;
+height:70px;
+overflow:hidden;
+}
+#showroom_popup_div .actions{padding-bottom:10px;padding-top:10px;float:left;margin-left:25%;}
+#showroom_popup_div .actions button.button{height:49px ! important;}
+#showroom_popup_div .actions button.button span{
+padding:0 0 0 6px;
+line-height:44px;
+height:46px;
+border:none;
+font-family:myriadpro;
+font-size:18px;
+text-transform:uppercase;
+}
+#showroom_popup_div .actions button.button span span{
+background-position:100% 0; 
+padding-right:38px;
+}
+#showroom_form_popup .page-title{
+border:none;
+background:url("images/bkg-title.png") no-repeat center bottom ;
+padding-bottom:10px;
+}
+#showroom_form_popup .page-title h1{
+font-family:agencyfb;
+font-size:58px;
+text-transform:uppercase;
+text-align:center;
+font-weight:bold;
+}
+#showroom_form_popup .account-create .page-title h1 {text-transform:uppercase;font-size:50px;}
+#showroom_form_popup .page-title h2{
+font-family:agencyfb;
+font-size:40px;
+color:#636363;
+text-align:center;
+}
+#showroom_form_popup .page-title h3{
+font-size:13px;
+color:#898989;
+text-align:center;
+font-weight:normal;
+}
+#showroom_form_popup .fieldset{
+background:#fff;
+border:none;
+padding:0;
+margin:0;
+}
+#showroom_form_popup .fieldset .form-list .field{
+width:100%;
+padding:5px 0;
+}
+#showroom_form_popup .fieldset .form-list .input-box {
+clear:none;
+float:right;
+margin-right:25%;
+}
+#showroom_form_popup .fieldset .form-list input.input-text{
+height:21px;
+color:#898989;
+/* width:290px; */
+}
+#showroom_form_popup .fieldset .form-list label.required{
+width:150px;
+text-align:right;
+line-height:30px;
+font-size:12px;
+color:#636363;
+}
+#showroom_form_popup .fieldset .form-list label.required em{display:none;}
+#showroom_form_popup .buttons-set{
+border:none;
+margin:0 24% 0 0;
+padding:0;
+padding-bottom:15px;
+}
+#showroom_form_popup .buttons-set  button.button span{
+padding:0 0 0 6px;
+line-height:35px;
+height:35px;
+border:none;
+font-family:myriadpro;
+font-size:12px;
+text-transform:uppercase;
+}
+#showroom_form_popup .buttons-set  button.button span span{
+background-position:100% 0;
+padding-right:35px;
+}
+#showroom_form_popup div label{
+color:#898989;
+text-align:center;
+}
+#showroom-question  .page-title{
+border-bottom:none;
+margin:0;
+} 
+#showroom-question  .page-title h1{
+font-family:agencyfb;
+font-size:81px;
+color:#252525;
+text-transform:uppercase;
+font-weight:bold;
+}
+#showroom-question  .page-title h2{
+font-family:agencyfb;
+color:#707070;
+font-size:18px;
+padding-bottom:20px;
+font-weight:normal;
+}
+#showroom-question .showroom-question{
+border-top:1px dashed #c4c4c4;
+padding-top:15px;
+}
+.showroom-question  h1{
+color:#464646;
+font-size:14px;
+line-height:29px;
+}
+.showroom-question  h1 strong{
+border:1px solid;
+width:28px;
+height:28px;
+font-family:modern20;
+font-size:18px;
+float:left;
+text-align:center;
+margin:0 5px 0 0;
+font-weight:normal;
+}
+#showroom-question .fullbar{
+background:#5d5d5d;
+width:624px;
+text-align:center;
+margin:0 auto;
+}
+#showroom-question .fullbar label{
+color:#fff;
+position:absolute;
+left:275px;
+top:0;
+}
+#showroom-question .fullbar .bar .bar-left{
+background:#000;
+height:16px;
+}
+#showroom-question .fullbar .bar  .bar-middle{
+background:#000;
+height:16px;
+}
+#showroom-question .fullbar .bar  .bar-right{
+background:#000;
+height:16px;
+}
+#showroom_popup_close{
+	margin-top:-55px;
+	float:right;
+	color:#fff;
+	margin-right:-30px;
+}
+#showroom_popup_close a{
+text-decoration:none;
+}
+#showroom_popup_close a  h3:hover{
+color:#f2505d;
+}
+#showroom_popup_close a h3{
+color:#fff;
+font-size:20px;
+}
+.showrooms  .page-title{
+border-bottom:1px dashed #c4c4c4;
+padding-bottom:15px;
+display:block;
+position:relative;
+}
+.showrooms  .page-title h1{
+font-family:agencyfb;
+font-size:35px;
+font-weight:bold;
+text-transform:uppercase;
+color:#252525;
+border:none;
+}
+.showrooms  .page-title h2{
+font-size:12px;
+color:#707070;
+}
+.showrooms .page-title .showroom-recreate{position:absolute;right:0;top:0;}
+.showrooms .page-title #showroom-recreate{font-size:13px;text-transform:uppercase;line-height:50px;cursor:pointer;}
+.showrooms  .products-grid .showroom-detail .showroom-name {
+color:#363636;
+font-size:12px;
+width:100%;
+float:left;
+padding:5px 0;
+height:16px;
+overflow:hidden;
+text-align:left;
+}
+.showrooms .products-grid .showroom-detail{float:left;width:94%;padding:3%;}
+.showrooms .products-grid .showroom-detail .actions{
+float:left;
+position:static;
+width:100% ;
+}
+#showroom-question .page-title  button.cancel{float:right;margin-bottom:10px;}
+.showrooms  .products-grid .showroom-detail .actions .button-set{float:left;}
+.showrooms  .products-grid .showroom-detail .actions .follows{
+float:left;
+height:23px;
+width:30px;
+text-align:center;
+line-height:23px;
+font-size:11px;
+margin-left:3px;
+}
+.showroom-edit-index button.button span{text-transform:uppercase;}
+ button.button{height:auto !important;}
+.showrooms button.share  span{
+background:url("images/btn-share.png") no-repeat;
+padding:0 0 0 22px;
+border:none;
+height:25px;
+line-height:25px;
+color:#fff;
+font-size:13px;
+font-family:arial;
+float:left;
+font-weight:bold;
+text-align:left;
+width:160px;
+}
+.showrooms  button.share span span{
+background-position:100% 0;
+padding-right:3px;
+padding-left:0;
+float:left;
+}
+.showrooms  button.share span span span{
+padding-left:3px;
+background:none;
+float:left;
+}
+.showrooms button.button  span span span{
+padding-left:9px;
+background:none;
+}
+.showrooms button.followded  span span span{
+background:url("images/normal.png") no-repeat left  7px;
+padding-left:13px;
+line-height:23px;
+}
+.showrooms button.followded:hover  span span span{
+background:url("images/hover.png") no-repeat left  7px;
+}
+.showrooms button.create{margin:10px  0 0 30%;}
+.showrooms #showroom-edit-loadmore{float:none;margin:0 auto;}
+.showrooms #showroom-loadmore {height:20px;width:92px;background:url("images/arrow.png") no-repeat left center;float:left;cursor:pointer;text-align:right;text-transform:uppercase;}
+.sidebar  .showroom-detail .follows  span{float:left;}
+.showrooms .block-account .block-content li a{float:left;
+width:100%;
+}
+.showrooms .block-account .block-content li a img{float:left;}
+.showrooms .block-account .block-content li a h5{
+float:left;
+line-height:50px;
+}
+/* block friend*/
+.showrooms-left .block-content ul li{height:60px;width:100%;float:left;}
+.showrooms-left .block-content ul li  .showroom-avatar-menu{
+	height: 50px;
+	width: 50px;
+    overflow: hidden;
+    float:left;
+}
+.showrooms-left .block-content ul li  h5{float:left;padding-left:3%;height:100%;line-height:45px;overflow:hidden;width:60%;}
+.block-friends .block-content ul{overflow-x:hidden;overflow-y:scroll;border-bottom: 1px solid;height:235px;margin-top:5px;}
+.showrooms  .fbinvite {float:left;width:100%;}
+.showrooms  .fbinvite  li.item{float:left;width:10%;height:75px;}
+.showrooms  .fbinvite  li.item span{float:left;width:90%;padding:5% 5% 5% 0;overflow:hidden;
+height:16px;font-size:11px;}
+.showrooms .pager{width:auto;line-height: normal;border:none;}
+.showrooms .pager .limiter{float:right;
+.face-friend{
+cursor:pointer;
+height:50px;
+width:50px;
+position:relative;
+margin:0;
+}
+.face-friend .invite_face_holder {
+position:absolute;
+height:50px;
+width:60px;
+left:0;
+top:0;
+}
+.edit-showroom  li img{
+    border: 3px solid #fff;
+}
+.face-friend .hover_send_invite{
+position:absolute;
+top:0;
+left:0;
+height:50px;
+width:50px;
+}
+.face-friend  .overlay_invite_sent{
+position:absolute;
+top:0;
+left:0;
+}
+.showrooms .control {float:left;margin-bottom:10px;width:97%;}
+.showrooms .control a.facebook-right{float:right;text-decoration:underline;}
+.showrooms .control a.facebook-right:hover{float:right;text-decoration:none;}
+.showrooms .control a.facebook-left{float:left;text-decoration:underline;}
+.showrooms .control a.facebook-left:hover{float:left;text-decoration:none;}
+#showroom_form_popup label{float:none!important}
+#showroom_form_popup input.input-text, #showroom_form_popup textarea {padding: 3px 2px !important;}
+#showroom_form_popup #firstname{width: 254px !important;}
+#showroom_form_popup #prefix{width: 254px !important;}

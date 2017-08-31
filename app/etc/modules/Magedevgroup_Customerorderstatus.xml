@@ -1,0 +1,11 @@
+<config>
+    <modules>
+        <Magedevgroup_Customerorderstatus>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Magedevgroup_Core />
+            </depends>
+        </Magedevgroup_Customerorderstatus>
+    </modules>
+</config>

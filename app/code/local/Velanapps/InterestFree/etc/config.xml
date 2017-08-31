@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<velanapps_interestfree>
+			<version>1.0.0</version>
+		</velanapps_interestfree>
+	</modules>
+	<frontend>
+		<routers>
+			<interestfree>
+				<use>standard</use>
+				<args>
+					<module>Velanapps_InterestFree</module>
+					<frontName>interestfree</frontName>
+				</args>
+			</interestfree>
+		</routers>
+		<layout>
+			<updates>
+				<interestfree>
+					<file>velanapps_interestfree.xml</file>
+				</interestfree>
+			</updates>
+		</layout> 
+	</frontend>
+		
+	<global>
+		<models>
+			<interestfree>
+				<class>Velanapps_InterestFree_Model</class>
+			</interestfree>
+		</models>
+		<helpers>
+			<interestfree>
+				<class>Velanapps_InterestFree_Helper</class>
+			</interestfree>
+		</helpers>
+		<blocks>
+			<interestfree>
+				<class>Velanapps_InterestFree_Block</class>
+			</interestfree>
+		</blocks>
+	</global>
+	<default>
+		<payment>
+			<interestfree>
+				<model>interestfree/standard</model>
+				<!-- very important thing, here you select the model for your payment method-->
+				<active>1</active>
+				<order_status>pending</order_status>
+				<title>Interest Free Credits</title>
+				<payment_action>sale</payment_action>
+				<allowspecific>0</allowspecific>
+				<sort_order>1</sort_order>
+			</interestfree>
+		</payment>
+	</default>
+
+</config>
